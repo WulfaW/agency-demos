@@ -3,7 +3,7 @@
 ## 1. ZORUNLU: CRM, Takım Çalışması ve Git Senkronizasyonu (Antigravity & Claude)
 Bu klasör (gency-demos) altında iki farklı geliştirici ve yapay zeka (Antigravity ve Claude) çalışmaktadır. Çakışmaları önlemek ve senkronize kalmak için:
 - **GİT KURALLARI:** Kodlamaya veya yeni bir projeye başlamadan önce DAİMA git pull yap. Görev bitiminde (veya gün sonunda) mutlaka git push yap.
-- **CSV CRM:** Müşteri eklendiğinde veya durumu değiştiğinde doğrudan ana dizindeki AGENCY_CRM.csv dosyasını güncelle. Tüm yapay zeka asistanları bu dosyayı tek doğru kaynak (Single Source of Truth) kabul edecektir. Bu dosyayı Excel, Google Sheets veya Numbers ile kolayca açıp okuyabilirsiniz.
+- **NOTION CRM:** Müşteri eklendiğinde veya durumu değiştiğinde doğrudan ortak Notion CRM veritabanını (API üzerinden) güncelle. Hem sen hem Claude aynı Notion tablosuna bağlısınız. Veriler her zaman orada tutulacak.
 - **LİNEAR TAKİBİ:** Görevlere başlarken Linear durumunu In Progress, bitince Done olarak güncelle.
 
 ## 2. Tasarım Kalitesi (Anti-Slop)
