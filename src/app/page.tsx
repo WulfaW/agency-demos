@@ -1,0 +1,59 @@
+import React from 'react';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import PriceCalculator from '@/components/PriceCalculator';
+import BentoStats from '@/components/BentoStats';
+import Fleet from '@/components/Fleet';
+import BodrumRouteMap from '@/components/BodrumRouteMap';
+import LuxuryDestinations from '@/components/LuxuryDestinations';
+import StickyScrollExperience from '@/components/StickyScrollExperience';
+import SpotlightServices from '@/components/SpotlightServices';
+import ComparisonSection from '@/components/ComparisonSection';
+import TestimonialsMarquee from '@/components/TestimonialsMarquee';
+import FaqAndFooter from '@/components/FaqAndFooter';
+import StickyMobileBar from '@/components/StickyMobileBar';
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-[#030303] text-zinc-100 relative selection:bg-[#E5D3B3] selection:text-black pb-16 md:pb-0">
+      {/* 1. Header Navigation */}
+      <Navbar />
+
+      {/* 2. Soft Luxury Hero Section */}
+      <Hero />
+
+      {/* 3. Floating Luxury Booking Console */}
+      <PriceCalculator />
+
+      {/* 4. Luxury Bento Stats Grid (10+ Yıl, 15k+ Transfer, 4.9★, %100 Zamanında) */}
+      <BentoStats />
+
+      {/* 5. 3D Glare Fleet Showcase (Maybach, Vito, Sprinter) */}
+      <Fleet />
+
+      {/* 6. İnteraktif Bodrum Rota Çizici & Harita Simülatörü */}
+      <BodrumRouteMap />
+
+      {/* 7. Bodrum Ultra-Lüks Destinasyon Vitrini (Mandarin, Yalıkavak, Amanruya, Maçakızı) */}
+      <LuxuryDestinations />
+
+      {/* 8. Adım Adım First Class Yolculuk Akışı */}
+      <StickyScrollExperience />
+
+      {/* 7. Sekmeli & Fare Takip Eden Spotlight Hizmet Kartları */}
+      <SpotlightServices />
+
+      {/* 8. Standart Taksi vs Easy VIP Karşılaştırması */}
+      <ComparisonSection />
+
+      {/* 9. Sonsuz Kayan Yorumlar (Infinite Marquee) */}
+      <TestimonialsMarquee />
+
+      {/* 10. Lüks Akordiyon SSS & Footer */}
+      <FaqAndFooter />
+
+      {/* 11. Mobil Sabit Hızlı Rezervasyon Çubuğu */}
+      <StickyMobileBar />
+    </main>
+  );
+}
