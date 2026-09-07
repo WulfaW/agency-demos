@@ -169,7 +169,7 @@ export default function AdminDashboard() {
           ].map((item) => (
             <button key={item.id} onClick={() => setActiveTab(item.id as any)} className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm ${activeTab === item.id ? 'bg-white/10 text-white font-medium border border-white/5' : 'text-zinc-400 hover:bg-white/[0.02]'}`}>
               <div className="flex items-center gap-3"><item.icon className={`w-4 h-4 ${activeTab === item.id ? 'text-[#E5D3B3]' : 'opacity-60'}`} /> {item.label}</div>
-              {item.badge > 0 && <span className="bg-[#E5D3B3] text-black text-[10px] font-bold px-2 py-0.5 rounded-full">{item.badge}</span>}
+              {item.badge !== undefined && item.badge > 0 && <span className="bg-[#E5D3B3] text-black text-[10px] font-bold px-2 py-0.5 rounded-full">{item.badge}</span>}
             </button>
           ))}
         </nav>
