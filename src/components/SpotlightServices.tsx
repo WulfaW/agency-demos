@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { Plane, Anchor, Clock, Compass, ShieldCheck, Sparkles, Wifi, Wine, ChevronRight, PhoneCall } from 'lucide-react';
+import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Wifi, Wine, ChevronRight, PhoneCall } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 
 const categories = [
@@ -23,7 +23,7 @@ const servicesData: Record<string, Array<{ title: string; desc: string; badge: s
       title: 'Genel Havacılık & Özel Jet',
       desc: 'Bodrum VIP Jet Terminali aprondan doğrudan bagaj ve yolcu transferi. Gizlilik protokolü garantisi.',
       badge: 'VIP Jet Protokolü',
-      icon: Sparkles,
+      icon: Crown,
     },
     {
       title: 'Dönüş & Otelden Uçuşa',
@@ -69,7 +69,7 @@ const servicesData: Record<string, Array<{ title: string; desc: string; badge: s
       title: 'Kişiye Özel Bodrum & Çevre Turu',
       desc: 'Gümüşlük gün batımı, Çökertme Koyu, Antik Tiyatro ve özel şarap bağları rotaları.',
       badge: 'Özel Rota',
-      icon: Sparkles,
+      icon: Map,
     },
   ],
   intercity: [
