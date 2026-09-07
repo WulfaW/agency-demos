@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, UserCheck, Star, Clock } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { MetalButton, LiquidButton } from '@/components/ui/button';
 
 export default function AboutVIP() {
   const { t } = useLanguage();
@@ -127,10 +126,11 @@ export default function AboutVIP() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <a href="#fleet">
-              <LiquidButton className="h-12 px-8 text-xs tracking-widest uppercase border border-white/10 bg-white/5">
-                Filomuzu Keşfedin
-              </LiquidButton>
+            <a 
+              href="#fleet"
+              className="inline-flex items-center justify-center h-12 px-8 text-xs tracking-widest uppercase border border-white/10 bg-white/5 hover:bg-white/10 rounded-full text-white transition-colors"
+            >
+              Filomuzu Keşfedin
             </a>
           </motion.div>
 

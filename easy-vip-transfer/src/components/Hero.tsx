@@ -4,7 +4,6 @@ import React from 'react';
 import { ArrowRight, Sparkles, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
-import { MetalButton, LiquidButton } from '@/components/ui/button';
 
 const popularRoutes = [
   { label: 'BJV ➔ Mandarin Oriental', from: 'bjv', to: 'mandarin' },
@@ -80,21 +79,21 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center gap-6 mb-12"
+          className="flex flex-col sm:flex-row items-center gap-4 mb-12"
         >
-          <a href="#calculator">
-            <MetalButton variant="gold" className="uppercase tracking-[0.2em] font-bold text-xs h-14 px-10">
-              <span className="flex items-center gap-2">
-                {t.hero.btnCalc}
-                <ArrowRight className="w-4 h-4" />
-              </span>
-            </MetalButton>
+          <a
+            href="#calculator"
+            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_35px_rgba(229,211,179,0.25)] hover:shadow-[0_0_50px_rgba(255,255,255,0.35)] active:scale-98"
+          >
+            <span>{t.hero.btnCalc}</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
           
-          <a href="#fleet">
-            <LiquidButton className="uppercase tracking-widest text-xs h-14 px-10 text-white border border-white/20 bg-white/5">
-              {t.hero.btnFleet}
-            </LiquidButton>
+          <a
+            href="#fleet"
+            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 backdrop-blur-md text-white text-xs font-medium tracking-widest uppercase transition-all duration-300 active:scale-98"
+          >
+            <span className="text-zinc-300 group-hover:text-white transition-colors">{t.hero.btnFleet}</span>
           </a>
         </motion.div>
 
