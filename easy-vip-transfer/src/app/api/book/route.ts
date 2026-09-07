@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { createClient } from '@/lib/supabase/server';
 
@@ -26,16 +26,16 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: 'VIP Transfer <onboarding@resend.dev>', // Replace with your domain
         to: ['your-email@example.com'], // The agency email
-        subject:  Yeni VIP Rezervasyon Talebi: ,
-        html: \<p>Yeni bir transfer talebi aldınız.</p>
+        subject: `Yeni VIP Rezervasyon Talebi: ${name}`,
+        html: `<p>Yeni bir transfer talebi aldınız.</p>
                <ul>
-                 <li><b>Müşteri:</b> </li>
-                 <li><b>Telefon:</b> </li>
-                 <li><b>Rota:</b>  -> </li>
-                 <li><b>Tarih:</b> </li>
-                 <li><b>Araç:</b> </li>
-                 <li><b>Fiyat:</b> €</li>
-               </ul>\
+                 <li><b>Müşteri:</b> ${name}</li>
+                 <li><b>Telefon:</b> ${phone}</li>
+                 <li><b>Rota:</b> ${from} -> ${to}</li>
+                 <li><b>Tarih:</b> ${date}</li>
+                 <li><b>Araç:</b> ${vehicle}</li>
+                 <li><b>Fiyat:</b> €${price}</li>
+               </ul>`
       });
     }
 
