@@ -10,18 +10,18 @@ import React, {
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const UNSPLASH_IMAGES = [
-  "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop", // Maybach interior
-  "https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1200&auto=format&fit=crop", // Mercedes steering wheel
-  "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1200&auto=format&fit=crop", // Bodrum luxury
-  "https://images.unsplash.com/photo-1617814065607-4340d118dc8a?q=80&w=1200&auto=format&fit=crop", // Marina
-  "https://images.unsplash.com/photo-1550614000-4b95d4ed798a?q=80&w=1200&auto=format&fit=crop", // Chauffeur
-  "https://images.unsplash.com/photo-1522273400909-fd1a8f77637e?q=80&w=1200&auto=format&fit=crop", // Luxury watch / steering
-  "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1200&auto=format&fit=crop", // Luxury Van
-  "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1200&auto=format&fit=crop", // Luxury car exterior
-  "https://cdn.21st.dev/assets/mirror/61/6154958e9df110914005256ff2319d43a2c2e0fc8bb54e9f8bce7b91fdce5df1.jpg",
-  "https://cdn.21st.dev/assets/mirror/6d/6db92aff3c02cce69e2c672a6dd4e99cbf5c55d68fbf08c460527e6c7c5b64ba.jpg",
-  "https://cdn.21st.dev/assets/mirror/42/42ad2d0680dba697d578434e5af5620c7ab1c7c55bc36cec3b55eec8b7a79cbf.jpg",
-  "https://cdn.21st.dev/assets/mirror/cd/cd3dc09b1bbed97cfc879e2c5e62fdbc68dc4070b6105e476410d70e31d1e459.jpg",
+  "https://static.wixstatic.com/media/7e59bc_a3efef799d9a468dbd76721ac9a8754b~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_a3efef799d9a468dbd76721ac9a8754b~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_ab315091a296415d95c7a5c6b47d6f48~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_ab315091a296415d95c7a5c6b47d6f48~mv2.jpeg",
+  "https://static.wixstatic.com/media/7e59bc_ce3f66a3333548a1bd3a672365ab4e1e~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_ce3f66a3333548a1bd3a672365ab4e1e~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_9bcabf7adda749dab1e8efb432cba508~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_9bcabf7adda749dab1e8efb432cba508~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_387de9bcef444e70996ff39a12e4ffb1~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_387de9bcef444e70996ff39a12e4ffb1~mv2.jpeg",
+  "https://static.wixstatic.com/media/7e59bc_38e02b86daf14ffc9fe7827c44c1a431~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_38e02b86daf14ffc9fe7827c44c1a431~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_f9df606622794e8486a8baa9a6524818~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_f9df606622794e8486a8baa9a6524818~mv2.jpeg",
+  "https://static.wixstatic.com/media/7e59bc_6398cf38f81e465d8ab29ba9a7172773~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_6398cf38f81e465d8ab29ba9a7172773~mv2.jpeg",
+  "https://static.wixstatic.com/media/7e59bc_7c787bbe114e49cfa3eafe887cb84483~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_7c787bbe114e49cfa3eafe887cb84483~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_b54d01dc3b8a4fa0906333fa3b05228b~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_b54d01dc3b8a4fa0906333fa3b05228b~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_0db920749e5e4a5e8f1c0bb430707dc9~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_0db920749e5e4a5e8f1c0bb430707dc9~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_db01bf03ea114adeabc4cd9334d9e4de~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_db01bf03ea114adeabc4cd9334d9e4de~mv2.jpg",
 ];
 
 interface ImageCardProps {
