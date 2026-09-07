@@ -44,6 +44,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from '@/context/LanguageContext';
+import { PostHogProvider } from '@/components/providers/PostHogProvider';
 
 export default function RootLayout({
   children,
@@ -58,9 +59,11 @@ export default function RootLayout({
           className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.04] mix-blend-difference"
           style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}
         />
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <PostHogProvider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
