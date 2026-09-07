@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Wifi, Wine, ChevronRight, PhoneCall } from 'lucide-react';
+import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Sparkles, Wifi, Wine, ChevronRight, PhoneCall } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 
 const categories = [
