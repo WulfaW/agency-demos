@@ -2,7 +2,9 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type Language = 'TR' | 'EN' | 'RU';
+// We now accept any string as language code from the dropdown. 
+// But strictly typed keys are TR, EN, RU for translations.
+export type Language = string;
 
 interface Translations {
   nav: {
@@ -308,8 +310,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>('TR');
 
   useEffect(() => {
-    const saved = localStorage.getItem('easyvip_lang') as Language;
-    if (saved && (saved === 'TR' || saved === 'EN' || saved === 'RU')) {
+    const saved = localStorage.getItem('easyvip_lang');
+    if (saved) {
       setLangState(saved);
     }
   }, []);
@@ -319,8 +321,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('easyvip_lang', newLang);
   };
 
+  // Safe fallback to English if translation isn't explicitly defined
+  const currentTranslations = (translations as any)[lang] || (translations as any)['EN'];
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t: translations[lang] }}>
+    <LanguageContext.Provider value={{ lang, setLang, t: currentTranslations }}>
       {children}
     </LanguageContext.Provider>
   );

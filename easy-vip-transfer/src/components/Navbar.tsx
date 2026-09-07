@@ -5,6 +5,7 @@ import { Menu, X, ArrowRight, PhoneCall, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 
 import { useLanguage, Language } from '@/context/LanguageContext';
+import { LanguageDropdown } from '@/components/LanguageDropdown';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,7 +20,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const languages: Language[] = ['TR', 'EN', 'RU'];
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 py-5 transition-all duration-500">
@@ -73,23 +74,8 @@ export default function Navbar() {
           {/* 3. Right: Language & Action Button */}
           <div className="flex items-center gap-3">
             
-            {/* Interactive Language Pill */}
-            <div className="flex items-center bg-white/[0.04] border border-white/10 rounded-full p-0.5 text-[10px] font-mono text-zinc-400">
-              {languages.map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={`px-2 py-0.5 rounded-full transition-all ${
-                    lang === l
-                      ? 'bg-[#E5D3B3] text-black font-bold shadow-sm'
-                      : 'hover:text-white text-zinc-400'
-                  }`}
-                >
-                  {l}
-                </button>
-              ))}
-            </div>
+            {/* Interactive Language Dropdown */}
+            <LanguageDropdown />
 
             <a
               href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Hello,%20I%20would%20like%20to%20get%20a%20quote%20for%20Bodrum%20VIP%20transfer.`}
