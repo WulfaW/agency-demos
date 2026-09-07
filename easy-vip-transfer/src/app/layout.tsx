@@ -1,16 +1,21 @@
 import type { Metadata } from 'next';
 import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
+import { LanguageProvider } from '@/context/LanguageContext';
+import { PostHogProvider } from '@/components/providers/PostHogProvider';
+import Preloader from '@/components/Preloader';
+import CustomCursor from '@/components/CustomCursor';
+import ScrollProgress from '@/components/ScrollProgress';
 
-const playfair = Manrope({ 
+const manrope = Manrope({ 
   subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-serif',
   display: 'swap',
 });
 
-const montserrat = Inter({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-montserrat',
+  variable: '--font-sans',
   display: 'swap',
 });
 
@@ -43,20 +48,19 @@ export const metadata: Metadata = {
   },
 };
 
-import { LanguageProvider } from '@/context/LanguageContext';
-import { PostHogProvider } from '@/components/providers/PostHogProvider';
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className={`scroll-smooth ${playfair.variable} ${montserrat.variable} bg-[#030303] text-zinc-200 antialiased`}>
+    <html lang="tr" className={`scroll-smooth ${manrope.variable} ${inter.variable} bg-[#030303] text-zinc-200 antialiased`}>
       <body className="bg-[#030303] min-h-screen flex flex-col font-sans selection:bg-white selection:text-black relative">
-        {/* Global Cinematic Noise Overlay */}
+        <ScrollProgress />
+        <Preloader />
+        <CustomCursor />
         <div 
-          className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.04] mix-blend-difference"
+          className="pointer-events-none fixed inset-0 z-[1000] h-full w-full opacity-[0.04] mix-blend-difference"
           style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}
         />
         <PostHogProvider>
