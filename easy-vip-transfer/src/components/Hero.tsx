@@ -45,11 +45,13 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center justify-center px-5 py-2 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-8 shadow-xl"
+          className="flex items-center justify-center gap-4 mb-6"
         >
-          <span className="text-[9px] tracking-[0.3em] text-[#E5D3B3] uppercase font-mono">
+          <div className="h-[1px] w-8 md:w-12 bg-[#E5D3B3]/40"></div>
+          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             {t.hero.badge}
           </span>
+          <div className="h-[1px] w-8 md:w-12 bg-[#E5D3B3]/40"></div>
         </motion.div>
 
         {/* Display Headline */}

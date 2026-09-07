@@ -54,14 +54,12 @@ export default function TestimonialsMarquee() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="max-w-6xl mx-auto px-4 text-center mb-16"
       >
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/10 mb-4 shadow-xl">
-          <div className="flex text-amber-400">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            ))}
-          </div>
-          <span className="text-xs font-mono font-bold text-white">4.9 / 5.0</span>
-          <span className="text-[10px] font-sans text-zinc-400 tracking-wider uppercase">• Google Haritalar Onaylı</span>
+        <div className="flex items-center justify-center gap-4 mb-3">
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
+          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+            Misafir Yorumları (4.9 / 5.0)
+          </span>
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
         </div>
         
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">

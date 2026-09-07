@@ -58,9 +58,12 @@ export default function LuxuryDestinations() {
         transition={{ duration: 0.8 }}
         className="text-center mb-16"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[#E5D3B3] text-[10px] font-sans tracking-[0.25em] uppercase mb-4">
-          <Sparkles className="w-3.5 h-3.5 text-[#E5D3B3]" />
-          <span>{lang === 'TR' ? 'Popüler VIP Noktaları' : lang === 'RU' ? 'Элитные Локации' : 'Premier VIP Hubs'}</span>
+        <div className="flex items-center justify-center gap-4 mb-3">
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
+          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+            {lang === 'TR' ? 'Popüler VIP Noktaları' : lang === 'RU' ? 'Элитные Локации' : 'Premier VIP Hubs'}
+          </span>
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
         </div>
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
           {lang === 'TR' ? 'Bodrum’un En Seçkin Koyları' : lang === 'RU' ? 'Самые Престижные Бухты Бодрума' : 'Bodrum’s Most Exclusive Bays'}

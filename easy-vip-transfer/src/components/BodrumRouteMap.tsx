@@ -239,9 +239,13 @@ export default function BodrumRouteMap() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-14 max-w-3xl mx-auto"
       >
-        <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase block mb-3 font-medium">
-          {t.map.badge}
-        </span>
+        <div className="flex items-center justify-center gap-4 mb-3">
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
+          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+            {t.map.badge}
+          </span>
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
+        </div>
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4 font-normal">
           {t.map.title}
         </h2>

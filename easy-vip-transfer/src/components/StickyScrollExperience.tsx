@@ -50,9 +50,12 @@ export default function StickyScrollExperience() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="mb-20 text-center md:text-left"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[#E5D3B3] text-[10px] font-sans tracking-[0.25em] uppercase mb-4">
-          <Sparkles className="w-3.5 h-3.5 text-[#E5D3B3]" />
-          <span>{t.experience.badge}</span>
+        <div className="flex items-center justify-center gap-4 mb-3">
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
+          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+            {t.experience.badge}
+          </span>
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
         </div>
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide">
           {t.experience.title1}<br />

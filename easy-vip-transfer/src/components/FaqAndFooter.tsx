@@ -4,10 +4,16 @@ import React, { useState } from 'react';
 import { 
   Plus, 
   Minus, 
-  ShieldCheck, 
-  PhoneCall, 
   MapPin, 
+  PhoneCall, 
+  ChevronDown, 
+  Clock, 
+  ShieldCheck, 
+  Mail, 
   Send, 
+  Instagram, 
+  Facebook, 
+  Linkedin 
 } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 import { SocialTooltip } from '@/components/SocialTooltip';
@@ -242,88 +248,109 @@ export default function FaqAndFooter() {
       <div className="border-t border-white/10 py-16 px-4 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           
-          {/* Col 1: Brand & TÜRSAB & Ödeme Rozetleri */}
-          <div className="md:col-span-2 space-y-4">
-            <div className="text-lg font-sans font-bold tracking-[0.15em] text-white">
-              EASY VIP <span className="text-[#E5D3B3] font-medium">BODRUM</span>
+          {/* Col 1: Newsletter & Brand */}
+          <div className="md:col-span-1 space-y-6">
+            <div>
+              <div className="text-lg font-sans font-bold tracking-[0.15em] text-white mb-2">
+                EASY VIP <span className="text-[#E5D3B3] font-medium">BODRUM</span>
+              </div>
+              <p className="text-xs font-sans text-zinc-400 font-light leading-relaxed">
+                Bodrum Yarımadası ve Ege koylarında 7/24 kesintisiz VIP transfer.
+              </p>
             </div>
-            <p className="text-xs font-sans text-zinc-400 font-light max-w-sm leading-relaxed">
-              Bodrum Yarımadası ve Ege koylarında 7/24 kesintisiz, lüks Mercedes Maybach ve Vito filosuyla kişiye özel VIP transfer ve şoförlü araç tahsisi.
-            </p>
             
-            {/* TÜRSAB & Legal badges */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[10px] font-sans font-semibold text-zinc-300">
-                <span className="text-[#E5D3B3]">TÜRSAB A Grubu</span>
-                <span className="text-zinc-600">|</span> 
-                <span>Belge No: 11428</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[10px] font-sans font-semibold text-zinc-300">
-                <span>D2 Taşıma Belgeli</span>
-              </div>
-            </div>
-
-            {/* Accepted Payments */}
-            <div className="pt-4">
-              <div className="text-[10px] font-sans font-semibold text-zinc-500 uppercase mb-2 tracking-wide">
-                Geçerli Ödeme Yöntemleri
-              </div>
-              <div className="flex flex-wrap items-center gap-2 text-[10px] font-sans font-medium text-zinc-400">
-                <span className="px-2.5 py-1 rounded bg-[#050505] border border-white/[0.08]">Araçta Nakit (₺, €, $, £)</span>
-                <span className="px-2.5 py-1 rounded bg-[#050505] border border-white/[0.08]">Kredi Kartı / Temassız POS</span>
-                <span className="px-2.5 py-1 rounded bg-[#050505] border border-white/[0.08]">Kurumsal Havale / EFT</span>
-              </div>
+            <div className="relative">
+              <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase mb-3">E-Bülten Kayıt</h4>
+              <form className="relative flex items-center">
+                <input
+                  type="email"
+                  placeholder="E-posta adresiniz"
+                  className="w-full bg-[#050505] border border-white/10 rounded-full py-2.5 pl-4 pr-10 text-xs text-white focus:outline-none focus:border-[#E5D3B3]/50 transition-colors"
+                />
+                <button
+                  type="button"
+                  className="absolute right-1 top-1 bottom-1 aspect-square rounded-full bg-[#E5D3B3] text-black flex items-center justify-center hover:bg-white transition-colors"
+                >
+                  <Send className="w-3.5 h-3.5 -ml-0.5" />
+                </button>
+              </form>
             </div>
           </div>
 
-          {/* Col 2: Hızlı İletişim */}
+          {/* Col 2: Hızlı Linkler */}
+          <div className="space-y-4">
+            <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Hızlı Linkler</h4>
+            <nav className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400">
+              <a href="#fleet" className="block hover:text-[#E5D3B3] transition-colors">Araç Filomuz</a>
+              <a href="#services" className="block hover:text-[#E5D3B3] transition-colors">Ayrıcalıklar</a>
+              <a href="#destinations" className="block hover:text-[#E5D3B3] transition-colors">Popüler Rotalar</a>
+              <a href="#calculator" className="block hover:text-[#E5D3B3] transition-colors">Fiyat Hesapla</a>
+              <a href="/admin" className="block hover:text-white transition-colors">Yönetici Paneli</a>
+            </nav>
+          </div>
+
+          {/* Col 3: İletişim */}
           <div className="space-y-4">
             <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">İletişim</h4>
-            <div className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400">
+            <address className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400 not-italic">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                <span>Yalıkavak Marina, Bodrum</span>
+              </div>
               <a href={`tel:${CONTACT_INFO.phoneClean}`} className="flex items-center gap-2 hover:text-[#E5D3B3] transition-colors">
-                <PhoneCall className="w-3.5 h-3.5 text-zinc-500" />
+                <PhoneCall className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                 <span>{CONTACT_INFO.phone}</span>
               </a>
               <a href={`https://wa.me/${CONTACT_INFO.phoneClean}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#25D366] transition-colors">
-                <OfficialWhatsAppIcon className="w-3.5 h-3.5 text-zinc-500" />
+                <OfficialWhatsAppIcon className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                 <span>WhatsApp VIP Operasyon</span>
               </a>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Yalıkavak Marina / Bodrum</span>
+            </address>
+          </div>
+
+          {/* Col 4: Sosyal Medya & Belgeler */}
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase mb-4">Takip Edin</h4>
+              <div className="flex space-x-3">
+                <a href="#" className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/30 transition-all">
+                  <Instagram className="w-3.5 h-3.5" />
+                </a>
+                <a href="#" className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/30 transition-all">
+                  <Facebook className="w-3.5 h-3.5" />
+                </a>
+                <a href="#" className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/30 transition-all">
+                  <Linkedin className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Resmi Belgeler</h4>
+              <div className="flex flex-col gap-2">
+                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[10px] font-sans font-semibold text-zinc-300">
+                  <span className="text-[#E5D3B3]">TÜRSAB</span>
+                  <span className="text-zinc-600">|</span> 
+                  <span>No: 11428</span>
+                </div>
+                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[10px] font-sans font-semibold text-zinc-300">
+                  <span>D2 Taşıma Belgeli</span>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* Col 3: Popüler Rotalar */}
-          <div className="space-y-4">
-            <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Popüler Rotalar</h4>
-            <ul className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400">
-              <li>Bodrum Havalimanı <span className="text-zinc-600">→</span> Yalıkavak</li>
-              <li>BJV <span className="text-zinc-600">→</span> Göltürkbükü & Mandarin</li>
-              <li>Bodrum <span className="text-zinc-600">→</span> Çeşme & Alaçatı</li>
-              <li>Bodrum <span className="text-zinc-600">→</span> Göcek & Fethiye</li>
-            </ul>
-          </div>
-
         </div>
 
-        {/* Bottom copyright & Admin Link */}
-        <div className="mt-14 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-zinc-600 gap-4">
-          <div>
+        {/* Bottom copyright */}
+        <div className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-[11px] text-zinc-500 gap-4">
+          <p>
             © 2026 Easy VIP Transfer. Tüm hakları saklıdır.
-          </div>
-          <div className="flex items-center gap-4">
-            <a href="/gizlilik" className="hover:text-zinc-400 transition-colors cursor-pointer">Gizlilik Politikası</a>
-            <span>•</span>
-            <a href="/kvkk" className="hover:text-zinc-400 transition-colors cursor-pointer">KVKK Metni</a>
-            <span>•</span>
-            <a href="/sartlar" className="hover:text-zinc-400 transition-colors cursor-pointer">İptal/İade Şartları</a>
-            <span>•</span>
-            <a href="/admin" className="text-zinc-500 hover:text-[#E5D3B3] transition-colors font-mono flex items-center gap-1">
-              <span>Yönetici Paneli</span>
-            </a>
-          </div>
+          </p>
+          <nav className="flex gap-4">
+            <a href="/gizlilik" className="hover:text-zinc-300 transition-colors">Gizlilik Politikası</a>
+            <a href="/kvkk" className="hover:text-zinc-300 transition-colors">KVKK Metni</a>
+            <a href="/sartlar" className="hover:text-zinc-300 transition-colors">Şartlar & Koşullar</a>
+          </nav>
         </div>
       </div>
 

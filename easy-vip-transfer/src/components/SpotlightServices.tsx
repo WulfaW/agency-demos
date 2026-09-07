@@ -167,9 +167,12 @@ export default function SpotlightServices() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-14"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[#E5D3B3] text-[10px] font-sans tracking-[0.25em] uppercase mb-4">
-          <Sparkles className="w-3.5 h-3.5 text-[#E5D3B3]" />
-          <span>VIP Operasyon Hizmetleri</span>
+        <div className="flex items-center justify-center gap-4 mb-3">
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
+          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+            VIP Operasyon Hizmetleri
+          </span>
+          <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
         </div>
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
           Ayrıcalıklı Hizmet Yelpazemiz
