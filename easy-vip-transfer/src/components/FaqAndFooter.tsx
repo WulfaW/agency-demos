@@ -244,65 +244,65 @@ export default function FaqAndFooter() {
           
           {/* Col 1: Brand & TÜRSAB & Ödeme Rozetleri */}
           <div className="md:col-span-2 space-y-4">
-            <h3 className="font-serif text-2xl font-bold tracking-wider text-white">
-              EASY VIP
-            </h3>
+            <div className="text-lg font-sans font-bold tracking-[0.15em] text-white">
+              EASY VIP <span className="text-[#E5D3B3] font-medium">BODRUM</span>
+            </div>
             <p className="text-xs font-sans text-zinc-400 font-light max-w-sm leading-relaxed">
               Bodrum Yarımadası ve Ege koylarında 7/24 kesintisiz, lüks Mercedes Maybach ve Vito filosuyla kişiye özel VIP transfer ve şoförlü araç tahsisi.
             </p>
             
             {/* TÜRSAB & Legal badges */}
-            <div className="flex flex-wrap items-center gap-2 pt-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.03] border border-white/10 text-[11px] text-zinc-300">
-                <ShieldCheck className="w-4 h-4 text-[#E5D3B3]" />
-                <span className="font-mono text-[#E5D3B3]">TÜRSAB A Grubu</span>
-                <span className="text-zinc-500">| Belge No: 11428</span>
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[10px] font-sans font-semibold text-zinc-300">
+                <span className="text-[#E5D3B3]">TÜRSAB A Grubu</span>
+                <span className="text-zinc-600">|</span> 
+                <span>Belge No: 11428</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.03] border border-white/10 text-[11px] text-zinc-400 font-mono">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[10px] font-sans font-semibold text-zinc-300">
                 <span>D2 Taşıma Belgeli</span>
               </div>
             </div>
 
             {/* Accepted Payments */}
-            <div className="pt-2">
-              <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block mb-2">
+            <div className="pt-4">
+              <div className="text-[10px] font-sans font-semibold text-zinc-500 uppercase mb-2 tracking-wide">
                 Geçerli Ödeme Yöntemleri
-              </span>
-              <div className="flex flex-wrap items-center gap-2 text-[10px] font-mono text-zinc-400">
-                <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">Araçta Nakit (₺, €, $, £)</span>
-                <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">Kredi Kartı / Temassız POS</span>
-                <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">Kurumsal Havale / EFT</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-[10px] font-sans font-medium text-zinc-400">
+                <span className="px-2.5 py-1 rounded bg-[#050505] border border-white/[0.08]">Araçta Nakit (₺, €, $, £)</span>
+                <span className="px-2.5 py-1 rounded bg-[#050505] border border-white/[0.08]">Kredi Kartı / Temassız POS</span>
+                <span className="px-2.5 py-1 rounded bg-[#050505] border border-white/[0.08]">Kurumsal Havale / EFT</span>
               </div>
             </div>
           </div>
 
           {/* Col 2: Hızlı İletişim */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono tracking-widest text-[#E5D3B3] uppercase">İletişim & Çağrı</h4>
-            <div className="space-y-2 text-xs text-zinc-400">
+          <div className="space-y-4">
+            <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">İletişim</h4>
+            <div className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400">
               <a href={`tel:${CONTACT_INFO.phoneClean}`} className="flex items-center gap-2 hover:text-[#E5D3B3] transition-colors">
-                <PhoneCall className="w-3.5 h-3.5 text-[#E5D3B3]" />
+                <PhoneCall className="w-3.5 h-3.5 text-zinc-500" />
                 <span>{CONTACT_INFO.phone}</span>
               </a>
               <a href={`https://wa.me/${CONTACT_INFO.phoneClean}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#25D366] transition-colors">
-                <OfficialWhatsAppIcon className="w-3.5 h-3.5 text-[#25D366]" />
+                <OfficialWhatsAppIcon className="w-3.5 h-3.5 text-zinc-500" />
                 <span>WhatsApp VIP Operasyon</span>
               </a>
               <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#E5D3B3]" />
+                <MapPin className="w-3.5 h-3.5 text-zinc-500" />
                 <span>Yalıkavak Marina / Bodrum</span>
               </div>
             </div>
           </div>
 
           {/* Col 3: Popüler Rotalar */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono tracking-widest text-[#E5D3B3] uppercase">Popüler Rotalar</h4>
-            <ul className="space-y-1.5 text-xs text-zinc-400 font-light">
-              <li>• Bodrum Havalimanı ➔ Yalıkavak</li>
-              <li>• BJV ➔ Göltürkbükü & Mandarin</li>
-              <li>• Bodrum ➔ Çeşme & Alaçatı</li>
-              <li>• Bodrum ➔ Göcek & Fethiye</li>
+          <div className="space-y-4">
+            <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Popüler Rotalar</h4>
+            <ul className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400">
+              <li>Bodrum Havalimanı <span className="text-zinc-600">→</span> Yalıkavak</li>
+              <li>BJV <span className="text-zinc-600">→</span> Göltürkbükü & Mandarin</li>
+              <li>Bodrum <span className="text-zinc-600">→</span> Çeşme & Alaçatı</li>
+              <li>Bodrum <span className="text-zinc-600">→</span> Göcek & Fethiye</li>
             </ul>
           </div>
 

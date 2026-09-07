@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, Sparkles, MapPin } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -45,10 +45,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-8 shadow-xl"
+          className="inline-flex items-center justify-center px-5 py-2 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-8 shadow-xl"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#E5D3B3]" />
-          <span className="text-[10px] tracking-[0.25em] text-zinc-300 uppercase font-sans font-medium">
+          <span className="text-[9px] tracking-[0.3em] text-[#E5D3B3] uppercase font-mono">
             {t.hero.badge}
           </span>
         </motion.div>
