@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import PriceCalculator from '@/components/PriceCalculator';
+import AboutVIP from '@/components/AboutVIP';
 import BentoStats from '@/components/BentoStats';
 import Fleet from '@/components/Fleet';
 import BodrumRouteMap from '@/components/BodrumRouteMap';
@@ -24,6 +25,9 @@ export default function Home() {
 
       {/* 3. Floating Luxury Booking Console */}
       <PriceCalculator />
+
+      {/* 3.5 About VIP Section (Corporate Vision & Standards) */}
+      <AboutVIP />
 
       {/* 4. Luxury Bento Stats Grid (10+ Yıl, 15k+ Transfer, 4.9★, %100 Zamanında) */}
       <BentoStats />

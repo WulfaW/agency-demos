@@ -314,9 +314,11 @@ export default function FaqAndFooter() {
             © 2026 Easy VIP Transfer. Tüm hakları saklıdır.
           </div>
           <div className="flex items-center gap-4">
-            <span className="hover:text-zinc-400 transition-colors cursor-pointer">Gizlilik Politikası</span>
+            <a href="/gizlilik" className="hover:text-zinc-400 transition-colors cursor-pointer">Gizlilik Politikası</a>
             <span>•</span>
-            <span className="hover:text-zinc-400 transition-colors cursor-pointer">KVKK Metni</span>
+            <a href="/kvkk" className="hover:text-zinc-400 transition-colors cursor-pointer">KVKK Metni</a>
+            <span>•</span>
+            <a href="/sartlar" className="hover:text-zinc-400 transition-colors cursor-pointer">İptal/İade Şartları</a>
             <span>•</span>
             <a href="/admin" className="text-zinc-500 hover:text-[#E5D3B3] transition-colors font-mono flex items-center gap-1">
               <span>Yönetici Paneli</span>

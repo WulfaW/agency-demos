@@ -4,7 +4,6 @@ import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
 import Preloader from '@/components/Preloader';
-import CustomCursor from '@/components/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress';
 
 const manrope = Manrope({ 
@@ -58,7 +57,6 @@ export default function RootLayout({
       <body className="bg-[#030303] min-h-screen flex flex-col font-sans selection:bg-white selection:text-black relative">
         <ScrollProgress />
         <Preloader />
-        <CustomCursor />
         <div 
           className="pointer-events-none fixed inset-0 z-[1000] h-full w-full opacity-[0.04] mix-blend-difference"
           style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}
