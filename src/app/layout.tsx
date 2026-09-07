@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Montserrat } from 'next/font/google';
+import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
 
-const playfair = Playfair_Display({ 
+const playfair = Manrope({ 
   subsets: ['latin'],
   variable: '--font-playfair',
   display: 'swap',
 });
 
-const montserrat = Montserrat({
+const montserrat = Inter({
   subsets: ['latin'],
   variable: '--font-montserrat',
   display: 'swap',
