@@ -67,32 +67,15 @@ export default function Navbar() {
             >
               <div className="flex items-center justify-end w-full">
                 
-                {/* Desktop Links */}
-                <nav className="hidden lg:flex items-center gap-6 mr-6">
-                  <a href="#fleet" className="text-[10px] font-sans tracking-[0.2em] text-zinc-400 hover:text-white transition-colors uppercase font-medium">
-                    {t.nav.fleet}
-                  </a>
-                  <a href="#routes" className="text-[10px] font-sans tracking-[0.2em] text-zinc-400 hover:text-white transition-colors uppercase font-medium">
-                    {t.nav.routes}
-                  </a>
-                  <a href="#services" className="text-[10px] font-sans tracking-[0.2em] text-zinc-400 hover:text-white transition-colors uppercase font-medium">
-                    {t.nav.services}
-                  </a>
-                  <a href="#faq" className="text-[10px] font-sans tracking-[0.2em] text-zinc-400 hover:text-white transition-colors uppercase font-medium">
-                    {t.nav.faq}
-                  </a>
-                </nav>
-
                 {/* Right actions */}
                 <div className="flex items-center gap-3">
-                  <LanguageDropdown />
-                  <a href="#calculator" className="hidden sm:flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-[10px] font-bold tracking-widest uppercase transition-colors">
+                  <a href="#calculator" className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-colors">
                     <span>{t.hero.btnCalc}</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </a>
 
-                  {/* Mobile Hamburger */}
-                  <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden p-1.5 text-white hover:text-[#E5D3B3] transition-colors focus:outline-none">
+                  {/* Mobile Hamburger (Keep so they can still access menu) */}
+                  <button onClick={() => setMobileMenuOpen(true)} className="p-1.5 text-white hover:text-[#E5D3B3] transition-colors focus:outline-none">
                     <Menu className="w-5 h-5" />
                   </button>
                 </div>
