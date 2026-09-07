@@ -99,16 +99,49 @@ export default function PriceCalculator() {
     );
   };
 
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSwap = () => {
     const tmp = from;
     setFrom(to);
     setTo(tmp);
   };
 
-  const handleWhatsApp = () => {
+  const handleWhatsApp = async () => {
+    if (!name || !phone) {
+      alert(lang === 'TR' ? 'Lütfen adınızı ve telefonunuzu giriniz.' : 'Please enter your name and phone number.');
+      return;
+    }
+
     const fromName = LOCATIONS.find((l) => l.id === from)?.name || from;
     const toName = LOCATIONS.find((l) => l.id === to)?.name || to;
+    
+    setIsSubmitting(true);
+    try {
+      // 1. Backend'e kaydet ve mail at (Supabase & Resend)
+      await fetch('/api/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          phone,
+          from: fromName,
+          to: toName,
+          date,
+          vehicle: passengers + ' Yolcu Aracı',
+          price: 0 // Will calculate in backend or admin
+        })
+      });
+    } catch (e) {
+      console.error(e);
+    }
+    setIsSubmitting(false);
+
+    // 2. WhatsApp'a yönlendir
     let msg = `Hello, I would like to request a VIP transfer quote.%0A%0A`;
+    if (name) msg += `👤 *Name:* ${name}%0A`;
     if (fromName) msg += `📍 *From:* ${fromName}%0A`;
     if (toName) msg += `📍 *To:* ${toName}%0A`;
     if (date) msg += `📅 *Date:* ${date}%0A`;
@@ -186,38 +219,58 @@ export default function PriceCalculator() {
         </div>
 
         {/* Row 1: Nereden ↔ Nereye */}
-        <div className="relative z-30 flex items-end gap-3 mb-4">
+        <div className="relative z-30 flex flex-col sm:flex-row items-end gap-3 mb-4">
           <PillSelect
             label={t.calc.from}
             value={from}
             onChange={setFrom}
             options={LOCATIONS}
-            placeholder="Havalimanı, Otel, Marina..."
+            placeholder="Havalimanı, Otel..."
             icon={MapPin}
           />
-
-          {/* Swap button */}
-          <button
-            type="button"
-            onClick={handleSwap}
-            className="shrink-0 w-9 h-9 rounded-full border border-white/[0.1] bg-white/[0.04] hover:bg-[#E5D3B3]/10 hover:border-[#E5D3B3]/30 flex items-center justify-center transition-all duration-200 mb-[2px]"
-            title="Rota değiştir"
-          >
-            <ArrowLeftRight className="w-3.5 h-3.5 text-zinc-500" />
-          </button>
 
           <PillSelect
             label={t.calc.to}
             value={to}
             onChange={setTo}
             options={LOCATIONS}
-            placeholder="Havalimanı, Otel, Marina..."
+            placeholder="Havalimanı, Otel..."
             icon={MapPin}
           />
         </div>
 
-        {/* Row 2: Tarih + Yolcu + CTA */}
-        <div className="relative z-20 flex flex-col sm:flex-row items-end gap-3 mb-5">
+        {/* Row 2: İsim + Telefon */}
+        <div className="relative z-20 flex flex-col sm:flex-row items-end gap-3 mb-4">
+          <div className="w-full sm:flex-1">
+            <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
+              <span className="text-[#E5D3B3]">✦</span>
+              {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
+            </p>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder={lang === 'TR' ? 'Örn: John Doe' : 'e.g. John Doe'}
+              className="w-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/30 transition-all duration-200"
+            />
+          </div>
+          <div className="w-full sm:flex-1">
+            <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
+              <span className="text-[#E5D3B3]">✦</span>
+              {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
+            </p>
+            <input
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="+90 5XX XXX XX XX"
+              className="w-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/30 transition-all duration-200"
+            />
+          </div>
+        </div>
+
+        {/* Row 3: Tarih + Yolcu + CTA */}
+        <div className="relative z-10 flex flex-col sm:flex-row items-end gap-3 mb-5">
 
           {/* Date */}
           <div className="w-full sm:flex-1">

@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+ï»¿import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { createClient } from '@/lib/supabase/server';
 
@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     // 1. Insert into Supabase
     const supabase = await createClient();
     const { data: booking, error: dbError } = await supabase
-      .from('bookings')
+      .from('vip_bookings')
       .insert([
         { name, phone, route_from: from, route_to: to, travel_date: date, estimated_price: price, vehicle }
       ])
@@ -27,14 +27,14 @@ export async function POST(req: Request) {
         from: 'VIP Transfer <onboarding@resend.dev>', // Replace with your domain
         to: ['your-email@example.com'], // The agency email
         subject:  Yeni VIP Rezervasyon Talebi: ,
-        html: \<p>Yeni bir transfer talebi aldýnýz.</p>
+        html: \<p>Yeni bir transfer talebi aldÄ±nÄ±z.</p>
                <ul>
-                 <li><b>Müþteri:</b> </li>
+                 <li><b>MÃ¼ÅŸteri:</b> </li>
                  <li><b>Telefon:</b> </li>
                  <li><b>Rota:</b>  -> </li>
                  <li><b>Tarih:</b> </li>
-                 <li><b>Araç:</b> </li>
-                 <li><b>Fiyat:</b> €</li>
+                 <li><b>AraÃ§:</b> </li>
+                 <li><b>Fiyat:</b> â‚¬</li>
                </ul>\
       });
     }
@@ -45,4 +45,5 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
+
 
