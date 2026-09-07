@@ -10,6 +10,7 @@ import {
   Send, 
 } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
+import { SocialTooltip } from '@/components/SocialTooltip';
 
 // 1. Authentic Official WhatsApp Vector
 export const OfficialWhatsAppIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
@@ -187,27 +188,53 @@ export default function FaqAndFooter() {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
-          {socialLinks.map((item) => {
-            const Icon = item.icon;
-            return (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/[0.08] text-zinc-300 transition-all duration-300 active:scale-95 ${item.hoverClass}`}
-              >
-                <Icon className="w-6 h-6 mb-2 transition-transform group-hover:scale-110" />
-                <span className="text-xs font-sans font-medium tracking-wider uppercase mb-0.5 text-center">
-                  {item.name}
-                </span>
-                <span className="text-[9px] font-mono opacity-60 group-hover:opacity-100 transition-opacity text-center">
-                  {item.badge}
-                </span>
-              </a>
-            );
-          })}
+        <div className="flex justify-center">
+          <SocialTooltip
+            items={[
+              {
+                href: `https://wa.me/${CONTACT_INFO.phoneClean}`,
+                ariaLabel: 'WhatsApp VIP',
+                tooltip: 'WhatsApp VIP',
+                svgUrl: 'https://cdn.simpleicons.org/whatsapp/ffffff',
+                color: '#25D366'
+              },
+              {
+                href: 'https://instagram.com/easyviptransfer',
+                ariaLabel: 'Instagram',
+                tooltip: 'Instagram',
+                svgUrl: 'https://cdn.simpleicons.org/instagram/ffffff',
+                color: '#E4405F'
+              },
+              {
+                href: 'https://youtube.com/@easyviptransfer',
+                ariaLabel: 'YouTube',
+                tooltip: 'YouTube',
+                svgUrl: 'https://cdn.simpleicons.org/youtube/ffffff',
+                color: '#FF0000'
+              },
+              {
+                href: 'https://facebook.com/easyviptransfer',
+                ariaLabel: 'Facebook',
+                tooltip: 'Facebook',
+                svgUrl: 'https://cdn.simpleicons.org/facebook/ffffff',
+                color: '#1877F2'
+              },
+              {
+                href: 'https://maps.google.com/?q=Easy+VIP+Transfer+Bodrum',
+                ariaLabel: 'Google Haritalar',
+                tooltip: 'Haritalar',
+                svgUrl: 'https://cdn.simpleicons.org/googlemaps/ffffff',
+                color: '#4285F4'
+              },
+              {
+                href: `tel:${CONTACT_INFO.phoneClean}`,
+                ariaLabel: '7/24 Çağrı',
+                tooltip: 'Hemen Ara',
+                svgUrl: 'https://cdn.simpleicons.org/phone/ffffff',
+                color: '#E5D3B3'
+              }
+            ]}
+          />
         </div>
       </div>
 
