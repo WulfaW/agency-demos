@@ -11,13 +11,11 @@ export async function POST(req: Request) {
 
     // 1. Insert into Supabase
     const supabase = await createClient();
-    const { data: booking, error: dbError } = await supabase
+    const { error: dbError } = await supabase
       .from('vip_bookings')
       .insert([
         { name, phone, route_from: from, route_to: to, travel_date: date, estimated_price: price, vehicle }
-      ])
-      .select()
-      .single();
+      ]);
 
     if (dbError) throw new Error(dbError.message);
 
@@ -39,11 +37,10 @@ export async function POST(req: Request) {
       });
     }
 
-    return NextResponse.json({ success: true, booking });
+    return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error('Booking Error:', error);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
-}
 
 
