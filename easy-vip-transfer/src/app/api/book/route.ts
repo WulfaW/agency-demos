@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     if (process.env.RESEND_API_KEY) {
       await resend.emails.send({
         from: 'VIP Transfer <onboarding@resend.dev>', // Replace with your domain
-        to: ['wulfa.wulf@gmail.com'], // The agency email
+        to: ['trexgiganotosaurus@gmail.com'], // The agency email
         subject: `Yeni VIP Rezervasyon Talebi: ${name}`,
         html: `<p>Yeni bir transfer talebi aldınız.</p>
                <ul>
