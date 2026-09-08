@@ -22,101 +22,72 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] py-4 px-4 sm:px-6 pointer-events-none flex justify-center">
-      
-      {/* Main Container - Unified when unscrolled, Transparent when scrolled */}
-      <motion.div
-        animate={{
-          backgroundColor: isScrolled ? 'rgba(0,0,0,0)' : 'rgba(5, 5, 5, 0.4)',
-          backdropFilter: isScrolled ? 'blur(0px)' : 'blur(16px)',
-          borderColor: isScrolled ? 'rgba(255,255,255,0)' : 'rgba(255,255,255,0.08)',
-          boxShadow: isScrolled ? 'none' : '0 10px 30px rgba(0,0,0,0.3)',
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="pointer-events-auto flex items-center justify-between w-full max-w-6xl h-14 md:h-16 rounded-full border transition-all"
-      >
+      <div className="w-full max-w-6xl relative flex items-center justify-between h-14">
         
-        {/* Left Side: Brand Logo (Becomes a pill when scrolled) */}
+        {/* LEFT PILL: Brand Logo */}
         <motion.div
-          animate={{
-            backgroundColor: isScrolled ? 'rgba(5, 5, 5, 0.9)' : 'rgba(0, 0, 0, 0)',
-            backdropFilter: isScrolled ? 'blur(16px)' : 'blur(0px)',
-            borderColor: isScrolled ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0)',
-            paddingLeft: isScrolled ? '1.5rem' : '1.5rem',
-            paddingRight: isScrolled ? '1.5rem' : '0rem',
-            boxShadow: isScrolled ? '0 10px 30px rgba(0,0,0,0.5)' : 'none',
-          }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="h-full flex items-center rounded-full border"
+          className="pointer-events-auto h-full px-6 flex items-center justify-center rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
         >
-          <a href="#" className="flex items-center gap-2 group w-full justify-center">
-            <span className="font-serif font-semibold text-sm sm:text-lg tracking-[0.25em] text-white group-hover:text-[#E5D3B3] transition-colors">
+          <a href="#" className="flex items-center gap-2 group">
+            <span className="font-serif font-semibold text-sm sm:text-base tracking-[0.2em] text-white group-hover:text-[#E5D3B3] transition-colors">
               EASY VIP
             </span>
           </a>
         </motion.div>
 
-        {/* Center: Navigation Links (Fade out when scrolled) */}
+        {/* CENTER PILL: Navigation Links (Disappears on scroll) */}
         <AnimatePresence>
           {!isScrolled && (
             <motion.nav
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, filter: 'blur(4px)' }}
-              transition={{ duration: 0.3 }}
-              className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2"
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="pointer-events-auto absolute left-1/2 -translate-x-1/2 h-full hidden lg:flex items-center gap-2 px-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
             >
-              <a href="#fleet" className="text-[10px] font-sans tracking-[0.2em] text-zinc-300 hover:text-white transition-colors uppercase font-medium drop-shadow-md">
+              <a href="#fleet" className="px-5 py-2 text-[11px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
                 {t.nav.fleet}
               </a>
-              <a href="#routes" className="text-[10px] font-sans tracking-[0.2em] text-zinc-300 hover:text-white transition-colors uppercase font-medium drop-shadow-md">
+              <a href="#routes" className="px-5 py-2 text-[11px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
                 {t.nav.routes}
               </a>
-              <a href="#services" className="text-[10px] font-sans tracking-[0.2em] text-zinc-300 hover:text-white transition-colors uppercase font-medium drop-shadow-md">
+              <a href="#services" className="px-5 py-2 text-[11px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
                 {t.nav.services}
               </a>
             </motion.nav>
           )}
         </AnimatePresence>
 
-        {/* Right Side: Language & CTA (Becomes a pill when scrolled) */}
+        {/* RIGHT PILL: Actions (Language + CTA) */}
         <motion.div
-          animate={{
-            backgroundColor: isScrolled ? 'rgba(5, 5, 5, 0.9)' : 'rgba(0, 0, 0, 0)',
-            backdropFilter: isScrolled ? 'blur(16px)' : 'blur(0px)',
-            borderColor: isScrolled ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0)',
-            paddingLeft: isScrolled ? '0.75rem' : '0rem',
-            paddingRight: isScrolled ? '0.75rem' : '1.5rem',
-            boxShadow: isScrolled ? '0 10px 30px rgba(0,0,0,0.5)' : 'none',
-          }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="h-full flex items-center gap-3 md:gap-4 rounded-full border"
+          className="pointer-events-auto h-full flex items-center gap-1 pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
         >
-          {/* Language dropdown fades out when scrolled */}
+          {/* Language dropdown fades out when scrolled to save space, like gamemaps IRL's small right pill */}
           <AnimatePresence>
             {!isScrolled && (
               <motion.div
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: 'auto' }}
                 exit={{ opacity: 0, width: 0, overflow: 'hidden' }}
-                className="hidden md:flex items-center"
+                className="hidden md:flex items-center mr-1"
               >
                 <LanguageDropdown />
               </motion.div>
             )}
           </AnimatePresence>
 
-          <a href="#calculator" className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-colors">
+          <a href="#calculator" className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-colors">
             <span>{t.hero.btnCalc}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
 
           {/* Mobile Hamburger Menu (Always visible on mobile) */}
-          <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden p-1.5 text-white hover:text-[#E5D3B3] transition-colors focus:outline-none">
-            <Menu className="w-5 h-5" />
+          <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden p-2 ml-1 text-white hover:text-[#E5D3B3] transition-colors focus:outline-none rounded-full bg-white/5">
+            <Menu className="w-4 h-4" />
           </button>
         </motion.div>
 
-      </motion.div>
+      </div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
