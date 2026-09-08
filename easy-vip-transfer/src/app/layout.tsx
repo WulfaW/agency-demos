@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
-import { Manrope, Inter } from 'next/font/google';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
 import Preloader from '@/components/Preloader';
 import ScrollProgress from '@/components/ScrollProgress';
 
-const manrope = Manrope({ 
+const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-serif',
   display: 'swap',
 });
@@ -53,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className={`scroll-smooth ${manrope.variable} ${inter.variable} bg-[#030303] text-zinc-200 antialiased`}>
+    <html lang="tr" className={`scroll-smooth ${cormorant.variable} ${inter.variable} bg-[#030303] text-zinc-200 antialiased`}>
       <body className="bg-[#030303] min-h-screen flex flex-col font-sans selection:bg-white selection:text-black relative">
         <ScrollProgress />
         <Preloader />
