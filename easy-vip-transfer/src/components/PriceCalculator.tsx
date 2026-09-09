@@ -263,7 +263,7 @@ export default function PriceCalculator() {
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="+90 5XX XXX XX XX"
+              placeholder={lang === 'TR' ? '+90 5XX XXX XX XX' : lang === 'RU' ? '+7 9XX XXX XX XX' : lang === 'DE' ? '+49 15X XXXX XX' : lang === 'AR' ? '+971 5X XXX XXXX' : '+44 7XXX XXXXXX'}
               className="w-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/30 transition-all duration-200"
             />
           </div>
