@@ -117,7 +117,7 @@ export default function Navbar() {
           </button>
         </motion.div>
 
-      </motion.div>
+      </div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
