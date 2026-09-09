@@ -226,7 +226,7 @@ export default function Fleet() {
             rel="noopener noreferrer"
             className="w-full lg:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#E5D3B3] hover:bg-white text-black text-sm font-bold tracking-widest uppercase transition-all shadow-[0_0_30px_rgba(229,211,179,0.25)] shrink-0"
           >
-            <span>{t.fleet.bookNow || (lang === 'TR' ? 'Bu Aracı Ayırt' : lang === 'RU' ? 'Забронировать' : 'Book This Car')}</span>
+            <span>{t.fleet.bookCar}</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
