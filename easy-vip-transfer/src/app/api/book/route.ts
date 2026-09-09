@@ -42,5 +42,4 @@ export async function POST(req: Request) {
     console.error('Booking Error:', error);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
-
-
+}
