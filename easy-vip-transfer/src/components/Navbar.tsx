@@ -29,21 +29,26 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-4 left-0 right-0 z-[100] pointer-events-none flex justify-center px-4 lg:px-8">
-      {/* Container is always full width to allow edge placement without stretching animation */}
-      <div className="relative w-full flex items-center justify-between h-14">
-        
-        {/* CENTER PILL BACKGROUND (Fades out on scroll) */}
-        <div 
-          className={`absolute left-1/2 -translate-x-1/2 w-full max-w-6xl h-full rounded-full backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-opacity duration-500 pointer-events-none ${
-            !isScrolled ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
+      
+      {/* FIXED CENTER PILL BACKGROUND (Never stretches, just fades out) */}
+      <div 
+        className={`absolute top-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] lg:w-full max-w-6xl h-14 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-opacity duration-500 pointer-events-none ${
+          !isScrolled ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
 
+      {/* SLIDING CONTAINER (Items move apart on scroll) */}
+      <div 
+        className={`relative w-full flex items-center justify-between h-14 transition-all duration-700 ease-in-out ${
+          !isScrolled ? 'max-w-6xl' : 'max-w-[100vw]'
+        }`}
+      >
+        
         {/* LEFT PILL: Brand Logo */}
         <motion.div
-          className={`pointer-events-auto relative z-10 flex items-center justify-center transition-all duration-500 ease-in-out ${
+          className={`pointer-events-auto relative z-10 flex items-center justify-center transition-all duration-700 ease-in-out ${
             isScrolled 
-              ? 'h-full px-6 rounded-full backdrop-blur-xl bg-white/[0.05] border border-white/[0.08] shadow-lg' 
+              ? 'h-full px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
               : 'h-full px-6 border border-transparent'
           }`}
         >
@@ -79,9 +84,9 @@ export default function Navbar() {
 
         {/* RIGHT PILL: Actions (Language + CTA) */}
         <motion.div
-          className={`pointer-events-auto relative z-10 flex items-center gap-1 transition-all duration-500 ease-in-out ${
+          className={`pointer-events-auto relative z-10 flex items-center gap-1 transition-all duration-700 ease-in-out ${
             isScrolled 
-              ? 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-white/[0.05] border border-white/[0.08] shadow-lg' 
+              ? 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
               : 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 border border-transparent'
           }`}
         >
