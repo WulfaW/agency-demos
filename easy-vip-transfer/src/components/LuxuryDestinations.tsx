@@ -60,7 +60,7 @@ export default function LuxuryDestinations() {
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
-          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             {lang === 'TR' ? 'Popüler VIP Noktaları' : lang === 'RU' ? 'Элитные Локации' : 'Premier VIP Hubs'}
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
@@ -68,7 +68,7 @@ export default function LuxuryDestinations() {
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
           {lang === 'TR' ? 'Bodrum’un En Seçkin Koyları' : lang === 'RU' ? 'Самые Престижные Бухты Бодрума' : 'Bodrum’s Most Exclusive Bays'}
         </h2>
-        <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs max-w-xl mx-auto leading-relaxed">
+        <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm max-w-xl mx-auto leading-relaxed">
           {lang === 'TR' ? 'Milas-Bodrum Havalimanı’ndan (BJV) lüks otelinize ve süperyat iskelesine konforlu VIP transfer.' : lang === 'RU' ? 'VIP трансфер из аэропорта в топовые курорты и марины Бодрума.' : 'Direct first class transfer from BJV Airport straight to your resort or yacht berth.'}
         </p>
       </motion.div>
@@ -96,10 +96,10 @@ export default function LuxuryDestinations() {
 
             {/* Top Meta */}
             <div className="relative z-10 flex items-center justify-between">
-              <span className="px-3.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-[#E5D3B3] uppercase font-bold">
+              <span className="px-3.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[13px] font-mono text-[#E5D3B3] uppercase font-bold">
                 {dest.badge}
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] backdrop-blur-md border border-white/10 text-xs font-mono text-zinc-300">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] backdrop-blur-md border border-white/10 text-sm font-mono text-zinc-300">
                 <Clock className="w-3.5 h-3.5 text-[#E5D3B3]" />
                 {dest.time} {lang === 'TR' ? 'Sürüş' : lang === 'RU' ? 'в пути' : 'Ride'}
               </span>
@@ -107,13 +107,13 @@ export default function LuxuryDestinations() {
 
             {/* Bottom Content */}
             <div className="relative z-10 pt-12">
-              <p className="text-[10px] font-mono tracking-widest text-[#E5D3B3] uppercase mb-1">
+              <p className="text-[13px] font-mono tracking-widest text-[#E5D3B3] uppercase mb-1">
                 {dest.bay}
               </p>
               <h3 className="text-xl md:text-2xl font-serif text-white font-medium mb-2 group-hover:text-[#E5D3B3] transition-colors">
                 {dest.name}
               </h3>
-              <p className="text-xs font-sans text-zinc-400 font-light leading-relaxed mb-5 max-w-md">
+              <p className="text-sm font-sans text-zinc-400 font-light leading-relaxed mb-5 max-w-md">
                 {dest.desc}
               </p>
 
@@ -121,7 +121,7 @@ export default function LuxuryDestinations() {
                 href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20${encodeURIComponent(dest.name)}%20icin%20Bodrum%20VIP%20transfer%20fiyati%20ogrenmek%20istiyorum.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-sans font-bold text-white group-hover:text-[#E5D3B3] tracking-widest uppercase transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-sans font-bold text-white group-hover:text-[#E5D3B3] tracking-widest uppercase transition-colors"
               >
                 <span>{lang === 'TR' ? 'Hemen Rezerve Et' : lang === 'RU' ? 'Забронировать' : 'Book Direct'}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

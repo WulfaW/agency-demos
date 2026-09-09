@@ -73,7 +73,7 @@ export default function Fleet() {
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
-          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             {t.fleet.badge}
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
@@ -81,7 +81,7 @@ export default function Fleet() {
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
           {t.fleet.title}
         </h2>
-        <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs max-w-xl mx-auto leading-relaxed">
+        <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm max-w-xl mx-auto leading-relaxed">
           {t.fleet.subtitle}
         </p>
       </motion.div>
@@ -141,17 +141,17 @@ export default function Fleet() {
 
                 {/* Top Badge */}
                 <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
-                  <span className="px-3.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[10px] font-mono text-[#E5D3B3] uppercase font-bold">
+                  <span className="px-3.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[13px] font-mono text-[#E5D3B3] uppercase font-bold">
                     {car.badge}
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-xs font-serif text-white font-bold">
-                    {car.priceEur} <span className="text-[10px] font-sans font-normal text-zinc-400">/ başlangıç</span>
+                  <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-sm font-serif text-white font-bold">
+                    {car.priceEur} <span className="text-[13px] font-sans font-normal text-zinc-400">/ başlangıç</span>
                   </span>
                 </div>
 
                 {/* Bottom Card Meta */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span className="text-[10px] font-mono tracking-widest text-[#E5D3B3] uppercase block mb-1">
+                  <span className="text-[13px] font-mono tracking-widest text-[#E5D3B3] uppercase block mb-1">
                     {car.category}
                   </span>
                   <h3 className="text-xl md:text-2xl font-serif text-white font-medium mb-3">
@@ -159,7 +159,7 @@ export default function Fleet() {
                   </h3>
                   
                   {/* Micro Specs */}
-                  <div className="flex items-center gap-4 text-xs font-mono text-zinc-300">
+                  <div className="flex items-center gap-4 text-sm font-mono text-zinc-300">
                     <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-[#E5D3B3]" /> {car.capacity}</span>
                     <span className="flex items-center gap-1.5"><Briefcase className="w-3.5 h-3.5 text-[#E5D3B3]" /> {car.luggage}</span>
                   </div>
@@ -190,16 +190,16 @@ export default function Fleet() {
       <div className="mt-10 max-w-4xl mx-auto backdrop-blur-2xl bg-[#0a0a0a]/90 border border-white/10 rounded-3xl p-8 shadow-2xl">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-white/5">
           <div>
-            <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">Seçili Araç Donanımı</span>
+            <span className="text-[13px] font-mono tracking-widest text-zinc-400 uppercase">Seçili Araç Donanımı</span>
             <h4 className="text-2xl font-serif text-white mt-0.5">{activeCar.name}</h4>
-            <p className="text-xs text-zinc-400 mt-1 max-w-lg font-light leading-relaxed">{activeCar.tagline}</p>
+            <p className="text-sm text-zinc-400 mt-1 max-w-lg font-light leading-relaxed">{activeCar.tagline}</p>
           </div>
           
           <a
             href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20*${encodeURIComponent(activeCar.name)}*%20araciniz%20icin%20Bodrum%20VIP%20transfer%20fiyati%20almak%20istiyorum.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full lg:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#E5D3B3] hover:bg-white text-black text-xs font-bold tracking-widest uppercase transition-all shadow-[0_0_30px_rgba(229,211,179,0.25)] shrink-0"
+            className="w-full lg:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#E5D3B3] hover:bg-white text-black text-sm font-bold tracking-widest uppercase transition-all shadow-[0_0_30px_rgba(229,211,179,0.25)] shrink-0"
           >
             <span>Bu Aracı Ayırt</span>
             <ArrowRight className="w-4 h-4" />
@@ -209,7 +209,7 @@ export default function Fleet() {
         {/* Features Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-6">
           {activeCar.features.map((feat, fIdx) => (
-            <div key={fIdx} className="flex items-center gap-2 text-xs text-zinc-300 font-light">
+            <div key={fIdx} className="flex items-center gap-2 text-sm text-zinc-300 font-light">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#E5D3B3] shrink-0" />
               <span>{feat}</span>
             </div>

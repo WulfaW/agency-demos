@@ -105,7 +105,7 @@ export default function TestimonialsMarquee() {
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
-          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             Google Haritalar (5.0 ★ · 370+ Değerlendirme)
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
@@ -114,7 +114,7 @@ export default function TestimonialsMarquee() {
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
           Misafirlerimizin Deneyimleri
         </h2>
-        <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs max-w-xl mx-auto leading-relaxed">
+        <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm max-w-xl mx-auto leading-relaxed">
           Bodrum’un en seçkin otellerine ve marinalarına taşıdığımız misafirlerimizin gerçek yorumları.
         </p>
       </motion.div>
@@ -138,7 +138,7 @@ export default function TestimonialsMarquee() {
                       <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <span className="text-[10px] font-mono text-zinc-500">{rev.date}</span>
+                  <span className="text-[13px] font-mono text-zinc-500">{rev.date}</span>
                 </div>
 
                 <p className="text-sm font-sans text-zinc-300 font-light leading-relaxed mb-6 italic">
@@ -149,7 +149,7 @@ export default function TestimonialsMarquee() {
               <div className="pt-4 border-t border-white/5 flex items-center justify-between">
                 <div>
                   <h4 className="text-sm font-serif text-white font-medium">{rev.name}</h4>
-                  <span className="text-[11px] font-mono text-[#E5D3B3] block">{rev.location}</span>
+                  <span className="text-[14px] font-mono text-[#E5D3B3] block">{rev.location}</span>
                 </div>
                 <div className="w-7 h-7 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                   <CheckCircle2 className="w-3.5 h-3.5" />

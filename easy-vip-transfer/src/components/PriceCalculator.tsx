@@ -34,7 +34,7 @@ const MultiSelectDropdown = ({
 
   return (
     <div className="relative flex-1 min-w-0" ref={ref}>
-      <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1.5 px-1">
+      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1.5 px-1">
         <span className="text-[#E5D3B3]">✦</span>
         {label}
       </p>
@@ -64,7 +64,7 @@ const MultiSelectDropdown = ({
                 >
                   <div className="flex items-center gap-3">
                     <Icon className={`w-4 h-4 transition-colors ${isSelected ? 'text-[#E5D3B3]' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
-                    <span className={`text-[11px] font-sans tracking-wide uppercase transition-colors ${isSelected ? 'text-white font-medium' : 'text-zinc-400'}`}>
+                    <span className={`text-[14px] font-sans tracking-wide uppercase transition-colors ${isSelected ? 'text-white font-medium' : 'text-zinc-400'}`}>
                       {opt.label}
                     </span>
                   </div>
@@ -112,7 +112,7 @@ const PillSelect = ({
 
   return (
     <div className="relative flex-1 min-w-0" ref={ref}>
-      <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
+      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
         <Icon className="w-3 h-3 text-[#E5D3B3]" />
         {label}
       </p>
@@ -254,7 +254,7 @@ export default function PriceCalculator() {
         {/* Header */}
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
-            <p className="text-[9px] font-sans tracking-[0.25em] text-[#E5D3B3]/60 uppercase mb-2">
+            <p className="text-[14px] font-sans tracking-[0.25em] text-[#E5D3B3]/60 uppercase mb-2">
               {t.calc.badge}
             </p>
             <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight italic">
@@ -263,7 +263,7 @@ export default function PriceCalculator() {
           </div>
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/[0.08] border border-emerald-500/20 self-start sm:self-auto">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[9px] font-sans font-medium text-emerald-400 tracking-[0.15em] uppercase">
+            <span className="text-[14px] font-sans font-medium text-emerald-400 tracking-[0.15em] uppercase">
               {t.calc.available}
             </span>
           </div>
@@ -271,7 +271,7 @@ export default function PriceCalculator() {
 
         {/* Quick Destination Chips */}
         <div className="relative z-20 flex flex-wrap items-center gap-2 mb-6 pb-4 border-b border-white/[0.04]">
-          <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase mr-1">
+          <span className="text-[14px] font-mono tracking-widest text-zinc-500 uppercase mr-1">
             {t.calc.quickSelect}
           </span>
           {[
@@ -287,7 +287,7 @@ export default function PriceCalculator() {
                 setFrom('bjv');
                 setTo(chip.toId);
               }}
-              className="px-3 py-1 rounded-full bg-white/[0.03] hover:bg-[#E5D3B3]/10 border border-white/[0.06] hover:border-[#E5D3B3]/30 text-[10px] font-sans text-zinc-400 hover:text-white transition-all duration-200"
+              className="px-3 py-1 rounded-full bg-white/[0.03] hover:bg-[#E5D3B3]/10 border border-white/[0.06] hover:border-[#E5D3B3]/30 text-[13px] font-sans text-zinc-400 hover:text-white transition-all duration-200"
             >
               BJV ➔ {chip.label}
             </button>
@@ -318,7 +318,7 @@ export default function PriceCalculator() {
         {/* Row 2: İsim + Telefon */}
         <div className="relative z-20 flex flex-col sm:flex-row items-end gap-3 mb-4">
           <div className="w-full sm:flex-1">
-            <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
+            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
               <span className="text-[#E5D3B3]">✦</span>
               {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
             </p>
@@ -331,7 +331,7 @@ export default function PriceCalculator() {
             />
           </div>
           <div className="w-full sm:flex-1">
-            <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
+            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
               <span className="text-[#E5D3B3]">✦</span>
               {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
             </p>
@@ -350,7 +350,7 @@ export default function PriceCalculator() {
 
           {/* Date */}
           <div className="w-full sm:flex-1">
-            <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
+            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
               <Calendar className="w-3 h-3 text-[#E5D3B3]" />
               {t.calc.date}
             </p>
@@ -378,10 +378,10 @@ export default function PriceCalculator() {
 
           {/* CTA */}
           <div className="w-full sm:w-auto">
-            <p className="text-[9px] tracking-[0.2em] uppercase mb-1.5 px-1 select-none text-transparent">·</p>
+            <p className="text-[14px] tracking-[0.2em] uppercase mb-1.5 px-1 select-none text-transparent">·</p>
             <button
               onClick={handleWhatsApp}
-              className="w-full sm:w-auto group flex items-center justify-center gap-2.5 bg-[#E5D3B3] hover:bg-white text-black font-sans font-bold text-[11px] tracking-[0.18em] uppercase px-8 py-3.5 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(229,211,179,0.12)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] whitespace-nowrap"
+              className="w-full sm:w-auto group flex items-center justify-center gap-2.5 bg-[#E5D3B3] hover:bg-white text-black font-sans font-bold text-[14px] tracking-[0.18em] uppercase px-8 py-3.5 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(229,211,179,0.12)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] whitespace-nowrap"
             >
               {t.calc.btnQuote}
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -405,7 +405,7 @@ export default function PriceCalculator() {
         {/* Trust strip */}
         <div className="relative z-10 mt-8 pt-6 border-t border-white/[0.04] flex flex-wrap items-center gap-x-6 gap-y-2">
           {[t.calc.badge1, t.calc.badge2, t.calc.badge3].map((badge) => (
-            <div key={badge} className="flex items-center gap-1.5 text-[9px] font-sans text-zinc-600 tracking-[0.15em] uppercase">
+            <div key={badge} className="flex items-center gap-1.5 text-[14px] font-sans text-zinc-600 tracking-[0.15em] uppercase">
               <ShieldCheck className="w-3 h-3 text-[#E5D3B3]/50" />
               {badge}
             </div>

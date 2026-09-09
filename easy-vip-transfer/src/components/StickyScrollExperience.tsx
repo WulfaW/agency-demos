@@ -62,7 +62,7 @@ export default function StickyScrollExperience() {
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
-          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             {t.experience.badge}
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
@@ -96,12 +96,12 @@ export default function StickyScrollExperience() {
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-lg ${
+                    <span className={`text-sm font-mono font-bold px-2.5 py-1 rounded-lg ${
                       isActive ? "bg-[#E5D3B3] text-black" : "bg-white/5 text-zinc-400"
                     }`}>
                       {step.number}
                     </span>
-                    <span className="text-[10px] font-sans tracking-widest text-[#E5D3B3] uppercase">
+                    <span className="text-[13px] font-sans tracking-widest text-[#E5D3B3] uppercase">
                       {step.tag}
                     </span>
                   </div>
@@ -123,7 +123,7 @@ export default function StickyScrollExperience() {
                   {step.highlights.map((hl, hIdx) => (
                     <div
                       key={hIdx}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-[11px] text-zinc-300"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-[14px] text-zinc-300"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#E5D3B3]" />
                       <span>{hl}</span>
@@ -152,10 +152,10 @@ export default function StickyScrollExperience() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
               
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] text-[#E5D3B3] font-mono">
+                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[13px] text-[#E5D3B3] font-mono">
                   {steps[activeStep].accent}
                 </span>
-                <span className="text-xs font-serif text-white">
+                <span className="text-sm font-serif text-white">
                   Adım {steps[activeStep].number} / 03
                 </span>
               </div>
@@ -163,11 +163,11 @@ export default function StickyScrollExperience() {
 
             {/* Fast WhatsApp Route Booking */}
             <div className="space-y-3">
-              <div className="text-xs text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
+              <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
                 <span>Rezervasyon Tipi:</span>
                 <strong className="text-white font-serif">VIP Kapıdan Kapıya Transfer</strong>
               </div>
-              <div className="text-xs text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
+              <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
                 <span>Şoför Statüsü:</span>
                 <span className="text-emerald-400 font-medium">● 7/24 Aktif & Hazır</span>
               </div>
@@ -176,7 +176,7 @@ export default function StickyScrollExperience() {
                 href="https://wa.me/905305673991?text=Merhaba,%20VIP%20transfer%20hizmetiniz%20hakkinda%20bilgi%20ve%20rezervasyon%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full mt-4 flex items-center justify-center gap-2 bg-white/5 hover:bg-[#E5D3B3] hover:text-black border border-white/10 py-3.5 rounded-xl text-xs font-bold tracking-widest uppercase transition-all duration-300"
+                className="w-full mt-4 flex items-center justify-center gap-2 bg-white/5 hover:bg-[#E5D3B3] hover:text-black border border-white/10 py-3.5 rounded-xl text-sm font-bold tracking-widest uppercase transition-all duration-300"
               >
                 <span>Bu Deneyimi Rezerve Et</span>
                 <ArrowRight className="w-4 h-4" />

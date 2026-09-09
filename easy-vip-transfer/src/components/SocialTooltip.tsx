@@ -22,7 +22,7 @@ const SocialTooltip = React.forwardRef<HTMLUListElement, SocialTooltipProps>(
     const baseFilledStyles =
       "absolute bottom-0 left-0 w-full h-0 transition-all duration-300 ease-in-out group-hover:h-full";
     const baseTooltipStyles =
-      "absolute bottom-[-30px] left-1/2 -translate-x-1/2 px-2.5 py-1.5 text-[10px] tracking-wider uppercase font-medium text-white whitespace-nowrap rounded-md opacity-0 invisible transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:visible group-hover:bottom-[-40px] z-50";
+      "absolute bottom-[-30px] left-1/2 -translate-x-1/2 px-2.5 py-1.5 text-[13px] tracking-wider uppercase font-medium text-white whitespace-nowrap rounded-md opacity-0 invisible transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:visible group-hover:bottom-[-40px] z-50";
 
     return (
       <ul

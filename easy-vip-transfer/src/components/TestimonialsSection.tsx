@@ -39,7 +39,7 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono tracking-widest uppercase mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-mono tracking-widest uppercase mb-4">
             <Star className="w-3.5 h-3.5 fill-amber-400" />
             <span>Müşteri Deneyimleri</span>
           </div>
@@ -77,12 +77,12 @@ export default function TestimonialsSection() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="text-sm font-bold text-white">{t.name}</h4>
-                    <span className="text-xs text-zinc-400">{t.title}</span>
+                    <span className="text-sm text-zinc-400">{t.title}</span>
                   </div>
-                  <span className="text-[10px] font-mono text-zinc-500">{t.date}</span>
+                  <span className="text-[13px] font-mono text-zinc-500">{t.date}</span>
                 </div>
 
-                <div className="mt-3 flex items-center gap-1.5 text-[11px] font-mono text-amber-400 bg-amber-500/5 px-2.5 py-1 rounded-lg border border-amber-500/10">
+                <div className="mt-3 flex items-center gap-1.5 text-[14px] font-mono text-amber-400 bg-amber-500/5 px-2.5 py-1 rounded-lg border border-amber-500/10">
                   <MapPin className="w-3 h-3 shrink-0" />
                   <span className="truncate">{t.route}</span>
                 </div>

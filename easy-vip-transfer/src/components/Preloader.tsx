@@ -53,7 +53,7 @@ export default function Preloader() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 1 }}
-              className="text-[9px] text-zinc-500 uppercase tracking-[0.4em] font-mono mt-6"
+              className="text-[14px] text-zinc-500 uppercase tracking-[0.4em] font-mono mt-6"
             >
               Exclusive Transfer Services
             </motion.p>

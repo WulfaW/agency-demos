@@ -47,7 +47,7 @@ export const LanguageDropdown = () => {
       <button
         onClick={() => setOpen((o) => !o)}
         className={cn(
-          "flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-sans tracking-wide",
+          "flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-sans tracking-wide",
           "bg-white/[0.04] backdrop-blur-md shadow-sm",
           "border-white/10",
           "text-zinc-200",

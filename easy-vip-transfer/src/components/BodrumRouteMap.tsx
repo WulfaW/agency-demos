@@ -161,9 +161,9 @@ const MapInner = () => {
             >
               <Popup className="luxury-map-popup">
                 <div className="p-2 min-w-[200px]">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase">{loc.distFromBJV} • {loc.timeFromBJV}</div>
+                  <div className="text-[13px] font-mono text-zinc-500 uppercase">{loc.distFromBJV} • {loc.timeFromBJV}</div>
                   <h4 className="font-serif font-bold text-sm text-black mt-0.5">{loc.name}</h4>
-                  <p className="text-xs text-zinc-600 mb-2">{loc.sub}</p>
+                  <p className="text-sm text-zinc-600 mb-2">{loc.sub}</p>
                   {loc.type !== 'airport' && (
                     <div className="flex items-center justify-between border-t border-zinc-200 pt-2">
                       <span className="font-serif font-bold text-sm text-black">Net: {loc.price}</span>
@@ -171,7 +171,7 @@ const MapInner = () => {
                         href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20${encodeURIComponent(loc.name)}%20VIP%20transferi%20icin%20rezervasyon%20yaptirmak%20istiyorum.`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[11px] font-bold text-black underline"
+                        className="text-[14px] font-bold text-black underline"
                       >
                         Rezerve Et ➔
                       </a>
@@ -187,13 +187,13 @@ const MapInner = () => {
       {/* Floating Active Cove Card on top of map (Aman Style) */}
       <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-80 z-[1000] backdrop-blur-2xl bg-[#0a0a0a]/92 border border-white/15 rounded-2xl p-5 shadow-2xl">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[9px] font-mono tracking-widest text-[#E5D3B3] uppercase">Seçili Destinasyon</span>
-          <span className="text-xs font-serif font-bold text-white">{selectedPin.price}</span>
+          <span className="text-[14px] font-mono tracking-widest text-[#E5D3B3] uppercase">Seçili Destinasyon</span>
+          <span className="text-sm font-serif font-bold text-white">{selectedPin.price}</span>
         </div>
         <h4 className="font-serif text-lg text-white font-medium mb-1">{selectedPin.name}</h4>
-        <p className="text-xs text-zinc-400 font-light mb-4">{selectedPin.sub}</p>
+        <p className="text-sm text-zinc-400 font-light mb-4">{selectedPin.sub}</p>
         
-        <div className="flex items-center justify-between text-xs text-zinc-300 border-t border-white/10 pt-3">
+        <div className="flex items-center justify-between text-sm text-zinc-300 border-t border-white/10 pt-3">
           <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-[#E5D3B3]" /> {selectedPin.timeFromBJV} Sürüş</span>
           <span className="font-mono text-zinc-400">{selectedPin.distFromBJV}</span>
         </div>
@@ -202,7 +202,7 @@ const MapInner = () => {
           href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20${encodeURIComponent(selectedPin.name)}%20VIP%20transfer%20icin%20fiyat%20almak%20istiyorum.`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full mt-3 flex items-center justify-center gap-2 bg-[#E5D3B3] hover:bg-white text-black py-2.5 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors"
+          className="w-full mt-3 flex items-center justify-center gap-2 bg-[#E5D3B3] hover:bg-white text-black py-2.5 rounded-xl text-sm font-bold tracking-widest uppercase transition-colors"
         >
           <span>WhatsApp İle Ayırt</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -216,7 +216,7 @@ const MapInner = () => {
 const DynamicMap = dynamic(() => Promise.resolve(MapInner), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[480px] rounded-[2rem] bg-[#1c1a16] flex items-center justify-center text-zinc-500 font-mono text-xs">
+    <div className="w-full h-[480px] rounded-[2rem] bg-[#1c1a16] flex items-center justify-center text-zinc-500 font-mono text-sm">
       Bodrum Yarımadası Haritası Yükleniyor...
     </div>
   ),
@@ -241,7 +241,7 @@ export default function BodrumRouteMap() {
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
-          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             {t.map.badge}
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
@@ -263,7 +263,7 @@ export default function BodrumRouteMap() {
         {/* Col 1: Location & Coordinates */}
         <div className="flex items-start gap-3">
           <MapPin className="w-4 h-4 text-[#E5D3B3] shrink-0 mt-1" />
-          <div className="text-xs font-sans text-zinc-300 leading-relaxed font-light whitespace-pre-line">
+          <div className="text-sm font-sans text-zinc-300 leading-relaxed font-light whitespace-pre-line">
             <strong className="text-white font-serif block font-medium mb-0.5">{t.map.hubTitle}</strong>
             {t.map.hubDesc}
           </div>
@@ -272,7 +272,7 @@ export default function BodrumRouteMap() {
         {/* Col 2: Airport Distance Info */}
         <div className="flex items-start gap-3">
           <Plane className="w-4 h-4 text-[#E5D3B3] shrink-0 mt-1" />
-          <div className="text-xs font-sans text-zinc-300 leading-relaxed font-light whitespace-pre-line">
+          <div className="text-sm font-sans text-zinc-300 leading-relaxed font-light whitespace-pre-line">
             <strong className="text-white font-serif block font-medium mb-0.5">{t.map.airportTitle}</strong>
             {t.map.airportDesc}
           </div>
@@ -282,7 +282,7 @@ export default function BodrumRouteMap() {
         <div className="flex items-center md:justify-end">
           <a
             href="#calculator"
-            className="inline-flex items-center gap-2 text-xs font-sans font-medium text-[#E5D3B3] hover:text-white uppercase tracking-widest border-b border-[#E5D3B3] pb-1 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-sans font-medium text-[#E5D3B3] hover:text-white uppercase tracking-widest border-b border-[#E5D3B3] pb-1 transition-colors"
           >
             <span>{t.map.calcRoute}</span>
             <ArrowRight className="w-3.5 h-3.5" />

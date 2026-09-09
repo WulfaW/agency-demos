@@ -21,7 +21,7 @@ export default function ComparisonSection() {
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
-          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             Mükemmeliyet Standardı
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
@@ -29,7 +29,7 @@ export default function ComparisonSection() {
         <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight mb-6">
           Neden Easy VIP?
         </h2>
-        <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs md:text-sm max-w-2xl mx-auto leading-relaxed">
+        <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm md:text-sm max-w-2xl mx-auto leading-relaxed">
           Turistik veya standart ulaşım değil; iş dünyası ve VİP misafirler için kurgulanmış, sıfır toleranslı operasyon disiplini.
         </p>
       </motion.div>
@@ -54,7 +54,7 @@ export default function ComparisonSection() {
           <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
-              <span className="text-[10px] tracking-[0.2em] text-white/80 uppercase font-mono">BJV Canlı Radar Protokolü</span>
+              <span className="text-[13px] tracking-[0.2em] text-white/80 uppercase font-mono">BJV Canlı Radar Protokolü</span>
             </div>
             <h3 className="text-4xl md:text-5xl font-serif text-white mb-4 tracking-tight leading-none">
               Rötar Stresine Son.
@@ -77,7 +77,7 @@ export default function ComparisonSection() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-[80px] -mr-20 -mt-20 pointer-events-none"></div>
           
           <div>
-            <span className="text-[10px] tracking-[0.2em] text-[#E5D3B3] uppercase font-mono mb-4 block">Yasal Güvence</span>
+            <span className="text-[13px] tracking-[0.2em] text-[#E5D3B3] uppercase font-mono mb-4 block">Yasal Güvence</span>
             <h3 className="text-6xl font-serif text-white tracking-tighter mb-2">TÜRSAB</h3>
             <h4 className="text-2xl font-serif text-zinc-400">A-Grubu Lisans</h4>
           </div>
@@ -99,7 +99,7 @@ export default function ComparisonSection() {
           </div>
           
           <div className="relative z-10 h-full flex flex-col justify-center">
-            <span className="text-[10px] tracking-[0.2em] text-[#E5D3B3] uppercase font-mono mb-4 block">Şeffaf Fiyatlandırma</span>
+            <span className="text-[13px] tracking-[0.2em] text-[#E5D3B3] uppercase font-mono mb-4 block">Şeffaf Fiyatlandırma</span>
             <h3 className="text-3xl font-serif text-white mb-4">Gizli Masraf Yok.</h3>
             <p className="text-sm text-zinc-400 leading-relaxed font-light">
               Tünel, otoyol, havalimanı otopark ücretleri ve vergiler baştan konuştuğumuz fiyata dahildir. Araçta kredi kartı, döviz veya havale ile esnek ödeme imkanı.

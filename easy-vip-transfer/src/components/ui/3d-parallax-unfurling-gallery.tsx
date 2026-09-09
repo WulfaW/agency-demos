@@ -113,7 +113,7 @@ export default function ParallaxGallery()  {
           
           {/* Section Title overlaying the animation */}
           <div className="absolute top-24 left-1/2 -translate-x-1/2 z-30 text-center pointer-events-none">
-             <span className="text-[10px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-3">
+             <span className="text-[13px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-3">
                VIP Deneyimi
              </span>
              <h2 className="text-4xl md:text-5xl font-serif text-white">Lüks Galeri</h2>

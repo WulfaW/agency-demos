@@ -138,13 +138,13 @@ export default function FaqAndFooter() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <span className="text-[10px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-3">
+          <span className="text-[13px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-3">
             Merak Edilenler
           </span>
           <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
             Sıkça Sorulan Sorular
           </h2>
-          <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs leading-relaxed">
+          <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm leading-relaxed">
             Bodrum VIP transfer hizmetimizle ilgili tüm yasal ve operasyonel detaylar.
           </p>
         </motion.div>
@@ -186,7 +186,7 @@ export default function FaqAndFooter() {
       {/* 2. Interactive Brand-Colored Social Channels Strip with Clean Monochrome Map Pin */}
       <div className="border-t border-white/10 py-12 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-8">
-          <span className="text-[10px] font-mono tracking-[0.25em] text-zinc-400 uppercase">
+          <span className="text-[13px] font-mono tracking-[0.25em] text-zinc-400 uppercase">
             Bizi Sosyal Medyada Takip Edin & Canlı İletişime Geçin
           </span>
         </div>
@@ -199,42 +199,42 @@ export default function FaqAndFooter() {
                 ariaLabel: 'WhatsApp VIP',
                 tooltip: 'WhatsApp VIP',
                 svgUrl: 'https://cdn.simpleicons.org/whatsapp/ffffff',
-                color: '#25D366'
+                color: '#ffffff'
               },
               {
                 href: 'https://instagram.com/easyviptransfer',
                 ariaLabel: 'Instagram',
                 tooltip: 'Instagram',
                 svgUrl: 'https://cdn.simpleicons.org/instagram/ffffff',
-                color: '#E4405F'
+                color: '#ffffff'
               },
               {
                 href: 'https://youtube.com/@easyviptransfer',
                 ariaLabel: 'YouTube',
                 tooltip: 'YouTube',
                 svgUrl: 'https://cdn.simpleicons.org/youtube/ffffff',
-                color: '#FF0000'
+                color: '#ffffff'
               },
               {
                 href: 'https://facebook.com/easyviptransfer',
                 ariaLabel: 'Facebook',
                 tooltip: 'Facebook',
                 svgUrl: 'https://cdn.simpleicons.org/facebook/ffffff',
-                color: '#1877F2'
+                color: '#ffffff'
               },
               {
                 href: 'https://maps.google.com/?q=Easy+VIP+Transfer+Bodrum',
                 ariaLabel: 'Google Haritalar',
                 tooltip: 'Haritalar',
                 svgUrl: 'https://cdn.simpleicons.org/googlemaps/ffffff',
-                color: '#4285F4'
+                color: '#ffffff'
               },
               {
                 href: `tel:${CONTACT_INFO.phoneClean}`,
                 ariaLabel: '7/24 Çağrı',
                 tooltip: 'Hemen Ara',
                 svgUrl: 'https://cdn.simpleicons.org/phone/ffffff',
-                color: '#E5D3B3'
+                color: '#ffffff'
               }
             ]}
           />
@@ -251,13 +251,13 @@ export default function FaqAndFooter() {
               <div className="text-lg font-sans font-bold tracking-[0.15em] text-white mb-2">
                 EASY VIP <span className="text-[#E5D3B3] font-medium">BODRUM</span>
               </div>
-              <p className="text-xs font-sans text-zinc-400 font-light leading-relaxed">
+              <p className="text-sm font-sans text-zinc-400 font-light leading-relaxed">
                 Bodrum Yarımadası ve Ege koylarında 7/24 kesintisiz VIP transfer.
               </p>
             </div>
             
             <div className="relative">
-              <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase mb-3">E-Bülten Kayıt</h4>
+              <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase mb-3">E-Bülten Kayıt</h4>
               <form 
                 className="relative flex items-center"
                 onSubmit={(e) => {
@@ -268,7 +268,7 @@ export default function FaqAndFooter() {
                 <input
                   type="email"
                   placeholder="E-posta adresiniz"
-                  className="w-full bg-[#050505] border border-white/10 rounded-full py-2.5 pl-4 pr-10 text-xs text-white focus:outline-none focus:border-[#E5D3B3]/50 transition-colors"
+                  className="w-full bg-[#050505] border border-white/10 rounded-full py-2.5 pl-4 pr-10 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/50 transition-colors"
                 />
                 <button
                   type="submit"
@@ -282,7 +282,7 @@ export default function FaqAndFooter() {
 
           {/* Col 2: Hızlı Linkler */}
           <div className="space-y-4">
-            <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Hızlı Linkler</h4>
+            <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Hızlı Linkler</h4>
             <nav className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400">
               <a href="#fleet" className="block hover:text-[#E5D3B3] transition-colors">Araç Filomuz</a>
               <a href="#services" className="block hover:text-[#E5D3B3] transition-colors">Ayrıcalıklar</a>
@@ -293,7 +293,7 @@ export default function FaqAndFooter() {
 
           {/* Col 3: İletişim */}
           <div className="space-y-4">
-            <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">İletişim</h4>
+            <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">İletişim</h4>
             <address className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400 not-italic">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
@@ -315,14 +315,14 @@ export default function FaqAndFooter() {
 
 
             <div className="space-y-3">
-              <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Resmi Belgeler</h4>
+              <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Resmi Belgeler</h4>
               <div className="flex flex-col gap-2">
-                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[10px] font-sans font-semibold text-zinc-300">
+                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[13px] font-sans font-semibold text-zinc-300">
                   <span className="text-[#E5D3B3]">TÜRSAB</span>
                   <span className="text-zinc-600">|</span> 
                   <span>No: 11428</span>
                 </div>
-                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[10px] font-sans font-semibold text-zinc-300">
+                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[13px] font-sans font-semibold text-zinc-300">
                   <span>D2 Taşıma Belgeli</span>
                 </div>
               </div>
@@ -331,7 +331,7 @@ export default function FaqAndFooter() {
         </div>
 
         {/* Bottom copyright */}
-        <div className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-[11px] text-zinc-500 gap-4">
+        <div className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-[14px] text-zinc-500 gap-4">
           <p>
             © 2026 Easy VIP Transfer. Tüm hakları saklıdır.
           </p>
@@ -339,6 +339,11 @@ export default function FaqAndFooter() {
             <a href="/gizlilik" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">Gizlilik Politikası</a>
             <a href="/kvkk" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">KVKK Metni</a>
             <a href="/sartlar" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">Şartlar & Koşullar</a>
+            <span className="text-white/10">|</span>
+            <a href="/admin" className="flex items-center gap-1.5 text-[#E5D3B3]/70 hover:text-[#E5D3B3] transition-colors">
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+              <span>Partner Girişi</span>
+            </a>
           </nav>
         </div>
       </div>

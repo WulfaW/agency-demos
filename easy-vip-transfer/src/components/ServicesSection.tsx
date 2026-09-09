@@ -10,7 +10,7 @@ export default function ServicesSection() {
         <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 tracking-wide">
           Ayrıcalıklar Dünyası
         </h2>
-        <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs md:text-sm mt-6">
+        <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm md:text-sm mt-6">
           Neden Bizi Tercih Etmelisiniz?
         </p>
       </div>
@@ -58,7 +58,7 @@ export default function ServicesSection() {
             </div>
             <div>
               <h3 className="text-lg font-serif text-white mb-1">TÜRSAB A Grubu</h3>
-              <p className="text-zinc-400 font-sans text-xs font-light">
+              <p className="text-zinc-400 font-sans text-sm font-light">
                 %100 Yasal, sigortalı ve D2 yetki belgeli resmi taşımacılık.
               </p>
             </div>
@@ -73,7 +73,7 @@ export default function ServicesSection() {
             </div>
             <div>
               <h3 className="text-lg font-serif text-white mb-1">Eğitimli Sürücüler</h3>
-              <p className="text-zinc-400 font-sans text-xs font-light">
+              <p className="text-zinc-400 font-sans text-sm font-light">
                 Yabancı dil bilen, protokol eğitimi almış VIP şoför kadrosu.
               </p>
             </div>

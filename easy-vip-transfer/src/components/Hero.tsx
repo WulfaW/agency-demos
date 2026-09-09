@@ -48,7 +48,7 @@ export default function Hero() {
           className="flex items-center justify-center gap-4 mb-6"
         >
           <div className="h-[1px] w-8 md:w-12 bg-[#E5D3B3]/40"></div>
-          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             {t.hero.badge}
           </span>
           <div className="h-[1px] w-8 md:w-12 bg-[#E5D3B3]/40"></div>
@@ -84,7 +84,7 @@ export default function Hero() {
         >
           <a
             href="#calculator"
-            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_35px_rgba(229,211,179,0.25)] hover:shadow-[0_0_50px_rgba(255,255,255,0.35)] active:scale-98"
+            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_35px_rgba(229,211,179,0.25)] hover:shadow-[0_0_50px_rgba(255,255,255,0.35)] active:scale-98"
           >
             <span>{t.hero.btnCalc}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -92,7 +92,7 @@ export default function Hero() {
           
           <a
             href="#fleet"
-            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 backdrop-blur-md text-white text-xs font-medium tracking-widest uppercase transition-all duration-300 active:scale-98"
+            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 backdrop-blur-md text-white text-sm font-medium tracking-widest uppercase transition-all duration-300 active:scale-98"
           >
             <span className="text-zinc-300 group-hover:text-white transition-colors">{t.hero.btnFleet}</span>
           </a>
@@ -105,14 +105,14 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1 }}
           className="flex flex-wrap items-center justify-center gap-2.5"
         >
-          <span className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase mr-1 hidden sm:inline-block">
+          <span className="text-[13px] font-mono tracking-widest text-zinc-500 uppercase mr-1 hidden sm:inline-block">
             {t.hero.popularRoutes}
           </span>
           {popularRoutes.map((route, i) => (
             <a
               key={i}
               href="#calculator"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-[#E5D3B3]/40 text-[11px] font-sans text-zinc-400 hover:text-white transition-all hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-[#E5D3B3]/40 text-[14px] font-sans text-zinc-400 hover:text-white transition-all hover:scale-105 active:scale-95"
             >
               <MapPin className="w-3 h-3 text-[#E5D3B3]" />
               <span>{route.label}</span>

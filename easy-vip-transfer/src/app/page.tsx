@@ -5,13 +5,10 @@ import PriceCalculator from '@/components/PriceCalculator';
 import AboutVIP from '@/components/AboutVIP';
 import BentoStats from '@/components/BentoStats';
 import Fleet from '@/components/Fleet';
-import BodrumRouteMap from '@/components/BodrumRouteMap';
 import LuxuryDestinations from '@/components/LuxuryDestinations';
 import StickyScrollExperience from '@/components/StickyScrollExperience';
 import SpotlightServices from '@/components/SpotlightServices';
-import ComparisonSection from '@/components/ComparisonSection';
 import TestimonialsMarquee from '@/components/TestimonialsMarquee';
-import ParallaxGallery from '@/components/ui/3d-parallax-unfurling-gallery';
 import FaqAndFooter from '@/components/FaqAndFooter';
 import StickyMobileBar from '@/components/StickyMobileBar';
 
@@ -36,9 +33,6 @@ export default function Home() {
       {/* 5. 3D Glare Fleet Showcase (Maybach, Vito, Sprinter) */}
       <Fleet />
 
-      {/* 6. İnteraktif Bodrum Rota Çizici & Harita Simülatörü */}
-      <BodrumRouteMap />
-
       {/* 7. Bodrum Ultra-Lüks Destinasyon Vitrini (Mandarin, Yalıkavak, Amanruya, Maçakızı) */}
       <LuxuryDestinations />
 
@@ -48,14 +42,8 @@ export default function Home() {
       {/* 7. Sekmeli & Fare Takip Eden Spotlight Hizmet Kartları */}
       <SpotlightServices />
 
-      {/* 8. Standart Taksi vs Easy VIP Karşılaştırması */}
-      <ComparisonSection />
-
       {/* 9. Sonsuz Kayan Yorumlar (Infinite Marquee) */}
       <TestimonialsMarquee />
-
-      {/* 9.5. 3D Lüks Galeri */}
-      <ParallaxGallery />
 
       {/* 10. Lüks Akordiyon SSS & Footer */}
       <FaqAndFooter />

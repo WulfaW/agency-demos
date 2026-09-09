@@ -14,7 +14,7 @@ import { CONTACT_INFO, LOCATIONS } from '@/data/transferData';
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-[#050507] text-zinc-400 text-xs border-t border-white/10 pt-16 pb-24 lg:pb-16 relative overflow-hidden">
+    <footer id="contact" className="bg-[#050507] text-zinc-400 text-sm border-t border-white/10 pt-16 pb-24 lg:pb-16 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/5">
           {/* Brand & Legal Info (4 Cols) */}
@@ -30,15 +30,15 @@ export default function Footer() {
               </span>
             </div>
 
-            <p className="text-zinc-400 text-xs leading-relaxed">
+            <p className="text-zinc-400 text-sm leading-relaxed">
               Bodrum Milas (BJV) Havalimanı transferleri, lüks şoförlü Maybach araç tahsisi ve tüm Ege VIP turizm ulaşımında 7/24 birinci sınıf konfor.
             </p>
 
             <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
-              <div className="font-mono text-[11px] text-zinc-300 font-semibold">
+              <div className="font-mono text-[14px] text-zinc-300 font-semibold">
                 {CONTACT_INFO.companyLegal}
               </div>
-              <div className="text-amber-400 font-mono text-[11px]">
+              <div className="text-amber-400 font-mono text-[14px]">
                 {CONTACT_INFO.tursabNo}
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function Footer() {
                 href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba%20Easy%20VIP%20Transfer%2C%20Bodrum%20rezervasyonu%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyorum.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-semibold flex items-center gap-2 transition-colors"
+                className="px-4 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 text-sm font-semibold flex items-center gap-2 transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>WhatsApp VIP Destek</span>
@@ -126,7 +126,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500 text-[11px]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500 text-[14px]">
           <div>
             © {new Date().getFullYear()} Easy VIP Transfer ({CONTACT_INFO.companyLegal}). Tüm hakları saklıdır.
           </div>

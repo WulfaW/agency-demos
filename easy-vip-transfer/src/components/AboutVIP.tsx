@@ -38,7 +38,7 @@ export default function AboutVIP() {
                 <div className="text-4xl md:text-5xl font-serif text-[#E5D3B3]">10+</div>
                 <div>
                   <div className="text-white text-sm font-bold tracking-widest uppercase">Yıllık Tecrübe</div>
-                  <div className="text-zinc-400 text-xs mt-1">Bodrum ve Ege'de 15.000+ Başarılı VIP Transfer</div>
+                  <div className="text-zinc-400 text-sm mt-1">Bodrum ve Ege'de 15.000+ Başarılı VIP Transfer</div>
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@ export default function AboutVIP() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-xs tracking-[0.3em] text-[#E5D3B3] uppercase font-bold mb-4 flex items-center gap-3">
+            <h2 className="text-sm tracking-[0.3em] text-[#E5D3B3] uppercase font-bold mb-4 flex items-center gap-3">
               <span className="w-10 h-[1px] bg-[#E5D3B3]"></span>
               Easy VIP Transfer
             </h2>
@@ -85,7 +85,7 @@ export default function AboutVIP() {
               </div>
               <div>
                 <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">Protokol Şoförleri</h4>
-                <p className="text-zinc-400 text-xs leading-relaxed">İleri sürüş teknikleri sertifikalı, İngilizce bilen, takım elbiseli ve gizlilik prensibine sadık profesyoneller.</p>
+                <p className="text-zinc-400 text-sm leading-relaxed">İleri sürüş teknikleri sertifikalı, İngilizce bilen, takım elbiseli ve gizlilik prensibine sadık profesyoneller.</p>
               </div>
             </div>
 
@@ -95,7 +95,7 @@ export default function AboutVIP() {
               </div>
               <div>
                 <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">Maksimum Güvenlik</h4>
-                <p className="text-zinc-400 text-xs leading-relaxed">Filomuzdaki tüm araçlar her transfer öncesi mekanik ve hijyenik VIP temizlik protokollerinden geçer.</p>
+                <p className="text-zinc-400 text-sm leading-relaxed">Filomuzdaki tüm araçlar her transfer öncesi mekanik ve hijyenik VIP temizlik protokollerinden geçer.</p>
               </div>
             </div>
 
@@ -105,7 +105,7 @@ export default function AboutVIP() {
               </div>
               <div>
                 <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">Sıfır Rötar Politikası</h4>
-                <p className="text-zinc-400 text-xs leading-relaxed">Uçuşunuz canlı radardan takip edilir. Siz daha bavullarınızı almadan aracınız VIP kapıda sizi bekliyor olur.</p>
+                <p className="text-zinc-400 text-sm leading-relaxed">Uçuşunuz canlı radardan takip edilir. Siz daha bavullarınızı almadan aracınız VIP kapıda sizi bekliyor olur.</p>
               </div>
             </div>
 
@@ -115,7 +115,7 @@ export default function AboutVIP() {
               </div>
               <div>
                 <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">First Class İkramlar</h4>
-                <p className="text-zinc-400 text-xs leading-relaxed">Mini bar, soğuk içecekler, Nespresso kahve ve özel taleplerinize anında cevap veren butik hizmet.</p>
+                <p className="text-zinc-400 text-sm leading-relaxed">Mini bar, soğuk içecekler, Nespresso kahve ve özel taleplerinize anında cevap veren butik hizmet.</p>
               </div>
             </div>
           </motion.div>
@@ -128,7 +128,7 @@ export default function AboutVIP() {
           >
             <a 
               href="#fleet"
-              className="inline-flex items-center justify-center h-12 px-8 text-xs tracking-widest uppercase border border-white/10 bg-white/5 hover:bg-white/10 rounded-full text-white transition-colors"
+              className="inline-flex items-center justify-center h-12 px-8 text-sm tracking-widest uppercase border border-white/10 bg-white/5 hover:bg-white/10 rounded-full text-white transition-colors"
             >
               Filomuzu Keşfedin
             </a>

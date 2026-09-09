@@ -151,7 +151,7 @@ const SpotlightCard = ({ title, desc, badge, image, icon: Icon }: { title: strin
             <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform backdrop-blur-md">
               <Icon className="w-5 h-5 text-[#E5D3B3]" />
             </div>
-            <span className="text-[10px] font-mono tracking-widest text-[#E5D3B3] uppercase px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/[0.08]">
+            <span className="text-[13px] font-mono tracking-widest text-[#E5D3B3] uppercase px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/[0.08]">
               {badge}
             </span>
           </div>
@@ -164,8 +164,8 @@ const SpotlightCard = ({ title, desc, badge, image, icon: Icon }: { title: strin
           </p>
         </div>
 
-        <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
-          <span className="font-mono text-[11px] tracking-widest uppercase">7/24 Rezervasyon</span>
+        <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-sm text-zinc-500 group-hover:text-zinc-300 transition-colors">
+          <span className="font-mono text-[14px] tracking-widest uppercase">7/24 Rezervasyon</span>
           <ChevronRight className="w-4 h-4 text-[#E5D3B3] group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
@@ -191,7 +191,7 @@ export default function SpotlightServices() {
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
-          <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             VIP Operasyon Hizmetleri
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
@@ -199,7 +199,7 @@ export default function SpotlightServices() {
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
           Ayrıcalıklı Hizmet Yelpazemiz
         </h2>
-        <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs max-w-xl mx-auto leading-relaxed">
+        <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm max-w-xl mx-auto leading-relaxed">
           Bodrum ve Ege genelinde kişiye ve kurumlara özel lüks mobilite çözümleri.
         </p>
       </motion.div>
@@ -213,7 +213,7 @@ export default function SpotlightServices() {
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-sans tracking-wider uppercase transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-sans tracking-wider uppercase transition-all duration-300 ${
                 isActive
                   ? 'bg-[#E5D3B3] text-black font-bold shadow-[0_0_30px_rgba(229,211,179,0.25)]'
                   : 'bg-white/[0.03] hover:bg-white/[0.06] text-zinc-400 border border-white/[0.08]'
@@ -248,14 +248,14 @@ export default function SpotlightServices() {
           </div>
           <div>
             <h4 className="text-sm font-serif text-white">Özel Bir Rota veya Talebiniz mi Var?</h4>
-            <p className="text-xs text-zinc-400">VIP Concierge ekibimiz 7/24 dakikalar içinde size özel teklif hazırlar.</p>
+            <p className="text-sm text-zinc-400">VIP Concierge ekibimiz 7/24 dakikalar içinde size özel teklif hazırlar.</p>
           </div>
         </div>
         <a
           href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20ozel%20bir%20VIP%20transfer%20rotasi%20icin%20teklif%20almak%20istiyorum.`}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3 rounded-xl bg-white text-black hover:bg-[#E5D3B3] text-xs font-bold tracking-widest uppercase transition-colors"
+          className="px-6 py-3 rounded-xl bg-white text-black hover:bg-[#E5D3B3] text-sm font-bold tracking-widest uppercase transition-colors"
         >
           Hızlı Teklif İste
         </a>

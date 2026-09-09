@@ -57,10 +57,10 @@ export default function BentoStats() {
                   <Icon className="w-4 h-4 text-[#E5D3B3]" />
                 </div>
               </div>
-              <h3 className="text-xs font-mono tracking-widest text-[#E5D3B3] uppercase mb-1.5 font-bold">
+              <h3 className="text-sm font-mono tracking-widest text-[#E5D3B3] uppercase mb-1.5 font-bold">
                 {item.label}
               </h3>
-              <p className="text-xs font-sans text-zinc-400 font-light leading-relaxed">
+              <p className="text-sm font-sans text-zinc-400 font-light leading-relaxed">
                 {item.desc}
               </p>
             </motion.div>
