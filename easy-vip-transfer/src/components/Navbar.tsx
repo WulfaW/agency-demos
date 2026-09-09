@@ -27,20 +27,18 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`fixed left-0 right-0 z-[100] pointer-events-none flex justify-center transition-all duration-500 ${
-      !isScrolled ? 'top-0 px-0' : 'top-4 px-4 lg:px-8'
-    }`}>
+    <header className="fixed top-4 left-0 right-0 z-[100] pointer-events-none flex justify-center px-4 transition-all duration-700 ease-in-out">
       <motion.div 
-        className={`w-full relative flex items-center justify-between transition-all duration-500 ${
+        className={`relative flex items-center justify-between transition-all duration-700 ease-in-out ${
           !isScrolled 
-            ? 'h-20 px-6 lg:px-12 backdrop-blur-xl bg-[#0a0a0a]/90 border-b border-white/[0.08] shadow-2xl' 
-            : 'h-14'
+            ? 'w-full max-w-6xl h-14 px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
+            : 'w-full max-w-[100vw] h-14 px-0 lg:px-4'
         }`}
       >
         
         {/* LEFT PILL: Brand Logo */}
         <motion.div
-          className={`pointer-events-auto flex items-center justify-center transition-all duration-500 ${
+          className={`pointer-events-auto flex items-center justify-center transition-all duration-700 ease-in-out ${
             isScrolled 
               ? 'h-full px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
               : 'h-full'
@@ -78,7 +76,7 @@ export default function Navbar() {
 
         {/* RIGHT PILL: Actions (Language + CTA) */}
         <motion.div
-          className={`pointer-events-auto flex items-center gap-1 transition-all duration-500 ${
+          className={`pointer-events-auto flex items-center gap-1 transition-all duration-700 ease-in-out ${
             isScrolled 
               ? 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
               : 'h-full'
