@@ -26,22 +26,25 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
   return (
-    <header className="fixed top-4 left-0 right-0 z-[100] pointer-events-none flex justify-center px-4 transition-all duration-700 ease-in-out">
-      <motion.div 
-        className={`relative flex items-center justify-between transition-all duration-700 ease-in-out ${
-          !isScrolled 
-            ? 'w-full max-w-6xl h-14 px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
-            : 'w-full max-w-[100vw] h-14 px-0 lg:px-4 bg-transparent'
-        }`}
-      >
+    <header className="fixed top-4 left-0 right-0 z-[100] pointer-events-none flex justify-center px-4 lg:px-8">
+      {/* Container is always full width to allow edge placement without stretching animation */}
+      <div className="relative w-full flex items-center justify-between h-14">
         
+        {/* CENTER PILL BACKGROUND (Fades out on scroll) */}
+        <div 
+          className={`absolute left-1/2 -translate-x-1/2 w-full max-w-6xl h-full rounded-full backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-opacity duration-500 pointer-events-none ${
+            !isScrolled ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+
         {/* LEFT PILL: Brand Logo */}
         <motion.div
-          className={`pointer-events-auto flex items-center justify-center transition-all duration-700 ease-in-out ${
+          className={`pointer-events-auto relative z-10 flex items-center justify-center transition-all duration-500 ease-in-out ${
             isScrolled 
-              ? 'h-full px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
-              : 'h-full'
+              ? 'h-full px-6 rounded-full backdrop-blur-xl bg-white/[0.05] border border-white/[0.08] shadow-lg' 
+              : 'h-full px-6 border border-transparent'
           }`}
         >
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 group">
@@ -59,7 +62,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="pointer-events-auto absolute left-1/2 -translate-x-1/2 h-full hidden lg:flex items-center gap-2 px-3"
+              className="pointer-events-auto absolute left-1/2 -translate-x-1/2 h-full hidden lg:flex items-center gap-2 px-3 z-10"
             >
               <a href="#fleet" className="px-5 py-2 text-[11px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
                 {t.nav.fleet}
@@ -76,10 +79,10 @@ export default function Navbar() {
 
         {/* RIGHT PILL: Actions (Language + CTA) */}
         <motion.div
-          className={`pointer-events-auto flex items-center gap-1 transition-all duration-700 ease-in-out ${
+          className={`pointer-events-auto relative z-10 flex items-center gap-1 transition-all duration-500 ease-in-out ${
             isScrolled 
-              ? 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
-              : 'h-full'
+              ? 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-white/[0.05] border border-white/[0.08] shadow-lg' 
+              : 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 border border-transparent'
           }`}
         >
           {/* Language dropdown fades out when scrolled to save space, like gamemaps IRL's small right pill */}

@@ -131,9 +131,9 @@ const SpotlightCard = ({ title, desc, badge, image, icon: Icon }: { title: strin
         <img 
           src={image} 
           alt={title}
-          className="w-full h-full object-cover opacity-0 group-hover:opacity-30 transition-all duration-700 scale-105 group-hover:scale-100" 
+          className="w-full h-full object-cover opacity-0 group-hover:opacity-60 transition-all duration-700 scale-105 group-hover:scale-100" 
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700" />
       </div>
 
       {/* Mouse-Following Spotlight Layer */}
