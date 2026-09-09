@@ -5,6 +5,82 @@ import { MapPin, Calendar, Users, ArrowRight, ShieldCheck, ChevronDown, Check, A
 import { motion } from 'framer-motion';
 import { LOCATIONS, CONTACT_INFO } from '@/data/transferData';
 
+/* ─── Custom Multi Select ──────────────────────────────────────────── */
+const MultiSelectDropdown = ({
+  label,
+  options,
+  selectedIds,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  options: { id: string; label: string; icon: any }[];
+  selectedIds: string[];
+  onChange: (id: string) => void;
+  placeholder: string;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setIsOpen(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const selectedCount = selectedIds.length;
+
+  return (
+    <div className="relative flex-1 min-w-0" ref={ref}>
+      <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1.5 px-1">
+        <span className="text-[#E5D3B3]">✦</span>
+        {label}
+      </p>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between gap-2 bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 transition-all duration-200 focus:outline-none focus:border-[#E5D3B3]/30"
+      >
+        <span className={`text-sm truncate ${selectedCount > 0 ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
+          {selectedCount > 0 ? `${selectedCount} Ekstra Seçildi` : placeholder}
+        </span>
+        <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-zinc-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-[calc(100%+8px)] left-0 w-full z-[100]">
+          <div className="bg-[#0d0d0d] border border-zinc-800/80 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden py-2 max-h-[260px] overflow-y-auto subtle-scrollbar">
+            {options.map((opt) => {
+              const isSelected = selectedIds.includes(opt.id);
+              const Icon = opt.icon;
+              return (
+                <button
+                  key={opt.id}
+                  type="button"
+                  onClick={() => onChange(opt.id)}
+                  className="w-full flex items-center justify-between px-5 py-3 hover:bg-white/[0.04] transition-colors group"
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon className={`w-4 h-4 transition-colors ${isSelected ? 'text-[#E5D3B3]' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
+                    <span className={`text-[11px] font-sans tracking-wide uppercase transition-colors ${isSelected ? 'text-white font-medium' : 'text-zinc-400'}`}>
+                      {opt.label}
+                    </span>
+                  </div>
+                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${isSelected ? 'bg-[#E5D3B3] border-[#E5D3B3]' : 'border-zinc-700'}`}>
+                    {isSelected && <Check className="w-3 h-3 text-black" />}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 /* ─── Custom Pill Select ──────────────────────────────────────────── */
 const PillSelect = ({
   label,
@@ -313,34 +389,16 @@ export default function PriceCalculator() {
           </div>
         </div>
 
-        {/* Row 3: VIP Concierge Add-ons Chips */}
+        {/* Row 3: VIP Concierge Add-ons Dropdown */}
         <div className="relative z-10 pt-4 pb-2 border-t border-white/[0.04]">
-          <p className="text-[9px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 px-1 flex items-center gap-1.5">
-            <span className="text-[#E5D3B3]">✦</span>
-            {lang === 'TR' ? 'Özel Concierge Talepleri:' : lang === 'RU' ? 'Дополнительные опции:' : 'VIP Concierge Add-ons:'}
-          </p>
-          <div className="flex flex-wrap items-center gap-2">
-            {conciergeOptions.map((opt) => {
-              const isSelected = selectedExtras.includes(opt.id);
-              const Icon = opt.icon;
-              return (
-                <button
-                  key={opt.id}
-                  type="button"
-                  onClick={() => toggleExtra(opt.id)}
-                  className={`group flex items-center gap-2.5 px-4 py-2 rounded-full transition-all duration-300 border ${
-                    isSelected
-                      ? 'bg-[#E5D3B3]/10 border-[#E5D3B3]/40 shadow-[0_0_20px_rgba(229,211,179,0.1)]'
-                      : 'bg-white/[0.02] hover:bg-white/[0.06] border-white/[0.05] hover:border-white/[0.1]'
-                  }`}
-                >
-                  <Icon className={`w-3.5 h-3.5 transition-colors duration-300 ${isSelected ? 'text-[#E5D3B3]' : 'text-zinc-500 group-hover:text-[#E5D3B3]/70'}`} />
-                  <span className={`text-[9.5px] font-sans tracking-[0.15em] uppercase transition-colors duration-300 ${isSelected ? 'font-bold text-[#E5D3B3]' : 'font-medium text-zinc-400 group-hover:text-zinc-200'}`}>
-                    {opt.label}
-                  </span>
-                </button>
-              );
-            })}
+          <div className="w-full sm:w-[320px]">
+            <MultiSelectDropdown
+              label={lang === 'TR' ? 'Özel Concierge Talepleri:' : lang === 'RU' ? 'Дополнительные опции:' : 'VIP Concierge Add-ons:'}
+              options={conciergeOptions}
+              selectedIds={selectedExtras}
+              onChange={toggleExtra}
+              placeholder={lang === 'TR' ? 'Ekstra Talep Seçin...' : 'Select Extras...'}
+            />
           </div>
         </div>
 
