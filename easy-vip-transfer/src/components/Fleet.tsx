@@ -13,7 +13,7 @@ const fleetCars = [
     capacity: '7 Kişi',
     luggage: '7 Büyük Valiz',
     priceEur: '€75',
-    image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1400&auto=format&fit=crop',
+    image: '/images/wix_img_0.jpg',
     features: ['Yıldız Tavan Ambiyansı', 'Deri Yatar Koltuklar', 'Apple TV & Wi-Fi', 'Soğuk Minibar İkramı', 'Gizlilik Bölmesi', 'Geniş Bagaj Hacmi'],
     badge: 'Popüler Tercih'
   },
@@ -25,7 +25,7 @@ const fleetCars = [
     capacity: '3 Kişi',
     luggage: '3 Büyük Valiz',
     priceEur: '€120',
-    image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1400&auto=format&fit=crop',
+    image: '/images/wix_img_2.jpg',
     features: ['Masajlı Hakiki Deri Koltuk', 'Özel Ses İzolasyonu', 'Şampanya & Meşrubat Servisi', 'Burmester High-End Ses', 'Kablosuz Hızlı Şarj', 'Protokol Şoförü'],
     badge: 'En Prestijli'
   },
@@ -37,7 +37,7 @@ const fleetCars = [
     capacity: '16 Kişi',
     luggage: '16 Büyük Valiz',
     priceEur: '€150',
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=1400&auto=format&fit=crop',
+    image: '/images/wix_img_1.jpg',
     features: ['Tam Boy Ayakta Durulabilir Tavan', 'PlayStation & Smart TV', 'Konferans Oturma Düzeni', 'Nespresso Kahve Makinesi', 'Özel Lavabo & Gardırop', 'Geniş Bagaj Bölümü'],
     badge: 'Grup & Protokol'
   }
