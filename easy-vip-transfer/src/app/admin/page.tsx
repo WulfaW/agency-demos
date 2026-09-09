@@ -31,7 +31,7 @@ export default function AdminDashboard() {
   const supabase = createClient();
 
   useEffect(() => {
-    const sessionAuth = sessionStorage.getItem('easyvip_admin_auth');
+    const sessionAuth = localStorage.getItem('easyvip_admin_auth');
     if (sessionAuth === 'true') {
       setIsAuthenticated(true);
       fetchData();
@@ -69,7 +69,7 @@ export default function AdminDashboard() {
 
     if (passcode === dbPass || passcode === 'admin') {
       setIsAuthenticated(true);
-      sessionStorage.setItem('easyvip_admin_auth', 'true');
+      localStorage.setItem('easyvip_admin_auth', 'true');
       fetchData();
     } else {
       setPassError(true);
@@ -79,7 +79,7 @@ export default function AdminDashboard() {
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    sessionStorage.removeItem('easyvip_admin_auth');
+    localStorage.removeItem('easyvip_admin_auth');
   };
 
   const updateBookingStatus = async (id: string, status: string) => {
