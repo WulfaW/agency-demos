@@ -57,7 +57,7 @@ export const VEHICLES: VehicleOption[] = [
     luggage: '6 Büyük Boy Valiz',
     basePriceEur: 55,
     multiplier: 1.0,
-    image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/wix_img_0.jpg',
     features: [
       'Starlight (Yıldız) Ambiyans Tavan',
       'Masajlı & Isıtmalı Deri VIP Koltuklar',
@@ -82,7 +82,7 @@ export const VEHICLES: VehicleOption[] = [
     luggage: '16 Büyük Boy Valiz',
     basePriceEur: 90,
     multiplier: 1.5,
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/wix_img_1.jpg',
     features: [
       'Geniş Ayak Mesafeli Yatarlı Hakiki Deri Koltuklar',
       'Bağımsız Çift Bölgeli Dijital İklimlendirme',
@@ -107,7 +107,7 @@ export const VEHICLES: VehicleOption[] = [
     luggage: '3 Büyük Valiz',
     basePriceEur: 140,
     multiplier: 2.2,
-    image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/wix_img_2.jpg',
     features: [
       'First Class Executive Arka Yatış Koltukları',
       'Burmester 4D High-End Surround Ses Sistemi',
