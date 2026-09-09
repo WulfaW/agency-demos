@@ -1,43 +1,31 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Car, MapPin, Save, ShieldCheck, Sparkles, ArrowLeft, 
-  Plus, Trash2, Check, ExternalLink, Lock, LogOut, LayoutDashboard,
-  CalendarDays, Settings, Users, ArrowUpRight, Clock, Banknote, Euro
+import {
+  Car, MapPin, Sparkles, Plus, LogOut, LayoutDashboard, CalendarDays
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { LOCATIONS, VEHICLES } from '@/data/transferData';
 
 export default function AdminDashboard() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [passcode, setPasscode] = useState('');
-  const [passError, setPassError] = useState(false);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
-
   // Tabs
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'bookings' | 'fleet' | 'settings'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'bookings' | 'fleet'>('dashboard');
 
   // Data States
   const [bookings, setBookings] = useState<any[]>([]);
   const [vehicles, setVehicles] = useState<any[]>([]);
   const [locations, setLocations] = useState<any[]>([]);
-  const [adminPassword, setAdminPassword] = useState('');
-  
+
   // Loading & Saving states
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
 
+  const router = useRouter();
   const supabase = createClient();
 
   useEffect(() => {
-    const sessionAuth = localStorage.getItem('easyvip_admin_auth');
-    if (sessionAuth === 'true') {
-      setIsAuthenticated(true);
-      fetchData();
-    } else {
-      setIsLoading(false);
-    }
+    fetchData();
   }, []);
 
   const fetchData = async () => {
@@ -59,27 +47,9 @@ export default function AdminDashboard() {
     setIsLoading(false);
   };
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoggingIn(true);
-    setPassError(false);
-    
-    const { data: settings } = await supabase.from('vip_settings').select('admin_password').eq('id', 1).single();
-    const dbPass = settings?.admin_password || 'vip2026';
-
-    if (passcode === dbPass || passcode === 'admin') {
-      setIsAuthenticated(true);
-      localStorage.setItem('easyvip_admin_auth', 'true');
-      fetchData();
-    } else {
-      setPassError(true);
-    }
-    setIsLoggingIn(false);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('easyvip_admin_auth');
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push('/admin/giris');
   };
 
   const updateBookingStatus = async (id: string, status: string) => {
@@ -100,52 +70,6 @@ export default function AdminDashboard() {
     alert('Araç fiyatları kaydedildi!');
   };
 
-  const updatePassword = async () => {
-    if(!adminPassword) return;
-    setIsSaving(true);
-    await supabase.from('vip_settings').upsert({ id: 1, admin_password: adminPassword });
-    setIsSaving(false);
-    setAdminPassword('');
-    alert('Şifre güncellendi!');
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <main className="min-h-screen bg-[#030303] flex items-center justify-center p-4 relative text-zinc-100 font-sans selection:bg-white selection:text-black">
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-difference" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }} />
-        <div className="w-full max-w-md backdrop-blur-3xl bg-white/[0.02] border border-white/[0.05] rounded-[2.5rem] p-10 shadow-[0_40px_120px_rgba(0,0,0,0.8)] relative overflow-hidden group">
-          <div className="text-center mb-10 relative z-10">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E5D3B3]/20 to-transparent border border-[#E5D3B3]/20 flex items-center justify-center mx-auto mb-6">
-              <Lock className="w-6 h-6 text-[#E5D3B3]" />
-            </div>
-            <h1 className="text-3xl font-serif text-white tracking-wide mb-2">Yönetim Paneli</h1>
-            <p className="text-[10px] text-zinc-500 tracking-[0.25em] uppercase">Yetkisiz Erişim Yasaktır</p>
-          </div>
-          <form onSubmit={handleLogin} className="space-y-6 relative z-10">
-            <div>
-              <input
-                type="password"
-                value={passcode}
-                onChange={(e) => setPasscode(e.target.value)}
-                placeholder="PIN Kodu"
-                className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-4 text-center text-xl tracking-[0.3em] text-white focus:outline-none focus:border-[#E5D3B3]/50 font-mono"
-                autoFocus
-              />
-              {passError && <p className="text-red-400 text-xs text-center mt-3">Hatalı şifre.</p>}
-            </div>
-            <button
-              type="submit"
-              disabled={isLoggingIn}
-              className="w-full bg-[#E5D3B3] hover:bg-white text-black font-bold text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-2xl transition-all disabled:opacity-50"
-            >
-              {isLoggingIn ? 'Kontrol...' : 'Giriş Yap'}
-            </button>
-          </form>
-        </div>
-      </main>
-    );
-  }
-
   if (isLoading) return <div className="min-h-screen bg-[#030303] text-[#E5D3B3] flex justify-center items-center">Yükleniyor...</div>;
 
   const totalBookings = bookings.length;
@@ -165,7 +89,6 @@ export default function AdminDashboard() {
             { id: 'dashboard', label: 'Özet Paneli', icon: LayoutDashboard },
             { id: 'bookings', label: 'Rezervasyonlar', icon: CalendarDays, badge: pendingBookings },
             { id: 'fleet', label: 'Filo & Fiyatlar', icon: Car },
-            { id: 'settings', label: 'Ayarlar', icon: Settings },
           ].map((item) => (
             <button key={item.id} onClick={() => setActiveTab(item.id as any)} className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm ${activeTab === item.id ? 'bg-white/10 text-white font-medium border border-white/5' : 'text-zinc-400 hover:bg-white/[0.02]'}`}>
               <div className="flex items-center gap-3"><item.icon className={`w-4 h-4 ${activeTab === item.id ? 'text-[#E5D3B3]' : 'opacity-60'}`} /> {item.label}</div>
@@ -275,17 +198,6 @@ export default function AdminDashboard() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'settings' && (
-          <div className="space-y-8 animate-in fade-in">
-            <header className="mb-10"><h1 className="text-3xl font-serif text-white">Ayarlar</h1></header>
-            <div className="max-w-xl p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05]">
-              <label className="text-[10px] text-zinc-500 uppercase block mb-2">Yeni Şifre (PIN)</label>
-              <input type="text" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder="Yeni şifre..." className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white mb-4" />
-              <button onClick={updatePassword} className="w-full bg-white/10 text-white px-6 py-3 rounded-xl">Şifreyi Güncelle</button>
             </div>
           </div>
         )}

@@ -10,15 +10,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
-    // Check if user is an authorized admin
-    if (typeof window !== 'undefined' && localStorage.getItem('easyvip_admin_auth') === 'true') {
-      setIsAdmin(true);
-    }
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -104,13 +98,6 @@ export default function Navbar() {
               </motion.div>
             )}
           </AnimatePresence>
-
-          {isAdmin && (
-            <a href="/admin" className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 mr-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[13px] font-bold tracking-widest uppercase transition-colors hover:bg-emerald-500 hover:text-black">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-              <span>Yönetim</span>
-            </a>
-          )}
 
           <a href="#calculator" className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-[13px] sm:text-sm font-bold tracking-widest uppercase transition-colors">
             <span>{t.hero.btnCalc}</span>
