@@ -27,17 +27,23 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] py-4 px-4 sm:px-6 pointer-events-none flex justify-center">
+    <header className={`fixed left-0 right-0 z-[100] pointer-events-none flex justify-center transition-all duration-500 ${
+      !isScrolled ? 'top-0 px-0' : 'top-4 px-4 lg:px-8'
+    }`}>
       <motion.div 
-        className={`w-full max-w-6xl relative flex items-center justify-between h-14 transition-all duration-500 ${
-          !isScrolled ? 'rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' : ''
+        className={`w-full relative flex items-center justify-between transition-all duration-500 ${
+          !isScrolled 
+            ? 'h-20 px-6 lg:px-12 backdrop-blur-xl bg-[#0a0a0a]/90 border-b border-white/[0.08] shadow-2xl' 
+            : 'h-14'
         }`}
       >
         
         {/* LEFT PILL: Brand Logo */}
         <motion.div
-          className={`pointer-events-auto h-full px-4 sm:px-6 flex items-center justify-center transition-all duration-500 ${
-            isScrolled ? 'rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' : ''
+          className={`pointer-events-auto flex items-center justify-center transition-all duration-500 ${
+            isScrolled 
+              ? 'h-full px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
+              : 'h-full'
           }`}
         >
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 group">
@@ -72,8 +78,10 @@ export default function Navbar() {
 
         {/* RIGHT PILL: Actions (Language + CTA) */}
         <motion.div
-          className={`pointer-events-auto h-full flex items-center gap-1 pl-2 pr-2 sm:pl-3 sm:pr-3 transition-all duration-500 ${
-            isScrolled ? 'rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' : ''
+          className={`pointer-events-auto flex items-center gap-1 transition-all duration-500 ${
+            isScrolled 
+              ? 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
+              : 'h-full'
           }`}
         >
           {/* Language dropdown fades out when scrolled to save space, like gamemaps IRL's small right pill */}
