@@ -124,6 +124,18 @@ const socialLinks = [
 import { motion } from 'framer-motion';
 
 export default function FaqAndFooter() {
+  const { lang } = useLanguage();
+  const getTexts = () => {
+    switch(lang) {
+      case 'EN': return { faqTitle: 'Frequently Asked Questions', faqSub: 'Everything you need to know about your luxury transfer experience.', faqHelp: 'Do you have another question?', footerDesc: 'Bodrum\'s Premier Luxury Chauffeur Service.', quick: 'Quick Links', contact: 'Contact' };
+      case 'RU': return { faqTitle: 'Часто Задаваемые Вопросы', faqSub: 'Все, что вам нужно знать о вашем роскошном трансфере.', faqHelp: 'У вас есть другой вопрос?', footerDesc: 'Премиум VIP Трансфер в Бодруме.', quick: 'Ссылки', contact: 'Контакты' };
+      case 'DE': return { faqTitle: 'Häufig Gestellte Fragen', faqSub: 'Alles, was Sie über Ihren luxuriösen Transfer wissen müssen.', faqHelp: 'Haben Sie eine andere Frage?', footerDesc: 'Bodrums Erstklassiger VIP-Transfer.', quick: 'Links', contact: 'Kontakt' };
+      case 'AR': return { faqTitle: 'الأسئلة الشائعة', faqSub: 'كل ما تحتاج لمعرفته حول تجربة النقل الفاخر الخاصة بك.', faqHelp: 'هل لديك سؤال آخر؟', footerDesc: 'خدمة نقل كبار الشخصيات الأولى في بودروم.', quick: 'روابط', contact: 'اتصال' };
+      case 'TR': return { faqTitle: '{texts.faqTitle}', faqSub: '{texts.faqSub}', faqHelp: '{texts.faqHelp}', footerDesc: 'Bodrum\'un Zirvesindeki VIP Transfer Deneyimi.', quick: '{texts.quick}', contact: 'İletişim' };
+    }
+  };
+  const texts = getTexts();
+
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
@@ -142,7 +154,7 @@ export default function FaqAndFooter() {
             Merak Edilenler
           </span>
           <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
-            Sıkça Sorulan Sorular
+            {texts.faqTitle}
           </h2>
           <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm leading-relaxed">
             Bodrum VIP transfer hizmetimizle ilgili tüm yasal ve operasyonel detaylar.
@@ -280,9 +292,9 @@ export default function FaqAndFooter() {
             </div>
           </div>
 
-          {/* Col 2: Hızlı Linkler */}
+          {/* Col 2: {texts.quick} */}
           <div className="space-y-4">
-            <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Hızlı Linkler</h4>
+            <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.quick}</h4>
             <nav className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400">
               <a href="#fleet" className="block hover:text-[#E5D3B3] transition-colors">Araç Filomuz</a>
               <a href="#services" className="block hover:text-[#E5D3B3] transition-colors">Ayrıcalıklar</a>
@@ -293,7 +305,7 @@ export default function FaqAndFooter() {
 
           {/* Col 3: İletişim */}
           <div className="space-y-4">
-            <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">İletişim</h4>
+            <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.contact}</h4>
             <address className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400 not-italic">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-zinc-500 shrink-0" />

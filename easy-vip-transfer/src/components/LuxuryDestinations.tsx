@@ -9,14 +9,57 @@ import { CONTACT_INFO } from '@/data/transferData';
 export default function LuxuryDestinations() {
   const { lang } = useLanguage();
 
+  const getTexts = () => {
+    switch (lang) {
+      case 'EN': return { pop: 'Premier VIP Hubs', bays: 'Bodrum’s Most Exclusive Bays', desc: 'Direct first class transfer from BJV Airport straight to your resort or yacht berth.', ride: 'Ride', book: 'Book Direct', wa1: 'Hello, I would like to get a VIP transfer quote for ', wa2: '.' };
+      case 'RU': return { pop: 'Элитные Локации', bays: 'Самые Престижные Бухты Бодрума', desc: 'VIP трансфер из аэропорта в топовые курорты и марины Бодрума.', ride: 'в пути', book: 'Забронировать', wa1: 'Здравствуйте, я хотел бы узнать стоимость VIP-трансфера для ', wa2: '.' };
+      case 'DE': return { pop: 'Premium VIP Hubs', bays: 'Bodrums Exklusivste Buchten', desc: 'Direkter First-Class-Transfer vom BJV-Flughafen direkt zu Ihrem Resort oder Yachtliegeplatz.', ride: 'Fahrt', book: 'Jetzt Buchen', wa1: 'Hallo, ich möchte ein VIP-Transferangebot für ', wa2: ' erhalten.' };
+      case 'AR': return { pop: 'محاور كبار الشخصيات الممتازة', bays: 'أكثر خلجان بودروم حصرية', desc: 'نقل مباشر من الدرجة الأولى من مطار BJV مباشرة إلى منتجعك أو مرسى يختك.', ride: 'رحلة', book: 'احجز الآن', wa1: 'مرحباً، أود الحصول على عرض سعر نقل VIP لـ ', wa2: '.' };
+      default: return { pop: 'Popüler VIP Noktaları', bays: 'Bodrum’un En Seçkin Koyları', desc: 'Milas-Bodrum Havalimanı’ndan (BJV) lüks otelinize ve süperyat iskelesine konforlu VIP transfer.', ride: 'Sürüş', book: 'Hemen Rezerve Et', wa1: 'Merhaba, ', wa2: ' için Bodrum VIP transfer fiyatı öğrenmek istiyorum.' };
+    }
+  };
+  const tDest = getTexts();
+
+  const getDestTexts = (id: string) => {
+    if (lang === 'TR') {
+      if (id === 'mandarin') return { desc: 'Ultra lüks sahil villaları, Hakkasan & Lucca Beach erişimi.' };
+      if (id === 'yalikavak') return { desc: 'Dünyaca ünlü markalar, Novikov, Zuma & gece hayatı.' };
+      if (id === 'amanruya') return { desc: 'İzole zeytinlikler arasında taş villalar ve sakin lüks.' };
+      if (id === 'macakizi') return { desc: 'Efsanevi iskele partileri, Sunset ritüelleri ve gastronomi.' };
+    }
+    if (lang === 'RU') {
+      if (id === 'mandarin') return { desc: 'Ультра-роскошные виллы и пляжные клубы.' };
+      if (id === 'yalikavak') return { desc: 'Суперяхтенная марина, бутики и рестораны.' };
+      if (id === 'amanruya') return { desc: 'Уединенные каменные виллы среди оливковых рощ.' };
+      if (id === 'macakizi') return { desc: 'Легендарные вечеринки и гастрономия у моря.' };
+    }
+    if (lang === 'DE') {
+      if (id === 'mandarin') return { desc: 'Ultraluxuriöse Küstenvillen, Zugang zu Hakkasan & Lucca Beach.' };
+      if (id === 'yalikavak') return { desc: 'Superyacht-Liegeplätze, Luxusboutiquen, Novikov & Zuma.' };
+      if (id === 'amanruya') return { desc: 'Abgelegene Steinpavillons, private Pools & ruhiger Luxus.' };
+      if (id === 'macakizi') return { desc: 'Kultige Deck-Partys, Sonnenuntergangsrituale & maßgeschneiderte Gastronomie.' };
+    }
+    if (lang === 'AR') {
+      if (id === 'mandarin') return { desc: 'فيلات ساحلية فاخرة جداً، إمكانية الوصول إلى شاطئ هاكاسان ولوكا.' };
+      if (id === 'yalikavak') return { desc: 'مراسي اليخوت الفاخرة، البوتيكات الفاخرة، نوفيكوف وزوما.' };
+      if (id === 'amanruya') return { desc: 'أجنحة حجرية منعزلة، مسابح خاصة وفخامة هادئة.' };
+      if (id === 'macakizi') return { desc: 'حفلات مميزة، طقوس غروب الشمس وتناول طعام مخصص.' };
+    }
+    // Default EN
+    if (id === 'mandarin') return { desc: 'Ultra-luxury coastal villas, Hakkasan & Lucca Beach access.' };
+    if (id === 'yalikavak') return { desc: 'Superyacht berths, luxury boutiques, Novikov & Zuma.' };
+    if (id === 'amanruya') return { desc: 'Secluded stone pavilions, private pools & quiet luxury.' };
+    if (id === 'macakizi') return { desc: 'Iconic deck parties, sunset rituals & bespoke dining.' };
+    return { desc: '' };
+  };
+
   const destinations = [
     {
       id: 'mandarin',
       name: 'Mandarin Oriental Bodrum',
       bay: 'Cennet Koyu • Göltürkbükü',
       time: '40 dk',
-      desc: lang === 'TR' ? 'Ultra lüks sahil villaları, Hakkasan & Lucca Beach erişimi.' : lang === 'RU' ? 'Ультра-роскошные виллы и пляжные клубы.' : 'Ultra-luxury coastal villas, Hakkasan & Lucca Beach access.',
-      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000&auto=format&fit=crop',
+      image: '/images/wix_img_1.jpg',
       badge: 'Cennet Koyu',
     },
     {
@@ -24,8 +67,7 @@ export default function LuxuryDestinations() {
       name: 'Yalıkavak Marina & Zuma',
       bay: 'Süperyat Limanı • Yalıkavak',
       time: '45 dk',
-      desc: lang === 'TR' ? 'Dünyaca ünlü markalar, Novikov, Zuma & gece hayatı.' : lang === 'RU' ? 'Суперяхтенная марина, бутики и рестораны.' : 'Superyacht berths, luxury boutiques, Novikov & Zuma.',
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop',
+      image: '/images/wix_img_2.jpg',
       badge: 'Süperyat Hub',
     },
     {
@@ -33,8 +75,7 @@ export default function LuxuryDestinations() {
       name: 'Amanruya Luxury Resort',
       bay: 'Demirbükü Koyu • Torba',
       time: '38 dk',
-      desc: lang === 'TR' ? 'İzole zeytinlikler arasında taş villalar ve sakin lüks.' : lang === 'RU' ? 'Уединенные каменные виллы среди оливковых рощ.' : 'Secluded stone pavilions, private pools & quiet luxury.',
-      image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1000&auto=format&fit=crop',
+      image: '/images/wix_img_0.jpg',
       badge: 'Sessiz Lüks',
     },
     {
@@ -42,8 +83,7 @@ export default function LuxuryDestinations() {
       name: 'Maçakızı & Scorpios Bodrum',
       bay: 'Türkbükü Koyu & Tilkicik',
       time: '40 dk',
-      desc: lang === 'TR' ? 'Efsanevi iskele partileri, Sunset ritüelleri ve gastronomi.' : lang === 'RU' ? 'Легендарные вечеринки и гастрономия у моря.' : 'Iconic deck parties, sunset rituals & bespoke dining.',
-      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop',
+      image: '/images/wix_img_1.jpg',
       badge: 'Beach Club',
     },
   ];
@@ -61,15 +101,15 @@ export default function LuxuryDestinations() {
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
           <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
-            {lang === 'TR' ? 'Popüler VIP Noktaları' : lang === 'RU' ? 'Элитные Локации' : 'Premier VIP Hubs'}
+            {tDest.pop}
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
         </div>
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
-          {lang === 'TR' ? 'Bodrum’un En Seçkin Koyları' : lang === 'RU' ? 'Самые Престижные Бухты Бодрума' : 'Bodrum’s Most Exclusive Bays'}
+          {tDest.bays}
         </h2>
         <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm max-w-xl mx-auto leading-relaxed">
-          {lang === 'TR' ? 'Milas-Bodrum Havalimanı’ndan (BJV) lüks otelinize ve süperyat iskelesine konforlu VIP transfer.' : lang === 'RU' ? 'VIP трансфер из аэропорта в топовые курорты и марины Бодрума.' : 'Direct first class transfer from BJV Airport straight to your resort or yacht berth.'}
+          {tDest.desc}
         </p>
       </motion.div>
 
@@ -101,7 +141,7 @@ export default function LuxuryDestinations() {
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] backdrop-blur-md border border-white/10 text-sm font-mono text-zinc-300">
                 <Clock className="w-3.5 h-3.5 text-[#E5D3B3]" />
-                {dest.time} {lang === 'TR' ? 'Sürüş' : lang === 'RU' ? 'в пути' : 'Ride'}
+                {dest.time} {tDest.ride}
               </span>
             </div>
 
@@ -114,16 +154,16 @@ export default function LuxuryDestinations() {
                 {dest.name}
               </h3>
               <p className="text-sm font-sans text-zinc-400 font-light leading-relaxed mb-5 max-w-md">
-                {dest.desc}
+                {getDestTexts(dest.id).desc}
               </p>
 
               <a
-                href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20${encodeURIComponent(dest.name)}%20icin%20Bodrum%20VIP%20transfer%20fiyati%20ogrenmek%20istiyorum.`}
+                href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=${encodeURIComponent(tDest.wa1 + dest.name + tDest.wa2)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-sans font-bold text-white group-hover:text-[#E5D3B3] tracking-widest uppercase transition-colors"
               >
-                <span>{lang === 'TR' ? 'Hemen Rezerve Et' : lang === 'RU' ? 'Забронировать' : 'Book Direct'}</span>
+                <span>{tDest.book}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>

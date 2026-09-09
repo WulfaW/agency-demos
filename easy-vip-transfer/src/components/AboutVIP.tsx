@@ -6,7 +6,73 @@ import { ShieldCheck, UserCheck, Star, Clock } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function AboutVIP() {
-  const { t } = useLanguage();
+  const { lang } = useLanguage();
+
+  const getTexts = () => {
+    switch (lang) {
+      case 'EN': return {
+        exp: 'Years of Experience',
+        expSub: '15,000+ Successful VIP Transfers in Bodrum and the Aegean',
+        pre: 'PREMIUM SERVICE CONCEPT',
+        title1: 'Feel the ', title2: 'Privilege, ', title3: 'Raise the ', title4: 'Standards.',
+        desc: "We offer a bespoke, first-class travel experience in Bodrum, not just an ordinary taxi ride. Our advanced Mercedes-Benz Maybach and VIP Vito fleet combines with our special protocol chauffeurs who have undergone strict security and privacy training. Our goal is not just to get you to a destination, but to make you feel privileged every second of the journey.",
+        card1Title: 'Protocol Chauffeurs', card1Desc: 'Professionals with advanced driving certificates, English-speaking, suited, and loyal to the principle of privacy.',
+        card2Title: 'Maximum Security', card2Desc: 'All vehicles in our fleet undergo mechanical and hygienic VIP cleaning protocols before each transfer.',
+        card3Title: 'Zero Delay Policy', card3Desc: 'Your flight is tracked via live radar. Your vehicle is waiting for you at the VIP gate before you even get your luggage.',
+        card4Title: 'First Class Refreshments', card4Desc: 'Minibar, cold drinks, Nespresso coffee, and boutique service that instantly responds to your special requests.',
+        btn: 'Explore Our Fleet'
+      };
+      case 'RU': return {
+        exp: 'Лет Опыта',
+        expSub: 'Более 15 000 успешных VIP-трансферов в Бодруме и Эгейском регионе',
+        pre: 'ПРЕМИУМ СЕРВИС',
+        title1: 'Почувствуйте ', title2: 'Привилегию, ', title3: 'Повысьте ', title4: 'Стандарты.',
+        desc: "Мы предлагаем первоклассный индивидуальный сервис в Бодруме, а не обычную поездку на такси. Наш автопарк Mercedes-Benz Maybach и VIP Vito сочетается с профессиональными водителями, прошедшими строгую подготовку по безопасности и конфиденциальности. Наша цель — чтобы вы чувствовали себя особенными каждую секунду пути.",
+        card1Title: 'Водители Протокола', card1Desc: 'Профессионалы с сертификатами экстремального вождения, говорящие по-английски, в строгих костюмах и соблюдающие конфиденциальность.',
+        card2Title: 'Максимальная Безопасность', card2Desc: 'Все автомобили проходят механическую и гигиеническую VIP-очистку перед каждым трансфером.',
+        card3Title: 'Политика Без Опозданий', card3Desc: 'Ваш рейс отслеживается по радару. Автомобиль ждет вас у VIP-выхода еще до того, как вы получите багаж.',
+        card4Title: 'Угощения Первого Класса', card4Desc: 'Мини-бар, прохладительные напитки, кофе Nespresso и бутик-сервис, мгновенно отвечающий вашим запросам.',
+        btn: 'Смотреть Автопарк'
+      };
+      case 'DE': return {
+        exp: 'Jahre Erfahrung',
+        expSub: '15.000+ Erfolgreiche VIP-Transfers in Bodrum und der Ägäis',
+        pre: 'PREMIUM-SERVICE-KONZEPT',
+        title1: 'Fühlen Sie das ', title2: 'Privileg, ', title3: 'Heben Sie die ', title4: 'Standards.',
+        desc: "Wir bieten in Bodrum ein maßgeschneidertes erstklassiges Reiseerlebnis, nicht nur eine gewöhnliche Taxifahrt. Unsere Flotte aus Mercedes-Benz Maybach und VIP Vito wird von speziellen Protokoll-Chauffeuren gefahren, die streng in Sicherheit und Privatsphäre geschult wurden. Unser Ziel ist es, dass Sie sich in jeder Sekunde der Reise privilegiert fühlen.",
+        card1Title: 'Protokoll-Chauffeure', card1Desc: 'Profis mit Zertifikaten für fortgeschrittenes Fahren, englischsprachig, im Anzug und diskret.',
+        card2Title: 'Maximale Sicherheit', card2Desc: 'Alle Fahrzeuge unserer Flotte durchlaufen vor jedem Transfer mechanische und hygienische VIP-Reinigungsprotokolle.',
+        card3Title: 'Null-Verspätung-Politik', card3Desc: 'Ihr Flug wird per Live-Radar verfolgt. Ihr Fahrzeug wartet bereits am VIP-Gate auf Sie.',
+        card4Title: 'First-Class-Erfrischungen', card4Desc: 'Minibar, kalte Getränke, Nespresso-Kaffee und Boutique-Service für Ihre speziellen Anfragen.',
+        btn: 'Unsere Flotte'
+      };
+      case 'AR': return {
+        exp: 'سنوات من الخبرة',
+        expSub: 'أكثر من 15,000 نقل VIP ناجح في بودروم',
+        pre: 'مفهوم الخدمة الممتازة',
+        title1: 'اشعر ', title2: 'بالامتياز، ', title3: 'ارفع ', title4: 'المعايير.',
+        desc: "نحن نقدم تجربة سفر من الدرجة الأولى مصممة خصيصًا في بودروم، وليس مجرد رحلة تاكسي عادية. يندمج أسطولنا من سيارات مايباخ وفيتو مع سائقي البروتوكول المدربين. هدفنا هو أن نجعلك تشعر بالتميز في كل ثانية من الرحلة.",
+        card1Title: 'سائقو البروتوكول', card1Desc: 'محترفون يتحدثون الإنجليزية ويلتزمون بالسرية والأمان التام.',
+        card2Title: 'أقصى درجات الأمان', card2Desc: 'تخضع جميع السيارات لبروتوكولات التنظيف الميكانيكي والصحي قبل كل رحلة.',
+        card3Title: 'سياسة عدم التأخير', card3Desc: 'يتم تتبع رحلتك عبر الرادار الحي. سيارتك تنتظرك عند بوابة VIP قبل أن تتسلم أمتعتك.',
+        card4Title: 'مرطبات من الدرجة الأولى', card4Desc: 'ميني بار، مشروبات باردة، قهوة، وخدمة استجابة فورية لطلباتك الخاصة.',
+        btn: 'اكتشف أسطولنا'
+      };
+      default: return {
+        exp: 'Yıllık Tecrübe',
+        expSub: "Bodrum ve Ege'de 15.000+ Başarılı VIP Transfer",
+        pre: 'PREMIUM HİZMET ANLAYIŞI',
+        title1: 'Ayrıcalığı ', title2: 'Hissedin, ', title3: 'Standartları ', title4: 'Yükseltin.',
+        desc: "Bodrum'da sıradan bir taksi yolculuğu değil, kişiye özel tasarlanmış birinci sınıf bir seyahat deneyimi sunuyoruz. Gelişmiş Mercedes-Benz Maybach ve VIP Vito filomuz, sıkı güvenlik ve gizlilik eğitimlerinden geçmiş özel protokol şoförlerimizle birleşiyor. Amacımız sadece sizi bir yere ulaştırmak değil, yolculuğun her saniyesinde ayrıcalıklı olduğunuzu hissettirmektir.",
+        card1Title: 'Protokol Şoförleri', card1Desc: 'İleri sürüş teknikleri sertifikalı, İngilizce bilen, takım elbiseli ve gizlilik prensibine sadık profesyoneller.',
+        card2Title: 'Maksimum Güvenlik', card2Desc: 'Filomuzdaki tüm araçlar her transfer öncesi mekanik ve hijyenik VIP temizlik protokollerinden geçer.',
+        card3Title: 'Sıfır Rötar Politikası', card3Desc: 'Uçuşunuz canlı radardan takip edilir. Siz daha bavullarınızı almadan aracınız VIP kapıda sizi bekliyor olur.',
+        card4Title: 'First Class İkramlar', card4Desc: 'Mini bar, soğuk içecekler, Nespresso kahve ve özel taleplerinize anında cevap veren butik hizmet.',
+        btn: 'Filomuzu Keşfedin'
+      };
+    }
+  };
+  const texts = getTexts();
 
   return (
     <section className="relative py-32 px-4 w-full max-w-7xl mx-auto overflow-hidden">
@@ -37,8 +103,8 @@ export default function AboutVIP() {
               <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-6 flex items-center gap-6">
                 <div className="text-4xl md:text-5xl font-serif text-[#E5D3B3]">10+</div>
                 <div>
-                  <div className="text-white text-sm font-bold tracking-widest uppercase">Yıllık Tecrübe</div>
-                  <div className="text-zinc-400 text-sm mt-1">Bodrum ve Ege'de 15.000+ Başarılı VIP Transfer</div>
+                  <div className="text-white text-sm font-bold tracking-widest uppercase">{texts.exp}</div>
+                  <div className="text-zinc-400 text-sm mt-1">{texts.expSub}</div>
                 </div>
               </div>
             </div>
@@ -61,13 +127,11 @@ export default function AboutVIP() {
               Easy VIP Transfer
             </h2>
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.1] mb-6">
-              Ayrıcalığı <span className="italic font-light text-zinc-400">Hissedin,</span><br />
-              Standartları <span className="text-[#E5D3B3]">Yükseltin.</span>
+              {texts.title1} <span className="italic font-light text-zinc-400">{texts.title2}</span><br />
+              {texts.title3} <span className="text-[#E5D3B3]">{texts.title4}</span>
             </h3>
             <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-8 max-w-2xl font-light">
-              Bodrum'da sıradan bir taksi yolculuğu değil, kişiye özel tasarlanmış birinci sınıf bir seyahat deneyimi sunuyoruz. 
-              Gelişmiş Mercedes-Benz Maybach ve VIP Vito filomuz, sıkı güvenlik ve gizlilik eğitimlerinden geçmiş özel protokol şoförlerimizle birleşiyor. 
-              Amacımız sadece sizi bir yere ulaştırmak değil, yolculuğun her saniyesinde ayrıcalıklı olduğunuzu hissettirmektir.
+              {texts.desc}
             </p>
           </motion.div>
 
@@ -84,8 +148,8 @@ export default function AboutVIP() {
                 <UserCheck className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">Protokol Şoförleri</h4>
-                <p className="text-zinc-400 text-sm leading-relaxed">İleri sürüş teknikleri sertifikalı, İngilizce bilen, takım elbiseli ve gizlilik prensibine sadık profesyoneller.</p>
+                <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">{texts.card1Title}</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">{texts.card1Desc}</p>
               </div>
             </div>
 
@@ -94,8 +158,8 @@ export default function AboutVIP() {
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">Maksimum Güvenlik</h4>
-                <p className="text-zinc-400 text-sm leading-relaxed">Filomuzdaki tüm araçlar her transfer öncesi mekanik ve hijyenik VIP temizlik protokollerinden geçer.</p>
+                <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">{texts.card2Title}</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">{texts.card2Desc}</p>
               </div>
             </div>
 
@@ -104,8 +168,8 @@ export default function AboutVIP() {
                 <Clock className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">Sıfır Rötar Politikası</h4>
-                <p className="text-zinc-400 text-sm leading-relaxed">Uçuşunuz canlı radardan takip edilir. Siz daha bavullarınızı almadan aracınız VIP kapıda sizi bekliyor olur.</p>
+                <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">{texts.card3Title}</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">{texts.card3Desc}</p>
               </div>
             </div>
 
@@ -114,8 +178,8 @@ export default function AboutVIP() {
                 <Star className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">First Class İkramlar</h4>
-                <p className="text-zinc-400 text-sm leading-relaxed">Mini bar, soğuk içecekler, Nespresso kahve ve özel taleplerinize anında cevap veren butik hizmet.</p>
+                <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-1.5">{texts.card4Title}</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">{texts.card4Desc}</p>
               </div>
             </div>
           </motion.div>
@@ -130,7 +194,7 @@ export default function AboutVIP() {
               href="#fleet"
               className="inline-flex items-center justify-center h-12 px-8 text-sm tracking-widest uppercase border border-white/10 bg-white/5 hover:bg-white/10 rounded-full text-white transition-colors"
             >
-              Filomuzu Keşfedin
+              {texts.btn}
             </a>
           </motion.div>
 

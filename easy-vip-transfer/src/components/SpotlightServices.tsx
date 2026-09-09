@@ -176,6 +176,18 @@ const SpotlightCard = ({ title, desc, badge, image, icon: Icon }: { title: strin
 import { motion } from 'framer-motion';
 
 export default function SpotlightServices() {
+  const { lang } = useLanguage();
+  const getTexts = () => {
+    switch(lang) {
+      case 'EN': return { sub: 'PREMIUM SERVICES', title: 'Exclusive Privileges', desc: 'Beyond standards, an Aegean VIP experience.' };
+      case 'RU': return { sub: 'ПРЕМИУМ УСЛУГИ', title: 'Эксклюзивные Привилегии', desc: 'За гранью стандартов, эгейский VIP-опыт.' };
+      case 'DE': return { sub: 'PREMIUM-DIENSTE', title: 'Exklusive Privilegien', desc: 'Jenseits von Standards, ein VIP-Erlebnis in der Ägäis.' };
+      case 'AR': return { sub: 'خدمات ممتازة', title: 'امتيازات حصرية', desc: 'خارج المعايير، تجربة كبار الشخصيات في بحر إيجة.' };
+      case 'TR': return { sub: '{texts.sub}', title: '{texts.title}', desc: '{texts.desc}' };
+    }
+  };
+  const texts = getTexts();
+
   const [activeTab, setActiveTab] = useState('airport');
 
   return (
