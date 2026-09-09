@@ -19,7 +19,7 @@ const steps = [
     title: "Özel Kabin İçi Konforu",
     desc: "Ses yalıtımlı özel kabin, yıldız ambiyans tavan aydınlatması, ultra geniş deri koltuklar ve soğuk içecek ikramlarıyla Bodrum sıcağında dinlenerek yolculuk yapın.",
     highlights: ["Yıldız Tavan Ambiyansı", "Soğuk Minibar & Wi-Fi", "Özel Ses Yalıtımı"],
-    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/wix_img_2.jpg",
     accent: "Mercedes Maybach & S-Class"
   },
   {

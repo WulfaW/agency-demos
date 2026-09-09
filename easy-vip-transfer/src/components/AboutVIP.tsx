@@ -25,7 +25,7 @@ export default function AboutVIP() {
             className="relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 glass-panel"
           >
             <img 
-              src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop" 
+              src="/images/wix_img_0.jpg" 
               alt="VIP Chauffeur Service Bodrum" 
               className="w-full h-full object-cover opacity-80"
             />

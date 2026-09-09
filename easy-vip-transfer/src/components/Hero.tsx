@@ -24,7 +24,7 @@ export default function Hero() {
           initial={{ scale: 1.15, opacity: 0 }}
           animate={{ scale: 1.05, opacity: 0.45 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
-          src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=2000&q=80"
+          src="/images/wix_img_2.jpg"
           alt="VIP Transfer Bodrum"
           className="w-full h-full object-cover"
         />
