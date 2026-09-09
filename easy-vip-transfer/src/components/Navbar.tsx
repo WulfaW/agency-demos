@@ -28,11 +28,17 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] py-4 px-4 sm:px-6 pointer-events-none flex justify-center">
-      <div className="w-full max-w-6xl relative flex items-center justify-between h-14">
+      <motion.div 
+        className={`w-full max-w-6xl relative flex items-center justify-between h-14 transition-all duration-500 ${
+          !isScrolled ? 'rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' : ''
+        }`}
+      >
         
         {/* LEFT PILL: Brand Logo */}
         <motion.div
-          className="pointer-events-auto h-full px-6 flex items-center justify-center rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+          className={`pointer-events-auto h-full px-4 sm:px-6 flex items-center justify-center transition-all duration-500 ${
+            isScrolled ? 'rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' : ''
+          }`}
         >
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 group">
             <span className="font-serif font-semibold text-sm sm:text-base tracking-[0.2em] text-white group-hover:text-[#E5D3B3] transition-colors">
@@ -45,11 +51,11 @@ export default function Navbar() {
         <AnimatePresence>
           {!isScrolled && (
             <motion.nav
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="pointer-events-auto absolute left-1/2 -translate-x-1/2 h-full hidden lg:flex items-center gap-2 px-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+              className="pointer-events-auto absolute left-1/2 -translate-x-1/2 h-full hidden lg:flex items-center gap-2 px-3"
             >
               <a href="#fleet" className="px-5 py-2 text-[11px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
                 {t.nav.fleet}
@@ -66,7 +72,9 @@ export default function Navbar() {
 
         {/* RIGHT PILL: Actions (Language + CTA) */}
         <motion.div
-          className="pointer-events-auto h-full flex items-center gap-1 pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+          className={`pointer-events-auto h-full flex items-center gap-1 pl-2 pr-2 sm:pl-3 sm:pr-3 transition-all duration-500 ${
+            isScrolled ? 'rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' : ''
+          }`}
         >
           {/* Language dropdown fades out when scrolled to save space, like gamemaps IRL's small right pill */}
           <AnimatePresence>
@@ -100,7 +108,7 @@ export default function Navbar() {
           </button>
         </motion.div>
 
-      </div>
+      </motion.div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>

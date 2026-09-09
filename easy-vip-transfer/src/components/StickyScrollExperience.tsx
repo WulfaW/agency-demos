@@ -40,6 +40,13 @@ export default function StickyScrollExperience() {
   const [activeStep, setActiveStep] = useState(0);
   const { t } = useLanguage();
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % steps.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="py-28 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
       {/* Section Title */}
