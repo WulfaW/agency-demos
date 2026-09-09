@@ -6,20 +6,11 @@ import { ChevronDown, Check } from "lucide-react";
 import { useLanguage, Language } from "@/context/LanguageContext";
 
 const languages = [
-  { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "ar", label: "العربية", flag: "🇸🇦" },
+  { code: "en", label: "English", flag: "🇬🇧" },
   { code: "tr", label: "Türkçe", flag: "🇹🇷" },
   { code: "ru", label: "Русский", flag: "🇷🇺" },
-  { code: "zh-CN", label: "简体中文", flag: "🇨🇳" },
-  { code: "zh-TW", label: "繁體中文", flag: "🇨🇳" },
-  { code: "ja", label: "日本語", flag: "🇯🇵" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-  { code: "pt-BR", label: "Português (BR)", flag: "🇧🇷" },
-  { code: "ko", label: "한국어", flag: "🇰🇷" },
-  { code: "id", label: "Bahasa Indonesia", flag: "🇮🇩" },
+  { code: "ar", label: "العربية", flag: "🇸🇦" },
   { code: "de", label: "Deutsch", flag: "🇩🇪" },
-  { code: "fa", label: "فارسی", flag: "🇮🇷" },
 ];
 
 export const LanguageDropdown = () => {
