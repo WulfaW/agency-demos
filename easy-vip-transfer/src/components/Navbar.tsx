@@ -31,8 +31,8 @@ export default function Navbar() {
       <motion.div 
         className={`relative flex items-center justify-between transition-all duration-700 ease-in-out ${
           !isScrolled 
-            ? 'w-full max-w-6xl h-14 px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
-            : 'w-full max-w-[100vw] h-14 px-0 lg:px-4'
+            ? 'w-full max-w-6xl h-14 px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
+            : 'w-full max-w-[100vw] h-14 px-0 lg:px-4 bg-transparent'
         }`}
       >
         
