@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { createClient } from '@/lib/supabase/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(req: Request) {
   try {
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     if (dbError) throw new Error(dbError.message);
 
     // 2. Send Email via Resend
-    if (process.env.RESEND_API_KEY) {
+    if (resend) {
       await resend.emails.send({
         from: 'VIP Transfer <onboarding@resend.dev>', // Replace with your domain
         to: ['trexgiganotosaurus@gmail.com'], // The agency email
