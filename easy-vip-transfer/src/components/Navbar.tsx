@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageDropdown } from '@/components/LanguageDropdown';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -52,11 +53,11 @@ export default function Navbar() {
               : 'h-full px-6 border border-transparent'
           }`}
         >
-          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group">
             <span className="font-serif font-semibold text-sm sm:text-base tracking-[0.2em] text-white group-hover:text-[#E5D3B3] transition-colors">
               EASY VIP
             </span>
-          </button>
+          </Link>
         </motion.div>
 
         {/* CENTER PILL: Navigation Links (Disappears on scroll) */}
@@ -69,15 +70,15 @@ export default function Navbar() {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="pointer-events-auto absolute left-1/2 -translate-x-1/2 h-full hidden lg:flex items-center gap-2 px-3 z-10"
             >
-              <a href="#fleet" className="px-5 py-2 text-[14px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
+              <Link href="/araclarimiz" className="px-5 py-2 text-[14px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
                 {t.nav.fleet}
-              </a>
-              <a href="#routes" className="px-5 py-2 text-[14px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
+              </Link>
+              <Link href="/bolgelerimiz" className="px-5 py-2 text-[14px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
                 {t.nav.routes}
-              </a>
-              <a href="#services" className="px-5 py-2 text-[14px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
+              </Link>
+              <Link href="/hizmetlerimiz" className="px-5 py-2 text-[14px] font-sans tracking-[0.1em] text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all uppercase font-medium">
                 {t.nav.services}
-              </a>
+              </Link>
             </motion.nav>
           )}
         </AnimatePresence>
@@ -144,15 +145,9 @@ export default function Navbar() {
 
             <div className="flex flex-col px-8 py-8 gap-8">
               <nav className="flex flex-col gap-6">
-                <a href="#fleet" onClick={() => setMobileMenuOpen(false)} className="text-xl font-sans tracking-[0.1em] text-zinc-400 hover:text-white transition-colors uppercase">
-                  {t.nav.fleet}
-                </a>
-                <a href="#routes" onClick={() => setMobileMenuOpen(false)} className="text-xl font-sans tracking-[0.1em] text-zinc-400 hover:text-white transition-colors uppercase">
-                  {t.nav.routes}
-                </a>
-                <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-sans tracking-[0.1em] text-zinc-400 hover:text-white transition-colors uppercase">
-                  {t.nav.services}
-                </a>
+                <Link href="/araclarimiz" onClick={() => setMobileMenuOpen(false)} className="text-3xl font-serif text-white hover:text-[#E5D3B3] transition-colors">{t.nav.fleet}</Link>
+                <Link href="/bolgelerimiz" onClick={() => setMobileMenuOpen(false)} className="text-3xl font-serif text-white hover:text-[#E5D3B3] transition-colors">{t.nav.routes}</Link>
+                <Link href="/hizmetlerimiz" onClick={() => setMobileMenuOpen(false)} className="text-3xl font-serif text-white hover:text-[#E5D3B3] transition-colors">{t.nav.services}</Link>
                 <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="text-xl font-sans tracking-[0.1em] text-zinc-400 hover:text-white transition-colors uppercase">
                   {t.nav.faq}
                 </a>
