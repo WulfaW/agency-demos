@@ -4,29 +4,31 @@ import React, { useState } from 'react';
 import { MessageCircle, X, Send, Paperclip, Smile } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CONTACT_INFO } from '@/data/transferData';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function FloatingChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
-
-  const handleWhatsApp = () => {
-    const text = encodeURIComponent(message || 'Merhaba, transfer hizmetleri hakkında bilgi almak istiyorum.');
-    window.open(`https://wa.me/${CONTACT_INFO.phoneClean}?text=${text}`, '_blank');
-    setIsOpen(false);
-    setMessage('');
-  };
+  const { lang } = useLanguage();
 
   // Dinamik Metinler
   const getTexts = () => {
     switch(lang) {
-      case 'EN': return { title: 'CONTACT US', sub: 'VIP Operations', msg: 'Hello! How can we assist you with your Bodrum VIP Transfer? You can write your specific vehicle request or route.', input: 'Type your message...', btn: 'Message on WhatsApp' };
-      case 'RU': return { title: 'СВЯЗАТЬСЯ', sub: 'VIP Операции', msg: 'Здравствуйте! Как мы можем помочь вам с VIP-трансфером в Бодруме? Напишите ваш маршрут или пожелания.', input: 'Введите сообщение...', btn: 'Написать в WhatsApp' };
-      case 'DE': return { title: 'KONTAKT', sub: 'VIP Operationen', msg: 'Hallo! Wie können wir Ihnen bei Ihrem VIP-Transfer in Bodrum helfen? Nennen Sie uns einfach Ihre Route.', input: 'Nachricht schreiben...', btn: 'Über WhatsApp schreiben' };
-      case 'AR': return { title: 'اتصل بنا', sub: 'عمليات كبار الشخصيات', msg: 'مرحباً! كيف يمكننا مساعدتك في النقل الخاص بك في بودروم؟', input: 'اكتب رسالتك...', btn: 'راسلنا على واتساب' };
-      default: return { title: 'BİZE ULAŞIN', sub: 'VIP Operasyon Hattı', msg: 'Merhaba! Size Bodrum VIP Transfer hizmetlerimizle ilgili nasıl yardımcı olabiliriz? Özel araç talebinizi veya rotanızı yazabilirsiniz.', input: 'Mesajınızı yazın...', btn: "WhatsApp'tan Yaz" };
+      case 'EN': return { title: 'CONTACT US', sub: 'VIP Operations', msg: 'Hello! How can we assist you with your Bodrum VIP Transfer? You can write your specific vehicle request or route.', input: 'Type your message...', btn: 'Message on WhatsApp', defaultWa: 'Hello, I would like to get information about transfer services.' };
+      case 'RU': return { title: 'СВЯЗАТЬСЯ', sub: 'VIP Операции', msg: 'Здравствуйте! Как мы можем помочь вам с VIP-трансфером в Бодруме? Напишите ваш маршрут или пожелания.', input: 'Введите сообщение...', btn: 'Написать в WhatsApp', defaultWa: 'Здравствуйте, я хотел бы узнать о трансферных услугах.' };
+      case 'DE': return { title: 'KONTAKT', sub: 'VIP Operationen', msg: 'Hallo! Wie können wir Ihnen bei Ihrem VIP-Transfer in Bodrum helfen? Nennen Sie uns einfach Ihre Route.', input: 'Nachricht schreiben...', btn: 'Über WhatsApp schreiben', defaultWa: 'Hallo, ich möchte Informationen zu Transferdiensten erhalten.' };
+      case 'AR': return { title: 'اتصل بنا', sub: 'عمليات كبار الشخصيات', msg: 'مرحباً! كيف يمكننا مساعدتك في النقل الخاص بك في بودروم؟', input: 'اكتب رسالتك...', btn: 'راسلنا على واتساب', defaultWa: 'مرحباً، أود الحصول على معلومات حول خدمات النقل.' };
+      default: return { title: 'BİZE ULAŞIN', sub: 'VIP Operasyon Hattı', msg: 'Merhaba! Size Bodrum VIP Transfer hizmetlerimizle ilgili nasıl yardımcı olabiliriz? Özel araç talebinizi veya rotanızı yazabilirsiniz.', input: 'Mesajınızı yazın...', btn: "WhatsApp'tan Yaz", defaultWa: 'Merhaba, transfer hizmetleri hakkında bilgi almak istiyorum.' };
     }
   };
   const texts = getTexts();
+
+  const handleWhatsApp = () => {
+    const text = encodeURIComponent(message || texts.defaultWa);
+    window.open(`https://wa.me/${CONTACT_INFO.phoneClean}?text=${text}`, '_blank');
+    setIsOpen(false);
+    setMessage('');
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
