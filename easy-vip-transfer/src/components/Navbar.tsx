@@ -28,11 +28,11 @@ export default function Navbar() {
         <motion.div
           className="pointer-events-auto h-full px-6 flex items-center justify-center rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
         >
-          <a href="#" className="flex items-center gap-2 group">
+          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 group">
             <span className="font-serif font-semibold text-sm sm:text-base tracking-[0.2em] text-white group-hover:text-[#E5D3B3] transition-colors">
               EASY VIP
             </span>
-          </a>
+          </button>
         </motion.div>
 
         {/* CENTER PILL: Navigation Links (Disappears on scroll) */}

@@ -258,14 +258,20 @@ export default function FaqAndFooter() {
             
             <div className="relative">
               <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase mb-3">E-Bülten Kayıt</h4>
-              <form className="relative flex items-center">
+              <form 
+                className="relative flex items-center"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  alert('VIP Bültenimize başarıyla kaydoldunuz. Teşekkür ederiz.');
+                }}
+              >
                 <input
                   type="email"
                   placeholder="E-posta adresiniz"
                   className="w-full bg-[#050505] border border-white/10 rounded-full py-2.5 pl-4 pr-10 text-xs text-white focus:outline-none focus:border-[#E5D3B3]/50 transition-colors"
                 />
                 <button
-                  type="button"
+                  type="submit"
                   className="absolute right-1 top-1 bottom-1 aspect-square rounded-full bg-[#E5D3B3] text-black flex items-center justify-center hover:bg-white transition-colors"
                 >
                   <Send className="w-3.5 h-3.5 -ml-0.5" />
@@ -307,30 +313,7 @@ export default function FaqAndFooter() {
 
           {/* Col 4: Sosyal Medya & Belgeler */}
           <div className="space-y-6">
-            <div>
-              <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase mb-4">Takip Edin</h4>
-              <div className="flex space-x-3">
-                <a href="#" className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/30 transition-all">
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                  </svg>
-                </a>
-                <a href="#" className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/30 transition-all">
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                  </svg>
-                </a>
-                <a href="#" className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/30 transition-all">
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect x="2" y="9" width="4" height="12"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                  </svg>
-                </a>
-              </div>
-            </div>
+
 
             <div className="space-y-3">
               <h4 className="text-[11px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Resmi Belgeler</h4>
@@ -354,9 +337,9 @@ export default function FaqAndFooter() {
             © 2026 Easy VIP Transfer. Tüm hakları saklıdır.
           </p>
           <nav className="flex gap-4">
-            <a href="/gizlilik" className="hover:text-zinc-300 transition-colors">Gizlilik Politikası</a>
-            <a href="/kvkk" className="hover:text-zinc-300 transition-colors">KVKK Metni</a>
-            <a href="/sartlar" className="hover:text-zinc-300 transition-colors">Şartlar & Koşullar</a>
+            <a href="/gizlilik" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">Gizlilik Politikası</a>
+            <a href="/kvkk" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">KVKK Metni</a>
+            <a href="/sartlar" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">Şartlar & Koşullar</a>
           </nav>
         </div>
       </div>

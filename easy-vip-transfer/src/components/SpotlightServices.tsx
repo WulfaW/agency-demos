@@ -112,7 +112,7 @@ const SpotlightCard = ({ title, desc, badge, icon: Icon }: { title: string; desc
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
-      className="relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/70 p-8 overflow-hidden transition-all duration-300 hover:border-white/20 group"
+      className="relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/70 p-8 overflow-hidden transition-all duration-300 hover:border-white/20 hover:-translate-y-1 group hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
     >
       {/* Mouse-Following Spotlight Layer */}
       <div
