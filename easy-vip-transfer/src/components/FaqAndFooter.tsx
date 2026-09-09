@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 import { SocialTooltip } from '@/components/SocialTooltip';
+import { useLanguage } from '@/context/LanguageContext';
 
 // 1. Authentic Official WhatsApp Vector
 export const OfficialWhatsAppIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
@@ -131,7 +132,7 @@ export default function FaqAndFooter() {
       case 'RU': return { faqTitle: 'Часто Задаваемые Вопросы', faqSub: 'Все, что вам нужно знать о вашем роскошном трансфере.', faqHelp: 'У вас есть другой вопрос?', footerDesc: 'Премиум VIP Трансфер в Бодруме.', quick: 'Ссылки', contact: 'Контакты' };
       case 'DE': return { faqTitle: 'Häufig Gestellte Fragen', faqSub: 'Alles, was Sie über Ihren luxuriösen Transfer wissen müssen.', faqHelp: 'Haben Sie eine andere Frage?', footerDesc: 'Bodrums Erstklassiger VIP-Transfer.', quick: 'Links', contact: 'Kontakt' };
       case 'AR': return { faqTitle: 'الأسئلة الشائعة', faqSub: 'كل ما تحتاج لمعرفته حول تجربة النقل الفاخر الخاصة بك.', faqHelp: 'هل لديك سؤال آخر؟', footerDesc: 'خدمة نقل كبار الشخصيات الأولى في بودروم.', quick: 'روابط', contact: 'اتصال' };
-      case 'TR': return { faqTitle: '{texts.faqTitle}', faqSub: '{texts.faqSub}', faqHelp: '{texts.faqHelp}', footerDesc: 'Bodrum\'un Zirvesindeki VIP Transfer Deneyimi.', quick: '{texts.quick}', contact: 'İletişim' };
+      default: return { faqTitle: '{texts.faqTitle}', faqSub: '{texts.faqSub}', faqHelp: '{texts.faqHelp}', footerDesc: 'Bodrum\'un Zirvesindeki VIP Transfer Deneyimi.', quick: '{texts.quick}', contact: 'İletişim' };
     }
   };
   const texts = getTexts();

@@ -15,7 +15,7 @@ export default function FleetPage() {
       case 'RU': return { sub: 'Премиум Автопарк', title: 'Эксклюзивная Коллекция<br/>Для Вашего Путешествия' };
       case 'DE': return { sub: 'Premium-Flotte', title: 'Die exklusive Kollektion<br/>für Ihre Reise' };
       case 'AR': return { sub: 'أسطول فاخر', title: 'المجموعة الحصرية<br/>التي تشكل رحلتك' };
-      case 'TR': return { sub: '{texts.sub}', title: '<span dangerouslySetInnerHTML={{__html: texts.title}}></span>' };
+      default: return { sub: '{texts.sub}', title: '<span dangerouslySetInnerHTML={{__html: texts.title}}></span>' };
     }
   };
   const texts = getTexts();

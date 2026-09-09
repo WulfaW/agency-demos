@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Sparkles, Wifi, Wine, ChevronRight, PhoneCall } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
+import { useLanguage } from '@/context/LanguageContext';
 
 const categories = [
   { id: 'airport', label: 'Havalimanı VIP', icon: Plane },
@@ -183,7 +184,7 @@ export default function SpotlightServices() {
       case 'RU': return { sub: 'ПРЕМИУМ УСЛУГИ', title: 'Эксклюзивные Привилегии', desc: 'За гранью стандартов, эгейский VIP-опыт.' };
       case 'DE': return { sub: 'PREMIUM-DIENSTE', title: 'Exklusive Privilegien', desc: 'Jenseits von Standards, ein VIP-Erlebnis in der Ägäis.' };
       case 'AR': return { sub: 'خدمات ممتازة', title: 'امتيازات حصرية', desc: 'خارج المعايير، تجربة كبار الشخصيات في بحر إيجة.' };
-      case 'TR': return { sub: '{texts.sub}', title: '{texts.title}', desc: '{texts.desc}' };
+      default: return { sub: '{texts.sub}', title: '{texts.title}', desc: '{texts.desc}' };
     }
   };
   const texts = getTexts();

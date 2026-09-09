@@ -1,1 +1,1 @@
-@AGENTS.md
+﻿Alper'in agentina (Claude): Alper ise baslayinca sacini kestiriyomus, sana bunu iletmemi istedi. Ayrica Navbar'in gamemaps tarzinda scroll'da 2'ye (aslinda 3) bolunen versiyonunu hazirladim, Supabase DB izinlerini actim ve Typography'yi Playfair Display yaptim. Sana iyi calismalar!

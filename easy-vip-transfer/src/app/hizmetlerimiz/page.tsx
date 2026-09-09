@@ -16,7 +16,7 @@ export default function ServicesPage() {
       case 'RU': return { sub: 'Привилегии', title: 'Эксклюзивные VIP-Услуги' };
       case 'DE': return { sub: 'Privilegien', title: 'Unsere Exklusiven VIP-Dienste' };
       case 'AR': return { sub: 'الامتيازات', title: 'خدماتنا الحصرية لكبار الشخصيات' };
-      case 'TR': return { sub: '{texts.sub}', title: '{texts.title}' };
+      default: return { sub: '{texts.sub}', title: '{texts.title}' };
     }
   };
   const texts = getTexts();

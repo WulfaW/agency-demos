@@ -15,7 +15,7 @@ export default function RoutesPage() {
       case 'RU': return { sub: 'Популярные Маршруты', title: 'Элитные Направления и Марины' };
       case 'DE': return { sub: 'Beliebte Routen', title: 'Luxusziele & Yachthäfen' };
       case 'AR': return { sub: 'الطرق الشائعة', title: 'الوجهات الفاخرة والمراسي' };
-      case 'TR': return { sub: '{texts.sub}', title: '{texts.title}' };
+      default: return { sub: '{texts.sub}', title: '{texts.title}' };
     }
   };
   const texts = getTexts();
