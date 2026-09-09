@@ -215,18 +215,45 @@ export default function PriceCalculator() {
     }
     setIsSubmitting(false);
 
-    // 2. WhatsApp'a yönlendir
-    let msg = `Hello, I would like to request a VIP transfer quote.%0A%0A`;
-    if (name) msg += `👤 *Name:* ${name}%0A`;
-    if (fromName) msg += `📍 *From:* ${fromName}%0A`;
-    if (toName) msg += `📍 *To:* ${toName}%0A`;
-    if (date) msg += `📅 *Date:* ${date}%0A`;
-    msg += `👥 *Guests:* ${passengers} Persons%0A`;
-    if (selectedExtras.length > 0) {
-      const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
-      msg += `✨ *VIP Extras:* ${extrasText}%0A`;
+    // 2. WhatsApp'a yönlendir (Dile göre dinamik şablon)
+    let msg = '';
+    
+    if (lang === 'TR') {
+      msg = `Merhaba, VIP transfer fiyatı ve müsaitlik durumu hakkında bilgi almak istiyorum.%0A%0A`;
+      if (name) msg += `👤 *İsim:* ${name}%0A`;
+      if (fromName) msg += `📍 *Nereden:* ${fromName}%0A`;
+      if (toName) msg += `📍 *Nereye:* ${toName}%0A`;
+      if (date) msg += `📅 *Tarih:* ${date}%0A`;
+      msg += `👥 *Yolcu:* ${passengers} Kişi%0A`;
+      if (selectedExtras.length > 0) {
+        const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
+        msg += `✨ *VIP Ekstralar:* ${extrasText}%0A`;
+      }
+    } else if (lang === 'RU') {
+      msg = `Здравствуйте, я хотел бы узнать стоимость и наличие свободных машин для VIP-трансфера.%0A%0A`;
+      if (name) msg += `👤 *Имя:* ${name}%0A`;
+      if (fromName) msg += `📍 *Откуда:* ${fromName}%0A`;
+      if (toName) msg += `📍 *Куда:* ${toName}%0A`;
+      if (date) msg += `📅 *Дата:* ${date}%0A`;
+      msg += `👥 *Пассажиры:* ${passengers} Человек%0A`;
+      if (selectedExtras.length > 0) {
+        const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
+        msg += `✨ *VIP-услуги:* ${extrasText}%0A`;
+      }
+    } else {
+      // Default to English
+      msg = `Hello, I would like to request a VIP transfer quote and check availability.%0A%0A`;
+      if (name) msg += `👤 *Name:* ${name}%0A`;
+      if (fromName) msg += `📍 *From:* ${fromName}%0A`;
+      if (toName) msg += `📍 *To:* ${toName}%0A`;
+      if (date) msg += `📅 *Date:* ${date}%0A`;
+      msg += `👥 *Guests:* ${passengers} Persons%0A`;
+      if (selectedExtras.length > 0) {
+        const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
+        msg += `✨ *VIP Extras:* ${extrasText}%0A`;
+      }
     }
-    msg += `%0ACould you please share vehicle availability and pricing?`;
+
     window.open(`https://wa.me/${CONTACT_INFO.phoneClean}?text=${msg}`, '_blank');
   };
 

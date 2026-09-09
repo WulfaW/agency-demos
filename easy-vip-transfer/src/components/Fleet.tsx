@@ -48,7 +48,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export default function Fleet() {
   const [activeIndex, setActiveIndex] = useState(1); // Default to Maybach in center
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const prevSlide = () => {
     setActiveIndex((prev) => (prev === 0 ? fleetCars.length - 1 : prev - 1));
@@ -217,12 +217,16 @@ export default function Fleet() {
           </div>
           
           <a
-            href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20*${encodeURIComponent(activeCar.name)}*%20araciniz%20icin%20Bodrum%20VIP%20transfer%20fiyati%20almak%20istiyorum.`}
+            href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=${
+              lang === 'TR' ? `Merhaba, *${encodeURIComponent(activeCar.name)}* aracınız için Bodrum VIP transfer fiyatı almak istiyorum.` :
+              lang === 'RU' ? `Здравствуйте, я хотел бы узнать стоимость аренды автомобиля *${encodeURIComponent(activeCar.name)}* для VIP-трансфера в Бодруме.` :
+              `Hello, I would like to request a VIP transfer quote for the *${encodeURIComponent(activeCar.name)}* in Bodrum.`
+            }`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full lg:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#E5D3B3] hover:bg-white text-black text-sm font-bold tracking-widest uppercase transition-all shadow-[0_0_30px_rgba(229,211,179,0.25)] shrink-0"
           >
-            <span>Bu Aracı Ayırt</span>
+            <span>{t.fleet.bookNow || (lang === 'TR' ? 'Bu Aracı Ayırt' : lang === 'RU' ? 'Забронировать' : 'Book This Car')}</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
