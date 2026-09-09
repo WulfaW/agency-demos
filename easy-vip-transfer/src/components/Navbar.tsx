@@ -9,9 +9,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && localStorage.getItem('easyvip_admin_auth') === 'true') {
+      setIsAdmin(true);
+    }
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -69,8 +73,14 @@ export default function Navbar() {
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: 'auto' }}
                 exit={{ opacity: 0, width: 0, overflow: 'hidden' }}
-                className="hidden md:flex items-center mr-1"
+                className="hidden md:flex items-center mr-1 gap-1"
               >
+                {isAdmin && (
+                  <a href="/admin" className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 text-[#E5D3B3] text-xs font-medium border border-[#E5D3B3]/20 hover:bg-[#E5D3B3]/10 transition-colors">
+                    <span>👑</span>
+                    <span className="hidden sm:inline">Yönetim</span>
+                  </a>
+                )}
                 <LanguageDropdown />
               </motion.div>
             )}
