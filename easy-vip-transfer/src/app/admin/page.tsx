@@ -192,24 +192,69 @@ export default function AdminDashboard() {
         )}
 
         {activeTab === 'bookings' && (
-          <div className="space-y-8 animate-in fade-in">
-            <header className="mb-10"><h1 className="text-3xl font-serif text-white">Rezervasyonlar</h1></header>
+          <div className="space-y-8 animate-in fade-in pb-20">
+            <header className="flex justify-between items-center mb-10">
+              <h1 className="text-3xl font-serif text-white">Rezervasyonlar</h1>
+              <button 
+                onClick={() => {
+                  const name = prompt('Müşteri Adı:');
+                  if (!name) return;
+                  const phone = prompt('Telefon Numarası (WhatsApp):');
+                  if (!phone) return;
+                  const routeFrom = prompt('Nereden:');
+                  const routeTo = prompt('Nereye:');
+                  const date = prompt('Tarih & Saat:');
+                  const vehicle = prompt('Araç (Vito / Sprinter / Maybach):');
+                  const price = prompt('Fiyat (€):');
+                  
+                  const newBooking = {
+                    name, phone, route_from: routeFrom, route_to: routeTo,
+                    travel_date: date, vehicle, estimated_price: price,
+                    status: 'confirmed'
+                  };
+                  
+                  supabase.from('vip_bookings').insert(newBooking).then(() => {
+                    alert('Rezervasyon Eklendi!');
+                    fetchData();
+                  });
+                }}
+                className="bg-[#E5D3B3] text-black px-6 py-2.5 rounded-full font-bold text-sm tracking-wide hover:bg-white transition-colors flex items-center gap-2"
+              >
+                <Plus className="w-4 h-4" /> Manuel Ekle
+              </button>
+            </header>
+            
             <div className="space-y-4">
               {bookings.map(b => (
                 <div key={b.id} className="flex justify-between p-6 rounded-3xl bg-white/[0.02] border border-white/[0.05]">
-                  <div><p className="text-white text-lg">{b.name} <span className="text-[#E5D3B3] text-sm">{b.phone}</span></p><p className="text-zinc-400">{b.route_from} ➔ {b.route_to} ({b.travel_date}) - {b.vehicle}</p></div>
-                  <div className="text-right">
+                  <div>
+                    <p className="text-white text-lg font-medium">{b.name} <span className="text-[#E5D3B3] text-sm ml-2">{b.phone}</span></p>
+                    <p className="text-zinc-400 mt-1 flex items-center gap-2">
+                      <MapPin className="w-3.5 h-3.5" /> {b.route_from} ➔ {b.route_to}
+                    </p>
+                    <p className="text-zinc-500 text-sm mt-1 flex items-center gap-2">
+                      <CalendarDays className="w-3.5 h-3.5" /> {b.travel_date} <span className="mx-2">|</span> <Car className="w-3.5 h-3.5" /> {b.vehicle}
+                    </p>
+                  </div>
+                  <div className="text-right flex flex-col justify-between items-end">
+                    <span className="text-xl text-white font-serif tracking-wide">€{b.estimated_price}</span>
                     {b.status === 'pending' ? (
-                      <div className="flex gap-2">
-                        <button onClick={() => updateBookingStatus(b.id, 'confirmed')} className="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs">Onayla</button>
-                        <button onClick={() => updateBookingStatus(b.id, 'cancelled')} className="px-4 py-2 rounded-xl bg-red-500/20 text-red-400 text-xs">İptal</button>
+                      <div className="flex gap-2 mt-4">
+                        <button onClick={() => updateBookingStatus(b.id, 'confirmed')} className="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 text-xs font-medium transition-colors">Onayla</button>
+                        <button onClick={() => updateBookingStatus(b.id, 'cancelled')} className="px-4 py-2 rounded-xl bg-red-500/20 text-red-400 hover:bg-red-500/30 text-xs font-medium transition-colors">İptal</button>
                       </div>
                     ) : (
-                      <span className={`px-4 py-2 rounded-xl text-xs block ${b.status==='confirmed'?'bg-emerald-500/10 text-emerald-400':'bg-red-500/10 text-red-400'}`}>{b.status}</span>
+                      <span className={`px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider mt-4 ${b.status==='confirmed'?'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20':'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+                        {b.status === 'confirmed' ? 'Onaylandı' : 'İptal Edildi'}
+                      </span>
                     )}
                   </div>
                 </div>
               ))}
+              
+              {bookings.length === 0 && (
+                <div className="text-center py-20 text-zinc-500">Henüz rezervasyon bulunmuyor.</div>
+              )}
             </div>
           </div>
         )}
