@@ -20,11 +20,25 @@ const reviews = [
     comment: 'Very professional service. Would highly recommend!',
   },
   {
+    name: 'damla köksalan',
+    location: 'Google Review',
+    rating: 5,
+    date: 'Ağustos 2026',
+    comment: 'Firmayı Google’dan bulmuştum. 2 bebekli 2 aile olarak çok memnun kaldık. Araçlar temizdi, vaktinde geldiler. Firma sahibi Cem bey de çok nazikti ve tüm süreci yöneterek bize güven verdi. Artık Bodrum seyahatlerimizde hep bu firmayı tercih edeceğiz.',
+  },
+  {
     name: 'sara saba',
     location: 'Google Review',
     rating: 5,
     date: 'Ağustos 2026',
     comment: 'Excellent service and amazing car. The driver was so friendly and welcomed us as soon as he greeted us.',
+  },
+  {
+    name: 'Burak DİL',
+    location: 'Google Local Guide',
+    rating: 5,
+    date: 'Mayıs 2026',
+    comment: 'Cem Bey’e ilgi alakasından dolayı çok teşekkürler. Milas Havalimanında Titanic otele transfer sürecinde yardımcı oldular, hem gelişte hem dönüşte tercihimiz oldu.',
   },
   {
     name: 'Azer Zera',
@@ -34,6 +48,13 @@ const reviews = [
     comment: 'Très bonne expérience avec ce groupe, une entreprise réactive et proche de la clientèle.',
   },
   {
+    name: 'Melek Kılıçlı',
+    location: 'Google Review',
+    rating: 5,
+    date: 'Haziran 2026',
+    comment: 'Easyviptransfer bir ayrıcalıktır diye başlasam daha doğru olur. İnternetten ulaştım kendilerine, Cem bey çok yardımcı oldu. Süreç başından sonuna kadar kusursuzdu.',
+  },
+  {
     name: 'Georgina Bennett',
     location: 'Google Review',
     rating: 5,
@@ -41,25 +62,32 @@ const reviews = [
     comment: 'Absolutely amazing service from start to finish! We honestly couldn\'t fault a single thing.',
   },
   {
-    name: 'Yunus Çıtlak',
+    name: 'Alp Önal',
     location: 'Google Review',
     rating: 5,
-    date: 'Temmuz 2026',
-    comment: 'Harika. İlk dakikadan son dakikaya kadar!',
+    date: 'Ağustos 2026',
+    comment: 'Bodrum Havalimanı otel transferimiz için Cem Bey ile iletişime geçtik. Aile büyüklerim seyahat ettiği için sürecin sorunsuz olması önemliydi, havalimanından otele kadar her an ilgilendiler.',
   },
   {
-    name: 'Berna Pars',
+    name: 'Gani Gürsoy',
     location: 'Google Review',
     rating: 5,
     date: 'Haziran 2026',
-    comment: 'Bu şirketten ilk defa tatilin başında Bodrum Havalimanı otel arası transfer aldık. Çok memnun kaldık.',
+    comment: 'Gerçekten son model araçlar ile hizmet veriyorlar. Her konuda titizlikle çalışıyorlar. Cem Bey’e ilgi ve alakasından dolayı teşekkür ederim.',
+  },
+  {
+    name: 'Büşra Kılıç',
+    location: 'Google Review',
+    rating: 5,
+    date: 'Temmuz 2026',
+    comment: 'Milas Havalimanı ile otelimiz arasında transfer hizmeti aldık ve çok memnun kaldık. Araç upgrade’i yaparak ayrıca mutlu ettiler. Tam saatinde geldiler.',
   },
   {
     name: 'Tolga Saruc',
     location: 'Google Local Guide',
     rating: 5,
     date: 'Haziran 2026',
-    comment: 'Her şey harikaydı, çok teşekkürler. Cem bey her zaman soyadına layık bir şekilde davranarak tüm transfer sürecini harika yönetti.',
+    comment: 'Her şey harikaydı, çok teşekkürler. Cem bey tüm transfer sürecini harika yönetti.',
   }
 ];
 
@@ -78,7 +106,7 @@ export default function TestimonialsMarquee() {
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
           <span className="text-[10px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
-            Misafir Yorumları (4.9 / 5.0)
+            Google Haritalar (5.0 ★ · 370+ Değerlendirme)
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
         </div>
