@@ -19,7 +19,7 @@ const steps = [
     title: "Özel Kabin İçi Konforu",
     desc: "Ses yalıtımlı özel kabin, yıldız ambiyans tavan aydınlatması, ultra geniş deri koltuklar ve soğuk içecek ikramlarıyla Bodrum sıcağında dinlenerek yolculuk yapın.",
     highlights: ["Yıldız Tavan Ambiyansı", "Soğuk Minibar & Wi-Fi", "Özel Ses Yalıtımı"],
-    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1200&auto=format&fit=crop",
     accent: "Mercedes Maybach & S-Class"
   },
   {
@@ -28,7 +28,7 @@ const steps = [
     title: "Otel, Villa & Marina Kapısına Teslim",
     desc: "Yalıkavak Marina, Mandarin Oriental, Maçakızı, Scorpios veya özel teknenizin iskelesine kadar sıfır trafik stresi, tam gizlilik ve protokol nezaketiyle ulaştırılırsınız.",
     highlights: ["Marina İskele Geçişi", "Protokol & Gizlilik", "Nakit / Kart ile Ödeme"],
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1582236814424-9b2fdb1cb6f3?q=80&w=1200&auto=format&fit=crop",
     accent: "Mandarin Oriental & Marina"
   }
 ];
@@ -40,12 +40,15 @@ export default function StickyScrollExperience() {
   const [activeStep, setActiveStep] = useState(0);
   const { t } = useLanguage();
 
+  const [isHovered, setIsHovered] = useState(false);
+
   useEffect(() => {
+    if (isHovered) return;
     const timer = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % steps.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isHovered]);
 
   return (
     <section className="py-28 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
@@ -71,7 +74,11 @@ export default function StickyScrollExperience() {
       </motion.div>
 
       {/* Split Interactive Experience */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <div 
+        className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         
         {/* Left Interactive Step Cards (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
