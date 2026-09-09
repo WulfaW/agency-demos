@@ -48,6 +48,8 @@ export const metadata: Metadata = {
   },
 };
 
+import FloatingChatWidget from '@/components/FloatingChatWidget';
+
 export default function RootLayout({
   children,
 }: {
@@ -65,6 +67,7 @@ export default function RootLayout({
         <PostHogProvider>
           <LanguageProvider>
             {children}
+            <FloatingChatWidget />
           </LanguageProvider>
         </PostHogProvider>
       </body>
