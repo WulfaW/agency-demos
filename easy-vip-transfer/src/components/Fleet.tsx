@@ -139,14 +139,35 @@ export default function Fleet() {
                 {/* Gradient Shadow Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
 
-                {/* Top Badge */}
+                {/* Top Badge & Price */}
                 <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
-                  <span className="px-3.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[13px] font-mono text-[#E5D3B3] uppercase font-bold">
-                    {car.badge}
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-sm font-serif text-white font-bold">
-                    {car.priceEur} <span className="text-[13px] font-sans font-normal text-zinc-400">/ başlangıç</span>
-                  </span>
+                  {car.id === 'maybach' ? (
+                    <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#E5D3B3]/20 to-[#E5D3B3]/5 backdrop-blur-md border border-[#E5D3B3]/40 shadow-[0_0_15px_rgba(229,211,179,0.2)]">
+                      <Sparkles className="w-3.5 h-3.5 text-[#E5D3B3]" />
+                      <span className="text-[10px] font-sans tracking-[0.2em] text-[#E5D3B3] uppercase font-bold drop-shadow-md">
+                        {car.badge}
+                      </span>
+                    </div>
+                  ) : car.id === 'vito' ? (
+                    <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                      <span className="text-[10px] font-sans tracking-[0.2em] text-white uppercase font-bold">
+                        {car.badge}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
+                      <ShieldCheck className="w-3.5 h-3.5 text-zinc-300" />
+                      <span className="text-[10px] font-sans tracking-[0.2em] text-zinc-300 uppercase font-bold">
+                        {car.badge}
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="px-4 py-1.5 rounded-full bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 flex items-center gap-1">
+                    <span className="text-sm font-serif text-white font-medium">{car.priceEur}</span>
+                    <span className="text-[9px] font-sans uppercase tracking-widest text-zinc-500">/ Başlangıç</span>
+                  </div>
                 </div>
 
                 {/* Bottom Card Meta */}
