@@ -6,6 +6,13 @@ import { motion } from 'framer-motion';
 
 const reviews = [
   {
+    name: 'Olivia Stein',
+    location: 'Google Review',
+    rating: 5,
+    date: 'Ağustos 2026',
+    comment: 'Great company, the team was very accommodating and easy to work with. Would highly recommend!',
+  },
+  {
     name: 'Lisa Jaroszak',
     location: 'Google Local Guide',
     rating: 5,
