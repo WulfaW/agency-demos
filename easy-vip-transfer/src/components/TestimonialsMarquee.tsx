@@ -6,40 +6,54 @@ import { motion } from 'framer-motion';
 
 const reviews = [
   {
-    name: 'Alperen Y.',
-    location: 'İstanbul ➔ Yalıkavak Marina',
+    name: 'Lisa Jaroszak',
+    location: 'Google Local Guide',
     rating: 5,
-    date: 'Ağustos 2026',
-    comment: 'Milas Havalimanı’nda uçağımız 1 saat rötar yapmasına rağmen şoförümüz isimliğimizle kapıda bekliyordu. Maybach aracın içi tertemiz ve soğuk ikramlar harikaydı. Bodrum’da tek geçerim.',
+    date: 'Eylül 2026',
+    comment: 'Very professional service. Would highly recommend!',
   },
   {
-    name: 'Michael & Elena S.',
-    location: 'London ➔ Mandarin Oriental',
+    name: 'sara saba',
+    location: 'Google Review',
+    rating: 5,
+    date: 'Ağustos 2026',
+    comment: 'Excellent service and amazing car. The driver was so friendly and welcomed us as soon as he greeted us.',
+  },
+  {
+    name: 'Azer Zera',
+    location: 'Google Review',
+    rating: 5,
+    date: 'Ağustos 2026',
+    comment: 'Très bonne expérience avec ce groupe, une entreprise réactive et proche de la clientèle.',
+  },
+  {
+    name: 'Georgina Bennett',
+    location: 'Google Review',
     rating: 5,
     date: 'Temmuz 2026',
-    comment: 'Exceptional VIP service. The driver spoke fluent English, assisted with our heavy yacht luggage, and drove very smoothly. Will definitely book again next summer!',
+    comment: 'Absolutely amazing service from start to finish! We honestly couldn\'t fault a single thing.',
   },
   {
-    name: 'Dr. Selin Kara',
-    location: 'BJV ➔ Maçakızı Türkbükü',
+    name: 'Yunus Çıtlak',
+    location: 'Google Review',
     rating: 5,
-    date: 'Ağustos 2026',
-    comment: 'Gece 02:00 transferimiz için çağırdık. Dakiklik, güvenlik ve konfor kusursuzdu. Sabit fiyat garantisi olması ve sürpriz ücret çıkmaması en büyük artısı.',
+    date: 'Temmuz 2026',
+    comment: 'Harika. İlk dakikadan son dakikaya kadar!',
   },
   {
-    name: 'Emre Çakır',
-    location: 'Yalıkavak ➔ Scorpios Beach',
-    rating: 5,
-    date: 'Ağustos 2026',
-    comment: 'Günlük tahsis hizmeti aldık. Şoförümüz tüm gün boyunca bizi beklemeden kapıda karşıladı. Mercedes Vito aracın yıldız tavanı ve ses sistemi efsaneydi.',
-  },
-  {
-    name: 'Dmitry V.',
-    location: 'BJV Jet Terminal ➔ Cennet Koyu',
+    name: 'Berna Pars',
+    location: 'Google Review',
     rating: 5,
     date: 'Haziran 2026',
-    comment: 'Top tier VIP transfer in Bodrum. Fast reservation on WhatsApp, fixed price, no hidden costs. 10/10 recommendation.',
+    comment: 'Bu şirketten ilk defa tatilin başında Bodrum Havalimanı otel arası transfer aldık. Çok memnun kaldık.',
   },
+  {
+    name: 'Tolga Saruc',
+    location: 'Google Local Guide',
+    rating: 5,
+    date: 'Haziran 2026',
+    comment: 'Her şey harikaydı, çok teşekkürler. Cem bey her zaman soyadına layık bir şekilde davranarak tüm transfer sürecini harika yönetti.',
+  }
 ];
 
 export default function TestimonialsMarquee() {
