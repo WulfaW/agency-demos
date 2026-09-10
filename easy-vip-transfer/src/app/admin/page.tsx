@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/client';
 import ResourceManager from '@/components/admin/ResourceManager';
 import AssignmentForm from '@/components/admin/AssignmentForm';
 import AssignmentList from '@/components/admin/AssignmentList';
+import PaymentsPanel from '@/components/admin/PaymentsPanel';
 
 type Tab = 'gorevler' | 'surucular' | 'araclar' | 'ucretler';
 
@@ -65,12 +66,7 @@ export default function AdminDashboard() {
           <ResourceManager table="vehicles" title="Araçlar" secondLabel="Plaka" secondField="plate" />
         )}
 
-        {activeTab === 'ucretler' && (
-          <div className="space-y-8">
-            <header className="mb-6"><h1 className="text-3xl font-serif text-white">Ücretler</h1></header>
-            <p className="text-zinc-500 text-sm">Yakında.</p>
-          </div>
-        )}
+        {activeTab === 'ucretler' && <PaymentsPanel />}
 
       </main>
     </div>
