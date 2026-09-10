@@ -78,11 +78,12 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
       };
     });
 
-    return describeConflicts(
-      busy,
-      drivers.find((d) => d.id === form.driverId)?.name ?? null,
-      vehicles.find((v) => v.id === form.vehicleId)?.name ?? null
-    );
+    return describeConflicts(busy, {
+      driverId: form.driverId || null,
+      driverName: drivers.find((d) => d.id === form.driverId)?.name ?? null,
+      vehicleId: form.vehicleId || null,
+      vehicleName: vehicles.find((v) => v.id === form.vehicleId)?.name ?? null,
+    });
   };
 
   const save = async () => {

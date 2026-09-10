@@ -25,6 +25,7 @@ describe('overlaps', () => {
 });
 
 describe('describeConflicts', () => {
+  // Cakisan kayit: Ahmet (d1) + Mercedes (v1)
   const busy: Busy[] = [{
     id: 'a1',
     customerName: 'Yılmaz',
@@ -34,14 +35,40 @@ describe('describeConflicts', () => {
     vehicleId: 'v1',
   }];
 
-  it('surucu doluysa surucu adiyla mesaj uretir', () => {
-    const msgs = describeConflicts(busy, 'Ahmet', null);
+  it('cakisan sey surucuyse surucunun adini yazar', () => {
+    const msgs = describeConflicts(busy, {
+      driverId: 'd1', driverName: 'Ahmet',
+      vehicleId: 'v9', vehicleName: 'Audi',
+    });
     expect(msgs).toHaveLength(1);
     expect(msgs[0]).toContain('Ahmet');
+    expect(msgs[0]).not.toContain('Audi');
     expect(msgs[0]).toContain('Yılmaz');
   });
 
+  it('cakisan sey aracsa aracin adini yazar, surucunun degil', () => {
+    // Mehmet musait, cakisan sey Mercedes. Mesaj Mercedes demeli.
+    const msgs = describeConflicts(busy, {
+      driverId: 'd9', driverName: 'Mehmet',
+      vehicleId: 'v1', vehicleName: 'Mercedes',
+    });
+    expect(msgs[0]).toContain('Mercedes');
+    expect(msgs[0]).not.toContain('Mehmet');
+  });
+
+  it('hem surucu hem arac cakisiyorsa ikisini de yazar', () => {
+    const msgs = describeConflicts(busy, {
+      driverId: 'd1', driverName: 'Ahmet',
+      vehicleId: 'v1', vehicleName: 'Mercedes',
+    });
+    expect(msgs[0]).toContain('Ahmet');
+    expect(msgs[0]).toContain('Mercedes');
+  });
+
   it('cakisma yoksa bos dizi doner', () => {
-    expect(describeConflicts([], 'Ahmet', 'Mercedes')).toEqual([]);
+    expect(describeConflicts([], {
+      driverId: 'd1', driverName: 'Ahmet',
+      vehicleId: 'v1', vehicleName: 'Mercedes',
+    })).toEqual([]);
   });
 });
