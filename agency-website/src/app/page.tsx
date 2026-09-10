@@ -3,64 +3,53 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import PartnersBar from "@/components/PartnersBar";
-import ServicesSection from "@/components/ServicesSection";
-import StatsCounter from "@/components/StatsCounter";
-import Showcase from "@/components/Showcase";
-import ToolsSection from "@/components/ToolsSection";
-import FaqSection from "@/components/FaqSection";
-import CallToAction from "@/components/CallToAction";
-import Footer from "@/components/Footer";
+import ComparisonSection from "@/components/ComparisonSection";
+import EngineLayers from "@/components/EngineLayers";
+import ShowcaseSection from "@/components/ShowcaseSection";
+import CommissionCalculator from "@/components/CommissionCalculator";
+import QualityManifesto from "@/components/QualityManifesto";
 import ContactModal from "@/components/ContactModal";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [contactMode, setContactMode] = useState<string>("general");
-  const [initialMessage, setInitialMessage] = useState<string>("");
+  const [initialMessage, setInitialMessage] = useState("");
 
-  const handleOpenContact = (mode: string = "general", note: string = "") => {
-    setContactMode(mode);
-    setInitialMessage(note);
+  const handleOpenContact = (msg: string = "") => {
+    setInitialMessage(msg);
     setIsContactOpen(true);
   };
 
   return (
-    <main className="min-h-screen bg-[#131312] text-[#ededed] relative selection:bg-[#ff5b00] selection:text-white">
-      {/* Jet Digital Header */}
+    <main className="min-h-screen bg-[#070709] text-[#ededed] relative selection:bg-white selection:text-black">
+      {/* Floating Navbar */}
       <Navbar onOpenContact={handleOpenContact} />
 
-      {/* Hero with Sizi Arayalım input & Brand Marquee */}
+      {/* Hero Section */}
       <Hero onOpenContact={handleOpenContact} />
 
-      {/* Official Partners: İkas, Shopify, Meta, Google, TikTok, Stripe */}
-      <PartnersBar />
+      {/* Direct Contrast: Standard Agency vs AURA Engine */}
+      <ComparisonSection />
 
-      {/* Core Services (İkas, Meta Ads, Google Ads, TikTok, AI & Software) */}
-      <ServicesSection onOpenContact={handleOpenContact} />
+      {/* 6 Engine Architectural Layers */}
+      <EngineLayers onOpenContact={handleOpenContact} />
 
-      {/* Agency Stats Counter */}
-      <StatsCounter />
+      {/* Flagship Case Study: Easy VIP Transfer */}
+      <ShowcaseSection onOpenContact={handleOpenContact} />
 
-      {/* Successful Case Studies & References */}
-      <Showcase onOpenContact={handleOpenContact} />
+      {/* Interactive Intermediary Loss & Commission Calculator */}
+      <CommissionCalculator onOpenContact={handleOpenContact} />
 
-      {/* Interactive Free E-Commerce Tools & ROAS Calculator */}
-      <ToolsSection onOpenContact={handleOpenContact} />
-
-      {/* Sıkça Sorulan Sorular */}
-      <FaqSection />
-
-      {/* Bottom CTA Banner */}
-      <CallToAction onOpenContact={handleOpenContact} />
+      {/* Zero-Slop Quality Manifesto */}
+      <QualityManifesto />
 
       {/* Footer */}
       <Footer />
 
-      {/* Contact & Fast Appointment Modal */}
+      {/* Contact & Live Demo Modal */}
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
-        mode={contactMode}
         initialMessage={initialMessage}
       />
     </main>

@@ -2,186 +2,141 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, PhoneCall, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, Plane, ShieldCheck, CheckCircle2, DollarSign, Clock, Layers, Car } from "lucide-react";
 
 interface HeroProps {
-  onOpenContact: (mode?: string, customNote?: string) => void;
+  onOpenContact: (note?: string) => void;
 }
 
 export default function Hero({ onOpenContact }: HeroProps) {
-  const [quickPhone, setQuickPhone] = useState("");
-  const [quickSubmitted, setQuickSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleQuickSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!quickPhone) return;
-    setLoading(true);
-
-    try {
-      await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: "Hero Hızlı Arama Talebi",
-          phone: quickPhone,
-          industry: "E-Ticaret & Rezervasyon Sistemi",
-          message: "Hero bölümündeki 'Sizi Arayalım' formundan telefon numarası bırakıldı.",
-        }),
-      });
-      setQuickSubmitted(true);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const clientBrands = [
-    "Easy VIP Transfer",
-    "Bodrum Chauffeur Co.",
-    "Mandarin Transfer Ops",
-    "Aegean Gulet Charters",
-    "Luxes Store",
-    "York Premium",
-    "Lora Bianca",
-    "Opia Leather",
-  ];
+  const [flightCode, setFlightCode] = useState("TK2514");
+  const [selectedRoute, setSelectedRoute] = useState("Milas-Bodrum Havalimanı (BJV) → Mandarin Oriental");
 
   return (
-    <section className="relative pt-36 pb-20 overflow-hidden bg-[#131312] bg-grid-subtle">
-      {/* Radial Spotlights */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#ff5b00]/[0.09] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-amber-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative pt-36 pb-20 overflow-hidden bg-[#070709] bg-grid-subtle">
+      {/* Subtle Architectural Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-amber-500/[0.06] rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center relative z-10">
-        {/* Positioning Tag */}
+        {/* Telemetry Monospace Tag */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl mb-8 shadow-inner"
+          transition={{ duration: 0.4 }}
+          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-xl mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-mono text-xs font-semibold text-white tracking-wide">
-            KOMİSYONSUZ REZERVASYON & E-TİCARET MOTORLARI
+          <span className="font-mono text-[11px] text-neutral-300 uppercase tracking-wider">
+            [ SİTE DEĞİL REZERVASYON MOTORU ]
           </span>
           <span className="text-neutral-600">|</span>
-          <span className="font-mono text-[11px] text-[#ff7a00] font-medium tracking-wide">
-            NEXT.JS 15 & SUPABASE
-          </span>
+          <span className="font-mono text-[11px] text-amber-400 font-medium">3D SECURE & KAPORA ENTEGRASYONU</span>
         </motion.div>
 
         {/* Display Headline */}
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl leading-[1.08]"
         >
           Onlar Web Sitesi Kuruyor.{" "}
-          <span className="bg-gradient-to-r from-[#ff7a00] via-[#ff5b00] to-[#e04f00] bg-clip-text text-transparent">
-            Biz Kendi Rezervasyon Motorunuzu
+          <span className="bg-gradient-to-r from-amber-200 via-white to-neutral-400 bg-clip-text text-transparent">
+            Biz Komisyonsuz Kendi Rezervasyon Motorunuzu
           </span>{" "}
           İnşa Ediyoruz.
         </motion.h1>
 
         {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl font-normal leading-relaxed"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-6 text-base sm:text-lg text-neutral-300 max-w-2xl font-normal leading-relaxed"
         >
-          Aracı portallara %25 komisyon kaptırmaya son. 3D Secure ödeme, kapora tahsilatı, WhatsApp Business API otomatik onay ve canlı şoför paneli ile kendi Booking sisteminizi kurun.
+          Aracı portallara %20-30 komisyon kaptırmaya son. Klasik ajanslar sadece form toplayan şablonlar kurarken, biz <span className="text-white font-semibold">3D Secure ödeme, kapora tahsilatı (no-show önleme), canlı uçuş telemetrisi ve WhatsApp Business API</span> ile çalışan kendi Booking altyapınızı teslim ediyoruz.
         </motion.p>
 
-        {/* Fast "Sizi Arayalım" Bar */}
+        {/* Action Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-10 w-full max-w-md"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
         >
-          {quickSubmitted ? (
-            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center justify-center gap-2 font-medium">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Numaranız alındı! Uzman mühendisimiz 15 dakika içinde sizi arayacak.</span>
-            </div>
-          ) : (
-            <form
-              onSubmit={handleQuickSubmit}
-              className="p-1.5 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-xl shadow-2xl flex items-center gap-2 focus-within:border-[#ff5b00]/60 transition-colors"
-            >
-              <input
-                required
-                type="tel"
-                placeholder="Telefon Numaranız (+90 532...)"
-                value={quickPhone}
-                onChange={(e) => setQuickPhone(e.target.value)}
-                className="w-full bg-transparent px-4 text-xs text-white placeholder-neutral-500 focus:outline-none"
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-6 py-3 rounded-full bg-[#ff5b00] hover:bg-[#e04f00] text-white font-semibold text-xs transition-all flex items-center gap-1.5 shrink-0 shadow-[0_0_20px_rgba(255,91,0,0.4)] disabled:opacity-50"
-              >
-                {loading ? (
-                  <span>Gönderiliyor...</span>
-                ) : (
-                  <>
-                    <span>Sizi Arayalım</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </>
-                )}
-              </button>
-            </form>
-          )}
+          <button
+            onClick={() => onOpenContact("Easy VIP Transfer mimarisi hakkında canlı demo ve analiz istiyorum.")}
+            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-black font-semibold text-xs transition-all flex items-center justify-center gap-2 shadow-2xl hover:bg-neutral-200"
+          >
+            <span>Canlı Rezervasyon Motorunu Test Edin</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+
+          <a
+            href="#comparison"
+            className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/[0.04] text-white font-medium text-xs hover:bg-white/[0.08] border border-white/10 transition-all flex items-center justify-center gap-2"
+          >
+            <span>Klasik Ajans vs AURA Kıyaslaması</span>
+          </a>
         </motion.div>
 
-        {/* Real Core Capabilities */}
+        {/* Interactive Flight & Dispatch Telemetry Preview Widget */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 flex flex-wrap justify-center items-center gap-6 text-xs text-neutral-400 font-medium"
+          className="mt-14 w-full max-w-3xl rounded-2xl bg-[#0c0c0f] border border-white/10 p-5 shadow-2xl text-left font-mono text-xs"
         >
-          <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>3D Secure & Kapora Tahsilatı</span>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 mb-4 border-b border-white/[0.06] gap-2">
+            <div className="flex items-center gap-2 text-neutral-300">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="font-bold text-white">LIVE ENGINE SIMULATOR:</span>
+              <span className="text-neutral-400">easyviptransfer.com // v2.4</span>
+            </div>
+            <div className="flex items-center gap-2 text-[11px] text-neutral-400">
+              <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                0% ARACI KOMİSYONU
+              </span>
+              <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                3D SECURE AKTİF
+              </span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-[#ff5b00]" />
-            <span>WhatsApp Business API Otomatik Bildirim</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-            <span>Canlı Şoför & Operasyon Paneli</span>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div className="md:col-span-7 space-y-2">
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+                <div className="flex items-center gap-2.5 text-neutral-200">
+                  <Car className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span className="truncate text-xs">{selectedRoute}</span>
+                </div>
+                <span className="text-white font-bold shrink-0">€140</span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+                <div className="flex items-center gap-2.5 text-neutral-200">
+                  <Plane className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <span className="text-xs">Uçuş Kodu: <strong className="text-white">{flightCode}</strong> (THY İstanbul → Bodrum)</span>
+                </div>
+                <span className="text-cyan-400 text-[11px]">İNİŞ: 14:25</span>
+              </div>
+            </div>
+
+            <div className="md:col-span-5 p-3.5 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-1.5">
+              <div className="flex justify-between text-[11px]">
+                <span className="text-neutral-400">Aracı Portal Kesintisi (%25):</span>
+                <span className="text-red-400 font-bold">-€35.00</span>
+              </div>
+              <div className="flex justify-between text-[11px]">
+                <span className="text-neutral-400">AURA Motorunda Net Kazanç:</span>
+                <span className="text-emerald-400 font-bold">€136.50 (%97.5)</span>
+              </div>
+              <div className="text-[10px] text-neutral-400 pt-1 border-t border-white/[0.04]">
+                * %30 kapora anında banka hesabınıza geçer, no-show riski ortadan kalkar.
+              </div>
+            </div>
           </div>
         </motion.div>
-      </div>
-
-      {/* Brand Logos Marquee */}
-      <div className="mt-20 border-t border-b border-white/[0.06] py-6 bg-white/[0.01] overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 mb-4 text-center">
-          <span className="text-[11px] font-mono tracking-widest uppercase text-neutral-500">
-            [ SİSTEMLERİMİZİ KULLANAN İŞLETMELER VE ENTEGRASYONLAR ]
-          </span>
-        </div>
-
-        <div className="flex overflow-hidden select-none">
-          <div className="animate-marquee flex items-center justify-around gap-12 text-sm sm:text-base font-semibold text-neutral-400 tracking-wider">
-            {clientBrands.concat(clientBrands).map((brand, idx) => (
-              <div
-                key={idx}
-                className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/[0.02] border border-white/[0.04] text-neutral-300 whitespace-nowrap hover:text-white hover:border-white/10 transition-colors"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#ff5b00]/60" />
-                <span>{brand}</span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

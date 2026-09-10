@@ -1,6 +1,6 @@
 "use client";
 
-import { Zap, Phone, Mail, MapPin, ArrowUp, ShoppingBag, Target, Search, Video, Bot } from "lucide-react";
+import { Terminal, Shield, ArrowUp, Zap } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -8,98 +8,52 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0e0e0d] border-t border-white/[0.06] pt-16 pb-12 text-neutral-400 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-white/[0.06]">
+    <footer className="bg-[#050507] border-t border-white/[0.06] pt-16 pb-12 text-neutral-400 font-sans">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-12 border-b border-white/[0.06]">
           {/* Brand Info */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[#ff5b00] flex items-center justify-center text-white font-bold">
-                <Zap className="w-4 h-4 fill-white" />
+              <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white">
+                <Terminal className="w-4 h-4 text-amber-400" />
               </div>
-              <span className="font-extrabold text-lg text-white tracking-tight">
-                JET<span className="text-[#ff5b00]">DIGITAL</span>
+              <span className="font-mono text-sm font-bold text-white tracking-wider">
+                AURA<span className="text-neutral-500">//</span>SYSTEMS
               </span>
             </div>
-            <p className="text-xs text-neutral-400 max-w-sm leading-relaxed">
-              Jet Digital, e-ticaret ve dijital pazarlamada yenilikçi çözümler sunan, resmi İkas & Meta & Google Premier partner ajansıdır. Markanızı dijital dünyada rekor satışlara ulaştırıyoruz.
+            <p className="text-xs text-neutral-400 max-w-md leading-relaxed">
+              Bodrum, Antalya ve lüks turizm işletmeleri için komisyonsuz, 3D Secure destekli özel rezervasyon ve filo operasyon motorları mühendisliği.
             </p>
-            <div className="flex items-center gap-3 pt-2 text-xs text-neutral-300">
-              <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 font-mono text-[10px]">
-                ÖDÜLLÜ İKAS İŞ ORTAĞI
-              </span>
-              <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 font-mono text-[10px]">
-                META & GOOGLE PARTNER
-              </span>
-            </div>
           </div>
 
-          {/* Hizmetlerimiz */}
-          <div>
-            <div className="text-xs font-mono uppercase text-white font-semibold tracking-wider mb-4">
-              Hizmetlerimiz
+          {/* Telemetry Status Bar */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 font-mono text-[11px]">
+            <div className="px-3.5 py-1.5 rounded-full bg-white/[0.02] border border-white/10 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-neutral-300">NEXT.JS 15 + SUPABASE RLS</span>
+              <span className="text-neutral-600">|</span>
+              <span className="text-emerald-400 font-semibold">0.6S TTFB</span>
             </div>
-            <ul className="space-y-2.5 text-xs text-neutral-400">
-              <li><a href="#services" className="hover:text-white transition-colors">İkas E-Ticaret Paketleri</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Shopify Mağaza Kurulumu</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Meta ADS (Instagram/FB)</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Google ADS & PMax</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">TikTok ADS & Viral Video</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Otonom AI & Özel Yazılım</a></li>
-            </ul>
-          </div>
 
-          {/* Araçlar */}
-          <div>
-            <div className="text-xs font-mono uppercase text-white font-semibold tracking-wider mb-4">
-              Ücretsiz Araçlar
-            </div>
-            <ul className="space-y-2.5 text-xs text-neutral-400">
-              <li><a href="#tools" className="hover:text-white transition-colors">Pazaryeri Komisyon Hesapla</a></li>
-              <li><a href="#tools" className="hover:text-white transition-colors">Meta / Google ROAS Simülatörü</a></li>
-              <li><a href="#tools" className="hover:text-white transition-colors">Trendyol & Hepsiburada Kar Hesabı</a></li>
-              <li><a href="#tools" className="hover:text-white transition-colors">KDV & Desi Hesaplama</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">Sıkça Sorulan Sorular (SSS)</a></li>
-            </ul>
-          </div>
-
-          {/* İletişim */}
-          <div>
-            <div className="text-xs font-mono uppercase text-white font-semibold tracking-wider mb-4">
-              İletişim & Randevu
-            </div>
-            <ul className="space-y-3 text-xs text-neutral-400">
-              <li className="flex items-center gap-2 text-white">
-                <Phone className="w-3.5 h-3.5 text-[#ff5b00]" />
-                <span>+90 (850) 885 00 00</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#ff5b00]" />
-                <span>info@jetdigital.co</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#ff5b00] shrink-0 mt-0.5" />
-                <span>Maslak No:1 Plaza, Sarıyer / İstanbul</span>
-              </li>
-            </ul>
+            <button
+              onClick={scrollToTop}
+              className="p-2 rounded-full bg-white/5 border border-white/10 text-neutral-400 hover:text-white transition-colors"
+              aria-label="Yukarı Kaydır"
+            >
+              <ArrowUp className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-neutral-500">
           <div>
-            &copy; {new Date().getFullYear()} Jet Digital Technology & Marketing. Tüm hakları saklıdır.
+            &copy; {new Date().getFullYear()} AURA SYSTEMS. Tüm hakları saklıdır.
           </div>
-
           <div className="flex items-center gap-4">
-            <span>İKAS & SHOPIFY CERTIFIED AGENCY</span>
-            <button
-              onClick={scrollToTop}
-              className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-colors"
-              aria-label="Yukarı Kaydır"
-            >
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
+            <span>ZERO-SLOP ENGINEERING STANDARDS</span>
+            <span className="text-neutral-700">/</span>
+            <span>KOMİSYONSUZ REZERVASYON MİMARİSİ</span>
           </div>
         </div>
       </div>
