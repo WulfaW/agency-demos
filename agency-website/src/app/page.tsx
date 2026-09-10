@@ -3,57 +3,64 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import BentoServices from "@/components/BentoServices";
+import PartnersBar from "@/components/PartnersBar";
+import ServicesSection from "@/components/ServicesSection";
+import StatsCounter from "@/components/StatsCounter";
 import Showcase from "@/components/Showcase";
-import TechStack from "@/components/TechStack";
-import RoiCalculator from "@/components/RoiCalculator";
-import Process from "@/components/Process";
-import ContactModal from "@/components/ContactModal";
+import ToolsSection from "@/components/ToolsSection";
+import FaqSection from "@/components/FaqSection";
+import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
+import ContactModal from "@/components/ContactModal";
 
 export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [initialMessage, setInitialMessage] = useState("");
+  const [contactMode, setContactMode] = useState<string>("general");
+  const [initialMessage, setInitialMessage] = useState<string>("");
 
-  const handleOpenContact = (msg?: string) => {
-    if (msg) {
-      setInitialMessage(msg);
-    } else {
-      setInitialMessage("");
-    }
+  const handleOpenContact = (mode: string = "general", note: string = "") => {
+    setContactMode(mode);
+    setInitialMessage(note);
     setIsContactOpen(true);
   };
 
   return (
-    <main className="min-h-screen bg-[#050505] text-[#ededed] relative selection:bg-white selection:text-black">
-      {/* Floating Navbar */}
-      <Navbar onOpenContact={() => handleOpenContact()} />
+    <main className="min-h-screen bg-[#131312] text-[#ededed] relative selection:bg-[#ff5b00] selection:text-white">
+      {/* Jet Digital Header */}
+      <Navbar onOpenContact={handleOpenContact} />
 
-      {/* Hero Section */}
-      <Hero onOpenContact={() => handleOpenContact()} />
+      {/* Hero with Sizi Arayalım input & Brand Marquee */}
+      <Hero onOpenContact={handleOpenContact} />
 
-      {/* Bento Grid Capabilities */}
-      <BentoServices />
+      {/* Official Partners: İkas, Shopify, Meta, Google, TikTok, Stripe */}
+      <PartnersBar />
 
-      {/* Showcase / Case Studies */}
-      <Showcase onOpenContact={() => handleOpenContact()} />
+      {/* Core Services (İkas, Meta Ads, Google Ads, TikTok, AI & Software) */}
+      <ServicesSection onOpenContact={handleOpenContact} />
 
-      {/* Production Gold Standard Tech Stack */}
-      <TechStack />
+      {/* Agency Stats Counter */}
+      <StatsCounter />
 
-      {/* Interactive ROI & Velocity Simulator */}
-      <RoiCalculator onOpenContact={handleOpenContact} />
+      {/* Successful Case Studies & References */}
+      <Showcase onOpenContact={handleOpenContact} />
 
-      {/* 14-Day Delivery Process */}
-      <Process />
+      {/* Interactive Free E-Commerce Tools & ROAS Calculator */}
+      <ToolsSection onOpenContact={handleOpenContact} />
+
+      {/* Sıkça Sorulan Sorular */}
+      <FaqSection />
+
+      {/* Bottom CTA Banner */}
+      <CallToAction onOpenContact={handleOpenContact} />
 
       {/* Footer */}
       <Footer />
 
-      {/* Global Contact / Strategy Modal */}
+      {/* Contact & Fast Appointment Modal */}
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
+        mode={contactMode}
         initialMessage={initialMessage}
       />
     </main>

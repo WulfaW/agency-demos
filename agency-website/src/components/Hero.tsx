@@ -1,37 +1,86 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Cpu, ShieldCheck, Zap, Layers, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Sparkles, PhoneCall, CheckCircle2, Zap, ShieldCheck, TrendingUp, Users } from "lucide-react";
 
 interface HeroProps {
-  onOpenContact: () => void;
+  onOpenContact: (mode?: string, customNote?: string) => void;
 }
 
 export default function Hero({ onOpenContact }: HeroProps) {
-  return (
-    <section className="relative min-h-[90vh] pt-32 pb-20 flex flex-col justify-center items-center overflow-hidden bg-grid-subtle">
-      {/* Background Spotlights */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-b from-white/[0.08] to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-emerald-500/[0.03] rounded-full blur-3xl pointer-events-none" />
+  const [quickPhone, setQuickPhone] = useState("");
+  const [quickSubmitted, setQuickSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        {/* Status / Telemetry Badge */}
+  const handleQuickSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!quickPhone) return;
+    setLoading(true);
+
+    try {
+      await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: "Hero Hızlı Arama Talebi",
+          phone: quickPhone,
+          industry: "Genel / Hızlı Arama",
+          message: "Hero bölümündeki 'Sizi Arayalım' formundan telefon numarası bırakıldı.",
+        }),
+      });
+      setQuickSubmitted(true);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clientBrands = [
+    "Luxes Secret",
+    "MC York",
+    "Havens Butik",
+    "Lora Bianca",
+    "Opia Leather",
+    "Milda Collection",
+    "Robin Luxury Store",
+    "Easy VIP Transfer",
+    "Famos Giyim",
+    "Onearj",
+    "Antimatter Case",
+    "Pruf Tatlar",
+    "Smool Istanbul",
+    "Mugani Glassware",
+    "Yöresel Bahçe",
+  ];
+
+  return (
+    <section className="relative pt-36 pb-20 overflow-hidden bg-[#131312] bg-grid-subtle">
+      {/* Radial Spotlights */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#ff5b00]/[0.09] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-10 w-96 h-96 bg-amber-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center relative z-10">
+        {/* Social Proof Badge */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-xl mb-8 shadow-inner"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl mb-8 shadow-inner"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span className="font-mono text-[11px] font-medium tracking-wider text-neutral-300 uppercase">
-            [ NEXT-GEN AI ARCHITECTURE & VIP SOFTWARE ]
+          <div className="flex -space-x-1.5 overflow-hidden">
+            <span className="inline-block h-5 w-5 rounded-full bg-gradient-to-tr from-amber-500 to-[#ff5b00] border-2 border-[#131312]" />
+            <span className="inline-block h-5 w-5 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 border-2 border-[#131312]" />
+            <span className="inline-block h-5 w-5 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 border-2 border-[#131312]" />
+          </div>
+          <span className="text-xs font-semibold text-white tracking-tight">
+            +350 Mutlu İşletme
           </span>
           <span className="text-neutral-600">|</span>
-          <span className="font-mono text-[11px] text-emerald-400 font-semibold">Q3/Q4 CAPACITY OPEN</span>
+          <span className="font-mono text-[11px] text-[#ff7a00] font-medium tracking-wide">
+            50+ MN ₺ YÖNETİLEN HACİM
+          </span>
         </motion.div>
 
         {/* Display Headline */}
@@ -39,13 +88,12 @@ export default function Hero({ onOpenContact }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white max-w-5xl leading-[1.08]"
+          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl leading-[1.08]"
         >
-          Lüks Markalar & Girişimler İçin{" "}
-          <span className="bg-gradient-to-b from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent">
-            Otonom AI & Yüksek Performanslı
-          </span>{" "}
-          Web Sistemleri.
+          Dijitalde Başarınızı{" "}
+          <span className="bg-gradient-to-r from-[#ff7a00] via-[#ff5b00] to-[#e04f00] bg-clip-text text-transparent">
+            Zirveye Çıkartalım.
+          </span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -53,78 +101,97 @@ export default function Hero({ onOpenContact }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-base sm:text-lg md:text-xl text-neutral-400 max-w-2xl font-normal leading-relaxed"
+          className="mt-6 text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl font-normal leading-relaxed"
         >
-          Karmaşık iş süreçlerinizi otonom yapay zeka ajanlarıyla otomatikleştiriyoruz. Apple, VistaJet ve Aman Resorts standartlarında kusursuz, ultra-hızlı web ve operasyon sistemleri geliştiriyoruz.
+          Jet Digital olarak e-ticaret ve dijital pazarlamada yenilikçi çözümler sunuyor, işletmenizin büyümesini hızlandırıyoruz. İkas & Shopify altyapıları, yüksek ROAS'lı Meta & Google reklamları ve yapay zeka sistemleri ile satışlarınızı katlayın.
         </motion.p>
 
-        {/* Action Buttons */}
+        {/* Fast "Sizi Arayalım" Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+          className="mt-10 w-full max-w-md"
         >
-          <button
-            onClick={onOpenContact}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-semibold text-sm hover:bg-neutral-200 transition-all duration-300 flex items-center justify-center gap-2.5 shadow-[0_0_35px_rgba(255,255,255,0.25)] hover:shadow-[0_0_45px_rgba(255,255,255,0.4)]"
-          >
-            <Sparkles className="w-4 h-4 text-amber-500 fill-amber-500" />
-            <span>Ücretsiz Mimari Analiz Al</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-
-          <a
-            href="#showcase"
-            className="w-full sm:w-auto px-7 py-4 rounded-full bg-white/[0.04] text-white font-medium text-sm hover:bg-white/[0.08] border border-white/10 transition-all duration-200 flex items-center justify-center gap-2"
-          >
-            <span>Canlı Proje Vitrinini İncele</span>
-          </a>
-        </motion.div>
-
-        {/* Key Metrics Ribbon */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-16 w-full grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl"
-        >
-          {[
-            {
-              icon: Zap,
-              label: "0.6s İlk Yükleme",
-              sub: "Lighthouse 100/100 Skoru",
-              color: "text-amber-400",
-            },
-            {
-              icon: Cpu,
-              label: "Otonom AI Ajanları",
-              sub: "Otomatik Lead & Veri Akışı",
-              color: "text-emerald-400",
-            },
-            {
-              icon: Layers,
-              label: "14 Günde Canlıya",
-              sub: "Modern AI Stack ile Hızlı Çıkış",
-              color: "text-cyan-400",
-            },
-            {
-              icon: ShieldCheck,
-              label: "Kurumsal Güvenlik",
-              sub: "Supabase & Stripe RLS Altyapısı",
-              color: "text-purple-400",
-            },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="p-4 rounded-2xl glass-panel glass-panel-hover flex flex-col items-start text-left group"
-            >
-              <item.icon className={`w-5 h-5 ${item.color} mb-2.5 transition-transform group-hover:scale-110`} />
-              <div className="text-sm font-semibold text-white tracking-tight">{item.label}</div>
-              <div className="text-xs text-neutral-400 mt-0.5">{item.sub}</div>
+          {quickSubmitted ? (
+            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center justify-center gap-2 font-medium">
+              <CheckCircle2 className="w-4 h-4" />
+              <span>Numaranız alındı! Uzmanımız 15 dakika içinde sizi arayacak.</span>
             </div>
-          ))}
+          ) : (
+            <form
+              onSubmit={handleQuickSubmit}
+              className="p-1.5 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-xl shadow-2xl flex items-center gap-2 focus-within:border-[#ff5b00]/60 transition-colors"
+            >
+              <input
+                required
+                type="tel"
+                placeholder="Telefon Numaranız (+90 532...)"
+                value={quickPhone}
+                onChange={(e) => setQuickPhone(e.target.value)}
+                className="w-full bg-transparent px-4 text-xs text-white placeholder-neutral-500 focus:outline-none"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-6 py-3 rounded-full bg-[#ff5b00] hover:bg-[#e04f00] text-white font-semibold text-xs transition-all flex items-center gap-1.5 shrink-0 shadow-[0_0_20px_rgba(255,91,0,0.4)] disabled:opacity-50"
+              >
+                {loading ? (
+                  <span>Gönderiliyor...</span>
+                ) : (
+                  <>
+                    <span>Sizi Arayalım</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </>
+                )}
+              </button>
+            </form>
+          )}
         </motion.div>
+
+        {/* Secondary Badges / Guarantees */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 flex flex-wrap justify-center items-center gap-6 text-xs text-neutral-400 font-medium"
+        >
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <span>Anahtar Teslim İkas / Shopify</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-[#ff5b00]" />
+            <span>ROAS & Satış Odaklı Reklamlar</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+            <span>7/24 Teknik & Operasyon Desteği</span>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Brand Logos Marquee */}
+      <div className="mt-20 border-t border-b border-white/[0.06] py-6 bg-white/[0.01] overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-4 mb-4 text-center">
+          <span className="text-[11px] font-mono tracking-widest uppercase text-neutral-500">
+            [ BİRLİKTE BÜYÜDÜĞÜMÜZ BAŞARILI MARKALARDAN BAZILARI ]
+          </span>
+        </div>
+
+        <div className="flex overflow-hidden select-none">
+          <div className="animate-marquee flex items-center justify-around gap-12 text-sm sm:text-base font-semibold text-neutral-400 tracking-wider">
+            {clientBrands.concat(clientBrands).map((brand, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/[0.02] border border-white/[0.04] text-neutral-300 whitespace-nowrap hover:text-white hover:border-white/10 transition-colors"
+              >
+                <span className="w-2 h-2 rounded-full bg-[#ff5b00]/60" />
+                <span>{brand}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
