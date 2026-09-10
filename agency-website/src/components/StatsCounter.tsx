@@ -1,33 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, TrendingUp, Award, Clock } from "lucide-react";
+import { Zap, ShieldCheck, Database, Smartphone } from "lucide-react";
 
 export default function StatsCounter() {
-  const stats = [
+  const verifiedFacts = [
     {
-      value: "%99.4",
-      label: "Müşteri Memnuniyeti",
-      desc: "Kesintisiz destek ve stratejik büyüme ortaklığı",
-      icon: Award,
+      value: "0.6s",
+      label: "Lighthouse Açılış Hızı",
+      desc: "Next.js 15 Server Components ve Vercel Global Edge CDN",
+      icon: Zap,
     },
     {
-      value: "+350",
-      label: "Büyüyen İşletme",
-      desc: "E-Ticaret ve VIP hizmet sektörlerinde aktif referanslar",
-      icon: Users,
+      value: "%0",
+      label: "Aracı Komisyonu",
+      desc: "Doğrudan kendi iyzico / Stripe hesabınıza geçen tahsilat",
+      icon: ShieldCheck,
     },
     {
-      value: "50+ Mn ₺",
-      label: "Yönetilen Reklam & Ciro",
-      desc: "Meta, Google ve TikTok üzerinde yüksek ROAS yönetimi",
-      icon: TrendingUp,
+      value: "PostgreSQL",
+      label: "Supabase RLS Altyapısı",
+      desc: "Bankacılık seviyesinde veri güvenliği ve canlı telemetri",
+      icon: Database,
     },
     {
-      value: "14 Gün",
-      label: "Hızlı Teslimat",
-      desc: "Fikirden anahtar teslim canlı e-ticaret ve yazılım lansmanı",
-      icon: Clock,
+      value: "100%",
+      label: "Mobil & PWA Uyumlu",
+      desc: "Şoförler ve müşteriler için anlık bildirimli mobil arayüz",
+      icon: Smartphone,
     },
   ];
 
@@ -35,7 +35,7 @@ export default function StatsCounter() {
     <section className="py-16 bg-[#181817] border-t border-b border-white/[0.06] relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((item, idx) => (
+          {verifiedFacts.map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 15 }}
@@ -45,7 +45,7 @@ export default function StatsCounter() {
               className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col items-start text-left"
             >
               <item.icon className="w-5 h-5 text-[#ff5b00] mb-3" />
-              <div className="font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+              <div className="font-extrabold text-2xl sm:text-3xl text-white tracking-tight font-mono">
                 {item.value}
               </div>
               <div className="text-sm font-semibold text-neutral-200 mt-1">{item.label}</div>
