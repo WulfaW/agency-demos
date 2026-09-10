@@ -173,9 +173,13 @@ Ama dikkat: **"lüks" = ağır efekt değil.** Rakip sitede sıfır animasyon va
 Apify Google Maps Lead Scraper (`scripts/hunt_leads.py`) ile taranan işletmeler otomatik olarak ortak Notion CRM'e işlenmektedir.
 
 ### Güncel Durum (10 Eylül 2026):
-- **Taranan Sektörler:** Marmaris Tekne Turu & Yatçılık (20 işletme).
-- **Başarı Oranı:** 20 işletmenin **18 tanesi (%90)** ya *Websitesi Hiç Yok* ya da *SSL'siz / Çökmüş / 6-8 saniyede açılan çağ dışı siteler* olarak tespit edilip etiketlendi.
-- **Teklif Stratejisi:** Bu işletmelere "Site kurma" değil; **"Marmaris'te her ay arama yapan yüzlerce turisti kaçırmayan, 3D Secure kaporalı online rezervasyon motoru"** teklif ediliyor.
+- **Taranan Sektörler:** 
+  - Marmaris Tekne Turu & Yatçılık (20 işletme)
+  - **YENİ:** VIP Araç Tasarım & Karavan Dönüşüm (10 işletme)
+  - **YENİ:** Lüks Rekreasyon / At Çiftlikleri (10 işletme)
+  - **YENİ:** Modüler Ev / Tiny House Üreticileri (10 işletme - Taraması yapıldı)
+- **Başarı Oranı:** Taranan işletmelerin **%90'ından fazlasının** ya *Websitesi Hiç Yok* ya da *SSL'siz / Çökmüş / Çok Yavaş* siteler olduğu tespit edildi. Özellikle VIP Araç, At Çiftlikleri ve Tiny House sektörlerinde "Sıfır Site" oranı inanılmaz yüksek.
+- **Teklif Stratejisi:** Bu işletmelere "Site kurma" değil; **"Doğrudan online rezervasyon/satış motoru ve dijital vitrin"** teklif ediliyor.
 
 ### ❓ Alper & Claude ile Tartışılacak Açık Kararlar:
 1. **Sıradaki Öncelikli Sektörler:**
