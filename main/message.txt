@@ -1,0 +1,57 @@
+Veri toplama bitti. İki siteyi de ham HTML, header, sitemap, robots, llms.txt ve asset seviyesinde tarayıp kanıtları çıkardım. Şimdi raporu ve kural dosyasını yazıyorum.
+
+Ran 4 commands
+Sent
+
+Rakip analizi + ortak anti-slop kural seti (her iki agent da okuyacak).
+
+MD
+
+ANALIZ-jetdigital-mavitransfer.md
+
+20.2KB
+
+MD
+
+AGENTS.md
+
+9.3KB
+
+Hap Bilgiler
+
+1. STACK
+
+Mavi Transfer: Next.js App Router + Tailwind v4 + shadcn/ui (Radix ×11, Lucide ×334) + Cloudflare. Ödeme altyapısı yok.
+Jet Digital (kendi sitesi): Next.js ama nginx + Phusion Passenger + Plesk üstünde. Hız satan ajans, kendi sitesini paylaşımlı panelde barındırıyor. Ve kendi sitesi satın alınmış tema (text-paragraph, bg-gray, dark:bg-dark token'ları — shadcn değil). Müşteriye custom, kendine template.
+
+2. AI İZLERİ (Mavi'de bariz)
+rounded-2xl ×178, tracking-tight ×107, backdrop-blur ×41. En sert kanıt: bg-primary (shadcn token) ile bg-[#00A3E0] aynı dosyalarda yan yana → AI üretmiş, insan tema token'ı yerine her yere hex yapıştırmış. Framer/GSAP/Lenis sıfır — site hareketsiz, "VIP" iddiasıyla çelişiyor.
+
+3. AJANSIN MODELİ
+Web ajansı değil: ikas bayisi + reklam retainer'ı. /tr/ikas-x-jetdigital sayfası ikas'ın metninin birebir kopyası, testimonial'lar bile ikas'ın müşterileri. Teklif kilidi: "24 saat kurulum + 12 ay kesintisiz destek" → proje değil abonelik. Mavi Transfer portföyde tek servis-işletmesi, yani istisna.
+
+Mavi'ye satılan acı noktası: aracı komisyonundan kurtulma + TR/EN/DE (Dalaman = UK/DE charter) + rota bazlı SEO + GEO/AEO (llms.txt + robots'ta GPTBot/ClaudeBot/PerplexityBot açık Allow). Bu son madde en modern kozları.
+
+4. SEO: İDDİA BÜYÜK, ÖLÇEK KÜÇÜK
+Toplu içerik basma yok. TR sitemap 66 URL. Sadece tek yönlü Dalaman → X. Ters yön yok, çapraz rota yok, otel bazlı yok, fiyat-intent yok. Gerçek matris 1.350+ sayfa olmalıydı.
+
+5. EN SERT BULGULAR (teklifte kanıt slaytı)
+
+jetdigital.co/tr/blogs → HTTP 404, ve bu URL kendi sitemap.xml'lerinde. SEO satan ajans.
+Jet'in ham HTML'inde birebir: %0 Müşteri Memnuniyeti, 7/0 Kesintisiz Destek — sayaçlar sunucuda 0 render ediliyor.
+Ana sayfada "24 saat", ikas sayfasında "3 gün" — aynı vaat, iki rakam.
+Mavi referansları: Ayşe Yılmaz, Mehmet Öztürk, Fatma Kaya — fotoğrafsız, linksiz. "800+ Google yorumu" iddiasının yanında 3 uydurma yorum.
+Mavi'de "2011'den beri" + "11+ yıl" + "13 yıl" aynı sayfada.
+Slugify Türkçe karakteri siliyor: nasıl→nasl, ulaşım→ulam, havalimanından→havalimanndan.
+Jet'in schema'sı afterInteractive script ile enjekte — SSR'da yok, yani AI botları hiç görmüyor.
+
+EZME HAMLESİ: Onlar site kurdu, rezervasyon almıyor — form topluyor (SSS: "ödeme araçta"). Konumlandırma: "Komisyonsuz kendi Booking.com'unuzu kuruyoruz." → 3D Secure + kapora (no-show'u öldürür) + çok kur + WhatsApp Business API + şoför paneli + B2B otel/acente portalı. Aracılar %25 alıyor; kıyası ajansla değil aracıyla yaparsan karar kolaylaşır.
+
+Yazılan dosyalar:
+
+web siteleri/ANALIZ-jetdigital-mavitransfer.md — tam rapor, ham kanıt tablosuyla
+web siteleri/AGENTS.md — ortak anti-slop protokolü (klişe sayaç yasağı, sahte referans yasağı, SSR/SEO zorunlulukları, 13 maddelik teslimat checklist'i)
+web siteleri/CLAUDE.md → @AGENTS.md (Claude otomatik yükler)
+easyvip/GEMINI.md → §5 olarak Antigravity'ye yönlendirme eklendi
+
+Not: easyvip/GEMINI.md benim okuduğum halden farklıydı (araya hunt_leads.py bölümü girmiş, GÖRSEL & MEDYA notu gitmiş) — append yaptığım için bir şey silinmedi ama muhtemelen Antigravity paralel çalışıyor.
