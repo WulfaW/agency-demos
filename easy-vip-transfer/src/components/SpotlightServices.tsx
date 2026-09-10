@@ -5,107 +5,6 @@ import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Sparkles, Wifi,
 import { CONTACT_INFO } from '@/data/transferData';
 import { useLanguage } from '@/context/LanguageContext';
 
-const categories = [
-  { id: 'airport', label: 'Havalimanı VIP', icon: Plane },
-  { id: 'marina', label: 'Marina & Yat', icon: Anchor },
-  { id: 'hourly', label: 'Saatlik & Günlük Tahsis', icon: Clock },
-  { id: 'intercity', label: 'Şehirlerarası Özel', icon: Compass },
-];
-
-const servicesData: Record<string, Array<{ title: string; desc: string; badge: string; icon: any; image: string }>> = {
-  airport: [
-    {
-      title: 'Milas-Bodrum (BJV) Karşılama',
-      desc: 'Uçuşunuz canlı radardan takip edilir. İsim levhası ile VIP kapı çıkışında karşılanıp doğrudan aracınıza geçersiniz.',
-      badge: 'Canlı Takip',
-      icon: Plane,
-      image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=800&auto=format&fit=crop'
-    },
-    {
-      title: 'Genel Havacılık & Özel Jet',
-      desc: 'Bodrum VIP Jet Terminali aprondan doğrudan bagaj ve yolcu transferi. Gizlilik protokolü garantisi.',
-      badge: 'VIP Jet Protokolü',
-      icon: Crown,
-      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=800&auto=format&fit=crop'
-    },
-    {
-      title: 'Dönüş & Otelden Uçuşa',
-      desc: 'Otelinizden veya villanızdan uçağınızın saatine göre milimetrik hesaplanmış kalkış planı.',
-      badge: 'Sıfır Rötar Riski',
-      icon: ShieldCheck,
-      image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=800&auto=format&fit=crop'
-    },
-  ],
-  marina: [
-    {
-      title: 'Yalıkavak Marina VIP Transfer',
-      desc: 'Süperyat iskelesi, lüks restoranlar ve beach clublara özel tahsisli araç girişi.',
-      badge: 'İskele İçi Geçiş',
-      icon: Anchor,
-      image: 'https://images.unsplash.com/photo-1582236814424-9b2fdb1cb6f3?q=80&w=800&auto=format&fit=crop'
-    },
-    {
-      title: 'D-Marin Turgutreis & Bodrum Marina',
-      desc: 'Yelkenli, gulet ve motoryat yolcularına özel geniş bagaj hacimli Mercedes Vito & Sprinter transferi.',
-      badge: 'Geniş Bagaj Kapasitesi',
-      icon: Compass,
-      image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop'
-    },
-    {
-      title: 'Scorpios, Lucca & Maçakızı Servisi',
-      desc: 'Bodrum’un en seçkin gece kulüpleri ve beach clublarına beklemesiz gidiş-dönüş VIP şoförlük.',
-      badge: 'Gece Protokolü',
-      icon: Wine,
-      image: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=800&auto=format&fit=crop'
-    },
-  ],
-  hourly: [
-    {
-      title: 'Tam Gün Şoförlü Araç Tahsisi',
-      desc: '8, 12 veya 24 saat boyunca şoförünüz ve Maybach/Vito aracınız sadece sizin emrinizde bekler.',
-      badge: 'Sınırsız Bekleme',
-      icon: Clock,
-      image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800&auto=format&fit=crop'
-    },
-    {
-      title: 'İş & Protokol Seyahatleri',
-      desc: 'Gizlilik sözleşmeli, takım elbiseli profesyonel şoförlerle resmi heyet ve iş insanı transferleri.',
-      badge: 'Protokol Şoförü',
-      icon: ShieldCheck,
-      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop'
-    },
-    {
-      title: 'Kişiye Özel Bodrum & Çevre Turu',
-      desc: 'Gümüşlük gün batımı, Çökertme Koyu, Antik Tiyatro ve özel şarap bağları rotaları.',
-      badge: 'Özel Rota',
-      icon: Map,
-      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop'
-    },
-  ],
-  intercity: [
-    {
-      title: 'Bodrum ➔ İzmir & Çeşme',
-      desc: 'Adnan Menderes Havalimanı veya Alaçatı/Çeşme otellerine kesintisiz, lüks uzun yol transferi.',
-      badge: 'Uzun Yol Konforu',
-      icon: Compass,
-      image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop'
-    },
-    {
-      title: 'Bodrum ➔ Marmaris & Göcek',
-      desc: 'Mavi yolculuk başlangıç limanlarına (Göcek, Fethiye, Marmaris) konforlu ve güvenli geçiş.',
-      badge: 'Mavi Tur Bağlantısı',
-      icon: Anchor,
-      image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?q=80&w=800&auto=format&fit=crop'
-    },
-    {
-      title: 'Bodrum ➔ Didim & Kuşadası',
-      desc: 'Didim Marina ve Kuşadası kruvaziyer limanlarına kapıdan kapıya özel VIP ulaşım.',
-      badge: 'Hızlı Otoyol Seyahati',
-      icon: Plane,
-      image: 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=800&auto=format&fit=crop'
-    },
-  ],
-};
 
 // Spotlight Card component with cursor tracking
 const SpotlightCard = ({ title, desc, badge, image, icon: Icon }: { title: string; desc: string; badge: string; image: string; icon: any }) => {
@@ -177,14 +76,102 @@ const SpotlightCard = ({ title, desc, badge, image, icon: Icon }: { title: strin
 import { motion } from 'framer-motion';
 
 export default function SpotlightServices() {
+
   const { lang } = useLanguage();
+  const getCategories = () => {
+    switch(lang) {
+      case 'EN': return [
+        { id: 'airport', label: 'Airport VIP', icon: Plane },
+        { id: 'marina', label: 'Marina & Yacht', icon: Anchor },
+        { id: 'hourly', label: 'Hourly Disposal', icon: Clock },
+        { id: 'intercity', label: 'Intercity', icon: Compass },
+      ];
+      case 'RU': return [
+        { id: 'airport', label: 'VIP Аэропорт', icon: Plane },
+        { id: 'marina', label: 'Марины и Яхты', icon: Anchor },
+        { id: 'hourly', label: 'Почасовая Аренда', icon: Clock },
+        { id: 'intercity', label: 'Межгород', icon: Compass },
+      ];
+      case 'DE': return [
+        { id: 'airport', label: 'Flughafen VIP', icon: Plane },
+        { id: 'marina', label: 'Yachthafen', icon: Anchor },
+        { id: 'hourly', label: 'Stundenweise', icon: Clock },
+        { id: 'intercity', label: 'Überland', icon: Compass },
+      ];
+      case 'AR': return [
+        { id: 'airport', label: 'المطار', icon: Plane },
+        { id: 'marina', label: 'المارينا واليخوت', icon: Anchor },
+        { id: 'hourly', label: 'تأجير بالساعة', icon: Clock },
+        { id: 'intercity', label: 'بين المدن', icon: Compass },
+      ];
+      default: return [
+        { id: 'airport', label: 'Havalimanı VIP', icon: Plane },
+        { id: 'marina', label: 'Marina & Yat', icon: Anchor },
+        { id: 'hourly', label: 'Saatlik & Günlük Tahsis', icon: Clock },
+        { id: 'intercity', label: 'Şehirlerarası Özel', icon: Compass },
+      ];
+    }
+  };
+  const categories = getCategories();
+
+  const getServicesData = () => {
+    // English
+    if(lang === 'EN') return {
+      airport: [
+        { title: 'Milas-Bodrum (BJV) Greeter', desc: 'Live flight tracking. Met at the VIP exit with a name board.', badge: 'Live Tracking', icon: Plane, image: '/images/wix_img_0.jpg' },
+        { title: 'Aviation & Private Jet', desc: 'Direct apron transfer from Bodrum VIP Jet Terminal.', badge: 'VIP Protocol', icon: Crown, image: '/images/wix_img_1.jpg' },
+        { title: 'Return to Airport', desc: 'Flawless schedule planning for your departure.', badge: 'Zero Delay', icon: ShieldCheck, image: '/images/wix_img_2.jpg' },
+      ],
+      marina: [
+        { title: 'Yalıkavak Marina VIP', desc: 'Private vehicle access to superyacht piers and clubs.', badge: 'Pier Access', icon: Anchor, image: '/images/wix_img_0.jpg' },
+        { title: 'D-Marin & Bodrum Marina', desc: 'Spacious Mercedes Vito for yacht passengers.', badge: 'Spacious Luggage', icon: Compass, image: '/images/wix_img_1.jpg' },
+        { title: 'Beach Club Shuttles', desc: 'No-wait VIP chauffeurs to top clubs like Scorpios.', badge: 'Night Protocol', icon: Wine, image: '/images/wix_img_2.jpg' },
+      ],
+      hourly: [
+        { title: 'Full Day Disposal', desc: 'Your Maybach/Vito awaits your command for 8-24 hours.', badge: 'Unlimited Wait', icon: Clock, image: '/images/wix_img_0.jpg' },
+        { title: 'Business Protocol', desc: 'Professional chauffeurs in suits for official delegations.', badge: 'Protocol Chauffeur', icon: ShieldCheck, image: '/images/wix_img_1.jpg' },
+        { title: 'Bespoke Bodrum Tour', desc: 'Custom routes across Bodrum\'s best sunsets.', badge: 'Custom Route', icon: Map, image: '/images/wix_img_2.jpg' },
+      ],
+      intercity: [
+        { title: 'Bodrum ➔ Izmir', desc: 'Luxury long-distance transfer to Izmir/Cesme.', badge: 'Long Distance', icon: Compass, image: '/images/wix_img_0.jpg' },
+        { title: 'Bodrum ➔ Marmaris', desc: 'Safe passage to Blue Voyage starting ports.', badge: 'Blue Voyage', icon: Anchor, image: '/images/wix_img_1.jpg' },
+        { title: 'Bodrum ➔ Kusadasi', desc: 'VIP transport to Kusadasi cruise port.', badge: 'Highway Travel', icon: Plane, image: '/images/wix_img_2.jpg' },
+      ]
+    };
+    
+    // Turkish (default logic but localized for brevity to just return default if TR/other)
+    return {
+      airport: [
+        { title: 'Milas-Bodrum (BJV) Karşılama', desc: 'Uçuşunuz canlı radardan takip edilir. İsim levhası ile karşılanırsınız.', badge: 'Canlı Takip', icon: Plane, image: '/images/wix_img_0.jpg' },
+        { title: 'Genel Havacılık & Özel Jet', desc: 'Bodrum VIP Jet Terminali aprondan doğrudan bagaj ve yolcu transferi.', badge: 'VIP Jet Protokolü', icon: Crown, image: '/images/wix_img_1.jpg' },
+        { title: 'Dönüş & Otelden Uçuşa', desc: 'Otelinizden uçağınızın saatine göre kalkış planı.', badge: 'Sıfır Rötar Riski', icon: ShieldCheck, image: '/images/wix_img_2.jpg' },
+      ],
+      marina: [
+        { title: 'Yalıkavak Marina VIP Transfer', desc: 'Süperyat iskelesi ve beach clublara özel araç girişi.', badge: 'İskele İçi Geçiş', icon: Anchor, image: '/images/wix_img_0.jpg' },
+        { title: 'D-Marin Turgutreis & Bodrum', desc: 'Geniş bagaj hacimli Mercedes Vito transferi.', badge: 'Geniş Bagaj Kapasitesi', icon: Compass, image: '/images/wix_img_1.jpg' },
+        { title: 'Scorpios & Maçakızı Servisi', desc: 'Seçkin gece kulüplerine beklemesiz gidiş-dönüş.', badge: 'Gece Protokolü', icon: Wine, image: '/images/wix_img_2.jpg' },
+      ],
+      hourly: [
+        { title: 'Tam Gün Şoförlü Araç Tahsisi', desc: 'Aracınız ve şoförünüz emrinizde bekler.', badge: 'Sınırsız Bekleme', icon: Clock, image: '/images/wix_img_0.jpg' },
+        { title: 'İş & Protokol Seyahatleri', desc: 'Takım elbiseli profesyonel şoförlerle resmi transfer.', badge: 'Protokol Şoförü', icon: ShieldCheck, image: '/images/wix_img_1.jpg' },
+        { title: 'Kişiye Özel Bodrum Turu', desc: 'Gümüşlük gün batımı ve özel şarap bağları rotaları.', badge: 'Özel Rota', icon: Map, image: '/images/wix_img_2.jpg' },
+      ],
+      intercity: [
+        { title: 'Bodrum ➔ İzmir & Çeşme', desc: 'İzmir veya Çeşme otellerine kesintisiz lüks transfer.', badge: 'Uzun Yol Konforu', icon: Compass, image: '/images/wix_img_0.jpg' },
+        { title: 'Bodrum ➔ Marmaris & Göcek', desc: 'Mavi yolculuk limanlarına konforlu geçiş.', badge: 'Mavi Tur Bağlantısı', icon: Anchor, image: '/images/wix_img_1.jpg' },
+        { title: 'Bodrum ➔ Didim & Kuşadası', desc: 'Kruvaziyer limanlarına kapıdan kapıya özel VIP ulaşım.', badge: 'Hızlı Otoyol Seyahati', icon: Plane, image: '/images/wix_img_2.jpg' },
+      ]
+    };
+  };
+  const servicesData = getServicesData() as Record<string, Array<{ title: string; desc: string; badge: string; icon: any; image: string }>>;
+
   const getTexts = () => {
     switch(lang) {
       case 'EN': return { sub: 'PREMIUM SERVICES', title: 'Exclusive Privileges', desc: 'Beyond standards, an Aegean VIP experience.' };
       case 'RU': return { sub: 'ПРЕМИУМ УСЛУГИ', title: 'Эксклюзивные Привилегии', desc: 'За гранью стандартов, эгейский VIP-опыт.' };
       case 'DE': return { sub: 'PREMIUM-DIENSTE', title: 'Exklusive Privilegien', desc: 'Jenseits von Standards, ein VIP-Erlebnis in der Ägäis.' };
       case 'AR': return { sub: 'خدمات ممتازة', title: 'امتيازات حصرية', desc: 'خارج المعايير، تجربة كبار الشخصيات في بحر إيجة.' };
-      default: return { sub: '{texts.sub}', title: '{texts.title}', desc: '{texts.desc}' };
+      default: return { sub: 'PREMIUM HİZMETLER', title: 'Size Özel Ayrıcalıklar', desc: 'Standartların ötesinde VIP deneyimi.' };
     }
   };
   const texts = getTexts();
