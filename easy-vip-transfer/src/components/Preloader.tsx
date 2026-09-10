@@ -21,7 +21,7 @@ export default function Preloader() {
           initial={{ y: 0 }}
           exit={{ y: '-100%' }}
           transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] bg-[#030303] flex items-center justify-center overflow-hidden"
+          className="pointer-events-none fixed inset-0 z-[9999] bg-[#030303] flex items-center justify-center overflow-hidden"
         >
           {/* Subtle noise background */}
           <div className="absolute inset-0 opacity-[0.03] mix-blend-difference" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }} />
