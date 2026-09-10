@@ -165,3 +165,23 @@ Ama dikkat: **"lüks" = ağır efekt değil.** Rakip sitede sıfır animasyon va
 - Ölçülü motion (scroll reveal, 200-400ms, `ease-out`) — evet
 - Parallax şovu, otomatik karusel, glow patlaması — hayır
 - Gerçek yüksek çözünürlüklü fotoğraf (araç içi, bölge) — zorunlu. Boş/kuru metin bırakılmaz.
+
+---
+
+## 9. MÜŞTERİ AVCILIĞI & CRM SENKRONİZASYONU (Antigravity & Claude)
+
+Apify Google Maps Lead Scraper (`scripts/hunt_leads.py`) ile taranan işletmeler otomatik olarak ortak Notion CRM'e işlenmektedir.
+
+### Güncel Durum (10 Eylül 2026):
+- **Taranan Sektörler:** Marmaris Tekne Turu & Yatçılık (20 işletme).
+- **Başarı Oranı:** 20 işletmenin **18 tanesi (%90)** ya *Websitesi Hiç Yok* ya da *SSL'siz / Çökmüş / 6-8 saniyede açılan çağ dışı siteler* olarak tespit edilip etiketlendi.
+- **Teklif Stratejisi:** Bu işletmelere "Site kurma" değil; **"Marmaris'te her ay arama yapan yüzlerce turisti kaçırmayan, 3D Secure kaporalı online rezervasyon motoru"** teklif ediliyor.
+
+### ❓ Alper & Claude ile Tartışılacak Açık Kararlar:
+1. **Sıradaki Öncelikli Sektörler:**
+   - Seçenek A: **Bodrum / Antalya VIP Transfer** (Easy VIP Transfer demosuyla doğrudan satış)
+   - Seçenek B: **Göcek / Fethiye Özel Yat & Gulet Kiralama** (Yüksek sepet tutarı, komisyonsuz doğrudan rezervasyon)
+   - Seçenek C: **Kalkan / Kaş Lüks Villa Kiralama** (Kapora dolandırıcılığına karşı kurumsal 3D Secure çözümü)
+   - Seçenek D: **E-Ticaret Butikleri** (İkas geçişi & Meta CAPI optimizasyonu — Örn: Sermoda)
+2. **Cold Outreach Formatı:** WhatsApp / SMS doğrudan demo linki mi, yoksa Instagram DM üzerinden teknik audit mi?
+
