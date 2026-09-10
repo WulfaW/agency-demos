@@ -177,7 +177,6 @@ export default function PriceCalculator() {
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSwap = () => {
     const tmp = from;
@@ -185,7 +184,7 @@ export default function PriceCalculator() {
     setTo(tmp);
   };
 
-  const handleWhatsApp = async () => {
+  const handleWhatsApp = () => {
     if (!name || !phone) {
       alert(lang === 'TR' ? 'Lütfen adınızı ve telefonunuzu giriniz.' : 'Please enter your name and phone number.');
       return;
@@ -194,28 +193,7 @@ export default function PriceCalculator() {
     const fromName = LOCATIONS.find((l) => l.id === from)?.name || from;
     const toName = LOCATIONS.find((l) => l.id === to)?.name || to;
     
-    setIsSubmitting(true);
-    try {
-      // 1. Backend'e kaydet ve mail at (Supabase & Resend)
-      await fetch('/api/book', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          phone,
-          from: fromName,
-          to: toName,
-          date,
-          vehicle: passengers + ' Yolcu Aracı',
-          price: 0 // Will calculate in backend or admin
-        })
-      });
-    } catch (e) {
-      console.error(e);
-    }
-    setIsSubmitting(false);
-
-    // 2. WhatsApp'a yönlendir (Dile göre dinamik şablon)
+    // WhatsApp'a yönlendir (Dile göre dinamik şablon)
     let msg = '';
     
     if (lang === 'TR') {
