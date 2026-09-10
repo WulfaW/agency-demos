@@ -1,4 +1,6 @@
 ﻿import sys
+sys.stdout.reconfigure(encoding='utf-8')
+import sys
 import os
 import time
 import re
@@ -8,7 +10,7 @@ from urllib.parse import urlparse
 def load_env():
     env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
     if os.path.exists(env_path):
-        with open(env_path, 'r', encoding='utf-8') as f:
+        with open(env_path, 'r', encoding='utf-8-sig') as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
