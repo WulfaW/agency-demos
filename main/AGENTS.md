@@ -175,17 +175,20 @@ Apify Google Maps Lead Scraper (`scripts/hunt_leads.py`) ile taranan işletmeler
 ### Güncel Durum (10 Eylül 2026):
 - **Taranan Sektörler:** 
   - Marmaris Tekne Turu & Yatçılık (20 işletme)
-  - **YENİ:** VIP Araç Tasarım & Karavan Dönüşüm (10 işletme)
-  - **YENİ:** Lüks Rekreasyon / At Çiftlikleri (10 işletme)
-  - **YENİ:** Modüler Ev / Tiny House Üreticileri (10 işletme - Taraması yapıldı)
-- **Başarı Oranı:** Taranan işletmelerin **%90'ından fazlasının** ya *Websitesi Hiç Yok* ya da *SSL'siz / Çökmüş / Çok Yavaş* siteler olduğu tespit edildi. Özellikle VIP Araç, At Çiftlikleri ve Tiny House sektörlerinde "Sıfır Site" oranı inanılmaz yüksek.
+  - VIP Araç Tasarım & Karavan Dönüşüm (10 işletme)
+  - Lüks Rekreasyon / At Çiftlikleri (10 işletme)
+  - Modüler Ev / Tiny House Üreticileri (10 işletme)
+  - **YENİ DEVREYE ALINANLAR (Eşzamanlı Taranıyor):**
+    - Urla Şarap Bağları & Butik Oteller
+    - Özel Helikopter & Jet Kiralama
+    - VIP Sağlık Turizmi & Lüks Estetik Klinikleri
+    - Lüks Düğün & VIP Etkinlik Mekanları
+    - Kalkan Lüks Villa Kiralama
+- **Başarı Oranı:** Taranan işletmelerin **%90'ından fazlasının** ya *Websitesi Hiç Yok* ya da *SSL'siz / Çökmüş / Çok Yavaş* siteler olduğu tespit edildi.
 - **Teklif Stratejisi:** Bu işletmelere "Site kurma" değil; **"Doğrudan online rezervasyon/satış motoru ve dijital vitrin"** teklif ediliyor.
 
-### ❓ Alper & Claude ile Tartışılacak Açık Kararlar:
-1. **Sıradaki Öncelikli Sektörler:**
-   - Seçenek A: **Bodrum / Antalya VIP Transfer** (Easy VIP Transfer demosuyla doğrudan satış)
-   - Seçenek B: **Göcek / Fethiye Özel Yat & Gulet Kiralama** (Yüksek sepet tutarı, komisyonsuz doğrudan rezervasyon)
-   - Seçenek C: **Kalkan / Kaş Lüks Villa Kiralama** (Kapora dolandırıcılığına karşı kurumsal 3D Secure çözümü)
-   - Seçenek D: **E-Ticaret Butikleri** (İkas geçişi & Meta CAPI optimizasyonu — Örn: Sermoda)
-2. **Cold Outreach Formatı:** WhatsApp / SMS doğrudan demo linki mi, yoksa Instagram DM üzerinden teknik audit mi?
+### ❓ Alper & Claude ile Tartışılacak Açık Kararlar (MASTER TEMPLATE STRATEJİSİ):
+1. **Hangi Master Şablonu Kodlayalım?:** Notion'da 50+ çok lüks segment lead birikti (Helikopter, Yat, VIP Araç, At Çiftliği, Villa). Tek bir Next.js rezervasyon sistemi kodlayıp ("Master Template"), sadece CSS/Logo değiştirerek hepsine (50.000 TL - 100.000 TL bandında) satma stratejisinde mutabık kaldık.
+   *Soru:* Bu Master Template'in mimarisini HANGİ sektörü baz alarak (ilk kurban) kurgulayalım? (Helikopter/Jet mi, Yat Kiralama mı, VIP Araç Tasarım mı?) Alper'den onay/seçim bekleniyor.
+2. **Cold Outreach Formatı:** İlk Master Şablon bittiğinde müşterilere WhatsApp üzerinden doğrudan "Size özel hazırladığımız canlı demo: link" mi atalım, yoksa Instagram DM üzerinden mi yürüyelim?
 
