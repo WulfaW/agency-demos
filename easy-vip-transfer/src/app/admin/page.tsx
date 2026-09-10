@@ -5,11 +5,13 @@ import { Car, Users, Banknote, Sparkles, LogOut, CalendarDays } from 'lucide-rea
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import ResourceManager from '@/components/admin/ResourceManager';
+import AssignmentForm from '@/components/admin/AssignmentForm';
 
 type Tab = 'gorevler' | 'surucular' | 'araclar' | 'ucretler';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('gorevler');
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const router = useRouter();
   const supabase = createClient();
@@ -49,7 +51,7 @@ export default function AdminDashboard() {
         {activeTab === 'gorevler' && (
           <div className="space-y-8">
             <header className="mb-6"><h1 className="text-3xl font-serif text-white">Görevler</h1></header>
-            <p className="text-zinc-500 text-sm">Yakında.</p>
+            <AssignmentForm onSaved={() => setRefreshKey((k) => k + 1)} />
           </div>
         )}
 
