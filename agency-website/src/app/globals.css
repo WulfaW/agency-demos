@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #0B0B0C;
+    --foreground: #EDEDED;
+    --muted: #18181B;
+    --muted-foreground: #A1A1AA;
+    --card: #121214;
+    --card-foreground: #FFFFFF;
+    --border: rgba(255, 255, 255, 0.08);
+    --gold: #D4AF37;
+    --gold-light: #F3E5AB;
+    --champagne: #C5A880;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    selection-background-color: #D4AF37;
+    selection-color: #000000;
+  }
+}
+
+/* Custom Glass & Border Utilities */
+.glass-panel {
+  background: rgba(18, 18, 20, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 20%, #E2D9C8 60%, #C5A880 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtle-glow {
+  box-shadow: 0 0 40px -10px rgba(197, 168, 128, 0.15);
+}
