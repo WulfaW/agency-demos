@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { MapPin, CalendarDays, AlertTriangle } from 'lucide-react';
+import { MapPin, CalendarDays, AlertTriangle, Trash2 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { overlaps } from '@/lib/overlap';
 
@@ -17,6 +17,8 @@ const parseRange = (during: string) => {
 export default function AssignmentList({ refreshKey }: { refreshKey: number }) {
   const [rows, setRows] = useState<any[]>([]);
   const [error, setError] = useState('');
+  const [iptalleriGoster, setIptalleriGoster] = useState(false);
+  const [silinecek, setSilinecek] = useState<string | null>(null);
   const supabase = createClient();
 
   const load = async () => {
@@ -50,11 +52,34 @@ export default function AssignmentList({ refreshKey }: { refreshKey: number }) {
     load();
   };
 
+  /** Yanlis girilen kaydi tamamen siler. Iki adimli: once "Emin misin?"e doner. */
+  const sil = async (id: string) => {
+    const { error } = await supabase.from('assignments').delete().eq('id', id);
+    if (error) { setError(error.message); return; }
+    setSilinecek(null);
+    load();
+  };
+
+  const iptalSayisi = rows.filter((r) => r.status === 'cancelled').length;
+  const gorunen = iptalleriGoster ? rows : rows.filter((r) => r.status !== 'cancelled');
+
   return (
     <div className="space-y-4">
       {error && <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">{error}</p>}
 
-      {rows.map((r) => {
+      {iptalSayisi > 0 && (
+        <label className="flex items-center justify-end gap-2 text-xs text-zinc-400 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={iptalleriGoster}
+            onChange={(e) => setIptalleriGoster(e.target.checked)}
+            className="w-3.5 h-3.5 accent-[#E5D3B3]"
+          />
+          İptal edilenleri göster ({iptalSayisi})
+        </label>
+      )}
+
+      {gorunen.map((r) => {
         const { start, end } = parseRange(r.during);
         return (
           <div key={r.id} className="flex justify-between p-6 rounded-3xl bg-white/[0.02] border border-white/[0.05]">
@@ -90,11 +115,30 @@ export default function AssignmentList({ refreshKey }: { refreshKey: number }) {
                   {r.status === 'done' ? 'Tamamlandı' : 'İptal'}
                 </span>
               )}
+
+              {silinecek === r.id ? (
+                <div className="flex items-center gap-2 mt-3">
+                  <span className="text-[11px] text-zinc-400">Kalıcı olarak silinsin mi?</span>
+                  <button onClick={() => sil(r.id)} className="px-3 py-1.5 rounded-lg bg-red-500/25 text-red-300 text-[11px] font-medium">Sil</button>
+                  <button onClick={() => setSilinecek(null)} className="px-3 py-1.5 rounded-lg bg-white/5 text-zinc-400 text-[11px]">Vazgeç</button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setSilinecek(r.id)}
+                  className="mt-3 flex items-center gap-1.5 text-[11px] text-zinc-600 hover:text-red-400 transition-colors"
+                >
+                  <Trash2 className="w-3 h-3" /> Sil
+                </button>
+              )}
             </div>
           </div>
         );
       })}
-      {rows.length === 0 && <p className="text-zinc-500 text-sm">Henüz görev yok.</p>}
+      {gorunen.length === 0 && (
+        <p className="text-zinc-500 text-sm">
+          {rows.length === 0 ? 'Henüz görev yok.' : 'Aktif görev yok.'}
+        </p>
+      )}
     </div>
   );
 }

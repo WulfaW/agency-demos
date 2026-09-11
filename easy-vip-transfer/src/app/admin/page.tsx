@@ -1,15 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Car, Users, Banknote, Sparkles, LogOut, CalendarDays } from 'lucide-react';
+import { Car, Users, Sparkles, LogOut, CalendarDays } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import ResourceManager from '@/components/admin/ResourceManager';
 import AssignmentForm from '@/components/admin/AssignmentForm';
 import AssignmentList from '@/components/admin/AssignmentList';
-import PaymentsPanel from '@/components/admin/PaymentsPanel';
 
-type Tab = 'gorevler' | 'surucular' | 'araclar' | 'ucretler';
+type Tab = 'gorevler' | 'surucular' | 'araclar';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('gorevler');
@@ -36,7 +35,6 @@ export default function AdminDashboard() {
             { id: 'gorevler',  label: 'Görevler',  icon: CalendarDays },
             { id: 'surucular', label: 'Sürücüler', icon: Users },
             { id: 'araclar',   label: 'Araçlar',   icon: Car },
-            { id: 'ucretler',  label: 'Ücretler',  icon: Banknote },
           ].map((item) => (
             <button key={item.id} onClick={() => setActiveTab(item.id as Tab)} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm ${activeTab === item.id ? 'bg-white/10 text-white font-medium border border-white/5' : 'text-zinc-400 hover:bg-white/[0.02]'}`}>
               <item.icon className={`w-4 h-4 ${activeTab === item.id ? 'text-[#E5D3B3]' : 'opacity-60'}`} /> {item.label}
@@ -65,8 +63,6 @@ export default function AdminDashboard() {
         {activeTab === 'araclar' && (
           <ResourceManager table="vehicles" title="Araçlar" secondLabel="Plaka" secondField="plate" />
         )}
-
-        {activeTab === 'ucretler' && <PaymentsPanel />}
 
       </main>
     </div>
