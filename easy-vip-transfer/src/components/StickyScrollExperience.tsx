@@ -84,28 +84,45 @@ export default function StickyScrollExperience() {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 mb-12">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-12">
           {steps.map((step, idx) => {
             const isActive = activeStep === idx;
             return (
               <button
                 key={idx}
-                onClick={() => setActiveStep(idx)}
-                className={`relative px-5 py-3 rounded-full text-sm font-sans tracking-widest uppercase transition-all duration-300 border ${
+                onClick={() => {
+                  setActiveStep(idx);
+                  setIsHovered(true); // Pause auto-rotate when manually clicked
+                  setTimeout(() => setIsHovered(false), 8000); // Resume after 8s
+                }}
+                className={`relative px-6 py-4 rounded-2xl md:rounded-full text-sm font-sans tracking-widest uppercase transition-all duration-300 border overflow-hidden w-full md:w-auto ${
                   isActive 
                     ? "bg-white/[0.08] text-white border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.05)]" 
-                    : "bg-transparent text-zinc-500 border-transparent hover:text-zinc-300"
+                    : "bg-white/[0.02] text-zinc-500 border-white/[0.05] hover:text-zinc-300 hover:bg-white/[0.04]"
                 }`}
               >
-                <span className="font-mono mr-2 opacity-50">{step.number}</span>
+                <span className="font-mono mr-3 opacity-50">{step.number}</span>
                 {step.tag}
+                
                 {isActive && (
-                  <motion.div 
-                    layoutId="activeTabIndicator"
-                    className="absolute inset-0 rounded-full border border-[#E5D3B3]/40 pointer-events-none"
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
+                  <>
+                    <motion.div 
+                      layoutId="activeTabIndicator"
+                      className="absolute inset-0 border border-[#E5D3B3]/40 rounded-2xl md:rounded-full pointer-events-none"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                    {/* Visual Timer Progress Bar */}
+                    {!isHovered && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 h-[2px] bg-[#E5D3B3]"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 4, ease: "linear" }}
+                        key={`timer-${activeStep}`} // Reset animation when step changes
+                      />
+                    )}
+                  </>
                 )}
               </button>
             );
