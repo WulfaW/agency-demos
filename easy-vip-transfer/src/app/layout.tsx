@@ -63,9 +63,25 @@ export default function RootLayout({
       <body className="bg-[#030303] min-h-screen flex flex-col font-sans selection:bg-white selection:text-black relative">
         <ScrollProgress />
         <Preloader />
+        {/* Film grain / noise overlay */}
         <div 
           className="pointer-events-none fixed inset-0 z-[1000] h-full w-full opacity-[0.04] mix-blend-difference"
           style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}
+        />
+        {/* Ambient glow — center warm gold (brand accent) */}
+        <div 
+          className="pointer-events-none fixed inset-0 z-[1] h-full w-full"
+          style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 30%, rgba(229,211,179,0.045) 0%, transparent 70%)' }}
+        />
+        {/* Ambient glow — top-left cool silver */}
+        <div 
+          className="pointer-events-none fixed inset-0 z-[1] h-full w-full"
+          style={{ background: 'radial-gradient(ellipse 55% 45% at -5% 5%, rgba(200,210,220,0.035) 0%, transparent 65%)' }}
+        />
+        {/* Ambient glow — bottom-right subtle warm leak */}
+        <div 
+          className="pointer-events-none fixed inset-0 z-[1] h-full w-full"
+          style={{ background: 'radial-gradient(ellipse 50% 40% at 105% 100%, rgba(229,211,179,0.03) 0%, transparent 60%)' }}
         />
         <PostHogProvider>
           <LanguageProvider>
