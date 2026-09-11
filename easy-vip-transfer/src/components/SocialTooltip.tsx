@@ -18,7 +18,7 @@ const SocialTooltip = React.forwardRef<HTMLUListElement, SocialTooltipProps>(
     const baseIconStyles =
       "relative flex items-center justify-center w-12 h-12 rounded-full bg-white/[0.03] border border-white/10 overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-lg";
     const baseSvgStyles =
-      "relative z-10 w-5 h-5 text-zinc-400 transition-colors duration-300 ease-in-out group-hover:text-white invert opacity-70 group-hover:opacity-100 group-hover:invert-0";
+      "relative z-10 w-5 h-5 transition-all duration-300 ease-in-out opacity-60 group-hover:opacity-100 group-hover:scale-110";
     const baseFilledStyles =
       "absolute bottom-0 left-0 w-full h-0 transition-all duration-300 ease-in-out group-hover:h-full";
     const baseTooltipStyles =
@@ -46,7 +46,7 @@ const SocialTooltip = React.forwardRef<HTMLUListElement, SocialTooltipProps>(
               <img
                 src={item.svgUrl}
                 alt={item.ariaLabel}
-                className={cn(baseSvgStyles, item.color === '#ffffff' ? '' : '')}
+                className={cn(baseSvgStyles, item.color === '#ffffff' ? 'group-hover:invert' : '')}
               />
             </a>
             <div
