@@ -9,6 +9,7 @@ import LuxuryDestinations from '@/components/LuxuryDestinations';
 import StickyScrollExperience from '@/components/StickyScrollExperience';
 import SpotlightServices from '@/components/SpotlightServices';
 import TestimonialsMarquee from '@/components/TestimonialsMarquee';
+import ParallaxGallery from '@/components/ui/3d-parallax-unfurling-gallery';
 import FaqAndFooter from '@/components/FaqAndFooter';
 import StickyMobileBar from '@/components/StickyMobileBar';
 
@@ -44,6 +45,9 @@ export default function Home() {
 
       {/* 9. Sonsuz Kayan Yorumlar (Infinite Marquee) */}
       <TestimonialsMarquee />
+
+      {/* 9.5. 3D Lüks Galeri */}
+      <ParallaxGallery />
 
       {/* 10. Lüks Akordiyon SSS & Footer */}
       <FaqAndFooter />
