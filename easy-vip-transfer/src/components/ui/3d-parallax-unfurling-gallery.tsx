@@ -9,19 +9,25 @@ import React, {
 } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
+// Luxury fleet gallery — Mercedes S-Class, Vito VIP, Maybach, interior shots
 const UNSPLASH_IMAGES = [
-  "https://static.wixstatic.com/media/7e59bc_a3efef799d9a468dbd76721ac9a8754b~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_a3efef799d9a468dbd76721ac9a8754b~mv2.jpg",
-  "https://static.wixstatic.com/media/7e59bc_ab315091a296415d95c7a5c6b47d6f48~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_ab315091a296415d95c7a5c6b47d6f48~mv2.jpeg",
-  "https://static.wixstatic.com/media/7e59bc_ce3f66a3333548a1bd3a672365ab4e1e~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_ce3f66a3333548a1bd3a672365ab4e1e~mv2.jpg",
-  "https://static.wixstatic.com/media/7e59bc_9bcabf7adda749dab1e8efb432cba508~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_9bcabf7adda749dab1e8efb432cba508~mv2.jpg",
-  "https://static.wixstatic.com/media/7e59bc_387de9bcef444e70996ff39a12e4ffb1~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_387de9bcef444e70996ff39a12e4ffb1~mv2.jpeg",
-  "https://static.wixstatic.com/media/7e59bc_38e02b86daf14ffc9fe7827c44c1a431~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_38e02b86daf14ffc9fe7827c44c1a431~mv2.jpg",
-  "https://static.wixstatic.com/media/7e59bc_f9df606622794e8486a8baa9a6524818~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_f9df606622794e8486a8baa9a6524818~mv2.jpeg",
-  "https://static.wixstatic.com/media/7e59bc_6398cf38f81e465d8ab29ba9a7172773~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_6398cf38f81e465d8ab29ba9a7172773~mv2.jpeg",
-  "https://static.wixstatic.com/media/7e59bc_7c787bbe114e49cfa3eafe887cb84483~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_7c787bbe114e49cfa3eafe887cb84483~mv2.jpg",
-  "https://static.wixstatic.com/media/7e59bc_b54d01dc3b8a4fa0906333fa3b05228b~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_b54d01dc3b8a4fa0906333fa3b05228b~mv2.jpg",
-  "https://static.wixstatic.com/media/7e59bc_0db920749e5e4a5e8f1c0bb430707dc9~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_0db920749e5e4a5e8f1c0bb430707dc9~mv2.jpg",
-  "https://static.wixstatic.com/media/7e59bc_db01bf03ea114adeabc4cd9334d9e4de~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_db01bf03ea114adeabc4cd9334d9e4de~mv2.jpg",
+  // Mercedes S-Class / Maybach exterior — elegant black sedan shots
+  "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&h=800&fit=crop&q=85",
+  "https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=1200&h=800&fit=crop&q=85",
+  "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1200&h=800&fit=crop&q=85",
+  // Luxury sedan / chauffeur exterior — different angles
+  "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1200&h=800&fit=crop&q=85",
+  "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=1200&h=800&fit=crop&q=85",
+  "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&h=800&fit=crop&q=85",
+  // Luxury VIP van / minivan exterior — Vito / V-Class style
+  "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=1200&h=800&fit=crop&q=85",
+  "https://images.unsplash.com/photo-1566933293069-b55c7f326dd4?w=1200&h=800&fit=crop&q=85",
+  // Premium interior — leather seats, ambient lighting
+  "https://images.unsplash.com/photo-1547744152-14d985cb937f?w=1200&h=800&fit=crop&q=85",
+  "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=800&fit=crop&q=85",
+  // Night / dusk luxury car shots
+  "https://images.unsplash.com/photo-1542362567-b07e54358753?w=1200&h=800&fit=crop&q=85",
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop&q=85",
 ];
 
 interface ImageCardProps {
