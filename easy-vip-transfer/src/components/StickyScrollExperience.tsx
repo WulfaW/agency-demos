@@ -5,7 +5,7 @@ import { Plane, Sparkles, MapPin, CheckCircle2, ArrowRight } from 'lucide-react'
 
 
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function StickyScrollExperience() {
@@ -77,119 +77,134 @@ export default function StickyScrollExperience() {
         </h2>
       </motion.div>
 
-      {/* Split Interactive Experience */}
+      {/* Changing Cards Interactive Experience */}
       <div 
-        className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+        className="max-w-5xl mx-auto"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        
-        {/* Left Interactive Step Cards (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        {/* Navigation Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 mb-12">
           {steps.map((step, idx) => {
             const isActive = activeStep === idx;
             return (
-              <div
-                key={step.number}
+              <button
+                key={idx}
                 onClick={() => setActiveStep(idx)}
-                className={`cursor-pointer rounded-3xl p-8 transition-all duration-500 border ${
-                  isActive
-                    ? "bg-[#0a0a0a]/90 border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.8)] ring-1 ring-[#E5D3B3]/30"
-                    : "bg-white/[0.01] hover:bg-white/[0.03] border-white/[0.05] opacity-60 hover:opacity-100"
+                className={`relative px-5 py-3 rounded-full text-sm font-sans tracking-widest uppercase transition-all duration-300 border ${
+                  isActive 
+                    ? "bg-white/[0.08] text-white border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.05)]" 
+                    : "bg-transparent text-zinc-500 border-transparent hover:text-zinc-300"
                 }`}
               >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <span className={`text-sm font-mono font-bold px-2.5 py-1 rounded-lg ${
-                      isActive ? "bg-[#E5D3B3] text-black" : "bg-white/5 text-zinc-400"
-                    }`}>
-                      {step.number}
-                    </span>
-                    <span className="text-[13px] font-sans tracking-widest text-[#E5D3B3] uppercase">
-                      {step.tag}
-                    </span>
-                  </div>
-                  <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    isActive ? "bg-[#E5D3B3] scale-125" : "bg-zinc-700"
-                  }`} />
+                <span className="font-mono mr-2 opacity-50">{step.number}</span>
+                {step.tag}
+                {isActive && (
+                  <motion.div 
+                    layoutId="activeTabIndicator"
+                    className="absolute inset-0 rounded-full border border-[#E5D3B3]/40 pointer-events-none"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Dynamic Card Display */}
+        <div className="relative min-h-[500px] w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStep}
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute inset-0 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+            >
+              
+              {/* Left Text Card */}
+              <div className="lg:col-span-7 backdrop-blur-xl bg-[#0a0a0a]/60 border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#E5D3B3]/5 rounded-full blur-[80px] pointer-events-none" />
+                
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-4xl md:text-6xl font-serif text-white/20 font-light">
+                    {steps[activeStep].number}
+                  </span>
+                  <div className="h-px w-16 bg-[#E5D3B3]/30"></div>
                 </div>
 
-                <h3 className="text-xl md:text-2xl font-serif text-white mb-3">
-                  {step.title}
+                <h3 className="text-3xl md:text-4xl font-serif text-white mb-6 leading-tight">
+                  {steps[activeStep].title}
                 </h3>
                 
-                <p className="text-sm font-sans text-zinc-400 font-light leading-relaxed mb-6">
-                  {step.desc}
+                <p className="text-base md:text-lg font-sans text-zinc-400 font-light leading-relaxed mb-10">
+                  {steps[activeStep].desc}
                 </p>
 
                 {/* Badges */}
                 <div className="flex flex-wrap gap-3">
-                  {step.highlights.map((hl, hIdx) => (
+                  {steps[activeStep].highlights.map((hl, hIdx) => (
                     <div
                       key={hIdx}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-[14px] text-zinc-300"
+                      className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-[13px] text-zinc-200 tracking-wide"
                     >
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#E5D3B3]" />
+                      <CheckCircle2 className="w-4 h-4 text-[#E5D3B3]" />
                       <span>{hl}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            );
-          })}
+
+              {/* Right Visual Card */}
+              <div className="lg:col-span-5 h-full">
+                <div className="backdrop-blur-2xl bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-4 shadow-[0_30px_100px_rgba(0,0,0,0.9)] overflow-hidden relative h-full flex flex-col">
+                  
+                  {/* Visual Image container */}
+                  <div className="relative h-64 md:h-72 w-full rounded-2xl overflow-hidden mb-6 bg-zinc-900 border border-white/5 shrink-0">
+                    <img
+                      src={steps[activeStep].image}
+                      alt={steps[activeStep].title}
+                      className="w-full h-full object-cover transition-transform duration-1000 scale-105 hover:scale-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90" />
+                    
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                      <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[12px] text-[#E5D3B3] font-mono uppercase tracking-widest">
+                        {steps[activeStep].accent}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Fast WhatsApp Route Booking */}
+                  <div className="space-y-4 px-2 pb-2 flex-grow flex flex-col justify-end">
+                    <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
+                      <span>Rezervasyon:</span>
+                      <strong className="text-white font-serif">VIP Kapıdan Kapıya</strong>
+                    </div>
+                    <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
+                      <span>Şoför Statüsü:</span>
+                      <span className="text-emerald-400 font-medium">● 7/24 Aktif & Hazır</span>
+                    </div>
+                    
+                    <a
+                      href="https://wa.me/905305673991?text=Merhaba,%20VIP%20transfer%20hizmetiniz%20hakkinda%20bilgi%20ve%20rezervasyon%20almak%20istiyorum."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full mt-auto flex items-center justify-center gap-2 bg-white text-black hover:bg-[#E5D3B3] py-4 rounded-xl text-sm font-bold tracking-widest uppercase transition-all duration-300"
+                    >
+                      <span>Hemen Rezerve Et</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+            </motion.div>
+          </AnimatePresence>
         </div>
-
-        {/* Right Sticky Visual Display (5 cols) */}
-        <div className="lg:col-span-5 sticky top-28">
-          <div className="backdrop-blur-2xl bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-6 shadow-[0_30px_100px_rgba(0,0,0,0.9)] overflow-hidden relative">
-            
-            {/* Ambient Backlight */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-[#E5D3B3]/10 rounded-full blur-[70px] pointer-events-none" />
-
-            {/* Visual Image container */}
-            <div className="relative h-64 md:h-72 w-full rounded-2xl overflow-hidden mb-6 bg-zinc-900 border border-white/5">
-              <img
-                src={steps[activeStep].image}
-                alt={steps[activeStep].title}
-                className="w-full h-full object-cover transition-all duration-700 scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
-              
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[13px] text-[#E5D3B3] font-mono">
-                  {steps[activeStep].accent}
-                </span>
-                <span className="text-sm font-serif text-white">
-                  Adım {steps[activeStep].number} / 03
-                </span>
-              </div>
-            </div>
-
-            {/* Fast WhatsApp Route Booking */}
-            <div className="space-y-3">
-              <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
-                <span>Rezervasyon Tipi:</span>
-                <strong className="text-white font-serif">VIP Kapıdan Kapıya Transfer</strong>
-              </div>
-              <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
-                <span>Şoför Statüsü:</span>
-                <span className="text-emerald-400 font-medium">● 7/24 Aktif & Hazır</span>
-              </div>
-              
-              <a
-                href="https://wa.me/905305673991?text=Merhaba,%20VIP%20transfer%20hizmetiniz%20hakkinda%20bilgi%20ve%20rezervasyon%20almak%20istiyorum."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full mt-4 flex items-center justify-center gap-2 bg-white/5 hover:bg-[#E5D3B3] hover:text-black border border-white/10 py-3.5 rounded-xl text-sm font-bold tracking-widest uppercase transition-all duration-300"
-              >
-                <span>Bu Deneyimi Rezerve Et</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-
-          </div>
-        </div>
-
       </div>
     </section>
   );
