@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     description: 'Bodrum ve Ege koylarında 7/24 kesintisiz Maybach ve VIP Vito transferi.',
     images: ['/images/wix_img_2.jpg'],
   },
+  other: {
+    'strix-verification': 'strix-verify-75e0049732f19316eb501ad06eaa0b3b',
+  },
 };
 
 import FloatingChatWidget from '@/components/FloatingChatWidget';
