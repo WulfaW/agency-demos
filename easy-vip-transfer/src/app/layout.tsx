@@ -63,21 +63,6 @@ export default function RootLayout({
       <body className="bg-[#030303] min-h-screen flex flex-col font-sans selection:bg-white selection:text-black relative">
         <ScrollProgress />
         <Preloader />
-        {/* Dot grid background — subtle premium depth */}
-        <div
-          className="pointer-events-none fixed inset-0 z-[0] h-full w-full"
-          style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.09) 1px, transparent 1px)',
-            backgroundSize: '28px 28px',
-          }}
-        />
-        {/* Vignette — fades dot grid at edges */}
-        <div
-          className="pointer-events-none fixed inset-0 z-[0] h-full w-full"
-          style={{
-            background: 'radial-gradient(ellipse 85% 80% at 50% 50%, transparent 30%, #030303 100%)',
-          }}
-        />
         {/* Film grain / noise overlay */}
         <div 
           className="pointer-events-none fixed inset-0 z-[1000] h-full w-full opacity-[0.035] mix-blend-difference"
