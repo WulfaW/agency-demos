@@ -5,7 +5,8 @@ export interface SocialItem {
   href: string;
   ariaLabel: string;
   tooltip: string;
-  svgUrl: string;
+  svgUrl?: string;
+  icon?: React.ElementType;
   color: string;
 }
 
@@ -43,11 +44,15 @@ const SocialTooltip = React.forwardRef<HTMLUListElement, SocialTooltipProps>(
                 className={cn(baseFilledStyles)}
                 style={{ backgroundColor: item.color }}
               />
-              <img
-                src={item.svgUrl}
-                alt={item.ariaLabel}
-                className={cn(baseSvgStyles, item.color === '#ffffff' ? 'group-hover:invert' : '')}
-              />
+              {item.svgUrl ? (
+                <img
+                  src={item.svgUrl}
+                  alt={item.ariaLabel}
+                  className={cn(baseSvgStyles, item.color === '#ffffff' ? 'group-hover:invert' : '')}
+                />
+              ) : item.icon ? (
+                <item.icon className={cn(baseSvgStyles, item.color === '#ffffff' ? 'group-hover:invert' : '', 'text-white')} />
+              ) : null}
             </a>
             <div
               className={cn(baseTooltipStyles)}

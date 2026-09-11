@@ -267,7 +267,7 @@ export default function FaqAndFooter() {
                 href: `tel:${CONTACT_INFO.phoneClean}`,
                 ariaLabel: '7/24 Çağrı',
                 tooltip: 'Hemen Ara',
-                svgUrl: 'https://cdn.simpleicons.org/phone/ffffff',
+                icon: PhoneCall,
                 color: '#ffffff'
               }
             ]}
