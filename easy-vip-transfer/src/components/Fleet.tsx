@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Users, Briefcase, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Wifi, Wine, Tv } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Users, Briefcase, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Wifi, Wine, Tv, Armchair, Lock, Music, BatteryCharging, Coffee, Speaker, Monitor } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 
 const fleetCars = [
@@ -14,7 +14,14 @@ const fleetCars = [
     luggage: '7 Büyük Valiz',
     priceEur: '€75',
     image: '/images/wix_img_0.jpg',
-    features: ['Yıldız Tavan Ambiyansı', 'Deri Yatar Koltuklar', 'Apple TV & Wi-Fi', 'Soğuk Minibar İkramı', 'Gizlilik Bölmesi', 'Geniş Bagaj Hacmi'],
+    features: [
+      { text: 'Yıldız Tavan Ambiyansı', icon: Sparkles },
+      { text: 'Hakiki Deri Yatar Koltuklar', icon: Armchair },
+      { text: 'Apple TV & Sınırsız Wi-Fi', icon: Tv },
+      { text: 'Soğuk İçecek & Minibar', icon: Wine },
+      { text: 'Şoför ile Gizlilik Bölmesi', icon: Lock },
+      { text: 'Geniş Bagaj Kapasitesi', icon: Briefcase },
+    ],
     badge: 'Popüler Tercih'
   },
   {
@@ -26,7 +33,14 @@ const fleetCars = [
     luggage: '3 Büyük Valiz',
     priceEur: '€120',
     image: '/images/wix_img_2.jpg',
-    features: ['Masajlı Hakiki Deri Koltuk', 'Özel Ses İzolasyonu', 'Şampanya & Meşrubat Servisi', 'Burmester High-End Ses', 'Kablosuz Hızlı Şarj', 'Protokol Şoförü'],
+    features: [
+      { text: 'Masajlı First-Class Koltuklar', icon: Armchair },
+      { text: 'Maksimum Ses İzolasyonu', icon: ShieldCheck },
+      { text: 'Şampanya & Meşrubat İkramı', icon: Wine },
+      { text: 'Burmester High-End Ses Sistemi', icon: Speaker },
+      { text: 'Kablosuz Hızlı Şarj (Tüm Cihazlar)', icon: BatteryCharging },
+      { text: 'Özel Eğitimli Protokol Şoförü', icon: Users },
+    ],
     badge: 'En Prestijli'
   },
   {
@@ -38,7 +52,14 @@ const fleetCars = [
     luggage: '16 Büyük Valiz',
     priceEur: '€150',
     image: '/images/wix_img_1.jpg',
-    features: ['Tam Boy Ayakta Durulabilir Tavan', 'PlayStation & Smart TV', 'Konferans Oturma Düzeni', 'Nespresso Kahve Makinesi', 'Özel Lavabo & Gardırop', 'Geniş Bagaj Bölümü'],
+    features: [
+      { text: 'Ayakta Durulabilir Yüksek Tavan', icon: Sparkles },
+      { text: 'PlayStation 5 & Smart TV', icon: Monitor },
+      { text: 'Karşılıklı Konferans Oturma Düzeni', icon: Users },
+      { text: 'Nespresso Kahve Makinesi', icon: Coffee },
+      { text: 'Gizlilik ve Ses Yalıtımı', icon: Lock },
+      { text: 'Sınırsız Wi-Fi & Medya', icon: Wifi },
+    ],
     badge: 'Grup & Protokol'
   }
 ];
@@ -231,14 +252,24 @@ export default function Fleet() {
           </a>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-6">
-          {activeCar.features.map((feat, fIdx) => (
-            <div key={fIdx} className="flex items-center gap-2 text-sm text-zinc-300 font-light">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#E5D3B3] shrink-0" />
-              <span>{feat}</span>
-            </div>
-          ))}
+        {/* Features Grid - Airbnb Style Amenities */}
+        <div className="pt-10">
+          <h5 className="text-xl md:text-2xl font-sans font-medium text-white mb-8">Bu araç size neler sunuyor?</h5>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12">
+            {activeCar.features.map((feat, fIdx) => {
+              const Icon = typeof feat === 'object' ? feat.icon : CheckCircle2;
+              const text = typeof feat === 'object' ? feat.text : feat;
+              return (
+                <div key={fIdx} className="flex items-center gap-4 text-[16px] text-zinc-300 font-light pb-4 border-b border-white/[0.03] last:border-0 sm:[&:nth-last-child(2)]:border-0">
+                  <Icon className="w-6 h-6 text-zinc-400 shrink-0 stroke-[1.2px]" />
+                  <span>{text}</span>
+                </div>
+              );
+            })}
+          </div>
+          <button className="mt-8 px-6 py-3 rounded-lg border border-white/20 text-[15px] font-medium text-white hover:bg-white/[0.04] transition-colors">
+            Tüm araç donanımını göster
+          </button>
         </div>
 
       </div>
