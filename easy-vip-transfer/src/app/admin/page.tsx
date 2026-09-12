@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { Car, Users, Banknote, Sparkles, LogOut, CalendarDays } from 'lucide-react';
@@ -40,8 +40,8 @@ export default function AdminDashboard() {
             { id: 'musteriler',label: 'Müşteriler',icon: Sparkles },
             { id: 'ucretler',  label: 'Ücretler',  icon: Banknote },
           ].map((item) => (
-            <button key={item.id} onClick={() => setActiveTab(item.id as Tab)} className={w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm \}>
-              <item.icon className={w-4 h-4 \} /> {item.label}
+            <button key={item.id} onClick={() => setActiveTab(item.id as Tab)} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm ${activeTab === item.id ? 'bg-white/10 text-white font-medium border border-white/5' : 'text-zinc-400 hover:bg-white/[0.02]'}`}>
+              <item.icon className={`w-4 h-4 ${activeTab === item.id ? 'text-[#E5D3B3]' : 'opacity-60'}`} /> {item.label}
             </button>
           ))}
         </nav>
