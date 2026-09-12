@@ -4,6 +4,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MapPin, Calendar, Users, ArrowRight, ShieldCheck, ChevronDown, Check, ArrowLeftRight, Wine, Baby, Wifi, Flower2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LOCATIONS, CONTACT_INFO } from '@/data/transferData';
+import dynamic from 'next/dynamic';
+
+const Map = dynamic(() => import('./Map'), { ssr: false });
 
 /* ─── Luxury Date + Time Picker ──────────────────────────────────────────── */
 const TIME_SLOTS = [
@@ -443,7 +446,7 @@ export default function PriceCalculator() {
   }));
 
   return (
-    <section id="calculator" className="relative z-20 w-full max-w-5xl mx-auto px-4 mt-12 mb-32">
+    <section id="calculator" className="relative z-20 w-full max-w-6xl mx-auto px-4 mt-12 mb-32">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -493,78 +496,90 @@ export default function PriceCalculator() {
           ))}
         </div>
 
-        {/* Airbnb Style Segmented Booking Widget */}
-        <div className="w-full border border-white/20 rounded-2xl flex flex-col mb-8 bg-black/40 relative z-30">
+        <div className="flex flex-col lg:flex-row gap-8 relative z-20">
           
-          {/* Row 1: Route */}
-          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-50 h-[72px] sm:h-auto">
-              <PillSelect label={t.calc.from} value={from} onChange={setFrom} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
+          {/* LEFT COLUMN: Booking Widget */}
+          <div className="w-full lg:w-5/12 flex flex-col">
+            {/* Airbnb Style Segmented Booking Widget */}
+            <div className="w-full border border-white/20 rounded-2xl flex flex-col mb-4 bg-black/40 relative z-30">
+              
+              {/* Row 1: Route */}
+              <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
+                <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-50 h-[72px] sm:h-auto">
+                  <PillSelect label={t.calc.from} value={from} onChange={setFrom} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
+                </div>
+                <div className="flex-1 relative z-40 h-[72px] sm:h-auto">
+                  <PillSelect label={t.calc.to} value={to} onChange={setTo} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
+                </div>
+              </div>
+
+              {/* Row 2: Date & Passengers */}
+              <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
+                <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-30 h-[72px] sm:h-auto">
+                  <LuxuryDatePicker label={t.calc.date} value={date} onChange={setDate} />
+                </div>
+                <div className="flex-1 relative z-20 h-[72px] sm:h-auto">
+                  <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={t.calc.passengers} icon={Users} />
+                </div>
+              </div>
+
+              {/* Row 3: Contact */}
+              <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
+                <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
+                  <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
+                    {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder={lang === 'TR' ? 'Örn: John Doe' : 'e.g. John Doe'}
+                    className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
+                  />
+                </div>
+                <div className="flex-1 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
+                  <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
+                    {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
+                  </label>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder={lang === 'TR' ? '+90 5XX XXX XX XX' : '+ (Code) Phone Number'}
+                    className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Row 4: Extras */}
+              <div className="w-full relative z-10 h-[72px]">
+                <MultiSelectDropdown
+                  label={lang === 'TR' ? 'Özel Concierge Talepleri' : 'VIP Concierge Add-ons'}
+                  options={conciergeOptions}
+                  selectedIds={selectedExtras}
+                  onChange={toggleExtra}
+                  placeholder={lang === 'TR' ? 'Ekstra Talep Seçin...' : 'Select Extras...'}
+                />
+              </div>
+
             </div>
-            <div className="flex-1 relative z-40 h-[72px] sm:h-auto">
-              <PillSelect label={t.calc.to} value={to} onChange={setTo} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
-            </div>
+
+            {/* Full width CTA button */}
+            <button
+              onClick={handleWhatsApp}
+              className="w-full bg-[#E5D3B3] text-black hover:bg-white font-sans font-bold text-[15px] tracking-[0.15em] uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl"
+            >
+              {t.calc.btnQuote}
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
 
-          {/* Row 2: Date & Passengers */}
-          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-30 h-[72px] sm:h-auto">
-              <LuxuryDatePicker label={t.calc.date} value={date} onChange={setDate} />
-            </div>
-            <div className="flex-1 relative z-20 h-[72px] sm:h-auto">
-              <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={t.calc.passengers} icon={Users} />
-            </div>
-          </div>
-
-          {/* Row 3: Contact */}
-          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
-              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
-                {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder={lang === 'TR' ? 'Örn: John Doe' : 'e.g. John Doe'}
-                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
-              />
-            </div>
-            <div className="flex-1 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
-              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
-                {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
-              </label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder={lang === 'TR' ? '+90 5XX XXX XX XX' : '+ (Code) Phone Number'}
-                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Row 4: Extras */}
-          <div className="w-full relative z-10 h-[72px]">
-            <MultiSelectDropdown
-              label={lang === 'TR' ? 'Özel Concierge Talepleri' : 'VIP Concierge Add-ons'}
-              options={conciergeOptions}
-              selectedIds={selectedExtras}
-              onChange={toggleExtra}
-              placeholder={lang === 'TR' ? 'Ekstra Talep Seçin...' : 'Select Extras...'}
-            />
+          {/* RIGHT COLUMN: Interactive Route Map */}
+          <div className="w-full lg:w-7/12 min-h-[400px] lg:min-h-full rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl">
+            <Map toId={to} />
           </div>
 
         </div>
-
-        {/* Full width CTA button */}
-        <button
-          onClick={handleWhatsApp}
-          className="w-full bg-[#E5D3B3] text-black hover:bg-white font-sans font-bold text-[15px] tracking-[0.15em] uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
-        >
-          {t.calc.btnQuote}
-          <ArrowRight className="w-4 h-4" />
-        </button>
 
         {/* Trust strip — luxury engraved style */}
         <div className="relative z-10 mt-8 pt-6 border-t border-white/[0.04] flex flex-wrap items-center gap-3">
