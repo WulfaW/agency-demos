@@ -5,20 +5,31 @@ import { MapPin, Calendar, Users, ArrowRight, ShieldCheck, ChevronDown, Check, A
 import { motion, AnimatePresence } from 'framer-motion';
 import { LOCATIONS, CONTACT_INFO } from '@/data/transferData';
 
-/* ─── Luxury Date Picker ──────────────────────────────────────────── */
+/* ─── Luxury Date + Time Picker ──────────────────────────────────────────── */
+const TIME_SLOTS = [
+  "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
+  "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+  "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
+  "18:00", "19:00", "20:00", "21:00", "22:00", "23:00",
+];
+
 const LuxuryDatePicker = ({
   label,
   value,
   onChange,
 }: {
   label: string;
-  value: string;
+  value: string; // "YYYY-MM-DD" or "YYYY-MM-DD HH:mm"
   onChange: (val: string) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [viewDate, setViewDate] = useState(() => {
     const d = value ? new Date(value) : new Date();
     return { year: d.getFullYear(), month: d.getMonth() };
+  });
+  const [selectedTime, setSelectedTime] = useState<string | null>(() => {
+    if (value && value.includes(' ')) return value.split(' ')[1];
+    return null;
   });
   const ref = useRef<HTMLDivElement>(null);
 
@@ -33,7 +44,8 @@ const LuxuryDatePicker = ({
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const selectedDate = value ? new Date(value + 'T00:00:00') : null;
+  const selectedDateStr = value ? value.split(' ')[0] : '';
+  const selectedDate = selectedDateStr ? new Date(selectedDateStr + 'T00:00:00') : null;
 
   const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
     'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
@@ -42,32 +54,30 @@ const LuxuryDatePicker = ({
   const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
   const getFirstDayOfMonth = (year: number, month: number) => {
     const day = new Date(year, month, 1).getDay();
-    return day === 0 ? 6 : day - 1; // Monday first
+    return day === 0 ? 6 : day - 1;
   };
 
-  const prevMonth = () => {
-    setViewDate(v => v.month === 0
-      ? { year: v.year - 1, month: 11 }
-      : { year: v.year, month: v.month - 1 }
-    );
-  };
-  const nextMonth = () => {
-    setViewDate(v => v.month === 11
-      ? { year: v.year + 1, month: 0 }
-      : { year: v.year, month: v.month + 1 }
-    );
-  };
+  const prevMonth = () => setViewDate(v => v.month === 0 ? { year: v.year - 1, month: 11 } : { year: v.year, month: v.month - 1 });
+  const nextMonth = () => setViewDate(v => v.month === 11 ? { year: v.year + 1, month: 0 } : { year: v.year, month: v.month + 1 });
 
   const selectDay = (day: number) => {
     const d = new Date(viewDate.year, viewDate.month, day);
     const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-    onChange(iso);
-    setIsOpen(false);
+    onChange(selectedTime ? `${iso} ${selectedTime}` : iso);
   };
 
-  const displayValue = selectedDate
-    ? `${selectedDate.getDate()} ${monthNames[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`
-    : '';
+  const selectTime = (time: string) => {
+    setSelectedTime(time);
+    if (selectedDateStr) onChange(`${selectedDateStr} ${time}`);
+  };
+
+  const confirm = () => setIsOpen(false);
+
+  const displayValue = (() => {
+    if (!selectedDate) return '';
+    const datePart = `${selectedDate.getDate()} ${monthNames[selectedDate.getMonth()]}`;
+    return selectedTime ? `${datePart}, ${selectedTime}` : datePart;
+  })();
 
   const daysInMonth = getDaysInMonth(viewDate.year, viewDate.month);
   const firstDay = getFirstDayOfMonth(viewDate.year, viewDate.month);
@@ -84,7 +94,7 @@ const LuxuryDatePicker = ({
         className="w-full flex items-center justify-between gap-2 bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 transition-all duration-200 focus:outline-none focus:border-[#E5D3B3]/30"
       >
         <span className={`text-sm truncate ${displayValue ? 'text-white' : 'text-zinc-500 font-light'}`}>
-          {displayValue || 'Tarih Seçin'}
+          {displayValue || 'Tarih & Saat Seçin'}
         </span>
         <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-zinc-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -96,65 +106,95 @@ const LuxuryDatePicker = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.97 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-[calc(100%+8px)] left-0 z-[200] w-[280px] bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.9)] overflow-hidden p-4"
+            className="absolute top-[calc(100%+8px)] left-0 z-[200] bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.95)] overflow-hidden"
+            style={{ width: 520 }}
           >
-            {/* Month Navigation */}
-            <div className="flex items-center justify-between mb-4">
-              <button onClick={prevMonth} className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-400 hover:text-white transition-colors">
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <span className="text-sm font-serif text-white tracking-wider">
-                {monthNames[viewDate.month]} {viewDate.year}
-              </span>
-              <button onClick={nextMonth} className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-400 hover:text-white transition-colors">
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Day Names */}
-            <div className="grid grid-cols-7 mb-2">
-              {dayNames.map(d => (
-                <div key={d} className="text-center text-[10px] font-mono text-zinc-600 tracking-widest py-1">{d}</div>
-              ))}
-            </div>
-
-            {/* Days Grid */}
-            <div className="grid grid-cols-7 gap-y-1">
-              {Array.from({ length: firstDay }).map((_, i) => (
-                <div key={`empty-${i}`} />
-              ))}
-              {Array.from({ length: daysInMonth }).map((_, i) => {
-                const day = i + 1;
-                const thisDate = new Date(viewDate.year, viewDate.month, day);
-                const isPast = thisDate < today;
-                const isSelected = selectedDate &&
-                  selectedDate.getDate() === day &&
-                  selectedDate.getMonth() === viewDate.month &&
-                  selectedDate.getFullYear() === viewDate.year;
-                const isToday = thisDate.toDateString() === today.toDateString();
-
-                return (
-                  <button
-                    key={day}
-                    onClick={() => !isPast && selectDay(day)}
-                    disabled={isPast}
-                    className={`relative h-8 w-full rounded-lg text-[13px] font-sans transition-all duration-150 ${
-                      isSelected
-                        ? 'bg-[#E5D3B3] text-black font-semibold'
-                        : isPast
-                        ? 'text-zinc-700 cursor-not-allowed'
-                        : isToday
-                        ? 'text-[#E5D3B3] hover:bg-white/5'
-                        : 'text-zinc-300 hover:bg-white/5 hover:text-white'
-                    }`}
-                  >
-                    {day}
-                    {isToday && !isSelected && (
-                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E5D3B3]/60" />
-                    )}
+            <div className="flex">
+              {/* Calendar Column */}
+              <div className="flex-1 p-4 border-r border-white/[0.06]">
+                {/* Month nav */}
+                <div className="flex items-center justify-between mb-4">
+                  <button onClick={prevMonth} className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-400 hover:text-white transition-colors">
+                    <ChevronLeft className="w-4 h-4" />
                   </button>
-                );
-              })}
+                  <span className="text-sm font-serif text-white tracking-wider">
+                    {monthNames[viewDate.month]} {viewDate.year}
+                  </span>
+                  <button onClick={nextMonth} className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-400 hover:text-white transition-colors">
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+                {/* Day names */}
+                <div className="grid grid-cols-7 mb-1">
+                  {dayNames.map(d => (
+                    <div key={d} className="text-center text-[10px] font-mono text-zinc-600 tracking-widest py-1">{d}</div>
+                  ))}
+                </div>
+                {/* Days */}
+                <div className="grid grid-cols-7 gap-y-0.5">
+                  {Array.from({ length: firstDay }).map((_, i) => <div key={`e${i}`} />)}
+                  {Array.from({ length: daysInMonth }).map((_, i) => {
+                    const day = i + 1;
+                    const thisDate = new Date(viewDate.year, viewDate.month, day);
+                    const isPast = thisDate < today;
+                    const isSelected = selectedDate &&
+                      selectedDate.getDate() === day &&
+                      selectedDate.getMonth() === viewDate.month &&
+                      selectedDate.getFullYear() === viewDate.year;
+                    const isToday = thisDate.toDateString() === today.toDateString();
+                    return (
+                      <button
+                        key={day}
+                        onClick={() => !isPast && selectDay(day)}
+                        disabled={isPast}
+                        className={`relative h-8 w-full rounded-lg text-[13px] transition-all duration-150 ${
+                          isSelected ? 'bg-[#E5D3B3] text-black font-semibold'
+                          : isPast ? 'text-zinc-700 cursor-not-allowed'
+                          : isToday ? 'text-[#E5D3B3] hover:bg-white/5'
+                          : 'text-zinc-300 hover:bg-white/[0.06] hover:text-white'
+                        }`}
+                      >
+                        {day}
+                        {isToday && !isSelected && (
+                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E5D3B3]/50" />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Time Column */}
+              <div className="w-[130px] flex flex-col">
+                <p className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase px-3 pt-4 pb-2">Saat</p>
+                <div className="flex-1 overflow-y-auto subtle-scrollbar px-2 pb-2">
+                  <div className="flex flex-col gap-1">
+                    {TIME_SLOTS.map(slot => (
+                      <button
+                        key={slot}
+                        onClick={() => selectTime(slot)}
+                        className={`w-full text-center py-1.5 rounded-lg text-[13px] font-mono transition-all duration-150 ${
+                          selectedTime === slot
+                            ? 'bg-[#E5D3B3] text-black font-semibold'
+                            : 'text-zinc-400 hover:bg-white/[0.06] hover:text-white'
+                        }`}
+                      >
+                        {slot}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                {/* Confirm */}
+                <div className="p-2 border-t border-white/[0.06]">
+                  <button
+                    onClick={confirm}
+                    disabled={!selectedDate || !selectedTime}
+                    className="w-full py-2 rounded-xl text-[12px] font-sans font-bold tracking-widest uppercase transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed bg-[#E5D3B3] text-black hover:bg-white"
+                  >
+                    Onayla
+                  </button>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
