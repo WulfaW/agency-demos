@@ -4,9 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MapPin, Calendar, Users, ArrowRight, ShieldCheck, ChevronDown, Check, ArrowLeftRight, Wine, Baby, Wifi, Flower2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LOCATIONS, CONTACT_INFO } from '@/data/transferData';
-import dynamic from 'next/dynamic';
-
-const Map = dynamic(() => import('./Map'), { ssr: false });
 
 /* ─── Luxury Date + Time Picker ──────────────────────────────────────────── */
 const TIME_SLOTS = [
@@ -585,17 +582,6 @@ export default function PriceCalculator() {
             </div>
           ))}
         </div>
-      </motion.div>
-
-      {/* Interactive Map Section (Full Width, below calculator) */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        className="mt-8 w-full h-[400px] md:h-[500px] rounded-[2.5rem] overflow-hidden border border-white/[0.07] bg-[#080808]/80 shadow-[0_40px_120px_rgba(0,0,0,0.85)] relative z-10"
-      >
-        <Map toId={to} />
       </motion.div>
     </section>
   );
