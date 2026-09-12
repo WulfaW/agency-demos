@@ -452,14 +452,8 @@ export default function PriceCalculator() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative rounded-[2.5rem] border border-white/[0.07] bg-[#080808]/80 backdrop-blur-2xl shadow-[0_40px_120px_rgba(0,0,0,0.85)] overflow-visible p-8 md:p-10"
+        className="relative overflow-visible"
       >
-
-        {/* Top edge shimmer + ambient glow */}
-        <div className="absolute inset-0 rounded-[2.5rem] pointer-events-none overflow-hidden">
-          <div className="absolute -top-px left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-[#E5D3B3]/[0.02] rounded-full blur-[80px]" />
-        </div>
 
         {/* Header */}
         <div className="relative z-10 mb-6">

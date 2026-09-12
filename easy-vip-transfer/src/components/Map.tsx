@@ -53,8 +53,9 @@ export default function Map({ toId }: { toId: string }) {
         scrollWheelZoom: false,
       });
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; CartoDB',
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap',
+        className: 'dark-map-filter',
       }).addTo(mapInstance.current);
 
       featureGroup.current = L.featureGroup().addTo(mapInstance.current);
