@@ -5,12 +5,14 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageDropdown } from '@/components/LanguageDropdown';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +43,8 @@ export default function Navbar() {
         
         {/* LEFT PILL: Brand Logo */}
         <motion.div
-          className={`pointer-events-auto relative z-10 flex items-center justify-center transition-all duration-700 ease-in-out ${
+          onDoubleClick={() => router.push('/admin')}
+          className={`pointer-events-auto relative z-10 flex items-center justify-center transition-all duration-700 ease-in-out cursor-pointer ${
             isScrolled 
               ? 'h-full px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
               : 'h-full px-6 border border-transparent'
