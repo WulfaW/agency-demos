@@ -89,7 +89,7 @@ export default function LuxuryDestinations() {
   ];
 
   return (
-    <section className="py-24 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
+    <section id="destinations" className="py-24 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}

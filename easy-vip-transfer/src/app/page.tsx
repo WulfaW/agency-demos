@@ -29,11 +29,10 @@ export default function Home() {
       {/* 3.1 Bodrum Peninsula Route Map (Restored by User Request) */}
       <BodrumRouteMap />
 
-      {/* 3.5 About VIP Section (Corporate Vision & Standards) */}
+      {/* --- SECTIONS HIDDEN TO REDUCE CLUTTER ON HOMEPAGE --- 
       <AboutVIP />
-
-      {/* 4. Luxury Bento Stats Grid (10+ Yıl, 15k+ Transfer, 4.9★, %100 Zamanında) */}
       <BentoStats />
+      */}
 
       {/* 5. 3D Glare Fleet Showcase (Maybach, Vito, Sprinter) */}
       <Fleet />
@@ -44,14 +43,11 @@ export default function Home() {
       {/* 8. Adım Adım First Class Yolculuk Akışı */}
       <StickyScrollExperience />
 
-      {/* 7. Sekmeli & Fare Takip Eden Spotlight Hizmet Kartları */}
+      {/* --- SECTIONS HIDDEN TO REDUCE CLUTTER ON HOMEPAGE --- 
       <SpotlightServices />
-
-      {/* 9. Sonsuz Kayan Yorumlar (Infinite Marquee) */}
       <TestimonialsMarquee />
-
-      {/* 9.5. 3D Lüks Galeri */}
       <ParallaxGallery />
+      */}
 
       {/* 10. Lüks Akordiyon SSS & Footer */}
       <FaqAndFooter />

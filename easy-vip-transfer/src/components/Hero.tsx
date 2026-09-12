@@ -16,7 +16,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
+    <section id="hero" className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
       
       {/* Background Cinematic Visual */}
       <div className="absolute inset-0 z-0">

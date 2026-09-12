@@ -186,7 +186,7 @@ export default function Fleet() {
                   )}
 
                   <div className="px-4 py-1.5 rounded-full bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 flex items-center gap-1">
-                    <span className="text-sm font-serif text-white font-medium">{car.priceEur}</span>
+                    <span className="text-xl font-serif text-white font-medium">{car.priceEur}</span>
                     <span className="text-[9px] font-sans uppercase tracking-widest text-zinc-500">/ Başlangıç</span>
                   </div>
                 </div>

@@ -55,7 +55,7 @@ export default function StickyScrollExperience() {
   }, [isHovered]);
 
   return (
-    <section className="py-28 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
+    <section id="experience" className="py-28 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
       {/* Section Title */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}

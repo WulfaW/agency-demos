@@ -188,7 +188,7 @@ const MapInner = () => {
       <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-80 z-[1000] backdrop-blur-2xl bg-[#0a0a0a]/92 border border-white/15 rounded-2xl p-5 shadow-2xl">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[14px] font-mono tracking-widest text-[#E5D3B3] uppercase">Seçili Destinasyon</span>
-          <span className="text-sm font-serif font-bold text-white">{selectedPin.price}</span>
+          <span className="text-xl font-serif font-bold text-white">{selectedPin.price}</span>
         </div>
         <h4 className="font-serif text-lg text-white font-medium mb-1">{selectedPin.name}</h4>
         <p className="text-sm text-zinc-400 font-light mb-4">{selectedPin.sub}</p>
