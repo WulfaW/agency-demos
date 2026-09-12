@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Car, Users, Banknote, Sparkles, LogOut, CalendarDays } from 'lucide-react';
+import { Car, Users, Banknote, Sparkles, LogOut, CalendarDays, Globe } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import ResourceManager from '@/components/admin/ResourceManager';
@@ -48,8 +48,13 @@ export default function AdminDashboard() {
             </button>
           ))}
         </nav>
-        <div className="pt-6 border-t border-white/5 mt-auto">
-          <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-400/10"><LogOut className="w-4 h-4" /> Çıkış Yap</button>
+        <div className="pt-6 border-t border-white/5 mt-auto flex flex-col gap-2">
+          <button onClick={() => router.push('/')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-zinc-400 hover:bg-white/[0.02] hover:text-white transition-colors">
+            <Globe className="w-4 h-4 opacity-60" /> Siteye Dön
+          </button>
+          <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-400/10 transition-colors">
+            <LogOut className="w-4 h-4" /> Çıkış Yap
+          </button>
         </div>
       </aside>
 
