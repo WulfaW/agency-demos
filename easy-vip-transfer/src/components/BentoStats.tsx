@@ -41,34 +41,31 @@ export default function BentoStats() {
         {stats.map((item, idx) => {
           const Icon = item.icon;
           return (
-            <motion.div
+              <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="relative group overflow-hidden rounded-[24px] bg-gradient-to-b from-[#111111]/80 to-[#0a0a0a]/90 border border-white/[0.05] p-6 lg:p-8 backdrop-blur-2xl transition-all duration-500 hover:border-[#E5D3B3]/20 hover:shadow-[0_0_40px_rgba(229,211,179,0.05)]"
+              className="relative group overflow-hidden rounded-[24px] bg-white/[0.02] border border-white/5 p-8 lg:p-10 backdrop-blur-xl transition-all duration-500 hover:border-white/10 hover:bg-white/[0.03]"
             >
-              {/* Subtle hover gradient inside */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#E5D3B3]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <div className="flex items-center justify-between mb-8">
-                    <span className="font-serif text-[2.5rem] lg:text-[3.2rem] leading-none text-white tracking-tight drop-shadow-sm group-hover:text-[#E5D3B3] transition-colors duration-500">
+                  <div className="flex items-center justify-between mb-12">
+                    <span className="font-serif text-[2.5rem] lg:text-[3.2rem] leading-none text-white tracking-tight group-hover:text-white/80 transition-colors duration-500">
                       {item.num}
                     </span>
-                    <div className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/[0.05] flex items-center justify-center group-hover:bg-[#E5D3B3]/10 group-hover:border-[#E5D3B3]/20 transition-all duration-500">
-                      <Icon className="w-4 h-4 text-zinc-500 group-hover:text-[#E5D3B3] transition-colors duration-500" />
+                    <div className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/5 flex items-center justify-center group-hover:bg-white/[0.05] transition-all duration-500">
+                      <Icon className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors duration-500" />
                     </div>
                   </div>
                 </div>
                 
                 <div className="mt-auto">
-                  <p className="text-[10px] font-mono tracking-[0.25em] text-[#E5D3B3]/70 uppercase mb-2">
+                  <p className="text-[10px] font-mono tracking-[0.25em] text-white/50 uppercase mb-2">
                     {item.label}
                   </p>
-                  <p className="text-[13px] font-sans text-zinc-500 font-light leading-relaxed">
+                  <p className="text-[13px] font-sans text-zinc-400 font-light leading-relaxed">
                     {item.sub}
                   </p>
                 </div>

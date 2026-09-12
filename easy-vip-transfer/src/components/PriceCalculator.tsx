@@ -99,15 +99,15 @@ const LuxuryDatePicker = ({
 
   return (
     <div className="relative flex-1 min-w-0" ref={ref}>
-      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
-        <Calendar className="w-3 h-3 text-[#E5D3B3]" />
+      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
+        <Calendar className="w-3.5 h-3.5 text-zinc-500" />
         {label}
       </p>
       <div ref={triggerRef}>
         <button
           type="button"
           onClick={() => setIsOpen(p => !p)}
-          className="w-full flex items-center justify-between gap-2 bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 transition-all duration-200 focus:outline-none focus:border-[#E5D3B3]/30"
+          className="w-full flex items-center justify-between gap-2 bg-white/[0.02] hover:bg-white/[0.03] border border-white/5 rounded-full px-6 py-4 transition-all duration-300 focus:outline-none focus:border-white/20"
         >
           <span className={`text-sm truncate ${displayValue ? 'text-white' : 'text-zinc-500 font-light'}`}>
             {displayValue || 'Tarih & Saat Seçin'}
@@ -246,14 +246,14 @@ const MultiSelectDropdown = ({
 
   return (
     <div className="relative flex-1 min-w-0" ref={ref}>
-      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1.5 px-1">
-        <span className="text-[#E5D3B3]">✦</span>
+      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
+        <span className="text-zinc-500">✦</span>
         {label}
       </p>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-2 bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 transition-all duration-200 focus:outline-none focus:border-[#E5D3B3]/30"
+        className="w-full flex items-center justify-between gap-2 bg-white/[0.02] hover:bg-white/[0.03] border border-white/5 rounded-full px-6 py-4 transition-all duration-300 focus:outline-none focus:border-white/20"
       >
         <span className={`text-sm truncate ${selectedCount > 0 ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
           {selectedCount > 0 ? `${selectedCount} Ekstra Seçildi` : placeholder}
@@ -263,7 +263,7 @@ const MultiSelectDropdown = ({
 
       {isOpen && (
         <div className="absolute top-[calc(100%+8px)] left-0 w-full z-[100]">
-          <div className="bg-[#0d0d0d] border border-zinc-800/80 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden py-2 max-h-[260px] overflow-y-auto subtle-scrollbar">
+          <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/5 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden py-2 max-h-[260px] overflow-y-auto subtle-scrollbar">
             {options.map((opt) => {
               const isSelected = selectedIds.includes(opt.id);
               const Icon = opt.icon;
@@ -275,12 +275,12 @@ const MultiSelectDropdown = ({
                   className="w-full flex items-center justify-between px-5 py-3 hover:bg-white/[0.04] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 transition-colors ${isSelected ? 'text-[#E5D3B3]' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
+                    <Icon className={`w-4 h-4 transition-colors ${isSelected ? 'text-white' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
                     <span className={`text-[14px] font-sans tracking-wide uppercase transition-colors ${isSelected ? 'text-white font-medium' : 'text-zinc-400'}`}>
                       {opt.label}
                     </span>
                   </div>
-                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${isSelected ? 'bg-[#E5D3B3] border-[#E5D3B3]' : 'border-zinc-700'}`}>
+                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${isSelected ? 'bg-white border-white' : 'border-zinc-700'}`}>
                     {isSelected && <Check className="w-3 h-3 text-black" />}
                   </div>
                 </button>
@@ -324,14 +324,14 @@ const PillSelect = ({
 
   return (
     <div className="relative flex-1 min-w-0" ref={ref}>
-      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
-        <Icon className="w-3 h-3 text-[#E5D3B3]" />
+      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
+        <Icon className="w-3.5 h-3.5 text-zinc-500" />
         {label}
       </p>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-2 bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 transition-all duration-200 focus:outline-none focus:border-[#E5D3B3]/30"
+        className="w-full flex items-center justify-between gap-2 bg-white/[0.02] hover:bg-white/[0.03] border border-white/5 rounded-full px-6 py-4 transition-all duration-300 focus:outline-none focus:border-white/20"
       >
         <span className={`text-sm truncate ${selected ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
           {selected ? selected.name : placeholder}
@@ -504,7 +504,7 @@ export default function PriceCalculator() {
         </div>
 
         {/* Row 1: Nereden ↔ Nereye */}
-        <div className="relative z-30 flex flex-col sm:flex-row items-end gap-3 mb-4">
+        <div className="relative z-50 flex flex-col sm:flex-row items-end gap-5 mb-8">
           <PillSelect
             label={t.calc.from}
             value={from}
@@ -525,10 +525,9 @@ export default function PriceCalculator() {
         </div>
 
         {/* Row 2: İsim + Telefon */}
-        <div className="relative z-20 flex flex-col sm:flex-row items-end gap-3 mb-4">
+        <div className="relative z-40 flex flex-col sm:flex-row items-end gap-5 mb-8">
           <div className="w-full sm:flex-1">
-            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
-              <span className="text-[#E5D3B3]">✦</span>
+            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
               {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
             </p>
             <input
@@ -536,12 +535,11 @@ export default function PriceCalculator() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={lang === 'TR' ? 'Örn: John Doe' : 'e.g. John Doe'}
-              className="w-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/30 transition-all duration-200"
+              className="w-full bg-white/[0.02] border border-white/5 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-white/20 transition-all duration-300"
             />
           </div>
           <div className="w-full sm:flex-1">
-            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-1.5 flex items-center gap-1 px-1">
-              <span className="text-[#E5D3B3]">✦</span>
+            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
               {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
             </p>
             <input
@@ -549,13 +547,13 @@ export default function PriceCalculator() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder={lang === 'TR' ? '+90 5XX XXX XX XX' : lang === 'RU' ? '+ (Код) Номер' : lang === 'DE' ? '+ (Code) Telefon' : lang === 'AR' ? 'رقم الهاتف (+ رمز)' : '+ (Code) Phone Number'}
-              className="w-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/30 transition-all duration-200"
+              className="w-full bg-white/[0.02] border border-white/5 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-white/20 transition-all duration-300"
             />
           </div>
         </div>
 
         {/* Row 3: Tarih + Yolcu + CTA */}
-        <div className="relative z-10 flex flex-col sm:flex-row items-end gap-3 mb-5">
+        <div className="relative z-30 flex flex-col sm:flex-row items-end gap-5 mb-8">
 
           <LuxuryDatePicker
             label={t.calc.date}
@@ -577,22 +575,22 @@ export default function PriceCalculator() {
 
           {/* CTA */}
           <div className="w-full sm:w-auto">
-            <p className="text-[14px] tracking-[0.2em] uppercase mb-1.5 px-1 select-none text-transparent">·</p>
+            <p className="text-[14px] tracking-[0.2em] uppercase mb-2 px-1 select-none text-transparent">·</p>
             <button
               onClick={handleWhatsApp}
-              className="w-full sm:w-auto group flex items-center justify-center gap-2.5 bg-[#E5D3B3] hover:bg-white text-black font-sans font-bold text-[14px] tracking-[0.18em] uppercase px-8 py-3.5 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(229,211,179,0.12)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] whitespace-nowrap"
+              className="w-full sm:w-auto group flex items-center justify-center gap-2.5 bg-white text-black hover:bg-[#E5D3B3] font-sans font-bold text-[14px] tracking-[0.18em] uppercase px-8 py-4 rounded-full transition-all duration-300 whitespace-nowrap"
             >
               {t.calc.btnQuote}
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
         </div>
 
-        {/* Row 3: VIP Concierge Add-ons Dropdown */}
-        <div className="relative z-10 pt-4 pb-2 border-t border-white/[0.04]">
+        {/* Row 4: VIP Concierge Add-ons Dropdown */}
+        <div className="relative z-20 pt-6 pb-2 border-t border-white/[0.04]">
           <div className="w-full sm:w-[320px]">
             <MultiSelectDropdown
-              label={lang === 'TR' ? 'Özel Concierge Talepleri:' : lang === 'RU' ? 'Дополнительные опции:' : 'VIP Concierge Add-ons:'}
+              label={lang === 'TR' ? 'Özel Concierge Talepleri' : lang === 'RU' ? 'Дополнительные опции' : 'VIP Concierge Add-ons'}
               options={conciergeOptions}
               selectedIds={selectedExtras}
               onChange={toggleExtra}
