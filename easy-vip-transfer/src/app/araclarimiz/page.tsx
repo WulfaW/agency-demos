@@ -21,7 +21,7 @@ export default function FleetPage() {
   const texts = getTexts();
 
   return (
-    <main className="min-h-screen bg-[#030303] text-zinc-100 relative selection:bg-[#E5D3B3] selection:text-black pb-16 md:pb-0 pt-24">
+    <main className="min-h-screen bg-transparent text-zinc-100 relative selection:bg-[#E5D3B3] selection:text-black pb-16 md:pb-0 pt-24">
       <Navbar />
       
       <div className="pt-10">
