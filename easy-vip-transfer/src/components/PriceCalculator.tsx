@@ -98,21 +98,17 @@ const LuxuryDatePicker = ({
   const firstDay = getFirstDay(viewDate.year, viewDate.month);
 
   return (
-    <div className="relative flex-1 min-w-0" ref={ref}>
-      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
-        <Calendar className="w-3.5 h-3.5 text-zinc-500" />
-        {label}
-      </p>
-      <div ref={triggerRef}>
+    <div className="relative w-full h-full" ref={ref}>
+      <div ref={triggerRef} className="w-full h-full">
         <button
           type="button"
           onClick={() => setIsOpen(p => !p)}
-          className="w-full flex items-center justify-between gap-2 bg-white/[0.02] hover:bg-white/[0.03] border border-white/5 rounded-full px-6 py-4 transition-all duration-300 focus:outline-none focus:border-white/20"
+          className="w-full h-full flex flex-col justify-center px-4 py-3 hover:bg-white/[0.03] transition-colors focus:outline-none text-left"
         >
-          <span className={`text-sm truncate ${displayValue ? 'text-white' : 'text-zinc-500 font-light'}`}>
+          <span className="text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-1">{label}</span>
+          <span className={`text-[15px] truncate ${displayValue ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
             {displayValue || 'Tarih & Saat Seçin'}
           </span>
-          <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-zinc-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
         </button>
       </div>
 
@@ -245,20 +241,16 @@ const MultiSelectDropdown = ({
   const selectedCount = selectedIds.length;
 
   return (
-    <div className="relative flex-1 min-w-0" ref={ref}>
-      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
-        <span className="text-zinc-500">✦</span>
-        {label}
-      </p>
+    <div className="relative w-full h-full" ref={ref}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-2 bg-white/[0.02] hover:bg-white/[0.03] border border-white/5 rounded-full px-6 py-4 transition-all duration-300 focus:outline-none focus:border-white/20"
+        className="w-full h-full flex flex-col justify-center px-4 py-3 hover:bg-white/[0.03] transition-colors focus:outline-none text-left"
       >
-        <span className={`text-sm truncate ${selectedCount > 0 ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
+        <span className="text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-1">{label}</span>
+        <span className={`text-[15px] truncate ${selectedCount > 0 ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
           {selectedCount > 0 ? `${selectedCount} Ekstra Seçildi` : placeholder}
         </span>
-        <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-zinc-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
@@ -323,36 +315,34 @@ const PillSelect = ({
   const selected = options.find((o) => o.id === value);
 
   return (
-    <div className="relative flex-1 min-w-0" ref={ref}>
-      <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
-        <Icon className="w-3.5 h-3.5 text-zinc-500" />
-        {label}
-      </p>
+    <div className="relative w-full h-full" ref={ref}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-2 bg-white/[0.02] hover:bg-white/[0.03] border border-white/5 rounded-full px-6 py-4 transition-all duration-300 focus:outline-none focus:border-white/20"
+        className="w-full h-full flex flex-col justify-center px-4 py-3 hover:bg-white/[0.03] transition-colors focus:outline-none text-left"
       >
-        <span className={`text-sm truncate ${selected ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
+        <span className="text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-1">{label}</span>
+        <span className={`text-[15px] truncate ${selected ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
           {selected ? selected.name : placeholder}
         </span>
-        <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-zinc-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute top-[calc(100%+8px)] left-0 w-full z-[100]">
-          <div className="bg-[#0d0d0d] border border-zinc-800/80 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden py-2 max-h-[220px] overflow-y-auto subtle-scrollbar">
+        <div className="absolute top-[calc(100%+8px)] left-0 w-[calc(100%+16px)] -ml-2 z-[100]">
+          <div className="bg-[#111] backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden py-2 max-h-[260px] overflow-y-auto subtle-scrollbar">
             {options.map((opt) => (
               <button
                 key={opt.id}
                 type="button"
-                onClick={() => { onChange(opt.id); setIsOpen(false); }}
-                className="w-full text-left px-4 py-3 text-sm flex items-center justify-between hover:bg-white/[0.05] transition-colors"
+                onClick={() => {
+                  onChange(opt.id);
+                  setIsOpen(false);
+                }}
+                className="w-full flex items-center px-5 py-3.5 hover:bg-white/[0.04] transition-colors"
               >
-                <span className={`truncate pr-2 ${value === opt.id ? 'text-[#E5D3B3] font-medium' : 'text-zinc-300 font-light'}`}>
+                <span className={`text-[15px] ${value === opt.id ? 'text-white font-medium' : 'text-zinc-400'}`}>
                   {opt.name}
                 </span>
-                {value === opt.id && <Check className="w-3.5 h-3.5 shrink-0 text-[#E5D3B3]" />}
               </button>
             ))}
           </div>
@@ -503,101 +493,78 @@ export default function PriceCalculator() {
           ))}
         </div>
 
-        {/* Row 1: Nereden ↔ Nereye */}
-        <div className="relative z-50 flex flex-col sm:flex-row items-end gap-5 mb-8">
-          <PillSelect
-            label={t.calc.from}
-            value={from}
-            onChange={setFrom}
-            options={LOCATIONS}
-            placeholder="Havalimanı, Otel..."
-            icon={MapPin}
-          />
-
-          <PillSelect
-            label={t.calc.to}
-            value={to}
-            onChange={setTo}
-            options={LOCATIONS}
-            placeholder="Havalimanı, Otel..."
-            icon={MapPin}
-          />
-        </div>
-
-        {/* Row 2: İsim + Telefon */}
-        <div className="relative z-40 flex flex-col sm:flex-row items-end gap-5 mb-8">
-          <div className="w-full sm:flex-1">
-            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
-              {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
-            </p>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder={lang === 'TR' ? 'Örn: John Doe' : 'e.g. John Doe'}
-              className="w-full bg-white/[0.02] border border-white/5 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-white/20 transition-all duration-300"
-            />
-          </div>
-          <div className="w-full sm:flex-1">
-            <p className="text-[14px] font-sans tracking-[0.2em] text-zinc-500 uppercase mb-2 flex items-center gap-2 px-1">
-              {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
-            </p>
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder={lang === 'TR' ? '+90 5XX XXX XX XX' : lang === 'RU' ? '+ (Код) Номер' : lang === 'DE' ? '+ (Code) Telefon' : lang === 'AR' ? 'رقم الهاتف (+ رمز)' : '+ (Code) Phone Number'}
-              className="w-full bg-white/[0.02] border border-white/5 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-white/20 transition-all duration-300"
-            />
-          </div>
-        </div>
-
-        {/* Row 3: Tarih + Yolcu + CTA */}
-        <div className="relative z-30 flex flex-col sm:flex-row items-end gap-5 mb-8">
-
-          <LuxuryDatePicker
-            label={t.calc.date}
-            value={date}
-            onChange={setDate}
-          />
-
-          {/* Passengers */}
-          <div className="w-full sm:w-[160px]">
-            <PillSelect
-              label={t.calc.passengers}
-              value={passengers}
-              onChange={setPassengers}
-              options={passengerOptions}
-              placeholder={t.calc.passengers}
-              icon={Users}
-            />
+        {/* Airbnb Style Segmented Booking Widget */}
+        <div className="w-full border border-white/20 rounded-2xl flex flex-col mb-8 bg-black/40 relative z-30">
+          
+          {/* Row 1: Route */}
+          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
+            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-50 h-[72px] sm:h-auto">
+              <PillSelect label={t.calc.from} value={from} onChange={setFrom} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
+            </div>
+            <div className="flex-1 relative z-40 h-[72px] sm:h-auto">
+              <PillSelect label={t.calc.to} value={to} onChange={setTo} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
+            </div>
           </div>
 
-          {/* CTA */}
-          <div className="w-full sm:w-auto">
-            <p className="text-[14px] tracking-[0.2em] uppercase mb-2 px-1 select-none text-transparent">·</p>
-            <button
-              onClick={handleWhatsApp}
-              className="w-full sm:w-auto group flex items-center justify-center gap-2.5 bg-white text-black hover:bg-[#E5D3B3] font-sans font-bold text-[14px] tracking-[0.18em] uppercase px-8 py-4 rounded-full transition-all duration-300 whitespace-nowrap"
-            >
-              {t.calc.btnQuote}
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
+          {/* Row 2: Date & Passengers */}
+          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
+            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-30 h-[72px] sm:h-auto">
+              <LuxuryDatePicker label={t.calc.date} value={date} onChange={setDate} />
+            </div>
+            <div className="flex-1 relative z-20 h-[72px] sm:h-auto">
+              <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={t.calc.passengers} icon={Users} />
+            </div>
           </div>
-        </div>
 
-        {/* Row 4: VIP Concierge Add-ons Dropdown */}
-        <div className="relative z-20 pt-6 pb-2 border-t border-white/[0.04]">
-          <div className="w-full sm:w-[320px]">
+          {/* Row 3: Contact */}
+          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
+            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
+              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
+                {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={lang === 'TR' ? 'Örn: John Doe' : 'e.g. John Doe'}
+                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
+              />
+            </div>
+            <div className="flex-1 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
+              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
+                {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
+              </label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder={lang === 'TR' ? '+90 5XX XXX XX XX' : '+ (Code) Phone Number'}
+                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          {/* Row 4: Extras */}
+          <div className="w-full relative z-10 h-[72px]">
             <MultiSelectDropdown
-              label={lang === 'TR' ? 'Özel Concierge Talepleri' : lang === 'RU' ? 'Дополнительные опции' : 'VIP Concierge Add-ons'}
+              label={lang === 'TR' ? 'Özel Concierge Talepleri' : 'VIP Concierge Add-ons'}
               options={conciergeOptions}
               selectedIds={selectedExtras}
               onChange={toggleExtra}
               placeholder={lang === 'TR' ? 'Ekstra Talep Seçin...' : 'Select Extras...'}
             />
           </div>
+
         </div>
+
+        {/* Full width CTA button */}
+        <button
+          onClick={handleWhatsApp}
+          className="w-full bg-[#E5D3B3] text-black hover:bg-white font-sans font-bold text-[15px] tracking-[0.15em] uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
+        >
+          {t.calc.btnQuote}
+          <ArrowRight className="w-4 h-4" />
+        </button>
 
         {/* Trust strip — luxury engraved style */}
         <div className="relative z-10 mt-8 pt-6 border-t border-white/[0.04] flex flex-wrap items-center gap-3">
