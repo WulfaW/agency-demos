@@ -104,7 +104,3 @@ body {
 .leaflet-popup-tip {
   background: #ffffff !important;
 }
-
-.dark-map-filter {
-  filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(110%) grayscale(60%) sepia(10%);
-}
