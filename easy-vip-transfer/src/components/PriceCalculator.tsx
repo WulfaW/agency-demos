@@ -7,10 +7,10 @@ import { LOCATIONS, CONTACT_INFO } from '@/data/transferData';
 
 /* ─── Luxury Date + Time Picker ──────────────────────────────────────────── */
 const TIME_SLOTS = [
-  "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
-  "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
-  "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
-  "18:00", "19:00", "20:00", "21:00", "22:00", "23:00",
+  "08:00", "09:00", "10:00", "11:00",
+  "12:00", "13:00", "14:00", "15:00",
+  "16:00", "17:00", "18:00", "19:00",
+  "20:00", "21:00", "22:00", "23:00",
 ];
 
 const LuxuryDatePicker = ({
@@ -19,7 +19,7 @@ const LuxuryDatePicker = ({
   onChange,
 }: {
   label: string;
-  value: string; // "YYYY-MM-DD" or "YYYY-MM-DD HH:mm"
+  value: string;
   onChange: (val: string) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +31,8 @@ const LuxuryDatePicker = ({
     if (value && value.includes(' ')) return value.split(' ')[1];
     return null;
   });
+  const [popupStyle, setPopupStyle] = useState<React.CSSProperties>({});
+  const triggerRef = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,21 +43,33 @@ const LuxuryDatePicker = ({
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  useEffect(() => {
+    if (isOpen && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      const popupH = 440;
+      const showAbove = window.innerHeight - rect.bottom < popupH + 20;
+      const left = Math.min(rect.left, window.innerWidth - 570);
+      setPopupStyle({
+        position: 'fixed',
+        left,
+        ...(showAbove ? { bottom: window.innerHeight - rect.top + 8 } : { top: rect.bottom + 8 }),
+        width: 560,
+        zIndex: 9999,
+      });
+    }
+  }, [isOpen]);
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-
   const selectedDateStr = value ? value.split(' ')[0] : '';
   const selectedDate = selectedDateStr ? new Date(selectedDateStr + 'T00:00:00') : null;
 
   const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
     'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-  const dayNames = ['Pa', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz'];
+  const dayNames = ['Pz', 'Pa', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'];
 
-  const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
-  const getFirstDayOfMonth = (year: number, month: number) => {
-    const day = new Date(year, month, 1).getDay();
-    return day === 0 ? 6 : day - 1;
-  };
+  const getDaysInMonth = (y: number, m: number) => new Date(y, m + 1, 0).getDate();
+  const getFirstDay = (y: number, m: number) => new Date(y, m, 1).getDay();
 
   const prevMonth = () => setViewDate(v => v.month === 0 ? { year: v.year - 1, month: 11 } : { year: v.year, month: v.month - 1 });
   const nextMonth = () => setViewDate(v => v.month === 11 ? { year: v.year + 1, month: 0 } : { year: v.year, month: v.month + 1 });
@@ -71,16 +85,17 @@ const LuxuryDatePicker = ({
     if (selectedDateStr) onChange(`${selectedDateStr} ${time}`);
   };
 
+  const reset = () => { setSelectedTime(null); onChange(''); };
   const confirm = () => setIsOpen(false);
 
   const displayValue = (() => {
     if (!selectedDate) return '';
-    const datePart = `${selectedDate.getDate()} ${monthNames[selectedDate.getMonth()]}`;
-    return selectedTime ? `${datePart}, ${selectedTime}` : datePart;
+    const dp = `${selectedDate.getDate()} ${monthNames[selectedDate.getMonth()]}`;
+    return selectedTime ? `${dp}, ${selectedTime}` : dp;
   })();
 
   const daysInMonth = getDaysInMonth(viewDate.year, viewDate.month);
-  const firstDay = getFirstDayOfMonth(viewDate.year, viewDate.month);
+  const firstDay = getFirstDay(viewDate.year, viewDate.month);
 
   return (
     <div className="relative flex-1 min-w-0" ref={ref}>
@@ -88,75 +103,74 @@ const LuxuryDatePicker = ({
         <Calendar className="w-3 h-3 text-[#E5D3B3]" />
         {label}
       </p>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-2 bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 transition-all duration-200 focus:outline-none focus:border-[#E5D3B3]/30"
-      >
-        <span className={`text-sm truncate ${displayValue ? 'text-white' : 'text-zinc-500 font-light'}`}>
-          {displayValue || 'Tarih & Saat Seçin'}
-        </span>
-        <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-zinc-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
+      <div ref={triggerRef}>
+        <button
+          type="button"
+          onClick={() => setIsOpen(p => !p)}
+          className="w-full flex items-center justify-between gap-2 bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.1] rounded-full px-5 py-3.5 transition-all duration-200 focus:outline-none focus:border-[#E5D3B3]/30"
+        >
+          <span className={`text-sm truncate ${displayValue ? 'text-white' : 'text-zinc-500 font-light'}`}>
+            {displayValue || 'Tarih & Saat Seçin'}
+          </span>
+          <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-zinc-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+        </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.97 }}
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.97 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-[calc(100%+8px)] left-0 z-[200] bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.95)] overflow-hidden"
-            style={{ width: 520 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.18 }}
+            style={popupStyle}
+            className="bg-[#111] border border-white/10 rounded-2xl shadow-[0_40px_100px_rgba(0,0,0,0.95)]"
           >
-            <div className="flex">
-              {/* Calendar Column */}
-              <div className="flex-1 p-4 border-r border-white/[0.06]">
-                {/* Month nav */}
+            <div className="flex divide-x divide-white/[0.06]">
+              {/* Calendar */}
+              <div className="flex-1 p-5">
                 <div className="flex items-center justify-between mb-4">
-                  <button onClick={prevMonth} className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-400 hover:text-white transition-colors">
+                  <button onClick={prevMonth} className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-500 hover:text-white transition-colors">
                     <ChevronLeft className="w-4 h-4" />
                   </button>
-                  <span className="text-sm font-serif text-white tracking-wider">
+                  <span className="text-sm font-serif text-white tracking-widest">
                     {monthNames[viewDate.month]} {viewDate.year}
                   </span>
-                  <button onClick={nextMonth} className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-400 hover:text-white transition-colors">
+                  <button onClick={nextMonth} className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-500 hover:text-white transition-colors">
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
-                {/* Day names */}
                 <div className="grid grid-cols-7 mb-1">
                   {dayNames.map(d => (
-                    <div key={d} className="text-center text-[10px] font-mono text-zinc-600 tracking-widest py-1">{d}</div>
+                    <div key={d} className="text-center text-[11px] font-mono text-zinc-600 py-1">{d}</div>
                   ))}
                 </div>
-                {/* Days */}
                 <div className="grid grid-cols-7 gap-y-0.5">
                   {Array.from({ length: firstDay }).map((_, i) => <div key={`e${i}`} />)}
                   {Array.from({ length: daysInMonth }).map((_, i) => {
                     const day = i + 1;
-                    const thisDate = new Date(viewDate.year, viewDate.month, day);
-                    const isPast = thisDate < today;
-                    const isSelected = selectedDate &&
+                    const d = new Date(viewDate.year, viewDate.month, day);
+                    const isPast = d < today;
+                    const isSel = selectedDate &&
                       selectedDate.getDate() === day &&
                       selectedDate.getMonth() === viewDate.month &&
                       selectedDate.getFullYear() === viewDate.year;
-                    const isToday = thisDate.toDateString() === today.toDateString();
+                    const isToday = d.toDateString() === today.toDateString();
                     return (
                       <button
                         key={day}
                         onClick={() => !isPast && selectDay(day)}
                         disabled={isPast}
-                        className={`relative h-8 w-full rounded-lg text-[13px] transition-all duration-150 ${
-                          isSelected ? 'bg-[#E5D3B3] text-black font-semibold'
+                        className={`relative h-9 w-full rounded-lg text-[13px] transition-all duration-150 ${
+                          isSel ? 'bg-white text-black font-semibold'
                           : isPast ? 'text-zinc-700 cursor-not-allowed'
-                          : isToday ? 'text-[#E5D3B3] hover:bg-white/5'
-                          : 'text-zinc-300 hover:bg-white/[0.06] hover:text-white'
+                          : isToday ? 'text-white font-medium ring-1 ring-white/20 hover:ring-white/40'
+                          : 'text-zinc-300 hover:bg-white/[0.07] hover:text-white'
                         }`}
                       >
                         {day}
-                        {isToday && !isSelected && (
-                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E5D3B3]/50" />
+                        {isToday && !isSel && (
+                          <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E5D3B3]/70" />
                         )}
                       </button>
                     );
@@ -164,37 +178,39 @@ const LuxuryDatePicker = ({
                 </div>
               </div>
 
-              {/* Time Column */}
-              <div className="w-[130px] flex flex-col">
-                <p className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase px-3 pt-4 pb-2">Saat</p>
-                <div className="flex-1 overflow-y-auto subtle-scrollbar px-2 pb-2">
-                  <div className="flex flex-col gap-1">
-                    {TIME_SLOTS.map(slot => (
-                      <button
-                        key={slot}
-                        onClick={() => selectTime(slot)}
-                        className={`w-full text-center py-1.5 rounded-lg text-[13px] font-mono transition-all duration-150 ${
-                          selectedTime === slot
-                            ? 'bg-[#E5D3B3] text-black font-semibold'
-                            : 'text-zinc-400 hover:bg-white/[0.06] hover:text-white'
-                        }`}
-                      >
-                        {slot}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                {/* Confirm */}
-                <div className="p-2 border-t border-white/[0.06]">
-                  <button
-                    onClick={confirm}
-                    disabled={!selectedDate || !selectedTime}
-                    className="w-full py-2 rounded-xl text-[12px] font-sans font-bold tracking-widest uppercase transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed bg-[#E5D3B3] text-black hover:bg-white"
-                  >
-                    Onayla
-                  </button>
+              {/* Time — 2-col grid like ruixen */}
+              <div className="w-[220px] p-4 flex flex-col">
+                <p className="text-[11px] font-mono text-zinc-500 tracking-widest uppercase mb-3">Saat Seç</p>
+                <div className="grid grid-cols-2 gap-2 overflow-y-auto subtle-scrollbar">
+                  {TIME_SLOTS.map(slot => (
+                    <button
+                      key={slot}
+                      onClick={() => selectTime(slot)}
+                      className={`py-2.5 rounded-xl text-[13px] font-mono border transition-all duration-150 ${
+                        selectedTime === slot
+                          ? 'bg-white text-black border-white font-semibold'
+                          : 'text-zinc-400 border-white/[0.08] hover:bg-white/[0.06] hover:text-white hover:border-white/20'
+                      }`}
+                    >
+                      {slot}
+                    </button>
+                  ))}
                 </div>
               </div>
+            </div>
+
+            {/* Footer */}
+            <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.06]">
+              <button onClick={reset} className="text-[12px] font-sans text-zinc-500 hover:text-white tracking-widest uppercase transition-colors">
+                Sıfırla
+              </button>
+              <button
+                onClick={confirm}
+                disabled={!selectedDate || !selectedTime}
+                className="px-6 py-2 rounded-xl text-[12px] font-sans font-bold tracking-widest uppercase transition-all disabled:opacity-25 disabled:cursor-not-allowed bg-white text-black hover:bg-[#E5D3B3]"
+              >
+                Onayla
+              </button>
             </div>
           </motion.div>
         )}
@@ -204,6 +220,7 @@ const LuxuryDatePicker = ({
 };
 
 /* ─── Custom Multi Select ──────────────────────────────────────────── */
+
 const MultiSelectDropdown = ({
   label,
   options,
