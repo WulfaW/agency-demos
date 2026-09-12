@@ -150,7 +150,6 @@ const LuxuryDatePicker = ({
                   {Array.from({ length: daysInMonth }).map((_, i) => {
                     const day = i + 1;
                     const d = new Date(viewDate.year, viewDate.month, day);
-                    const isPast = d < today;
                     const isSel = selectedDate &&
                       selectedDate.getDate() === day &&
                       selectedDate.getMonth() === viewDate.month &&
@@ -159,11 +158,9 @@ const LuxuryDatePicker = ({
                     return (
                       <button
                         key={day}
-                        onClick={() => !isPast && selectDay(day)}
-                        disabled={isPast}
+                        onClick={() => selectDay(day)}
                         className={`relative h-9 w-full rounded-lg text-[13px] transition-all duration-150 ${
                           isSel ? 'bg-white text-black font-semibold'
-                          : isPast ? 'text-zinc-700 cursor-not-allowed'
                           : isToday ? 'text-white font-medium ring-1 ring-white/20 hover:ring-white/40'
                           : 'text-zinc-300 hover:bg-white/[0.07] hover:text-white'
                         }`}
