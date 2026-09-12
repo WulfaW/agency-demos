@@ -8,8 +8,9 @@ import ResourceManager from '@/components/admin/ResourceManager';
 import AssignmentForm from '@/components/admin/AssignmentForm';
 import AssignmentList from '@/components/admin/AssignmentList';
 import PaymentsPanel from '@/components/admin/PaymentsPanel';
+import CustomersPanel from '@/components/admin/CustomersPanel';
 
-type Tab = 'gorevler' | 'surucular' | 'araclar' | 'ucretler';
+type Tab = 'gorevler' | 'surucular' | 'araclar' | 'musteriler' | 'ucretler';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('gorevler');
@@ -33,18 +34,19 @@ export default function AdminDashboard() {
         </div>
         <nav className="flex-1 space-y-2">
           {[
-            { id: 'gorevler',  label: 'GÃ¶revler',  icon: CalendarDays },
-            { id: 'surucular', label: 'SÃ¼rÃ¼cÃ¼ler', icon: Users },
-            { id: 'araclar',   label: 'AraÃ§lar',   icon: Car },
-            { id: 'ucretler',  label: 'Ãœcretler',  icon: Banknote },
+            { id: 'gorevler',  label: 'Görevler',  icon: CalendarDays },
+            { id: 'surucular', label: 'Sürücüler', icon: Users },
+            { id: 'araclar',   label: 'Araçlar',   icon: Car },
+            { id: 'musteriler',label: 'Müþteriler',icon: Sparkles },
+            { id: 'ucretler',  label: 'Ücretler',  icon: Banknote },
           ].map((item) => (
-            <button key={item.id} onClick={() => setActiveTab(item.id as Tab)} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm ${activeTab === item.id ? 'bg-white/10 text-white font-medium border border-white/5' : 'text-zinc-400 hover:bg-white/[0.02]'}`}>
-              <item.icon className={`w-4 h-4 ${activeTab === item.id ? 'text-[#E5D3B3]' : 'opacity-60'}`} /> {item.label}
+            <button key={item.id} onClick={() => setActiveTab(item.id as Tab)} className={w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm \}>
+              <item.icon className={w-4 h-4 \} /> {item.label}
             </button>
           ))}
         </nav>
         <div className="pt-6 border-t border-white/5 mt-auto">
-          <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-400/10"><LogOut className="w-4 h-4" /> Ã‡Ä±kÄ±ÅŸ Yap</button>
+          <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-400/10"><LogOut className="w-4 h-4" /> Çýkýþ Yap</button>
         </div>
       </aside>
 
@@ -52,19 +54,21 @@ export default function AdminDashboard() {
 
         {activeTab === 'gorevler' && (
           <div className="space-y-8">
-            <header className="mb-6"><h1 className="text-3xl font-serif text-white">GÃ¶revler</h1></header>
+            <header className="mb-6"><h1 className="text-3xl font-serif text-white">Görevler</h1></header>
             <AssignmentForm onSaved={() => setRefreshKey((k) => k + 1)} />
             <AssignmentList refreshKey={refreshKey} />
           </div>
         )}
 
         {activeTab === 'surucular' && (
-          <ResourceManager table="drivers" title="SÃ¼rÃ¼cÃ¼ler" secondLabel="Telefon" secondField="phone" />
+          <ResourceManager table="drivers" title="Sürücüler" secondLabel="Telefon" secondField="phone" />
         )}
 
         {activeTab === 'araclar' && (
-          <ResourceManager table="vehicles" title="AraÃ§lar" secondLabel="Plaka" secondField="plate" />
+          <ResourceManager table="vehicles" title="Araçlar" secondLabel="Plaka" secondField="plate" />
         )}
+
+        {activeTab === 'musteriler' && <CustomersPanel />}
 
         {activeTab === 'ucretler' && <PaymentsPanel />}
 
