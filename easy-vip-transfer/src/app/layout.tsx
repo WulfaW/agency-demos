@@ -52,6 +52,7 @@ export const metadata: Metadata = {
   },
 };
 
+import StarlightBackground from '@/components/ui/StarlightBackground';
 import FloatingChatWidget from '@/components/FloatingChatWidget';
 
 export default function RootLayout({
@@ -65,21 +66,14 @@ export default function RootLayout({
         <ScrollProgress />
         <SideNav />
         <Preloader />
-        {/* Film grain / noise overlay */}
+        <StarlightBackground />
+        
+        {/* Film grain / noise overlay for texture */}
         <div 
-          className="pointer-events-none fixed inset-0 z-[1000] h-full w-full opacity-[0.035] mix-blend-difference"
+          className="pointer-events-none fixed inset-0 z-[1000] h-full w-full opacity-[0.03] mix-blend-difference"
           style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}
         />
-        {/* Ambient glow — center warm gold (brand accent) */}
-        <div 
-          className="pointer-events-none fixed inset-0 z-[1] h-full w-full"
-          style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 30%, rgba(229,211,179,0.04) 0%, transparent 70%)' }}
-        />
-        {/* Ambient glow — top-left cool silver */}
-        <div 
-          className="pointer-events-none fixed inset-0 z-[1] h-full w-full"
-          style={{ background: 'radial-gradient(ellipse 55% 45% at -5% 5%, rgba(200,210,220,0.03) 0%, transparent 65%)' }}
-        />
+        
         <PostHogProvider>
           <LanguageProvider>
             {children}
