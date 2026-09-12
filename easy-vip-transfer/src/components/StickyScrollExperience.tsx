@@ -10,7 +10,6 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export default function StickyScrollExperience() {
   const [activeStep, setActiveStep] = useState(0);
-  
   const { t, lang } = useLanguage();
   const getSteps = () => {
     switch(lang) {
@@ -43,7 +42,7 @@ export default function StickyScrollExperience() {
   };
   const steps = getSteps();
 
-  const [activeStep, setActiveStep] = useState(0);
+
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
