@@ -9,8 +9,10 @@ import AssignmentForm from '@/components/admin/AssignmentForm';
 import AssignmentList from '@/components/admin/AssignmentList';
 import PaymentsPanel from '@/components/admin/PaymentsPanel';
 import CustomersPanel from '@/components/admin/CustomersPanel';
+import WhatsAppPanel from '@/components/admin/WhatsAppPanel';
+import { MessageCircle } from 'lucide-react';
 
-type Tab = 'gorevler' | 'surucular' | 'araclar' | 'musteriler' | 'ucretler';
+type Tab = 'gorevler' | 'surucular' | 'araclar' | 'musteriler' | 'whatsapp' | 'ucretler';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('gorevler');
@@ -38,6 +40,7 @@ export default function AdminDashboard() {
             { id: 'surucular', label: 'Sürücüler', icon: Users },
             { id: 'araclar',   label: 'Araçlar',   icon: Car },
             { id: 'musteriler',label: 'Müşteriler',icon: Sparkles },
+            { id: 'whatsapp',  label: 'Bildirimler',icon: MessageCircle },
             { id: 'ucretler',  label: 'Ücretler',  icon: Banknote },
           ].map((item) => (
             <button key={item.id} onClick={() => setActiveTab(item.id as Tab)} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm ${activeTab === item.id ? 'bg-white/10 text-white font-medium border border-white/5' : 'text-zinc-400 hover:bg-white/[0.02]'}`}>
@@ -69,6 +72,8 @@ export default function AdminDashboard() {
         )}
 
         {activeTab === 'musteriler' && <CustomersPanel />}
+
+        {activeTab === 'whatsapp' && <WhatsAppPanel />}
 
         {activeTab === 'ucretler' && <PaymentsPanel />}
 
