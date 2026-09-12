@@ -16,7 +16,7 @@ import StickyMobileBar from '@/components/StickyMobileBar';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#030303] text-zinc-100 relative selection:bg-[#E5D3B3] selection:text-black pb-16 md:pb-0">
+    <main className="min-h-screen text-zinc-100 relative selection:bg-[#E5D3B3] selection:text-black pb-16 md:pb-0">
       {/* 1. Header Navigation */}
       <Navbar />
 
