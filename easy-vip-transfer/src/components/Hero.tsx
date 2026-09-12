@@ -19,18 +19,10 @@ export default function Hero() {
     <section className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
       
       {/* Background Cinematic Visual */}
-      <div className="absolute inset-0 z-0">
-        <motion.img
-          initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1.05, opacity: 0.45 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-          src="/images/wix_img_2.jpg"
-          alt="VIP Transfer Bodrum"
-          className="w-full h-full object-cover"
-        />
-        
-        {/* Soft, rich luxury gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-[#030303]/40 to-[#030303]" />
+      <div className="absolute inset-0 z-0 bg-[#030303] overflow-hidden">
+        {/* Soft radial glow for depth without using an image */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] opacity-30 pointer-events-none" 
+             style={{ background: 'radial-gradient(circle, rgba(229,211,179,0.06) 0%, rgba(3,3,3,0) 70%)' }} />
       </div>
 
       {/* Content Container */}
@@ -76,7 +68,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center gap-4 mb-16"
+          className="flex flex-col sm:flex-row items-center gap-4"
         >
           <a
             href="#calculator"
@@ -92,28 +84,6 @@ export default function Hero() {
           >
             <span className="text-zinc-400 group-hover:text-white transition-colors">{t.hero.btnFleet}</span>
           </a>
-        </motion.div>
-
-        {/* Fast Popular Route Chips */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="flex flex-wrap items-center justify-center gap-2.5"
-        >
-          <span className="text-[13px] font-mono tracking-widest text-zinc-500 uppercase mr-1 hidden sm:inline-block">
-            {t.hero.popularRoutes}
-          </span>
-          {popularRoutes.map((route, i) => (
-            <a
-              key={i}
-              href="#calculator"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/20 text-[14px] font-sans text-zinc-400 hover:text-white transition-all hover:scale-105 active:scale-95"
-            >
-              <MapPin className="w-3 h-3 text-zinc-500" />
-              <span>{route.label}</span>
-            </a>
-          ))}
         </motion.div>
 
       </div>
