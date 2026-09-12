@@ -59,7 +59,7 @@ export default function LuxuryDestinations() {
       name: 'Mandarin Oriental Bodrum',
       bay: 'Cennet Koyu • Göltürkbükü',
       time: '40 dk',
-      image: '/images/wix_img_1.jpg',
+      image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=80',
       badge: 'Cennet Koyu',
     },
     {
@@ -67,7 +67,7 @@ export default function LuxuryDestinations() {
       name: 'Yalıkavak Marina & Zuma',
       bay: 'Süperyat Limanı • Yalıkavak',
       time: '45 dk',
-      image: '/images/wix_img_2.jpg',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80',
       badge: 'Süperyat Hub',
     },
     {
@@ -75,7 +75,7 @@ export default function LuxuryDestinations() {
       name: 'Amanruya Luxury Resort',
       bay: 'Demirbükü Koyu • Torba',
       time: '38 dk',
-      image: '/images/wix_img_0.jpg',
+      image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
       badge: 'Sessiz Lüks',
     },
     {
@@ -83,7 +83,7 @@ export default function LuxuryDestinations() {
       name: 'Maçakızı & Scorpios Bodrum',
       bay: 'Türkbükü Koyu & Tilkicik',
       time: '40 dk',
-      image: '/images/wix_img_1.jpg',
+      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
       badge: 'Beach Club',
     },
   ];

@@ -192,15 +192,15 @@ const LuxuryDatePicker = ({
               </div>
             </div>
 
-            {/* Footer */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-t border-white/[0.06]">
-              <button onClick={reset} className="text-[12px] font-sans text-zinc-500 hover:text-white tracking-widest uppercase transition-colors">
+            {/* Footer — Airbnb style */}
+            <div className="flex items-center justify-between px-5 py-4 border-t border-white/[0.06]">
+              <button onClick={reset} className="text-[13px] font-sans text-white underline underline-offset-2 hover:text-zinc-300 transition-colors">
                 Sıfırla
               </button>
               <button
                 onClick={confirm}
                 disabled={!selectedDate || !selectedTime}
-                className="px-6 py-2 rounded-xl text-[12px] font-sans font-bold tracking-widest uppercase transition-all disabled:opacity-25 disabled:cursor-not-allowed bg-white text-black hover:bg-[#E5D3B3]"
+                className="px-8 py-3 rounded-xl text-[13px] font-sans font-bold tracking-wider transition-all disabled:opacity-25 disabled:cursor-not-allowed bg-[#222] text-white hover:bg-[#333] border border-white/10"
               >
                 Onayla
               </button>
@@ -566,22 +566,7 @@ export default function PriceCalculator() {
           <ArrowRight className="w-4 h-4" />
         </button>
 
-        {/* Trust strip — luxury engraved style */}
-        <div className="relative z-10 mt-8 pt-6 border-t border-white/[0.04] flex flex-wrap items-center gap-3">
-          {[
-            { label: t.calc.badge1, symbol: "✦" },
-            { label: t.calc.badge2, symbol: "◈" },
-            { label: t.calc.badge3, symbol: "○" },
-          ].map(({ label, symbol }) => (
-            <div
-              key={label}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.02]"
-            >
-              <span className="text-[10px] text-[#E5D3B3]/50">{symbol}</span>
-              <span className="text-[12px] font-sans text-zinc-500 tracking-[0.18em] uppercase">{label}</span>
-            </div>
-          ))}
-        </div>
+
       </motion.div>
     </section>
   );
