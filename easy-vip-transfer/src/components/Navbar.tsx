@@ -13,6 +13,20 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useLanguage();
   const router = useRouter();
+  const clickRef = React.useRef({ count: 0, lastClick: 0 });
+  const handleLogoClick = () => {
+    const now = Date.now();
+    if (now - clickRef.current.lastClick > 600) {
+      clickRef.current.count = 1;
+    } else {
+      clickRef.current.count += 1;
+    }
+    clickRef.current.lastClick = now;
+    if (clickRef.current.count === 3) {
+      clickRef.current.count = 0;
+      router.push('/admin');
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +57,7 @@ export default function Navbar() {
         
         {/* LEFT PILL: Brand Logo */}
         <motion.div
-          onDoubleClick={() => router.push('/admin')}
+          onClick={handleLogoClick}
           className={`pointer-events-auto relative z-10 flex items-center justify-center transition-all duration-700 ease-in-out cursor-pointer ${
             isScrolled 
               ? 'h-full px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
