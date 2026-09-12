@@ -5,7 +5,6 @@ import { LanguageProvider } from '@/context/LanguageContext';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
 import Preloader from '@/components/Preloader';
 import ScrollProgress from '@/components/ScrollProgress';
-import SideNav from '@/components/SideNav';
 
 const montserrat = Montserrat({ 
   subsets: ['latin'],
@@ -64,7 +63,6 @@ export default function RootLayout({
     <html lang="tr" className={`scroll-smooth ${montserrat.variable} ${inter.variable} bg-[#030303] text-zinc-200 antialiased`}>
       <body className="bg-[#030303] min-h-screen flex flex-col font-sans selection:bg-white selection:text-black relative">
         <ScrollProgress />
-        <SideNav />
         <Preloader />
         <StarlightBackground />
         
