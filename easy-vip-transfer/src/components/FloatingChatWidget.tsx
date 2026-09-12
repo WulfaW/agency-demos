@@ -41,17 +41,18 @@ export default function FloatingChatWidget() {
     return null;
   }
 
-  // Fallback: Simple WhatsApp button without the fake chat window
+  // Fallback: Minimal elegant WhatsApp button — no neon glow
   return (
-    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-[100]">
       <a
         href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=${encodeURIComponent(texts.defaultWa)}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-14 h-14 bg-[#25D366] hover:bg-[#20b858] rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 pointer-events-auto"
+        className="flex items-center gap-2.5 px-4 py-3 bg-[#0d0d0d] border border-white/10 rounded-full shadow-2xl hover:border-white/20 hover:bg-[#141414] transition-all duration-300 group"
         aria-label="WhatsApp"
       >
-        <MessageCircle size={28} className="fill-current" />
+        <img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="WhatsApp" className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+        <span className="text-[12px] font-sans tracking-[0.15em] text-zinc-400 group-hover:text-white transition-colors uppercase">WhatsApp</span>
       </a>
     </div>
   );
