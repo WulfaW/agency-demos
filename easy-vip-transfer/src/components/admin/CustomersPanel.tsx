@@ -1,4 +1,4 @@
-'use client';
+ï»¿'use client';
 
 import React, { useState } from 'react';
 import { User, Phone, ExternalLink, Star } from 'lucide-react';
@@ -27,9 +27,9 @@ export default function CustomersPanel() {
       <header className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-3xl font-serif text-white flex items-center gap-3">
-            Müþteriler <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded border border-blue-500/30">Notion CRM Sync</span>
+            MÃ¼ÅŸteriler <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded border border-blue-500/30">Notion CRM Sync</span>
           </h1>
-          <p className="text-zinc-400 mt-2 text-sm">Notion veritabanýnýzdan çekilen müþteri ve geçmiþ seyahat bilgileri.</p>
+          <p className="text-zinc-400 mt-2 text-sm">Notion veritabanÄ±nÄ±zdan Ã§ekilen mÃ¼ÅŸteri ve geÃ§miÅŸ seyahat bilgileri.</p>
         </div>
       </header>
 
@@ -60,8 +60,8 @@ export default function CustomersPanel() {
                 <div className="text-white font-medium">{c.lastTrip}</div>
                 <div className="text-zinc-500 text-xs">Son Rzv.</div>
               </div>
-              <button className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white text-sm transition-colors flex items-center gap-2" onClick={() => alert('Notion baðlantýsý bekleniyor...')}>
-                Notion'da Aç <ExternalLink className="w-3.5 h-3.5" />
+              <button className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white text-sm transition-colors flex items-center gap-2" onClick={() => alert('Notion baÄŸlantÄ±sÄ± bekleniyor...')}>
+                Notion'da AÃ§ <ExternalLink className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
