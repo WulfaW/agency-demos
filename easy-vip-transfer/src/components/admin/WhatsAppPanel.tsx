@@ -30,18 +30,18 @@ export default function WhatsAppPanel() {
     let logMsg = '';
     
     if (templateId === 'onay') {
-      msg = \Merhaba Sayın \, VIP Transfer rezervasyonunuz onaylanmıştır.%0A%0A📅 Saat: \%0A📍 Rota: \%0A%0Aİyi yolculuklar dileriz. - Easy VIP Bodrum\;
+      msg = `Merhaba Sayın ${task.customer}, VIP Transfer rezervasyonunuz onaylanmıştır.%0A%0A📅 Saat: ${task.time}%0A📍 Rota: ${task.route}%0A%0Aİyi yolculuklar dileriz. - Easy VIP Bodrum`;
       logMsg = 'Rezervasyon Onayı gönderildi.';
     } else if (templateId === 'sofor') {
-      msg = \Transfer saatiniz yaklaşıyor.%0A%0A🚘 Aracınız: \%0A👤 Şoförünüz: \%0A%0AŞoförümüz sizi tam saatinde karşılama noktasında bekliyor olacaktır.\;
+      msg = `Transfer saatiniz yaklaşıyor.%0A%0A🚘 Aracınız: ${task.plate}%0A👤 Şoförünüz: ${task.driver}%0A%0AŞoförümüz sizi tam saatinde karşılama noktasında bekliyor olacaktır.`;
       logMsg = 'Şoför bilgileri iletildi.';
     } else if (templateId === 'konum') {
-      msg = \Şoförünüz şu an belirtilen konuma ulaşmıştır ve sizi beklemektedir.\;
+      msg = `Şoförünüz şu an belirtilen konuma ulaşmıştır ve sizi beklemektedir.`;
       logMsg = 'Geliş bildirimi gönderildi.';
     }
 
     // Gerçek API entegre edilene kadar Web WhatsApp'a yönlendir
-    window.open(\https://wa.me/\?text=\\, '_blank');
+    window.open(`https://wa.me/${task.phone}?text=${msg}`, '_blank');
     
     // Log ekle
     setLogs(prev => [{ task: task.id, msg: logMsg, time: new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'}) }, ...prev]);
@@ -60,7 +60,7 @@ export default function WhatsAppPanel() {
             <button
               key={task.id}
               onClick={() => setSelectedTask(task)}
-              className={\w-full text-left p-4 rounded-2xl border transition-all \\}
+              className={`w-full text-left p-4 rounded-2xl border transition-all ${selectedTask?.id === task.id ? 'bg-green-500/10 border-green-500/30' : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.04]'}`}
             >
               <div className="flex justify-between items-start mb-2">
                 <span className="font-medium text-white">{task.customer}</span>
