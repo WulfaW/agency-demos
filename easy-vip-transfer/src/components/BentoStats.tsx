@@ -1,8 +1,7 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Clock, Star, ShieldCheck, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function BentoStats() {
@@ -12,61 +11,52 @@ export default function BentoStats() {
     {
       num: '10+',
       label: lang === 'TR' ? 'Yıllık Deneyim' : lang === 'RU' ? 'Лет Опыта' : 'Years Experience',
-      desc: lang === 'TR' ? 'Bodrum ve Ege koylarında lüks taşımacılık tecrübesi' : lang === 'RU' ? 'Опыт VIP перевозок в Бодруме' : 'Premier luxury chauffeur experience across Bodrum',
-      icon: Award,
+      sub: lang === 'TR' ? 'Bodrum & Ege' : lang === 'RU' ? 'Бодрум & Эгейское' : 'Bodrum & Aegean',
     },
     {
-      num: '15.000+',
+      num: '15K+',
       label: lang === 'TR' ? 'VIP Transfer' : lang === 'RU' ? 'VIP Трансферов' : 'VIP Transfers',
-      desc: lang === 'TR' ? 'Havalimanı, marina ve lüks otellere kusursuz ulaşım' : lang === 'RU' ? 'Безупречные поездки в отели и марины' : 'Flawless transfers to resorts, yachts & airports',
-      icon: ShieldCheck,
+      sub: lang === 'TR' ? 'Tamamlandı' : lang === 'RU' ? 'Завершено' : 'Completed',
     },
     {
-      num: '4.9 ★',
-      label: lang === 'TR' ? 'Google Puanı' : lang === 'RU' ? 'Рейтинг Google' : 'Google Rating',
-      desc: lang === 'TR' ? '250+ gerçek misafir incelemesi ve yüksek memnuniyet' : lang === 'RU' ? '250+ реальных отзывов гостей' : '250+ verified guest reviews & highest rating',
-      icon: Star,
+      num: '4.9',
+      label: lang === 'TR' ? 'Google Puanı' : lang === 'RU' ? 'Рейтинг' : 'Google Rating',
+      sub: lang === 'TR' ? '250+ inceleme' : lang === 'RU' ? '250+ отзывов' : '250+ reviews',
     },
     {
       num: '%100',
-      label: lang === 'TR' ? 'Zamanında Karşılama' : lang === 'RU' ? 'Вовремя 100%' : 'On-Time Rate',
-      desc: lang === 'TR' ? 'Canlı radar uçuş takibi ile sıfır rötar ve bekleme' : lang === 'RU' ? 'Отслеживание рейсов и нулевое ожидание' : 'Live flight tracking with zero wait time',
-      icon: Clock,
+      label: lang === 'TR' ? 'Zamanında' : lang === 'RU' ? 'Вовремя' : 'On-Time Rate',
+      sub: lang === 'TR' ? 'Uçuş takipli' : lang === 'RU' ? 'Отслеживание' : 'Flight tracked',
     },
   ];
 
   return (
-    <section className="py-12 px-4 w-full max-w-6xl mx-auto relative z-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((item, idx) => {
-          const Icon = item.icon;
-          return (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="relative rounded-2xl border border-white/[0.08] bg-[#0a0a0a]/70 p-6 backdrop-blur-xl hover:border-[#E5D3B3]/30 transition-all group"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-serif text-3xl font-bold text-white group-hover:text-[#E5D3B3] transition-colors">
-                  {item.num}
-                </span>
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Icon className="w-4 h-4 text-[#E5D3B3]" />
-                </div>
-              </div>
-              <h3 className="text-sm font-mono tracking-widest text-[#E5D3B3] uppercase mb-1.5 font-bold">
-                {item.label}
-              </h3>
-              <p className="text-sm font-sans text-zinc-400 font-light leading-relaxed">
-                {item.desc}
-              </p>
-            </motion.div>
-          );
-        })}
+    <section className="w-full max-w-6xl mx-auto px-4 py-10 relative z-10">
+      <div className="h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent mb-0" />
+      <div className="flex flex-col sm:flex-row items-stretch divide-y sm:divide-y-0 sm:divide-x divide-white/[0.06]">
+        {stats.map((item, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: idx * 0.08 }}
+            className="flex-1 px-8 py-8 sm:py-6 first:pl-0 last:pr-0 group"
+          >
+            <span className="block font-serif text-[3rem] leading-none text-white font-light tracking-tight group-hover:text-[#E5D3B3] transition-colors duration-500 mb-2">
+              {item.num}
+            </span>
+            <p className="text-[10px] font-mono tracking-[0.25em] text-[#E5D3B3]/60 uppercase mb-1">
+              {item.label}
+            </p>
+            <p className="text-[11px] font-sans text-zinc-600">
+              {item.sub}
+            </p>
+          </motion.div>
+        ))}
       </div>
+      <div className="h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
     </section>
   );
 }
+
