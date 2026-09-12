@@ -16,7 +16,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex flex-col items-center justify-center overflow-hidden pt-28 pb-36">
+    <section className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
       
       {/* Background Cinematic Visual */}
       <div className="absolute inset-0 z-0">
@@ -30,28 +30,24 @@ export default function Hero() {
         />
         
         {/* Soft, rich luxury gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/90 via-[#030303]/50 to-[#030303]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030303]/80 via-transparent to-[#030303]/80" />
-        
-        {/* Ambient Center Glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#E5D3B3]/[0.04] rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-[#030303]/40 to-[#030303]" />
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col items-center text-center">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col items-center text-center mt-12">
         
         {/* Premium Eyebrow Badge */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex items-center justify-center gap-4 mb-6"
+          className="flex items-center justify-center gap-4 mb-8"
         >
-          <div className="h-[1px] w-8 md:w-12 bg-[#E5D3B3]/40"></div>
-          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <div className="h-px w-8 md:w-12 bg-white/10"></div>
+          <span className="text-[12px] font-mono tracking-[0.4em] text-white/70 uppercase font-medium">
             {t.hero.badge}
           </span>
-          <div className="h-[1px] w-8 md:w-12 bg-[#E5D3B3]/40"></div>
+          <div className="h-px w-8 md:w-12 bg-white/10"></div>
         </motion.div>
 
         {/* Display Headline */}
@@ -59,10 +55,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.4 }}
-          className="text-4xl sm:text-6xl lg:text-7xl font-serif font-medium text-white tracking-tight leading-[1.12] mb-6 drop-shadow-2xl"
+          className="text-5xl sm:text-7xl lg:text-8xl font-serif font-light text-white tracking-tight leading-[1.05] mb-8"
         >
           {t.hero.title1} <br />
-          <span className="italic font-light text-[#E5D3B3]">{t.hero.title2}</span> {t.hero.title3}
+          <span className="italic text-[#E5D3B3]">{t.hero.title2}</span> {t.hero.title3}
         </motion.h1>
 
         {/* Subtitle */}
@@ -70,7 +66,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-sm sm:text-base text-zinc-300 font-sans font-light max-w-2xl mx-auto tracking-wide leading-relaxed mb-10 opacity-90"
+          className="text-base sm:text-lg text-zinc-400 font-sans font-light max-w-2xl mx-auto tracking-wide leading-relaxed mb-12"
         >
           {t.hero.subtitle}
         </motion.p>
@@ -80,11 +76,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center gap-4 mb-12"
+          className="flex flex-col sm:flex-row items-center gap-4 mb-16"
         >
           <a
             href="#calculator"
-            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_35px_rgba(229,211,179,0.25)] hover:shadow-[0_0_50px_rgba(255,255,255,0.35)] active:scale-98"
+            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white hover:bg-[#E5D3B3] text-black text-sm font-bold tracking-widest uppercase transition-colors duration-300 active:scale-95"
           >
             <span>{t.hero.btnCalc}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -92,9 +88,9 @@ export default function Hero() {
           
           <a
             href="#fleet"
-            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 backdrop-blur-md text-white text-sm font-medium tracking-widest uppercase transition-all duration-300 active:scale-98"
+            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 backdrop-blur-md text-white text-sm font-medium tracking-widest uppercase transition-all duration-300 active:scale-95"
           >
-            <span className="text-zinc-300 group-hover:text-white transition-colors">{t.hero.btnFleet}</span>
+            <span className="text-zinc-400 group-hover:text-white transition-colors">{t.hero.btnFleet}</span>
           </a>
         </motion.div>
 
@@ -112,9 +108,9 @@ export default function Hero() {
             <a
               key={i}
               href="#calculator"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-[#E5D3B3]/40 text-[14px] font-sans text-zinc-400 hover:text-white transition-all hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/20 text-[14px] font-sans text-zinc-400 hover:text-white transition-all hover:scale-105 active:scale-95"
             >
-              <MapPin className="w-3 h-3 text-[#E5D3B3]" />
+              <MapPin className="w-3 h-3 text-zinc-500" />
               <span>{route.label}</span>
             </a>
           ))}
@@ -123,7 +119,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom Subtle Gradient Transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#030303] to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#030303] via-[#030303] to-transparent z-10 pointer-events-none" />
     </section>
   );
 }

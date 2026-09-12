@@ -453,7 +453,7 @@ export default function PriceCalculator() {
   }));
 
   return (
-    <section id="calculator" className="relative z-20 w-full max-w-5xl mx-auto px-4 -mt-28 mb-24">
+    <section id="calculator" className="relative z-20 w-full max-w-5xl mx-auto px-4 mt-12 mb-32">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
