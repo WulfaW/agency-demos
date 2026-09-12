@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useEffect, useRef } from 'react';
 
@@ -23,7 +23,7 @@ export default function StarlightBackground() {
 
     const initStars = () => {
       stars = [];
-      const numStars = Math.floor((canvas.width * canvas.height) / 8000); // Density of stars
+      const numStars = Math.floor((canvas.width * canvas.height) / 8000);
       for (let i = 0; i < numStars; i++) {
         stars.push({
           x: Math.random() * canvas.width,
@@ -41,18 +41,15 @@ export default function StarlightBackground() {
       stars.forEach(star => {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        // Using the brand gold color mixed with white
-        ctx.fillStyle = \gba(229, 211, 179, \)\;
+        ctx.fillStyle = `rgba(229, 211, 179, ${star.opacity})`;
         ctx.fill();
 
-        // Twinkle and move
         star.opacity += (Math.random() - 0.5) * 0.02;
         if (star.opacity < 0.1) star.opacity = 0.1;
         if (star.opacity > 0.8) star.opacity = 0.8;
         
         star.y -= star.speed;
         
-        // Loop around
         if (star.y < 0) {
           star.y = canvas.height;
           star.x = Math.random() * canvas.width;
