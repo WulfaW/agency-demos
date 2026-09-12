@@ -15,35 +15,35 @@ export default function StickyScrollExperience() {
   const getSteps = () => {
     switch(lang) {
       case 'EN': return [
-        { number: "01", tag: "AIRPORT & JET TERMINAL", title: "Personalized Greeting", desc: "Your chauffeur will greet you with a personalized name board at the exit of Milas-Bodrum Airport (BJV) or the General Aviation VIP Terminal. You will be directly escorted to your vehicle with baggage assistance.", highlights: ["Live Flight Tracking", "Free Delay Waiting", "VIP Terminal Support"], image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80", accent: "BJV → Yalıkavak" },
-        { number: "02", tag: "FIRST CLASS TRAVEL", title: "Private Cabin Comfort", desc: "Travel comfortably in the Bodrum heat with a soundproof private cabin, starlight ceiling, ultra-wide leather seats, and cold drinks.", highlights: ["Starlight Ceiling", "Cold Minibar & Wi-Fi", "Private Soundproofing"], image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80", accent: "Mercedes Maybach & S-Class" },
-        { number: "03", tag: "FLAWLESS ARRIVAL", title: "Door-to-door Delivery", desc: "You will be delivered to Yalıkavak Marina, Mandarin Oriental, Maçakızı, Scorpios, or your private yacht pier with zero traffic stress, full privacy, and protocol courtesy.", highlights: ["Marina Pier Access", "Protocol & Privacy", "Cash / Card Payment"], image: "/images/Zuma-Bodrum-14.jpg", accent: "Mandarin Oriental & Marina" }
+        { number: "01", tag: "AIRPORT & JET TERMINAL", title: "Personalized Greeting", desc: "Your chauffeur will greet you with a personalized name board at the exit of Milas-Bodrum Airport (BJV) or the General Aviation VIP Terminal. You will be directly escorted to your vehicle with baggage assistance.", highlights: ["Live Flight Tracking", "Free Delay Waiting", "VIP Terminal Support"], image: "/images/wix_img_2.jpg", accent: "BJV → Yalıkavak" },
+        { number: "02", tag: "FIRST CLASS TRAVEL", title: "Private Cabin Comfort", desc: "Travel comfortably in the Bodrum heat with a soundproof private cabin, starlight ceiling, ultra-wide leather seats, and cold drinks.", highlights: ["Starlight Ceiling", "Cold Minibar & Wi-Fi", "Private Soundproofing"], image: "/images/wix_img_0.jpg", accent: "Mercedes Maybach & S-Class" },
+        { number: "03", tag: "FLAWLESS ARRIVAL", title: "Door-to-door Delivery", desc: "You will be delivered to Yalıkavak Marina, Mandarin Oriental, Maçakızı, Scorpios, or your private yacht pier with zero traffic stress, full privacy, and protocol courtesy.", highlights: ["Marina Pier Access", "Protocol & Privacy", "Cash / Card Payment"], image: "/images/wix_img_1.jpg", accent: "Mandarin Oriental & Marina" }
       ];
       case 'RU': return [
-        { number: "01", tag: "АЭРОПОРТ & JET ТЕРМИНАЛ", title: "Персональная Встреча", desc: "Ваш водитель встретит вас с табличкой на выходе из терминала аэропорта (BJV).", highlights: ["Отслеживание Рейса", "Бесплатное Ожидание", "Поддержка VIP-Терминала"], image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80", accent: "BJV → Yalıkavak" },
-        { number: "02", tag: "ПЕРВЫЙ КЛАСС", title: "Комфорт в Кабине", desc: "Путешествуйте в комфорте: шумоизолированная кабина, потолок со звёздами, широкие кожаные сиденья и прохладные напитки.", highlights: ["Звёздный Потолок", "Напитки & Wi-Fi", "Шумоизоляция"], image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80", accent: "Mercedes Maybach" },
-        { number: "03", tag: "БЕЗУПРЕЧНАЯ ДОСТАВКА", title: "Доставка от Двери до Двери", desc: "Вас доставят в марину или к отелю в Yalikavak Marina, Mandarin Oriental или к вашей яхте.", highlights: ["Доступ к Марине", "Конфиденциальность", "Наличные/Безналичный"], image: "/images/Zuma-Bodrum-14.jpg", accent: "Mandarin Oriental" }
+        { number: "01", tag: "АЭРОПОРТ & JET ТЕРМИНАЛ", title: "Персональная Встреча", desc: "Ваш водитель встретит вас с табличкой на выходе из терминала аэропорта (BJV).", highlights: ["Отслеживание Рейса", "Бесплатное Ожидание", "Поддержка VIP-Терминала"], image: "/images/wix_img_2.jpg", accent: "BJV → Yalıkavak" },
+        { number: "02", tag: "ПЕРВЫЙ КЛАСС", title: "Комфорт в Кабине", desc: "Путешествуйте в комфорте: шумоизолированная кабина, потолок со звёздами, широкие кожаные сиденья и прохладные напитки.", highlights: ["Звёздный Потолок", "Напитки & Wi-Fi", "Шумоизоляция"], image: "/images/wix_img_0.jpg", accent: "Mercedes Maybach" },
+        { number: "03", tag: "БЕЗУПРЕЧНАЯ ДОСТАВКА", title: "Доставка от Двери до Двери", desc: "Вас доставят в марину или к отелю в Yalikavak Marina, Mandarin Oriental или к вашей яхте.", highlights: ["Доступ к Марине", "Конфиденциальность", "Наличные/Безналичный"], image: "/images/wix_img_1.jpg", accent: "Mandarin Oriental" }
       ];
       case 'DE': return [
-        { number: "01", tag: "FLUGHAFEN", title: "Persönliche Begrüßung", desc: "Ihr Chauffeur begrüßt Sie mit einem Namensschild am Ausgang des Flughafens (BJV).", highlights: ["Flugverfolgung", "Kostenlose Wartezeit", "VIP-Terminal-Support"], image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80", accent: "BJV → Yalıkavak" },
-        { number: "02", tag: "FIRST CLASS", title: "Komfort", desc: "Reisen Sie bequem mit schalldichter Kabine, Sternenhimmel, breiten Ledersitzen und kalten Getränken.", highlights: ["Sternenhimmel", "Minibar & Wi-Fi", "Schalldicht"], image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80", accent: "Mercedes Maybach" },
-        { number: "03", tag: "ANKUNFT", title: "Tür-zu-Tür Lieferung", desc: "Stressfreie Ankunft in der Yalıkavak Marina, im Mandarin Oriental oder an Ihrer Yacht.", highlights: ["Marina Zugang", "Privatsphäre", "Bar / Karte"], image: "/images/Zuma-Bodrum-14.jpg", accent: "Mandarin Oriental" }
+        { number: "01", tag: "FLUGHAFEN", title: "Persönliche Begrüßung", desc: "Ihr Chauffeur begrüßt Sie mit einem Namensschild am Ausgang des Flughafens (BJV).", highlights: ["Flugverfolgung", "Kostenlose Wartezeit", "VIP-Terminal-Support"], image: "/images/wix_img_2.jpg", accent: "BJV → Yalıkavak" },
+        { number: "02", tag: "FIRST CLASS", title: "Komfort", desc: "Reisen Sie bequem mit schalldichter Kabine, Sternenhimmel, breiten Ledersitzen und kalten Getränken.", highlights: ["Sternenhimmel", "Minibar & Wi-Fi", "Schalldicht"], image: "/images/wix_img_0.jpg", accent: "Mercedes Maybach" },
+        { number: "03", tag: "ANKUNFT", title: "Tür-zu-Tür Lieferung", desc: "Stressfreie Ankunft in der Yalıkavak Marina, im Mandarin Oriental oder an Ihrer Yacht.", highlights: ["Marina Zugang", "Privatsphäre", "Bar / Karte"], image: "/images/wix_img_1.jpg", accent: "Mandarin Oriental" }
       ];
       case 'AR': return [
-        { number: "01", tag: "المطار وصالة الطائرات", title: "استقبال شخصي", desc: "سيستقبلك سائقك بلافتة باسمك عند مخرج المطار.", highlights: ["تتبع الرحلة", "انتظار مجاني", "دعم صالة VIP الخاصة"], image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80", accent: "BJV → Yalıkavak" },
-        { number: "02", tag: "درجة أولى", title: "راحة الكابينة الخاصة", desc: "سافر بكل راحة في كابينة خاصة معزولة صوتياً مع سقف نجمي ومقاعد جلدية فاخرة ومشروبات باردة.", highlights: ["سقف النجوم الفاخر", "بار بارد & واي فاي", "عزل صوتي"], image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80", accent: "Mercedes Maybach" },
-        { number: "03", tag: "وصول مثالي", title: "توصيل من الباب إلى الباب", desc: "ستُوصَل إلى مرسى يختك أو فندقك بلا ضغط.", highlights: ["وصول إلى الرصيف", "خصوصية", "نقدي / بطاقة"], image: "/images/Zuma-Bodrum-14.jpg", accent: "Mandarin Oriental" }
+        { number: "01", tag: "المطار وصالة الطائرات", title: "استقبال شخصي", desc: "سيستقبلك سائقك بلافتة باسمك عند مخرج المطار.", highlights: ["تتبع الرحلة", "انتظار مجاني", "دعم صالة VIP الخاصة"], image: "/images/wix_img_2.jpg", accent: "BJV → Yalıkavak" },
+        { number: "02", tag: "درجة أولى", title: "راحة الكابينة الخاصة", desc: "سافر بكل راحة في كابينة خاصة معزولة صوتياً مع سقف نجمي ومقاعد جلدية فاخرة ومشروبات باردة.", highlights: ["سقف النجوم الفاخر", "بار بارد & واي فاي", "عزل صوتي"], image: "/images/wix_img_0.jpg", accent: "Mercedes Maybach" },
+        { number: "03", tag: "وصول مثالي", title: "توصيل من الباب إلى الباب", desc: "ستُوصَل إلى مرسى يختك أو فندقك بلا ضغط.", highlights: ["وصول إلى الرصيف", "خصوصية", "نقدي / بطاقة"], image: "/images/wix_img_1.jpg", accent: "Mandarin Oriental" }
       ];
       default: return [
-        { number: "01", tag: "HAVALİMANI & JET TERMİNALİ", title: "Kişiye Özel İsimlikle Karşılama", desc: "Milas-Bodrum Havalimanı (BJV) veya Genel Havacılık VIP Terminali çıkışında, şoförünüz sizi isminizin yazılı olduğu özel tablet/levha ile karşılar. Bagaj asistanlığıyla doğrudan aracınıza eşlik edilir.", highlights: ["Canlı Uçuş Takibi", "Ücretsiz Rötar Bekleme", "VIP Terminal Desteği"], image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80", accent: "Milas-Bodrum (BJV) → Yalıkavak" },
-        { number: "02", tag: "FIRST CLASS SEYAHAT", title: "Özel Kabin İçi Konforu", desc: "Ses yalıtımlı özel kabin, yıldız ambiyans tavan aydınlatması, ultra geniş deri koltuklar ve soğuk içecek ikramlarıyla Bodrum sıcağında dinlenerek yolculuk yapın.", highlights: ["Yıldız Tavan Ambiyansı", "Soğuk Minibar & Wi-Fi", "Özel Ses Yalıtımı"], image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80", accent: "Mercedes Maybach & S-Class" },
-        { number: "03", tag: "KUSURSUZ TESLİM", title: "Otel, Villa & Marina Kapısına Teslim", desc: "Yalıkavak Marina, Mandarin Oriental, Maçakızı, Scorpios veya özel teknenizin iskelesine kadar sıfır trafik stresi, tam gizlilik ve protokol nezaketiyle ulaştırılırsınız.", highlights: ["Marina İskele Geçişi", "Protokol & Gizlilik", "Nakit / Kart ile Ödeme"], image: "/images/Zuma-Bodrum-14.jpg", accent: "Mandarin Oriental & Marina" }
+        { number: "01", tag: "HAVALİMANI & JET TERMİNALİ", title: "Kişiye Özel İsimlikle Karşılama", desc: "Milas-Bodrum Havalimanı (BJV) veya Genel Havacılık VIP Terminali çıkışında, şoförünüz sizi isminizin yazılı olduğu özel tablet/levha ile karşılar. Bagaj asistanlığıyla doğrudan aracınıza eşlik edilir.", highlights: ["Canlı Uçuş Takibi", "Ücretsiz Rötar Bekleme", "VIP Terminal Desteği"], image: "/images/wix_img_2.jpg", accent: "Milas-Bodrum (BJV) • Yalıkavak" },
+        { number: "02", tag: "FIRST CLASS SEYAHAT", title: "Özel Kabin İçi Konforu", desc: "Ses yalıtımlı özel kabin, yıldız ambiyans tavan aydınlatması, ultra geniş deri koltuklar ve soğuk içecek ikramlarıyla Bodrum sıcağında dinlenerek yolculuk yapın.", highlights: ["Yıldız Tavan Ambiyansı", "Soğuk Minibar & Wi-Fi", "Özel Ses Yalıtımı"], image: "/images/wix_img_0.jpg", accent: "Mercedes Maybach & S-Class" },
+        { number: "03", tag: "KUSURSUZ TESLİMAT", title: "Otel, Villa & Marina Kapısına Teslim", desc: "Yalıkavak Marina, Mandarin Oriental, Maçakızı, Scorpios veya özel teknenizin iskelesine kadar sıfır trafik stresi, tam gizlilik ve protokol nezaketiyle ulaştırılırsınız.", highlights: ["Marina İskele Geçişi", "Protokol & Gizlilik", "Nakit / Kart ile Ödeme"], image: "/images/wix_img_1.jpg", accent: "Mandarin Oriental & Marina" }
       ];
     }
   };
   const steps = getSteps();
 
-
+  const [activeStep, setActiveStep] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function StickyScrollExperience() {
       setActiveStep((prev) => (prev + 1) % steps.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, [isHovered]);
+  }, [isHovered, steps.length]);
 
   return (
     <section id="experience" className="py-28 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
@@ -62,7 +62,7 @@ export default function StickyScrollExperience() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mb-20 text-center md:text-left"
+        className="mb-20 text-center flex flex-col items-center"
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
