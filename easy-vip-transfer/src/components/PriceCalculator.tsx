@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MapPin, Calendar, Users, ArrowRight, ShieldCheck, ChevronDown, Check, ArrowLeftRight, Wine, Baby, Wifi, Flower2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Calendar, Car, Users, ArrowRight, ShieldCheck, ChevronDown, Check, ArrowLeftRight, Wine, Baby, Wifi, Flower2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LOCATIONS, CONTACT_INFO } from '@/data/transferData';
 
@@ -377,6 +377,7 @@ export default function PriceCalculator() {
     );
   };
 
+  const [vehicle, setVehicle] = useState('vito');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
@@ -386,6 +387,12 @@ export default function PriceCalculator() {
     setTo(tmp);
   };
 
+  const vehicleOptions = [
+    { id: 'vito', name: 'Mercedes VIP Vito' },
+    { id: 'sprinter', name: 'Mercedes VIP Sprinter' },
+    { id: 'maybach', name: 'Mercedes Maybach / S-Class' },
+  ];
+
   const handleWhatsApp = () => {
     if (!name || !phone) {
       alert(lang === 'TR' ? 'Lütfen adınızı ve telefonunuzu giriniz.' : 'Please enter your name and phone number.');
@@ -394,44 +401,36 @@ export default function PriceCalculator() {
 
     const fromName = LOCATIONS.find((l) => l.id === from)?.name || from;
     const toName = LOCATIONS.find((l) => l.id === to)?.name || to;
+    const vehicleName = vehicleOptions.find(v => v.id === vehicle)?.name || vehicle;
     
-    // WhatsApp'a yönlendir (Dile göre dinamik şablon)
     let msg = '';
     
     if (lang === 'TR') {
-      msg = `Merhaba, VIP transfer fiyatı ve müsaitlik durumu hakkında bilgi almak istiyorum.%0A%0A`;
+      msg = `Merhaba, seçtiğim detaylara göre VIP transfer rezervasyonu yapmak istiyorum.%0A%0A`;
       if (name) msg += `👤 *İsim:* ${name}%0A`;
       if (fromName) msg += `📍 *Nereden:* ${fromName}%0A`;
       if (toName) msg += `📍 *Nereye:* ${toName}%0A`;
       if (date) msg += `📅 *Tarih:* ${date}%0A`;
-      msg += `👥 *Yolcu:* ${passengers} Kişi%0A`;
+      if (passengers) msg += `👥 *Yolcu:* ${passengers} Kişi%0A`;
+      if (vehicleName) msg += `🚘 *Araç:* ${vehicleName}%0A`;
       if (selectedExtras.length > 0) {
         const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
-        msg += `✨ *VIP Ekstralar:* ${extrasText}%0A`;
+        msg += `💎 *Ekstralar:* ${extrasText}%0A`;
       }
-    } else if (lang === 'RU') {
-      msg = `Здравствуйте, я хотел бы узнать стоимость и наличие свободных машин для VIP-трансфера.%0A%0A`;
-      if (name) msg += `👤 *Имя:* ${name}%0A`;
-      if (fromName) msg += `📍 *Откуда:* ${fromName}%0A`;
-      if (toName) msg += `📍 *Куда:* ${toName}%0A`;
-      if (date) msg += `📅 *Дата:* ${date}%0A`;
-      msg += `👥 *Пассажиры:* ${passengers} Человек%0A`;
-      if (selectedExtras.length > 0) {
-        const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
-        msg += `✨ *VIP-услуги:* ${extrasText}%0A`;
-      }
+      msg += `%0ABu talebime istinaden müsaitlik ve fiyat bilgisi alabilir miyim?`;
     } else {
-      // Default to English
-      msg = `Hello, I would like to request a VIP transfer quote and check availability.%0A%0A`;
+      msg = `Hello, I would like to book a VIP transfer based on my selections.%0A%0A`;
       if (name) msg += `👤 *Name:* ${name}%0A`;
       if (fromName) msg += `📍 *From:* ${fromName}%0A`;
       if (toName) msg += `📍 *To:* ${toName}%0A`;
       if (date) msg += `📅 *Date:* ${date}%0A`;
-      msg += `👥 *Guests:* ${passengers} Persons%0A`;
+      if (passengers) msg += `👥 *Guests:* ${passengers} Persons%0A`;
+      if (vehicleName) msg += `🚘 *Vehicle:* ${vehicleName}%0A`;
       if (selectedExtras.length > 0) {
         const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
-        msg += `✨ *VIP Extras:* ${extrasText}%0A`;
+        msg += `💎 *Extras:* ${extrasText}%0A`;
       }
+      msg += `%0ACan I get price and availability information for this request?`;
     }
 
     window.open(`https://wa.me/${CONTACT_INFO.phoneClean}?text=${msg}`, '_blank');
@@ -506,18 +505,34 @@ export default function PriceCalculator() {
             </div>
           </div>
 
-          {/* Row 2: Date & Passengers */}
+          {/* Row 2: Date & Vehicle */}
           <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-30 h-[72px] sm:h-auto">
+            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-40 h-[72px] sm:h-auto">
               <LuxuryDatePicker label={t.calc.date} value={date} onChange={setDate} />
             </div>
-            <div className="flex-1 relative z-20 h-[72px] sm:h-auto">
-              <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={t.calc.passengers} icon={Users} />
+            <div className="flex-1 relative z-30 h-[72px] sm:h-auto">
+              <PillSelect label={lang === 'TR' ? 'Araç Seçimi' : 'Vehicle'} value={vehicle} onChange={setVehicle} options={vehicleOptions} placeholder={lang === 'TR' ? 'Araç Seç...' : 'Select Vehicle...'} icon={Car} />
             </div>
           </div>
 
-          {/* Row 3: Contact */}
+          {/* Row 3: Passengers & Extras */}
           <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
+            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-20 h-[72px] sm:h-auto">
+              <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={t.calc.passengers} icon={Users} />
+            </div>
+            <div className="flex-1 relative z-10 h-[72px] sm:h-auto">
+              <MultiSelectDropdown
+                label={lang === 'TR' ? 'Özel Talepler' : 'VIP Add-ons'}
+                options={conciergeOptions}
+                selectedIds={selectedExtras}
+                onChange={toggleExtra}
+                placeholder={lang === 'TR' ? 'Ekstra Seç...' : 'Select Extras...'}
+              />
+            </div>
+          </div>
+
+          {/* Row 4: Contact */}
+          <div className="flex flex-col sm:flex-row sm:h-[72px] mb-6">
             <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
               <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
                 {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
@@ -542,17 +557,6 @@ export default function PriceCalculator() {
                 className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
               />
             </div>
-          </div>
-
-          {/* Row 4: Extras */}
-          <div className="w-full relative z-10 h-[72px]">
-            <MultiSelectDropdown
-              label={lang === 'TR' ? 'Özel Concierge Talepleri' : 'VIP Concierge Add-ons'}
-              options={conciergeOptions}
-              selectedIds={selectedExtras}
-              onChange={toggleExtra}
-              placeholder={lang === 'TR' ? 'Ekstra Talep Seçin...' : 'Select Extras...'}
-            />
           </div>
 
         </div>
