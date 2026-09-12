@@ -7,7 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 
 // Spotlight Card component with cursor tracking
-const SpotlightCard = ({ title, desc, badge, image, icon: Icon }: { title: string; desc: string; badge: string; image: string; icon: any }) => {
+const SpotlightCard = ({ title, desc, badge, image, icon: Icon, spotlightColor }: { title: string; desc: string; badge: string; image: string; icon: any; spotlightColor?: string }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
@@ -41,7 +41,7 @@ const SpotlightCard = ({ title, desc, badge, image, icon: Icon }: { title: strin
         className="pointer-events-none absolute -inset-px z-0 transition-opacity duration-300"
         style={{
           opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, rgba(229, 211, 179, 0.12), transparent 80%)`,
+          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor || 'rgba(229, 211, 179, 0.12)'}, transparent 80%)`,
         }}
       />
 
@@ -142,28 +142,42 @@ export default function SpotlightServices() {
     // Turkish (default logic but localized for brevity to just return default if TR/other)
     return {
       airport: [
-        { title: 'Milas-Bodrum (BJV) Karşılama', desc: 'Uçuşunuz canlı radardan takip edilir. İsim levhası ile karşılanırsınız.', badge: 'Canlı Takip', icon: Plane, image: '/images/wix_img_0.jpg' },
-        { title: 'Genel Havacılık & Özel Jet', desc: 'Bodrum VIP Jet Terminali aprondan doğrudan bagaj ve yolcu transferi.', badge: 'VIP Jet Protokolü', icon: Crown, image: '/images/wix_img_1.jpg' },
-        { title: 'Dönüş & Otelden Uçuşa', desc: 'Otelinizden uçağınızın saatine göre kalkış planı.', badge: 'Sıfır Rötar Riski', icon: ShieldCheck, image: '/images/wix_img_2.jpg' },
+        { title: 'Milas-Bodrum (BJV) Karşılama', desc: 'Uçuşunuz canlı radardan takip edilir. İsim levhası ile karşılanırsınız.', badge: 'Canlı Takip', icon: Plane, image: '/images/wix_img_2.jpg' },
+        { title: 'Genel Havacılık & Özel Jet', desc: 'Bodrum VIP Jet Terminali aprondan doğrudan bagaj ve yolcu transferi.', badge: 'VIP Jet Protokolü', icon: Crown, image: '/images/macakizi-hotel-bodrum.jpg' },
+        { title: 'Dönüş & Otelden Uçuşa', desc: 'Otelinizden uçağınızın saatine göre kalkış planı.', badge: 'Sıfır Rötar Riski', icon: ShieldCheck, image: '/images/wix_img_0.jpg' },
       ],
       marina: [
-        { title: 'Yalıkavak Marina VIP Transfer', desc: 'Süperyat iskelesi ve beach clublara özel araç girişi.', badge: 'İskele İçi Geçiş', icon: Anchor, image: '/images/wix_img_0.jpg' },
-        { title: 'D-Marin Turgutreis & Bodrum', desc: 'Geniş bagaj hacimli Mercedes Vito transferi.', badge: 'Geniş Bagaj Kapasitesi', icon: Compass, image: '/images/wix_img_1.jpg' },
-        { title: 'Scorpios & Maçakızı Servisi', desc: 'Seçkin gece kulüplerine beklemesiz gidiş-dönüş.', badge: 'Gece Protokolü', icon: Wine, image: '/images/wix_img_2.jpg' },
+        { title: 'Yalıkavak Marina VIP Transfer', desc: 'Süperyat iskelesi ve beach clublara özel araç girişi.', badge: 'İskele İçi Geçiş', icon: Anchor, image: '/images/Zuma-Bodrum-14.jpg' },
+        { title: 'D-Marin Turgutreis & Bodrum', desc: 'Geniş bagaj hacimli Mercedes Vito transferi.', badge: 'Geniş Bagaj Kapasitesi', icon: Compass, image: '/images/cennetkoyu.jpg' },
+        { title: 'Scorpios & Maçakızı Servisi', desc: 'Seçkin gece kulüplerine beklemesiz gidiş-dönüş.', badge: 'Gece Protokolü', icon: Wine, image: '/images/macakizi-hotel-bodrum.jpg' },
       ],
       hourly: [
         { title: 'Tam Gün Şoförlü Araç Tahsisi', desc: 'Aracınız ve şoförünüz emrinizde bekler.', badge: 'Sınırsız Bekleme', icon: Clock, image: '/images/wix_img_0.jpg' },
         { title: 'İş & Protokol Seyahatleri', desc: 'Takım elbiseli profesyonel şoförlerle resmi transfer.', badge: 'Protokol Şoförü', icon: ShieldCheck, image: '/images/wix_img_1.jpg' },
-        { title: 'Kişiye Özel Bodrum Turu', desc: 'Gümüşlük gün batımı ve özel şarap bağları rotaları.', badge: 'Özel Rota', icon: Map, image: '/images/wix_img_2.jpg' },
+        { title: 'Kişiye Özel Bodrum Turu', desc: 'Gümüşlük gün batımı ve özel şarap bağları rotaları.', badge: 'Özel Rota', icon: Map, image: '/images/demirbuku-koyu.jpg' },
       ],
       intercity: [
-        { title: 'Bodrum ➔ İzmir & Çeşme', desc: 'İzmir veya Çeşme otellerine kesintisiz lüks transfer.', badge: 'Uzun Yol Konforu', icon: Compass, image: '/images/wix_img_0.jpg' },
-        { title: 'Bodrum ➔ Marmaris & Göcek', desc: 'Mavi yolculuk limanlarına konforlu geçiş.', badge: 'Mavi Tur Bağlantısı', icon: Anchor, image: '/images/wix_img_1.jpg' },
-        { title: 'Bodrum ➔ Didim & Kuşadası', desc: 'Kruvaziyer limanlarına kapıdan kapıya özel VIP ulaşım.', badge: 'Hızlı Otoyol Seyahati', icon: Plane, image: '/images/wix_img_2.jpg' },
+        { title: 'Bodrum - İzmir & Çeşme', desc: 'İzmir veya Çeşme otellerine kesintisiz lüks transfer.', badge: 'Uzun Yol Konforu', icon: Compass, image: '/images/wix_img_2.jpg' },
+        { title: 'Bodrum - Marmaris & Göcek', desc: 'Mavi yolculuk limanlarına konforlu geçiş.', badge: 'Mavi Tur Bağlantısı', icon: Anchor, image: '/images/cennetkoyu.jpg' },
+        { title: 'Bodrum - Didim & Kuşadası', desc: 'Kruvaziyer limanlarına kapıdan kapıya özel VIP ulaşım.', badge: 'Hızlı Otoyol Seyahati', icon: Plane, image: '/images/wix_img_1.jpg' },
       ]
     };
   };
   const servicesData = getServicesData() as Record<string, Array<{ title: string; desc: string; badge: string; icon: any; image: string }>>;
+
+  const categoryColors: Record<string, string> = {
+    airport: 'from-blue-600 to-indigo-800 text-white shadow-[0_0_30px_rgba(79,70,229,0.3)]',
+    marina: 'from-emerald-500 to-teal-700 text-white shadow-[0_0_30px_rgba(16,185,129,0.3)]',
+    hourly: 'from-purple-500 to-fuchsia-700 text-white shadow-[0_0_30px_rgba(168,85,247,0.3)]',
+    intercity: 'from-[#E5D3B3] to-[#C19B5E] text-black shadow-[0_0_30px_rgba(229,211,179,0.3)] border-none',
+  };
+
+  const getCategoryColorRgba = (id: string) => {
+    if (id === 'airport') return 'rgba(99, 102, 241, 0.2)'; // Indigo
+    if (id === 'marina') return 'rgba(16, 185, 129, 0.2)'; // Emerald
+    if (id === 'hourly') return 'rgba(168, 85, 247, 0.2)'; // Purple
+    return 'rgba(229, 211, 179, 0.2)'; // Gold
+  };
 
   const getTexts = () => {
     switch(lang) {
@@ -215,7 +229,7 @@ export default function SpotlightServices() {
               onClick={() => setActiveTab(cat.id)}
               className={`flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-sans tracking-wider uppercase transition-all duration-300 ${
                 isActive
-                  ? 'bg-[#E5D3B3] text-black font-bold shadow-[0_0_30px_rgba(229,211,179,0.25)]'
+                  ? `bg-gradient-to-r font-bold ${categoryColors[cat.id]}`
                   : 'bg-white/[0.03] hover:bg-white/[0.06] text-zinc-400 border border-white/[0.08]'
               }`}
             >
@@ -236,6 +250,7 @@ export default function SpotlightServices() {
             badge={service.badge}
             image={service.image}
             icon={service.icon}
+            spotlightColor={getCategoryColorRgba(activeTab)}
           />
         ))}
       </div>
