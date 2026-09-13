@@ -7,7 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 
 // Spotlight Card component with cursor tracking
-const SpotlightCard = ({ title, desc, badge, image, icon: Icon, spotlightColor }: { title: string; desc: string; badge: string; image: string; icon: any; spotlightColor?: string }) => {
+const SpotlightCard = ({ title, desc, badge, image, icon: Icon, spotlightColor, buttonText }: { title: string; desc: string; badge: string; image: string; icon: any; spotlightColor?: string, buttonText: string }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
@@ -30,10 +30,9 @@ const SpotlightCard = ({ title, desc, badge, image, icon: Icon, spotlightColor }
       <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl">
         <img 
           src={image} 
-          alt={title}
-          className="w-full h-full object-cover opacity-0 group-hover:opacity-60 transition-all duration-700 scale-105 group-hover:scale-100" 
+          alt={title} 
+          className="absolute inset-0 w-full h-full object-cover grayscale opacity-0 group-hover:opacity-10 group-hover:scale-105 transition-all duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700" />
       </div>
 
       {/* Mouse-Following Spotlight Layer */}
@@ -45,27 +44,21 @@ const SpotlightCard = ({ title, desc, badge, image, icon: Icon, spotlightColor }
         }}
       />
 
-      <div className="relative z-10 flex flex-col justify-between h-full">
-        <div>
-          <div className="flex items-center justify-between mb-6">
-            <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform backdrop-blur-md">
-              <Icon className="w-5 h-5 text-[#E5D3B3]" />
-            </div>
-            <span className="text-[13px] font-mono tracking-widest text-[#E5D3B3] uppercase px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/[0.08]">
-              {badge}
-            </span>
+      <div className="relative z-10 flex flex-col h-full">
+        <div className="flex items-center justify-between mb-8">
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white group-hover:scale-110 transition-transform duration-300">
+            <Icon className="w-5 h-5" strokeWidth={1.5} />
           </div>
-
-          <h3 className="text-xl font-serif text-white mb-3 group-hover:text-[#E5D3B3] transition-colors">
-            {title}
-          </h3>
-          <p className="text-sm font-sans text-zinc-300 font-light leading-relaxed group-hover:text-white transition-colors">
-            {desc}
-          </p>
+          <span className="text-[10px] font-sans font-bold tracking-[0.2em] text-[#E5D3B3] uppercase px-3 py-1 rounded-full bg-[#E5D3B3]/10 border border-[#E5D3B3]/20">
+            {badge}
+          </span>
         </div>
-
-        <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-sm text-zinc-500 group-hover:text-zinc-300 transition-colors">
-          <span className="font-mono text-[14px] tracking-widest uppercase">7/24 Rezervasyon</span>
+        
+        <h3 className="text-xl md:text-2xl font-serif text-white mb-3 tracking-wide">{title}</h3>
+        <p className="text-sm text-zinc-400 font-sans leading-relaxed mb-8 flex-grow">{desc}</p>
+        
+        <div className="flex items-center justify-between border-t border-white/10 pt-6 group-hover:border-[#E5D3B3]/30 transition-colors">
+          <span className="font-mono text-[14px] tracking-widest uppercase">{buttonText}</span>
           <ChevronRight className="w-4 h-4 text-[#E5D3B3] group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
@@ -246,11 +239,11 @@ export default function SpotlightServices() {
 
   const getTexts = () => {
     switch(lang) {
-      case 'EN': return { sub: 'PREMIUM SERVICES', title: 'Exclusive Privileges', desc: 'Beyond standards, an Aegean VIP experience.' };
-      case 'RU': return { sub: 'ПРЕМИУМ УСЛУГИ', title: 'Эксклюзивные Привилегии', desc: 'За гранью стандартов, эгейский VIP-опыт.' };
-      case 'DE': return { sub: 'PREMIUM-DIENSTE', title: 'Exklusive Privilegien', desc: 'Jenseits von Standards, ein VIP-Erlebnis in der Ägäis.' };
-      case 'AR': return { sub: 'خدمات ممتازة', title: 'امتيازات حصرية', desc: 'خارج المعايير، تجربة كبار الشخصيات في بحر إيجة.' };
-      default: return { sub: 'PREMIUM HİZMETLER', title: 'Size Özel Ayrıcalıklar', desc: 'Standartların ötesinde VIP deneyimi.' };
+      case 'EN': return { sub: 'PREMIUM SERVICES', title: 'Exclusive Privileges', desc: 'Beyond standards, an Aegean VIP experience.', button: '24/7 Booking' };
+      case 'RU': return { sub: 'ПРЕМИУМ УСЛУГИ', title: 'Эксклюзивные Привилегии', desc: 'За гранью стандартов, эгейский VIP-опыт.', button: 'Бронирование 24/7' };
+      case 'DE': return { sub: 'PREMIUM-DIENSTE', title: 'Exklusive Privilegien', desc: 'Jenseits von Standards, ein VIP-Erlebnis in der Ägäis.', button: '24/7 Buchung' };
+      case 'AR': return { sub: 'خدمات ممتازة', title: 'امتيازات حصرية', desc: 'خارج المعايير، تجربة كبار الشخصيات في بحر إيجة.', button: 'حجز على مدار الساعة' };
+      default: return { sub: 'VIP OPERASYON HİZMETLERİ', title: 'Ayrıcalıklı Hizmet Yelpazemiz', desc: 'BODRUM VE EGE GENELİNDE KİŞİYE VE KURUMLARA ÖZEL LÜKS MOBİLİTE ÇÖZÜMLERİ.', button: '7/24 Rezervasyon' };
     }
   };
   const texts = getTexts();
@@ -262,24 +255,23 @@ export default function SpotlightServices() {
       
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 25 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-center mb-14"
+        viewport={{ once: true }}
+        className="text-center mb-16"
       >
-        <div className="flex items-center justify-center gap-4 mb-3">
+        <div className="flex items-center justify-center gap-4 mb-4">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
           <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
-            VIP Operasyon Hizmetleri
+            {texts.sub}
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
         </div>
         <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
-          Ayrıcalıklı Hizmet Yelpazemiz
+          {texts.title}
         </h2>
         <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm max-w-xl mx-auto leading-relaxed">
-          Bodrum ve Ege genelinde kişiye ve kurumlara özel lüks mobilite çözümleri.
+          {texts.desc}
         </p>
       </motion.div>
 
@@ -316,6 +308,7 @@ export default function SpotlightServices() {
             image={service.image}
             icon={service.icon}
             spotlightColor={getCategoryColorRgba(activeTab)}
+            buttonText={texts.button}
           />
         ))}
       </div>
