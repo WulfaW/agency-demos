@@ -224,17 +224,17 @@ export default function SpotlightServices() {
   const servicesData = getServicesData() as Record<string, Array<{ title: string; desc: string; badge: string; icon: any; image: string }>>;
 
   const categoryColors: Record<string, string> = {
-    airport: 'from-blue-600 to-indigo-800 text-white shadow-[0_0_30px_rgba(79,70,229,0.3)]',
-    marina: 'from-emerald-500 to-teal-700 text-white shadow-[0_0_30px_rgba(16,185,129,0.3)]',
-    hourly: 'from-purple-500 to-fuchsia-700 text-white shadow-[0_0_30px_rgba(168,85,247,0.3)]',
-    intercity: 'from-[#E5D3B3] to-[#C19B5E] text-black shadow-[0_0_30px_rgba(229,211,179,0.3)] border-none',
+    airport: 'from-zinc-100 to-zinc-300 text-black shadow-[0_0_30px_rgba(255,255,255,0.15)] border-none',
+    marina: 'from-zinc-800 to-zinc-900 text-white shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/20',
+    hourly: 'from-[#2a2416] to-[#0a0905] text-[#E5D3B3] shadow-[0_0_20px_rgba(229,211,179,0.15)] border border-[#E5D3B3]/40',
+    intercity: 'from-[#E5D3B3] to-[#C19B5E] text-black shadow-[0_0_30px_rgba(229,211,179,0.2)] border-none',
   };
 
   const getCategoryColorRgba = (id: string) => {
-    if (id === 'airport') return 'rgba(99, 102, 241, 0.2)'; // Indigo
-    if (id === 'marina') return 'rgba(16, 185, 129, 0.2)'; // Emerald
-    if (id === 'hourly') return 'rgba(168, 85, 247, 0.2)'; // Purple
-    return 'rgba(229, 211, 179, 0.2)'; // Gold
+    if (id === 'airport') return 'rgba(255, 255, 255, 0.1)';
+    if (id === 'marina') return 'rgba(255, 255, 255, 0.05)';
+    if (id === 'hourly') return 'rgba(229, 211, 179, 0.1)';
+    return 'rgba(229, 211, 179, 0.15)';
   };
 
   const getTexts = () => {
