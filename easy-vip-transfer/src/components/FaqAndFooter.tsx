@@ -161,48 +161,48 @@ export default function FaqAndFooter() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <footer id="faq" className="w-full relative z-10 border-t border-white/5 bg-[#030303]">
+    <footer id="faq" className="w-full relative z-10 border-t border-white/5 bg-transparent">
       
       {/* 1. FAQ Section */}
-      <div className="py-28 px-4 max-w-4xl mx-auto">
+      <div className="py-16 md:py-20 px-4 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <span className="text-[13px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-3">
+          <span className="text-[11px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-2">
             Merak Edilenler
           </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide mb-4">
+          <h2 className="text-2xl md:text-4xl font-serif text-white tracking-wide mb-3">
             {texts.faqTitle}
           </h2>
-          <p className="text-zinc-400 font-sans tracking-widest uppercase text-sm leading-relaxed">
+          <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs leading-relaxed">
             Bodrum VIP transfer hizmetimizle ilgili tüm yasal ve operasyonel detaylar.
           </p>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div
                 key={idx}
-                className="backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] rounded-2xl overflow-hidden transition-all duration-300"
+                className="backdrop-blur-xl bg-[#0a0a0a]/60 border border-white/[0.08] rounded-xl overflow-hidden transition-all duration-300"
               >
                 <button
                   type="button"
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className="w-full text-left p-6 flex items-center justify-between gap-4 focus:outline-none"
+                  className="w-full text-left p-4 md:p-5 flex items-center justify-between gap-4 focus:outline-none"
                 >
-                  <span className="font-serif text-base md:text-lg text-white">
+                  <span className="font-serif text-sm md:text-base text-white">
                     {faq.q}
                   </span>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                     isOpen ? 'bg-[#E5D3B3] text-black' : 'bg-white/5 text-zinc-400'
                   }`}>
-                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    {isOpen ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
                   </div>
                 </button>
 
@@ -215,7 +215,7 @@ export default function FaqAndFooter() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 pt-0 text-sm font-sans text-zinc-400 font-light leading-relaxed border-t border-white/5 mt-2 pt-4">
+                      <div className="px-4 pb-4 pt-0 md:px-5 md:pb-5 text-xs md:text-sm font-sans text-zinc-400 font-light leading-relaxed mt-1">
                         {faq.a}
                       </div>
                     </motion.div>
