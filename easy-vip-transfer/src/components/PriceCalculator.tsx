@@ -18,10 +18,12 @@ const LuxuryDatePicker = ({
   label,
   value,
   onChange,
+  lang,
 }: {
   label: string;
   value: string;
   onChange: (val: string) => void;
+  lang?: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [viewDate, setViewDate] = useState(() => {
