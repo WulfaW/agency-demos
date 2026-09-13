@@ -7,22 +7,21 @@ import React, {
   useState,
   useCallback,
 } from "react";
-import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-const GALLERY_IMAGES = [
-  "/images/gallery/gallery_0.jpg",
-  "/images/gallery/gallery_1.jpg",
-  "/images/gallery/gallery_2.jpg",
-  "/images/gallery/gallery_3.jpg",
-  "/images/gallery/gallery_4.jpg",
-  "/images/gallery/gallery_5.jpg",
-  "/images/gallery/gallery_6.jpg",
-  "/images/gallery/gallery_7.jpg",
-  "/images/gallery/gallery_8.jpg",
-  "/images/gallery/gallery_9.jpg",
-  "/images/gallery/gallery_10.jpg",
-  "/images/gallery/gallery_11.jpg",
+const UNSPLASH_IMAGES = [
+  "https://static.wixstatic.com/media/7e59bc_a3efef799d9a468dbd76721ac9a8754b~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_a3efef799d9a468dbd76721ac9a8754b~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_ab315091a296415d95c7a5c6b47d6f48~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_ab315091a296415d95c7a5c6b47d6f48~mv2.jpeg",
+  "https://static.wixstatic.com/media/7e59bc_ce3f66a3333548a1bd3a672365ab4e1e~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_ce3f66a3333548a1bd3a672365ab4e1e~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_9bcabf7adda749dab1e8efb432cba508~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_9bcabf7adda749dab1e8efb432cba508~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_387de9bcef444e70996ff39a12e4ffb1~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_387de9bcef444e70996ff39a12e4ffb1~mv2.jpeg",
+  "https://static.wixstatic.com/media/7e59bc_38e02b86daf14ffc9fe7827c44c1a431~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_38e02b86daf14ffc9fe7827c44c1a431~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_f9df606622794e8486a8baa9a6524818~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_f9df606622794e8486a8baa9a6524818~mv2.jpeg",
+  "https://static.wixstatic.com/media/7e59bc_6398cf38f81e465d8ab29ba9a7172773~mv2.jpeg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_6398cf38f81e465d8ab29ba9a7172773~mv2.jpeg",
+  "https://static.wixstatic.com/media/7e59bc_7c787bbe114e49cfa3eafe887cb84483~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_7c787bbe114e49cfa3eafe887cb84483~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_b54d01dc3b8a4fa0906333fa3b05228b~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_b54d01dc3b8a4fa0906333fa3b05228b~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_0db920749e5e4a5e8f1c0bb430707dc9~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_0db920749e5e4a5e8f1c0bb430707dc9~mv2.jpg",
+  "https://static.wixstatic.com/media/7e59bc_db01bf03ea114adeabc4cd9334d9e4de~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/7e59bc_db01bf03ea114adeabc4cd9334d9e4de~mv2.jpg",
 ];
 
 interface ImageCardProps {
@@ -33,7 +32,13 @@ interface ImageCardProps {
 const ImageCard = ({ src, onLoad }: ImageCardProps) => {
   return (
     <div className="w-full h-[200px] sm:h-[300px] md:h-[400px] flex-shrink-0 bg-[#111] transition-transform duration-300 hover:scale-[1.02] cursor-pointer relative will-change-transform backface-hidden preserve-3d rounded-xl overflow-hidden">
-      <Image src={src} alt="Gallery Asset" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" onLoad={onLoad} className="object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" />
+      <img
+        src={src}
+        alt="Gallery Asset"
+        loading="lazy"
+        onLoad={onLoad}
+        className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
+      />
     </div>
   );
 };
@@ -55,10 +60,10 @@ export default function ParallaxGallery()  {
   }, []);
 
   const colMedia = useMemo(() => {
-    const col1Base = GALLERY_IMAGES.filter((_, i) => i % 4 === 0);
-    const col2Base = GALLERY_IMAGES.filter((_, i) => i % 4 === 1);
-    const col3Base = GALLERY_IMAGES.filter((_, i) => i % 4 === 2);
-    const col4Base = GALLERY_IMAGES.filter((_, i) => i % 4 === 3);
+    const col1Base = UNSPLASH_IMAGES.filter((_, i) => i % 4 === 0);
+    const col2Base = UNSPLASH_IMAGES.filter((_, i) => i % 4 === 1);
+    const col3Base = UNSPLASH_IMAGES.filter((_, i) => i % 4 === 2);
+    const col4Base = UNSPLASH_IMAGES.filter((_, i) => i % 4 === 3);
 
     return {
       col1: [...col1Base, ...col1Base],
@@ -108,7 +113,7 @@ export default function ParallaxGallery()  {
           
           {/* Section Title overlaying the animation */}
           <div className="absolute top-24 left-1/2 -translate-x-1/2 z-30 text-center pointer-events-none">
-             <span className="text-[13px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-3">
+             <span className="text-[10px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-3">
                VIP Deneyimi
              </span>
              <h2 className="text-4xl md:text-5xl font-serif text-white">Lüks Galeri</h2>

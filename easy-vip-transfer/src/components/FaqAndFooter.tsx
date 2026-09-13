@@ -100,7 +100,7 @@ const socialLinks = [
   },
 ];
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FaqAndFooter() {
 
@@ -206,11 +206,21 @@ export default function FaqAndFooter() {
                   </div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 pt-0 text-sm font-sans text-zinc-400 font-light leading-relaxed border-t border-white/5 mt-2 pt-4">
-                    {faq.a}
-                  </div>
-                )}
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 pt-0 text-sm font-sans text-zinc-400 font-light leading-relaxed border-t border-white/5 mt-2 pt-4">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
@@ -267,7 +277,7 @@ export default function FaqAndFooter() {
                 href: `tel:${CONTACT_INFO.phoneClean}`,
                 ariaLabel: '7/24 Çağrı',
                 tooltip: 'Hemen Ara',
-                svgUrl: 'https://cdn.simpleicons.org/phone/ffffff',
+                icon: PhoneCall,
                 color: '#ffffff'
               }
             ]}
@@ -329,10 +339,15 @@ export default function FaqAndFooter() {
           <div className="space-y-4">
             <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.contact}</h4>
             <address className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400 not-italic">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
-                <span>Yalıkavak Marina, Bodrum</span>
-              </div>
+              <a 
+                href="https://maps.app.goo.gl/e79oimngvtga8ZRK7" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-start gap-2 hover:text-[#E5D3B3] transition-colors group"
+              >
+                <MapPin className="w-3.5 h-3.5 text-zinc-500 shrink-0 mt-0.5 group-hover:text-[#E5D3B3] transition-colors" />
+                <span className="leading-tight">Yalıkavak Marina, Bodrum<br/><span className="text-[11px] text-zinc-500 group-hover:text-[#E5D3B3]/70">Haritada Gör</span></span>
+              </a>
               <a href={`tel:${CONTACT_INFO.phoneClean}`} className="flex items-center gap-2 hover:text-[#E5D3B3] transition-colors">
                 <PhoneCall className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                 <span>{CONTACT_INFO.phone}</span>

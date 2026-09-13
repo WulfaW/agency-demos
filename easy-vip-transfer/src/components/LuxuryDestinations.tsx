@@ -59,7 +59,7 @@ export default function LuxuryDestinations() {
       name: 'Mandarin Oriental Bodrum',
       bay: 'Cennet Koyu • Göltürkbükü',
       time: '40 dk',
-      image: '/images/wix_img_1.jpg',
+      image: '/images/cennetkoyu.jpg',
       badge: 'Cennet Koyu',
     },
     {
@@ -67,29 +67,29 @@ export default function LuxuryDestinations() {
       name: 'Yalıkavak Marina & Zuma',
       bay: 'Süperyat Limanı • Yalıkavak',
       time: '45 dk',
-      image: '/images/wix_img_2.jpg',
+      image: '/images/Zuma-Bodrum-14.jpg',
       badge: 'Süperyat Hub',
     },
     {
       id: 'amanruya',
       name: 'Amanruya Luxury Resort',
       bay: 'Demirbükü Koyu • Torba',
-      time: '38 dk',
-      image: '/images/wix_img_0.jpg',
+      time: '35 dk',
+      image: '/images/demirbuku-koyu.jpg',
       badge: 'Sessiz Lüks',
     },
     {
       id: 'macakizi',
-      name: 'Maçakızı & Scorpios Bodrum',
-      bay: 'Türkbükü Koyu & Tilkicik',
-      time: '40 dk',
-      image: '/images/wix_img_1.jpg',
-      badge: 'Beach Club',
+      name: 'Maçakızı & Scorpios',
+      bay: 'Türkbükü • Bodrum',
+      time: '45 dk',
+      image: '/images/macakizi-hotel-bodrum.jpg',
+      badge: 'İkonik Beach',
     },
   ];
 
   return (
-    <section className="py-24 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
+    <section id="destinations" className="py-24 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}

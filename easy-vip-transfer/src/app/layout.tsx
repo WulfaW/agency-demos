@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Inter } from 'next/font/google';
+import { Montserrat, Inter } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
 import Preloader from '@/components/Preloader';
 import ScrollProgress from '@/components/ScrollProgress';
 
-const cormorant = Cormorant_Garamond({ 
+const montserrat = Montserrat({ 
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-serif',
+  weight: ['500', '600', '700', '800'],
+  variable: '--font-serif', // Using this variable for headings everywhere
   display: 'swap',
 });
 
@@ -20,6 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://easyviptransfer.com'),
   title: 'Easy VIP Transfer | Bodrum Luxury Chauffeur & Airport Transfer',
   description: 'Milas-Bodrum Havalimanı (BJV), Yalıkavak Marina, Mandarin Oriental ve Amanruya için 7/24 Mercedes-Maybach ve VIP Vito transfer hizmeti. Sabit fiyat garantisi.',
   keywords: ['Bodrum VIP Transfer', 'Bodrum Havalimanı Transfer', 'Milas Bodrum BJV VIP Transfer', 'Yalıkavak Marina Transfer', 'Mandarin Oriental Bodrum Transfer', 'Amanruya Transfer', 'Bodrum Maybach Kiralama', 'Şoförlü VIP Araç Bodrum'],
@@ -46,8 +47,12 @@ export const metadata: Metadata = {
     description: 'Bodrum ve Ege koylarında 7/24 kesintisiz Maybach ve VIP Vito transferi.',
     images: ['/images/wix_img_2.jpg'],
   },
+  other: {
+    'strix-verification': 'strix-verify-75e0049732f19316eb501ad06eaa0b3b',
+  },
 };
 
+import StarlightBackground from '@/components/ui/StarlightBackground';
 import FloatingChatWidget from '@/components/FloatingChatWidget';
 
 export default function RootLayout({
@@ -56,14 +61,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className={`scroll-smooth ${cormorant.variable} ${inter.variable} bg-[#030303] text-zinc-200 antialiased`}>
+    <html lang="tr" className={`scroll-smooth ${montserrat.variable} ${inter.variable} bg-[#030303] text-zinc-200 antialiased`}>
       <body className="bg-[#030303] min-h-screen flex flex-col font-sans selection:bg-white selection:text-black relative">
         <ScrollProgress />
         <Preloader />
+        <StarlightBackground />
+        
+        {/* Film grain / noise overlay for texture */}
         <div 
-          className="pointer-events-none fixed inset-0 z-[1000] h-full w-full opacity-[0.04] mix-blend-difference"
+          className="pointer-events-none fixed inset-0 z-[1000] h-full w-full opacity-[0.03] mix-blend-difference"
           style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}
         />
+        
         <PostHogProvider>
           <LanguageProvider>
             {children}
