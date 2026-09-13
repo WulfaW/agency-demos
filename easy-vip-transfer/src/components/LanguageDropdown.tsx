@@ -6,11 +6,11 @@ import { ChevronDown, Check } from "lucide-react";
 import { useLanguage, Language } from "@/context/LanguageContext";
 
 const languages = [
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "tr", label: "Türkçe", flag: "🇹🇷" },
-  { code: "ru", label: "Русский", flag: "🇷🇺" },
-  { code: "ar", label: "العربية", flag: "🇸🇦" },
-  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "en", label: "English", country: "gb" },
+  { code: "tr", label: "Türkçe", country: "tr" },
+  { code: "ru", label: "Русский", country: "ru" },
+  { code: "ar", label: "العربية", country: "sa" },
+  { code: "de", label: "Deutsch", country: "de" },
 ];
 
 export const LanguageDropdown = () => {
@@ -18,8 +18,6 @@ export const LanguageDropdown = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Find the selected language object based on Context state. 
-  // Fallback to EN if the current Context lang isn't in our array (due to casing etc).
   const selected = languages.find(l => l.code.toUpperCase() === lang.toUpperCase()) || languages[0];
 
   useEffect(() => {
@@ -45,7 +43,7 @@ export const LanguageDropdown = () => {
           "hover:bg-white/10 transition-all"
         )}
       >
-        <span>{selected.flag}</span>
+        <img src={`https://flagcdn.com/w20/${selected.country}.png`} alt={selected.label} className="w-4 h-3 object-cover rounded-sm" />
         <span className="hidden sm:inline-block">{selected.label}</span>
         <ChevronDown className={cn("h-3.5 w-3.5 text-zinc-400 transition-transform", open && "rotate-180")} />
       </button>
@@ -67,7 +65,6 @@ export const LanguageDropdown = () => {
                 <button
                   key={l.code}
                   onClick={() => {
-                    // Update the global context. (It expects 'EN', 'TR', 'RU' currently, but we will adjust it to handle everything)
                     setLang(l.code.toUpperCase() as Language);
                     setOpen(false);
                   }}
@@ -78,7 +75,7 @@ export const LanguageDropdown = () => {
                       : "text-zinc-300 hover:bg-white/[0.08] hover:text-white"
                   )}
                 >
-                  <span className="text-base">{l.flag}</span>
+                  <img src={`https://flagcdn.com/w20/${l.country}.png`} alt={l.label} className="w-5 h-3.5 object-cover rounded-sm shadow-sm" />
                   <span className="flex-1 font-sans">{l.label}</span>
                   {isSelected && (
                     <Check className="h-4 w-4 text-[#E5D3B3]" />

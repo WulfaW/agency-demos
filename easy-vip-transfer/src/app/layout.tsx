@@ -20,6 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://easyviptransfer.com'),
   title: 'Easy VIP Transfer | Bodrum Luxury Chauffeur & Airport Transfer',
   description: 'Milas-Bodrum Havalimanı (BJV), Yalıkavak Marina, Mandarin Oriental ve Amanruya için 7/24 Mercedes-Maybach ve VIP Vito transfer hizmeti. Sabit fiyat garantisi.',
   keywords: ['Bodrum VIP Transfer', 'Bodrum Havalimanı Transfer', 'Milas Bodrum BJV VIP Transfer', 'Yalıkavak Marina Transfer', 'Mandarin Oriental Bodrum Transfer', 'Amanruya Transfer', 'Bodrum Maybach Kiralama', 'Şoförlü VIP Araç Bodrum'],
