@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: 'Easy VIP Transfer Bodrum',
     images: [
       {
-        url: '/images/wix_img_2.jpg',
+        url: '/images/inside.jpg',
         width: 1200,
         height: 630,
         alt: 'Mercedes-Maybach VIP Transfer Bodrum',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Easy VIP Transfer | Bodrum First Class Chauffeur',
     description: 'Bodrum ve Ege koylarında 7/24 kesintisiz Maybach ve VIP Vito transferi.',
-    images: ['/images/wix_img_2.jpg'],
+    images: ['/images/inside.jpg'],
   },
   other: {
     'strix-verification': 'strix-verify-75e0049732f19316eb501ad06eaa0b3b',

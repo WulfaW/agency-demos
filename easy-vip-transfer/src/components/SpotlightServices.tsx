@@ -118,33 +118,33 @@ export default function SpotlightServices() {
     // English
     if(lang === 'EN') return {
       airport: [
-        { title: 'Milas-Bodrum (BJV) Greeter', desc: 'Live flight tracking. Met at the VIP exit with a name board.', badge: 'Live Tracking', icon: Plane, image: '/images/wix_img_0.jpg' },
-        { title: 'Aviation & Private Jet', desc: 'Direct apron transfer from Bodrum VIP Jet Terminal.', badge: 'VIP Protocol', icon: Crown, image: '/images/wix_img_1.jpg' },
-        { title: 'Return to Airport', desc: 'Flawless schedule planning for your departure.', badge: 'Zero Delay', icon: ShieldCheck, image: '/images/wix_img_2.jpg' },
+        { title: 'Milas-Bodrum (BJV) Greeter', desc: 'Live flight tracking. Met at the VIP exit with a name board.', badge: 'Live Tracking', icon: Plane, image: '/images/inside.jpg' },
+        { title: 'Aviation & Private Jet', desc: 'Direct apron transfer from Bodrum VIP Jet Terminal.', badge: 'VIP Protocol', icon: Crown, image: '/images/route.jpg' },
+        { title: 'Return to Airport', desc: 'Flawless schedule planning for your departure.', badge: 'Zero Delay', icon: ShieldCheck, image: '/images/Zuma-Bodrum-14.jpg' },
       ],
       marina: [
-        { title: 'Yalıkavak Marina VIP', desc: 'Private vehicle access to superyacht piers and clubs.', badge: 'Pier Access', icon: Anchor, image: '/images/wix_img_0.jpg' },
-        { title: 'D-Marin & Bodrum Marina', desc: 'Spacious Mercedes Vito for yacht passengers.', badge: 'Spacious Luggage', icon: Compass, image: '/images/wix_img_1.jpg' },
-        { title: 'Beach Club Shuttles', desc: 'No-wait VIP chauffeurs to top clubs like Scorpios.', badge: 'Night Protocol', icon: Wine, image: '/images/wix_img_2.jpg' },
+        { title: 'Yalıkavak Marina VIP', desc: 'Private vehicle access to superyacht piers and clubs.', badge: 'Pier Access', icon: Anchor, image: '/images/cennetkoyu.jpg' },
+        { title: 'D-Marin & Bodrum Marina', desc: 'Spacious Mercedes Vito for yacht passengers.', badge: 'Spacious Luggage', icon: Compass, image: '/images/macakizi-hotel-bodrum.jpg' },
+        { title: 'Beach Club Shuttles', desc: 'No-wait VIP chauffeurs to top clubs like Scorpios.', badge: 'Night Protocol', icon: Wine, image: '/images/demirbuku-koyu.jpg' },
       ],
       hourly: [
-        { title: 'Full Day Disposal', desc: 'Your Maybach/Vito awaits your command for 8-24 hours.', badge: 'Unlimited Wait', icon: Clock, image: '/images/wix_img_0.jpg' },
-        { title: 'Business Protocol', desc: 'Professional chauffeurs in suits for official delegations.', badge: 'Protocol Chauffeur', icon: ShieldCheck, image: '/images/wix_img_1.jpg' },
-        { title: 'Bespoke Bodrum Tour', desc: 'Custom routes across Bodrum\'s best sunsets.', badge: 'Custom Route', icon: Map, image: '/images/wix_img_2.jpg' },
+        { title: 'Full Day Disposal', desc: 'Your Maybach/Vito awaits your command for 8-24 hours.', badge: 'Unlimited Wait', icon: Clock, image: '/images/inside.jpg' },
+        { title: 'Business Protocol', desc: 'Professional chauffeurs in suits for official delegations.', badge: 'Protocol Chauffeur', icon: ShieldCheck, image: '/images/route.jpg' },
+        { title: 'Bespoke Bodrum Tour', desc: 'Custom routes across Bodrum\'s best sunsets.', badge: 'Custom Route', icon: Map, image: '/images/Zuma-Bodrum-14.jpg' },
       ],
       intercity: [
-        { title: 'Bodrum ➔ Izmir', desc: 'Luxury long-distance transfer to Izmir/Cesme.', badge: 'Long Distance', icon: Compass, image: '/images/wix_img_0.jpg' },
-        { title: 'Bodrum ➔ Marmaris', desc: 'Safe passage to Blue Voyage starting ports.', badge: 'Blue Voyage', icon: Anchor, image: '/images/wix_img_1.jpg' },
-        { title: 'Bodrum ➔ Kusadasi', desc: 'VIP transport to Kusadasi cruise port.', badge: 'Highway Travel', icon: Plane, image: '/images/wix_img_2.jpg' },
+        { title: 'Bodrum ➔ Izmir', desc: 'Luxury long-distance transfer to Izmir/Cesme.', badge: 'Long Distance', icon: Compass, image: '/images/cennetkoyu.jpg' },
+        { title: 'Bodrum ➔ Marmaris', desc: 'Safe passage to Blue Voyage starting ports.', badge: 'Blue Voyage', icon: Anchor, image: '/images/macakizi-hotel-bodrum.jpg' },
+        { title: 'Bodrum ➔ Kusadasi', desc: 'VIP transport to Kusadasi cruise port.', badge: 'Highway Travel', icon: Plane, image: '/images/demirbuku-koyu.jpg' },
       ]
     };
     
     // Turkish (default logic but localized for brevity to just return default if TR/other)
     return {
       airport: [
-        { title: 'Milas-Bodrum (BJV) Karşılama', desc: 'Uçuşunuz canlı radardan takip edilir. İsim levhası ile karşılanırsınız.', badge: 'Canlı Takip', icon: Plane, image: '/images/wix_img_2.jpg' },
+        { title: 'Milas-Bodrum (BJV) Karşılama', desc: 'Uçuşunuz canlı radardan takip edilir. İsim levhası ile karşılanırsınız.', badge: 'Canlı Takip', icon: Plane, image: '/images/inside.jpg' },
         { title: 'Genel Havacılık & Özel Jet', desc: 'Bodrum VIP Jet Terminali aprondan doğrudan bagaj ve yolcu transferi.', badge: 'VIP Jet Protokolü', icon: Crown, image: '/images/macakizi-hotel-bodrum.jpg' },
-        { title: 'Dönüş & Otelden Uçuşa', desc: 'Otelinizden uçağınızın saatine göre kalkış planı.', badge: 'Sıfır Rötar Riski', icon: ShieldCheck, image: '/images/wix_img_0.jpg' },
+        { title: 'Dönüş & Otelden Uçuşa', desc: 'Otelinizden uçağınızın saatine göre kalkış planı.', badge: 'Sıfır Rötar Riski', icon: ShieldCheck, image: '/images/route.jpg' },
       ],
       marina: [
         { title: 'Yalıkavak Marina VIP Transfer', desc: 'Süperyat iskelesi ve beach clublara özel araç girişi.', badge: 'İskele İçi Geçiş', icon: Anchor, image: '/images/Zuma-Bodrum-14.jpg' },
@@ -152,14 +152,14 @@ export default function SpotlightServices() {
         { title: 'Scorpios & Maçakızı Servisi', desc: 'Seçkin gece kulüplerine beklemesiz gidiş-dönüş.', badge: 'Gece Protokolü', icon: Wine, image: '/images/macakizi-hotel-bodrum.jpg' },
       ],
       hourly: [
-        { title: 'Tam Gün Şoförlü Araç Tahsisi', desc: 'Aracınız ve şoförünüz emrinizde bekler.', badge: 'Sınırsız Bekleme', icon: Clock, image: '/images/wix_img_0.jpg' },
-        { title: 'İş & Protokol Seyahatleri', desc: 'Takım elbiseli profesyonel şoförlerle resmi transfer.', badge: 'Protokol Şoförü', icon: ShieldCheck, image: '/images/wix_img_1.jpg' },
+        { title: 'Tam Gün Şoförlü Araç Tahsisi', desc: 'Aracınız ve şoförünüz emrinizde bekler.', badge: 'Sınırsız Bekleme', icon: Clock, image: '/images/Zuma-Bodrum-14.jpg' },
+        { title: 'İş & Protokol Seyahatleri', desc: 'Takım elbiseli profesyonel şoförlerle resmi transfer.', badge: 'Protokol Şoförü', icon: ShieldCheck, image: '/images/cennetkoyu.jpg' },
         { title: 'Kişiye Özel Bodrum Turu', desc: 'Gümüşlük gün batımı ve özel şarap bağları rotaları.', badge: 'Özel Rota', icon: Map, image: '/images/demirbuku-koyu.jpg' },
       ],
       intercity: [
-        { title: 'Bodrum - İzmir & Çeşme', desc: 'İzmir veya Çeşme otellerine kesintisiz lüks transfer.', badge: 'Uzun Yol Konforu', icon: Compass, image: '/images/wix_img_2.jpg' },
+        { title: 'Bodrum - İzmir & Çeşme', desc: 'İzmir veya Çeşme otellerine kesintisiz lüks transfer.', badge: 'Uzun Yol Konforu', icon: Compass, image: '/images/macakizi-hotel-bodrum.jpg' },
         { title: 'Bodrum - Marmaris & Göcek', desc: 'Mavi yolculuk limanlarına konforlu geçiş.', badge: 'Mavi Tur Bağlantısı', icon: Anchor, image: '/images/cennetkoyu.jpg' },
-        { title: 'Bodrum - Didim & Kuşadası', desc: 'Kruvaziyer limanlarına kapıdan kapıya özel VIP ulaşım.', badge: 'Hızlı Otoyol Seyahati', icon: Plane, image: '/images/wix_img_1.jpg' },
+        { title: 'Bodrum - Didim & Kuşadası', desc: 'Kruvaziyer limanlarına kapıdan kapıya özel VIP ulaşım.', badge: 'Hızlı Otoyol Seyahati', icon: Plane, image: '/images/demirbuku-koyu.jpg' },
       ]
     };
   };
