@@ -34,8 +34,6 @@ const EditorialCard = ({ title, desc, badge, image, buttonText }: { title: strin
   );
 };
 
-import { motion } from 'framer-motion';
-
 export default function SpotlightServices() {
 
   const { lang } = useLanguage();
