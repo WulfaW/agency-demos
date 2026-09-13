@@ -46,7 +46,7 @@ export default function ComparisonSection() {
           className="md:col-span-8 md:row-span-1 relative rounded-3xl overflow-hidden group border border-white/10 shadow-2xl"
         >
           {/* Background Image */}
-          <div className="absolute inset-0 bg-[url('https://cdn.21st.dev/assets/mirror/a9/a9c2900d44fe6288b344f447cb12a05f7e64c439479a8ccb977d3b20eb371156.jpg')] bg-cover bg-center bg-no-repeat group-hover:scale-105 transition-transform duration-1000"></div>
+          <div className="absolute inset-0 bg-[url('/images/inside.jpg')] bg-cover bg-center bg-no-repeat group-hover:scale-105 transition-transform duration-1000"></div>
           
           {/* Dark Overlay & Radial Gradient for depth */}
           <div className="absolute inset-0 bg-black/60 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -116,7 +116,7 @@ export default function ComparisonSection() {
           className="md:col-span-7 md:row-span-1 relative rounded-3xl overflow-hidden group border border-white/10 shadow-2xl"
         >
           {/* Background Image */}
-          <div className="absolute inset-0 bg-[url('https://cdn.21st.dev/assets/mirror/61/615a133fcd9891823eb52fbfe8cda7bc7e64177b9668d29792079da5a5d105ad.jpg')] bg-cover bg-center bg-no-repeat group-hover:scale-105 transition-transform duration-1000 grayscale opacity-40 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522037169490-349f7e4f1692?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat group-hover:scale-105 transition-transform duration-1000 grayscale opacity-40 mix-blend-overlay"></div>
           
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
           

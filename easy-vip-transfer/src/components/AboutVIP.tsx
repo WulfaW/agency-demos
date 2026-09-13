@@ -91,8 +91,8 @@ export default function AboutVIP() {
             className="relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 glass-panel"
           >
             <img 
-              src="/images/wix_img_0.jpg" 
-              alt="VIP Chauffeur Service Bodrum" 
+              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1200&auto=format&fit=crop" 
+              alt="Bodrum VIP Transfer Chauffeur Service Bodrum" 
               className="w-full h-full object-cover opacity-80"
             />
             {/* Overlay Gradient */}

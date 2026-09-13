@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
-import { Montserrat, Inter } from 'next/font/google';
+import { Playfair_Display, Inter } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
 import Preloader from '@/components/Preloader';
 import ScrollProgress from '@/components/ScrollProgress';
 
-const montserrat = Montserrat({ 
+const playfair = Playfair_Display({ 
   subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-serif', // Using this variable for headings everywhere
   display: 'swap',
 });
@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className={`scroll-smooth ${montserrat.variable} ${inter.variable} bg-[#030303] text-zinc-200 antialiased`}>
+    <html lang="tr" className={`scroll-smooth ${playfair.variable} ${inter.variable} bg-[#030303] text-zinc-200 antialiased`}>
       <body className="bg-[#030303] min-h-screen flex flex-col font-sans selection:bg-white selection:text-black relative">
         <ScrollProgress />
         <Preloader />
