@@ -1,64 +1,32 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Sparkles, Wifi, Wine, ChevronRight, PhoneCall } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 import { useLanguage } from '@/context/LanguageContext';
+import { motion, AnimatePresence } from 'framer-motion';
 
-
-// Spotlight Card component with cursor tracking
-const SpotlightCard = ({ title, desc, badge, image, icon: Icon, spotlightColor, buttonText }: { title: string; desc: string; badge: string; image: string; icon: any; spotlightColor?: string, buttonText: string }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
+const EditorialCard = ({ title, desc, badge, image, buttonText }: { title: string; desc: string; badge: string; image: string; buttonText: string }) => {
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setOpacity(1)}
-      onMouseLeave={() => setOpacity(0)}
-      className="relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/70 p-8 overflow-hidden transition-all duration-300 hover:border-white/20 hover:-translate-y-1 group hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
-    >
-      {/* Hover Background Image Layer */}
-      <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl">
-        <img 
-          src={image} 
-          alt={title} 
-          className="absolute inset-0 w-full h-full object-cover grayscale opacity-0 group-hover:opacity-10 group-hover:scale-105 transition-all duration-700"
-        />
-      </div>
-
-      {/* Mouse-Following Spotlight Layer */}
-      <div
-        className="pointer-events-none absolute -inset-px z-0 transition-opacity duration-300"
-        style={{
-          opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor || 'rgba(229, 211, 179, 0.12)'}, transparent 80%)`,
-        }}
+    <div className="group relative rounded-2xl border border-white/5 bg-black overflow-hidden h-[420px] transition-all duration-500 hover:border-white/20">
+      <img
+        src={image}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale transition-all duration-1000 group-hover:scale-105 group-hover:opacity-60 group-hover:grayscale-0"
       />
-
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex items-center justify-between mb-8">
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white group-hover:scale-110 transition-transform duration-300">
-            <Icon className="w-5 h-5" strokeWidth={1.5} />
-          </div>
-          <span className="text-[10px] font-sans font-bold tracking-[0.2em] text-[#E5D3B3] uppercase px-3 py-1 rounded-full bg-[#E5D3B3]/10 border border-[#E5D3B3]/20">
-            {badge}
-          </span>
-        </div>
-        
-        <h3 className="text-xl md:text-2xl font-serif text-white mb-3 tracking-wide">{title}</h3>
-        <p className="text-sm text-zinc-400 font-sans leading-relaxed mb-8 flex-grow">{desc}</p>
-        
-        <div className="flex items-center justify-between border-t border-white/10 pt-6 group-hover:border-[#E5D3B3]/30 transition-colors">
-          <span className="font-mono text-[14px] tracking-widest uppercase">{buttonText}</span>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90" />
+      
+      <div className="absolute inset-0 p-8 flex flex-col justify-end">
+        <div className="w-8 h-[1px] bg-[#E5D3B3] mb-5 transition-all duration-500 group-hover:w-16"></div>
+        <span className="text-[10px] font-sans tracking-[0.2em] text-[#E5D3B3] uppercase mb-3 block">
+          {badge}
+        </span>
+        <h3 className="text-2xl font-serif text-white mb-4">{title}</h3>
+        <p className="text-sm text-zinc-400 font-sans leading-relaxed mb-6">
+          {desc}
+        </p>
+        <div className="flex items-center gap-3 text-white/50 group-hover:text-white transition-colors cursor-pointer" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.phoneClean}`, '_blank')}>
+          <span className="text-xs font-sans tracking-widest uppercase">{buttonText}</span>
           <ChevronRight className="w-4 h-4 text-[#E5D3B3] group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
@@ -223,20 +191,6 @@ export default function SpotlightServices() {
   };
   const servicesData = getServicesData() as Record<string, Array<{ title: string; desc: string; badge: string; icon: any; image: string }>>;
 
-  const categoryColors: Record<string, string> = {
-    airport: 'from-zinc-100 to-zinc-300 text-black shadow-[0_0_30px_rgba(255,255,255,0.15)] border-none',
-    marina: 'from-zinc-800 to-zinc-900 text-white shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/20',
-    hourly: 'from-[#2a2416] to-[#0a0905] text-[#E5D3B3] shadow-[0_0_20px_rgba(229,211,179,0.15)] border border-[#E5D3B3]/40',
-    intercity: 'from-[#E5D3B3] to-[#C19B5E] text-black shadow-[0_0_30px_rgba(229,211,179,0.2)] border-none',
-  };
-
-  const getCategoryColorRgba = (id: string) => {
-    if (id === 'airport') return 'rgba(255, 255, 255, 0.1)';
-    if (id === 'marina') return 'rgba(255, 255, 255, 0.05)';
-    if (id === 'hourly') return 'rgba(229, 211, 179, 0.1)';
-    return 'rgba(229, 211, 179, 0.15)';
-  };
-
   const getTexts = () => {
     switch(lang) {
       case 'EN': return { sub: 'PREMIUM SERVICES', title: 'Exclusive Privileges', desc: 'Beyond standards, an Aegean VIP experience.', button: '24/7 Booking' };
@@ -275,43 +229,49 @@ export default function SpotlightServices() {
         </p>
       </motion.div>
 
-      {/* Interactive Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-12">
+      {/* Ultra Minimalist Tabs */}
+      <div className="flex flex-wrap items-center justify-center gap-6 md:gap-16 mb-16 border-b border-white/10 pb-4">
         {categories.map((cat) => {
-          const Icon = cat.icon;
           const isActive = activeTab === cat.id;
           return (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-sans tracking-wider uppercase transition-all duration-300 ${
-                isActive
-                  ? `bg-gradient-to-r font-bold ${categoryColors[cat.id]}`
-                  : 'bg-white/[0.03] hover:bg-white/[0.06] text-zinc-400 border border-white/[0.08]'
+              className={`relative text-xs md:text-sm font-sans tracking-[0.2em] uppercase transition-colors duration-300 pb-4 -mb-[17px] ${
+                isActive ? 'text-white' : 'text-zinc-600 hover:text-zinc-400'
               }`}
             >
-              <Icon className="w-4 h-4" />
-              <span>{cat.label}</span>
+              {cat.label}
+              {isActive && (
+                <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-[1px] bg-[#E5D3B3]" />
+              )}
             </button>
           );
         })}
       </div>
 
-      {/* Dynamic Grid with Mouse-Following Spotlight Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {servicesData[activeTab].map((service, idx) => (
-          <SpotlightCard
-            key={idx}
-            title={service.title}
-            desc={service.desc}
-            badge={service.badge}
-            image={service.image}
-            icon={service.icon}
-            spotlightColor={getCategoryColorRgba(activeTab)}
-            buttonText={texts.button}
-          />
-        ))}
-      </div>
+      {/* Editorial Grid */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {servicesData[activeTab].map((service, idx) => (
+            <EditorialCard
+              key={idx}
+              title={service.title}
+              desc={service.desc}
+              badge={service.badge}
+              image={service.image}
+              buttonText={texts.button}
+            />
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
       {/* Direct Concierge Contact Strip */}
       <div className="mt-12 backdrop-blur-xl bg-white/[0.02] border border-white/[0.08] rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
