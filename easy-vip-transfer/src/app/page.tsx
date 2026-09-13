@@ -22,7 +22,7 @@ export default function Home() {
       <StickyScrollExperience />
 
       {/* 5. Lüks Akordiyon SSS & Footer */}
-      <FaqAndFooter />
+      <FaqAndFooter showFaq={true} />
 
       {/* 6. Mobil Sabit Hızlı Rezervasyon Çubuğu */}
       <StickyMobileBar />

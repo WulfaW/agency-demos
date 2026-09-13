@@ -102,7 +102,7 @@ const socialLinks = [
 
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function FaqAndFooter() {
+export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean }) {
 
   const getFaqs = () => {
     const { lang } = useLanguage();
@@ -115,11 +115,11 @@ export default function FaqAndFooter() {
         { q: "Do you have baby car seats?", a: "Yes, we provide hygienic, sanitized baby car seats free of charge upon request during reservation." }
       ];
       case 'RU': return [
-        { q: "Как рассчитывается стоимость?", a: "Цены рассчитываются в зависимости от расстояния и класса автомобиля. Нет скрытых платежей, все включено." },
-        { q: "Что делать, если рейс задерживается?", a: "Мы отслеживаем ваш рейс по радару. Водитель будет ждать вас бесплатно даже при задержке." },
-        { q: "Можно ли делать остановки?", a: "Да, это возможно по запросу, может взиматься небольшая дополнительная плата." },
-        { q: "Как я могу оплатить?", a: "Оплата наличными (EUR, USD, GBP, TRY) или кредитной картой в автомобиле." },
-        { q: "Есть ли детские кресла?", a: "Да, мы предоставляем детские кресла бесплатно по предварительному запросу." }
+        { q: "Как рассчитываются комиссии за трансфер?", a: "Цены рассчитываются на основе расстояния вашего маршрута и класса автомобиля. Скрытых комиссий нет." },
+        { q: "Что делать, если мой рейс задерживается?", a: "Мы отслеживаем ваш рейс. Ваш водитель будет ждать в аэропорту бесплатно." },
+        { q: "Можем ли мы сделать дополнительные остановки?", a: "Да, дополнительные остановки возможны по запросу." },
+        { q: "Как я могу оплатить?", a: "Вы можете оплатить наличными (EUR, USD, GBP, TRY) или кредитной картой в автомобиле." },
+        { q: "У вас есть детские автокресла?", a: "Да, по запросу мы предоставляем детские автокресла бесплатно." }
       ];
       case 'DE': return [
         { q: "Wie werden die Kosten berechnet?", a: "Die Preise basieren auf Entfernung und Fahrzeugklasse. Keine versteckten Gebühren." },
@@ -129,30 +129,30 @@ export default function FaqAndFooter() {
         { q: "Haben Sie Kindersitze?", a: "Ja, auf Anfrage stellen wir kostenlose Kindersitze zur Verfügung." }
       ];
       case 'AR': return [
-        { q: "كيف يتم حساب الرسوم؟", a: "يتم حساب الأسعار بناءً على المسافة وفئة السيارة. لا توجد رسوم خفية." },
-        { q: "ماذا لو تأخرت رحلتي؟", a: "نحن نتتبع رحلتك عبر الرادار الحي. سينتظرك سائقك مجانًا." },
-        { q: "هل يمكننا التوقف الإضافي؟", a: "نعم، التوقفات الإضافية ممكنة عند الطلب." },
-        { q: "كيف يمكنني الدفع؟", a: "نقداً أو بالبطاقة داخل السيارة." },
-        { q: "هل لديكم مقاعد أطفال؟", a: "نعم، نوفر مقاعد أطفال مجاناً عند الطلب." }
+        { q: "كيف يتم حساب رسوم النقل؟", a: "يتم حساب الأسعار بناءً على المسافة." },
+        { q: "ماذا أفعل إذا تأخر رحلتي؟", a: "نحن نتتبع رحلتك. سينتظر السائق مجانًا." },
+        { q: "هل يمكننا التوقف بشكل إضافي؟", a: "نعم، التوقف الإضافي ممكن عند الطلب." },
+        { q: "كيف يمكنني الدفع؟", a: "نقداً أو ببطاقة الائتمان." },
+        { q: "هل لديكم مقاعد أطفال؟", a: "نعم، نوفرها مجانًا." }
       ];
       default: return [
-        { q: 'Milas-Bodrum Havalimanı’nda karşılama nasıl yapılıyor?', a: 'Uçağınız iniş yaptığı anda canlı radardan takip edilir. İç hatlar veya dış hatlar gelen yolcu kapısında şoförümüz isminizin yazılı olduğu özel tablet/levha ile sizi karşılar, bagajlarınıza yardımcı olarak doğrudan VIP aracınıza eşlik eder.' },
-        { q: 'Uçağım rötar yaparsa ek ücret öder miyim?', a: 'Kesinlikle hayır. Uçuş takip sistemimiz sayesinde gecikmeler anlık olarak şoförünüze bildirilir. Uçağınız kaç saat rötar yaparsa yapsın hiçbir ek bekleme ücreti talep edilmez.' },
-        { q: 'Ödemeyi nasıl yapabilirim? Kredi kartı geçerli mi?', a: 'Ödemenizi transferiniz tamamlandığında araç içinde şoförümüze nakit (TL, Euro, Dolar, GBP) veya temassız kredi kartı / banka kartı ile güvenle yapabilirsiniz. Ayrıca kurumsal fatura taleplerinizde şirket hesabımıza havale/EFT seçeneği de mevcuttur.' },
-        { q: 'Araçlarınız yasal ve belgeli mi?', a: 'Evet. Easy VIP Transfer, T.C. Kültür ve Turizm Bakanlığı ile TÜRSAB A Grubu Seyahat Acentası işletme belgesine ve Ulaştırma Bakanlığı D2 Yetki Belgesine sahiptir. Tüm yolcularımız yolculuk süresince ferdi kaza ve koltuk sigortası kapsamındadır.' },
-        { q: 'Bebek veya çocuk koltuğu temin ediyor musunuz?', a: 'Evet, rezervasyon esnasında belirttiğiniz takdirde araçlarımıza Avrupa standartlarına uygun Isofix çocuk ve bebek oto koltuğu tamamen ücretsiz olarak yerleştirilmektedir.' }
+        { q: "Transfer ücretleri nasıl hesaplanır?", a: "Fiyatlar, rotanızın mesafesi ve araç sınıfına (Maybach, S-Class, Vito VIP) göre belirlenir. Gizli ücret yoktur; yakıt, otoyol, köprü ve vergiler fiyata dahildir." },
+        { q: "Uçağım rötar yaparsa ne olur?", a: "Uçuşunuzu canlı radar üzerinden takip ediyoruz. Uçağınız saatlerce gecikse bile şoförünüz sizi havalimanında ücretsiz olarak beklemeye devam eder." },
+        { q: "Güzergah üzerinde ekstra duraklama yapabilir miyiz?", a: "Talebiniz doğrultusunda ekstra duraklama veya farklı noktalara uğrama mümkündür. Rotanın uzamasına bağlı olarak cüzi fiyat farkları yansıyabilir." },
+        { q: "Ödemeyi nasıl yapabilirim?", a: "Ödemenizi araç içinde Nakit (EUR, USD, GBP, TL) veya Kredi Kartı ile yapabilirsiniz. Kurumsal misafirlerimiz için havale/EFT seçeneğimiz de mevcuttur." },
+        { q: "Bebek/Çocuk koltuğu mevcut mu?", a: "Evet, rezervasyon esnasında belirtmeniz durumunda yaş grubuna uygun, dezenfekte edilmiş bebek/çocuk koltuklarını araçlarımızda ücretsiz olarak temin ediyoruz." }
       ];
     }
   };
   const faqs = getFaqs();
 
-  const { lang } = useLanguage();
   const getTexts = () => {
+    const { lang } = useLanguage();
     switch(lang) {
-      case 'EN': return { faqTitle: 'Frequently Asked Questions', faqSub: 'Everything you need to know about your luxury transfer experience.', faqHelp: 'Do you have another question?', footerDesc: 'Bodrum\'s Premier Luxury Chauffeur Service.', quick: 'Quick Links', contact: 'Contact' };
-      case 'RU': return { faqTitle: 'Часто Задаваемые Вопросы', faqSub: 'Все, что вам нужно знать о вашем роскошном трансфере.', faqHelp: 'У вас есть другой вопрос?', footerDesc: 'Премиум VIP Трансфер в Бодруме.', quick: 'Ссылки', contact: 'Контакты' };
+      case 'EN': return { faqTitle: 'Frequently Asked Questions', faqSub: 'Everything you need to know about our premium transfer operations.', faqHelp: 'Have another question?', footerDesc: 'Bodrum\'s Premier VIP Transfer Experience.', quick: 'Quick Links', contact: 'Contact' };
+      case 'RU': return { faqTitle: 'Часто Задаваемые Вопросы', faqSub: 'Все, что вам нужно знать о наших премиальных переводах.', faqHelp: 'У вас есть другой вопрос?', footerDesc: 'Премьерный VIP Трансфер в Бодруме.', quick: 'Ссылки', contact: 'Связаться' };
       case 'DE': return { faqTitle: 'Häufig Gestellte Fragen', faqSub: 'Alles, was Sie über Ihren luxuriösen Transfer wissen müssen.', faqHelp: 'Haben Sie eine andere Frage?', footerDesc: 'Bodrums Erstklassiger VIP-Transfer.', quick: 'Links', contact: 'Kontakt' };
-      case 'AR': return { faqTitle: 'الأسئلة الشائعة', faqSub: 'كل ما تحتاج لمعرفته حول تجربة النقل الفاخر الخاصة بك.', faqHelp: 'هل لديك سؤال آخر؟', footerDesc: 'خدمة نقل كبار الشخصيات الأولى في بودروم.', quick: 'روابط', contact: 'اتصال' };
+      case 'AR': return { faqTitle: 'الأسئلة الشائعة', faqSub: 'كل ما تحتاج لمعرفته حول عمليات النقل الفاخرة لدينا.', faqHelp: 'هل لديك سؤال آخر؟', footerDesc: 'تجربة النقل الفاخرة الأولى في بودروم.', quick: 'روابط', contact: 'اتصل بنا' };
       default: return { faqTitle: 'Sıkça Sorulan Sorular', faqSub: 'Premium transfer deneyiminiz hakkında merak ettiğiniz her şey.', faqHelp: 'Başka bir sorunuz mu var?', footerDesc: "Bodrum'un Zirvesindeki VIP Transfer Deneyimi.", quick: 'Hızlı Linkler', contact: 'İletişim' };
     }
   };
@@ -164,6 +164,7 @@ export default function FaqAndFooter() {
     <footer id="faq" className="w-full relative z-10 border-t border-white/5 bg-transparent">
       
       {/* 1. FAQ Section */}
+      {showFaq && (
       <div className="py-12 md:py-16 px-4 max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -221,6 +222,7 @@ export default function FaqAndFooter() {
           })}
         </div>
       </div>
+      )}
 
       {/* 2. Interactive Brand-Colored Social Channels Strip with Clean Monochrome Map Pin */}
       <div className="border-t border-white/10 py-12 px-4 max-w-6xl mx-auto">
