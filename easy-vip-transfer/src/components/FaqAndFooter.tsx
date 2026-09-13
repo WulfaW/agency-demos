@@ -164,44 +164,39 @@ export default function FaqAndFooter() {
     <footer id="faq" className="w-full relative z-10 border-t border-white/5 bg-transparent">
       
       {/* 1. FAQ Section */}
-      <div className="py-16 md:py-20 px-4 max-w-3xl mx-auto">
+      <div className="py-12 md:py-16 px-4 max-w-2xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <span className="text-[11px] font-mono tracking-[0.25em] text-[#E5D3B3] uppercase block mb-2">
-            Merak Edilenler
-          </span>
-          <h2 className="text-2xl md:text-4xl font-serif text-white tracking-wide mb-3">
+          <h2 className="text-xl md:text-2xl font-serif text-white tracking-wide mb-2">
             {texts.faqTitle}
           </h2>
-          <p className="text-zinc-400 font-sans tracking-widest uppercase text-xs leading-relaxed">
-            Bodrum VIP transfer hizmetimizle ilgili tüm yasal ve operasyonel detaylar.
+          <p className="text-zinc-500 font-sans tracking-wider uppercase text-[10px] leading-relaxed">
+            {texts.faqSub}
           </p>
         </motion.div>
 
-        <div className="space-y-3">
+        <div className="space-y-0 border-t border-white/10">
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div
                 key={idx}
-                className="backdrop-blur-xl bg-[#0a0a0a]/60 border border-white/[0.08] rounded-xl overflow-hidden transition-all duration-300"
+                className="border-b border-white/10 overflow-hidden transition-all duration-300"
               >
                 <button
                   type="button"
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className="w-full text-left p-4 md:p-5 flex items-center justify-between gap-4 focus:outline-none"
+                  className="w-full text-left py-4 px-2 flex items-center justify-between gap-4 focus:outline-none group"
                 >
-                  <span className="font-serif text-sm md:text-base text-white">
+                  <span className={`font-sans text-xs md:text-sm transition-colors ${isOpen ? 'text-[#E5D3B3]' : 'text-zinc-300 group-hover:text-white'}`}>
                     {faq.q}
                   </span>
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                    isOpen ? 'bg-[#E5D3B3] text-black' : 'bg-white/5 text-zinc-400'
-                  }`}>
+                  <div className="shrink-0 text-zinc-500 transition-transform duration-300">
                     {isOpen ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
                   </div>
                 </button>
@@ -212,10 +207,10 @@ export default function FaqAndFooter() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 pb-4 pt-0 md:px-5 md:pb-5 text-xs md:text-sm font-sans text-zinc-400 font-light leading-relaxed mt-1">
+                      <div className="px-2 pb-5 pt-0 text-[11px] md:text-xs font-sans text-zinc-400 font-light leading-relaxed">
                         {faq.a}
                       </div>
                     </motion.div>
