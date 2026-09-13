@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Car, Users, Sparkles, LogOut, CalendarDays, Globe, MessageCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Car, Users, Sparkles, LogOut, CalendarDays, Globe, MessageCircle, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import ResourceManager from '@/components/admin/ResourceManager';
@@ -15,14 +15,31 @@ type Tab = 'gorevler' | 'surucular' | 'araclar' | 'musteriler' | 'whatsapp';
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('gorevler');
   const [refreshKey, setRefreshKey] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const router = useRouter();
   const supabase = createClient();
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        router.push('/admin/giris');
+      } else {
+        setIsLoading(false);
+      }
+    };
+    checkUser();
+  }, [router, supabase]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.push('/admin/giris');
   };
+
+  if (isLoading) {
+    return <div className="min-h-screen bg-[#030303] flex items-center justify-center text-white"><Loader2 className="w-8 h-8 animate-spin text-[#E5D3B3]" /></div>;
+  }
 
   return (
     <div className="min-h-screen bg-[#030303] text-zinc-200 font-sans flex">
