@@ -1,4 +1,4 @@
-@import "tailwindcss";
+ï»¿@import "tailwindcss";
 
 @theme inline {
   --color-background: var(--background);
@@ -8,7 +8,7 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   
-  /* LÃ¼ks Font TanÄ±mlamalarÄ± */
+  /* Luxury Font Settings */
   --font-sans: var(--font-sans), system-ui, sans-serif;
   --font-serif: var(--font-serif), Georgia, serif;
 }
@@ -107,6 +107,5 @@ body {
   filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(110%) grayscale(60%) sepia(10%);
 }
 
-/* Lüks ve Premium görünüm için tüm Lucide ikonlarýný incelt */
+/* Luxury and Premium look - thin all Lucide icons */
 svg.lucide { stroke-width: 1.25 !important; }
-
