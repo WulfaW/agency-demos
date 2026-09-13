@@ -12,11 +12,11 @@ export default function ServicesPage() {
   const { lang } = useLanguage();
   const getTexts = () => {
     switch(lang) {
-      case 'EN': return { sub: 'Privileges', title: 'Our Exclusive VIP Services' };
-      case 'RU': return { sub: 'Привилегии', title: 'Эксклюзивные VIP-Услуги' };
-      case 'DE': return { sub: 'Privilegien', title: 'Unsere Exklusiven VIP-Dienste' };
-      case 'AR': return { sub: 'الامتيازات', title: 'خدماتنا الحصرية لكبار الشخصيات' };
-      default: return { sub: 'Ayrıcalıklar', title: 'Özel VIP Hizmetlerimiz' };
+      case 'EN': return { sub: 'VIP PRIVILEGES', title: 'Personalized Luxury Beyond Limits' };
+      case 'RU': return { sub: 'VIP-ПРИВИЛЕГИИ', title: 'Персонализированная Роскошь Без Границ' };
+      case 'DE': return { sub: 'VIP-PRIVILEGIEN', title: 'Personalisierter Luxus Ohne Grenzen' };
+      case 'AR': return { sub: 'امتيازات كبار الشخصيات', title: 'فخامة مخصصة تتجاوز الحدود' };
+      default: return { sub: 'VIP HİZMETLERİMİZ', title: 'Sınırları Aşan Kişiselleştirilmiş Lüks' };
     }
   };
   const texts = getTexts();
@@ -27,8 +27,8 @@ export default function ServicesPage() {
       
       <div className="pt-10">
         <div className="text-center mb-16">
-          <p className="text-sm font-sans tracking-[0.2em] text-[#E5D3B3] uppercase mb-3">VIP Hizmetlerimiz</p>
-          <h1 className="text-4xl md:text-5xl font-serif text-white">Sınırları Aşan<br/>Kişiselleştirilmiş Lüks</h1>
+          <p className="text-sm font-sans tracking-[0.2em] text-[#E5D3B3] uppercase mb-3">{texts.sub}</p>
+          <h1 className="text-4xl md:text-5xl font-serif text-white">{texts.title}</h1>
         </div>
         
         <SpotlightServices />
