@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MapPin, Calendar, Car, Users, ArrowRight, ShieldCheck, ChevronDown, Check, ArrowLeftRight, Wine, Baby, Wifi, Flower2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LOCATIONS, CONTACT_INFO } from '@/data/transferData';
+import { createClient } from '@/lib/supabase/client';
 
 /* ─── Luxury Date + Time Picker ──────────────────────────────────────────── */
 const TIME_SLOTS = [
@@ -393,15 +394,40 @@ export default function PriceCalculator() {
     { id: 'maybach', name: 'Mercedes Maybach / S-Class' },
   ];
 
-  const handleWhatsApp = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const supabase = createClient();
+
+  const handleWhatsApp = async () => {
     if (!name || !phone) {
       alert(lang === 'TR' ? 'Lütfen adınızı ve telefonunuzu giriniz.' : 'Please enter your name and phone number.');
       return;
     }
 
+    setIsSubmitting(true);
+
     const fromName = LOCATIONS.find((l) => l.id === from)?.name || from;
     const toName = LOCATIONS.find((l) => l.id === to)?.name || to;
     const vehicleName = vehicleOptions.find(v => v.id === vehicle)?.name || vehicle;
+    const extrasText = selectedExtras.length > 0 ? selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ') : 'None';
+    
+    try {
+      // Supabase (Arka plan kaydı)
+      await supabase.from('reservations').insert([{
+        name,
+        phone,
+        from_location: fromName,
+        to_location: toName,
+        transfer_date: date || 'Not specified',
+        passengers: passengers || 'Not specified',
+        vehicle: vehicleName,
+        extras: extrasText,
+        status: 'New'
+      }]);
+    } catch (err) {
+      console.error("Supabase Error:", err);
+    }
+
+    setIsSubmitting(false);
     
     let msg = '';
     
@@ -414,7 +440,6 @@ export default function PriceCalculator() {
       if (passengers) msg += `👥 *Yolcu:* ${passengers} Kişi%0A`;
       if (vehicleName) msg += `🚘 *Araç:* ${vehicleName}%0A`;
       if (selectedExtras.length > 0) {
-        const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
         msg += `💎 *Ekstralar:* ${extrasText}%0A`;
       }
       msg += `%0ABu talebime istinaden müsaitlik ve fiyat bilgisi alabilir miyim?`;
@@ -427,7 +452,6 @@ export default function PriceCalculator() {
       if (passengers) msg += `👥 *Guests:* ${passengers} Persons%0A`;
       if (vehicleName) msg += `🚘 *Vehicle:* ${vehicleName}%0A`;
       if (selectedExtras.length > 0) {
-        const extrasText = selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ');
         msg += `💎 *Extras:* ${extrasText}%0A`;
       }
       msg += `%0ACan I get price and availability information for this request?`;

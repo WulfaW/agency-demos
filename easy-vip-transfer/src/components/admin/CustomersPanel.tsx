@@ -1,7 +1,8 @@
-﻿'use client';
+'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, Phone, ExternalLink, Star } from 'lucide-react';
+import { createClient } from '@/lib/supabase/client';
 
 type Customer = {
   id: string;
@@ -13,23 +14,37 @@ type Customer = {
   status: 'VIP' | 'Regular' | 'New';
 };
 
-// Mock data until Notion API is connected
-const MOCK_CUSTOMERS: Customer[] = [
-  { id: '1', name: 'John Doe', phone: '+90 555 123 4567', totalTrips: 4, lastTrip: '2026-08-15', notes: 'Prefers Maybach, allergic to nuts.', status: 'VIP' },
-  { id: '2', name: 'Elena Smith', phone: '+44 7700 900077', totalTrips: 1, lastTrip: '2026-09-10', notes: 'Needs child seat.', status: 'New' },
-];
-
 export default function CustomersPanel() {
-  const [customers] = useState<Customer[]>(MOCK_CUSTOMERS);
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const supabase = createClient();
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      const { data, error } = await supabase.from('reservations').select('*').order('created_at', { ascending: false });
+      if (!error && data) {
+        const formatted = data.map((d: any) => ({
+          id: d.id,
+          name: d.name,
+          phone: d.phone,
+          totalTrips: 1, // Currently just counts this reservation
+          lastTrip: d.transfer_date,
+          notes: d.extras !== 'None' ? d.extras : '',
+          status: 'New'
+        }));
+        setCustomers(formatted as Customer[]);
+      }
+    };
+    fetchCustomers();
+  }, []);
 
   return (
     <div className="space-y-8">
       <header className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-3xl font-serif text-white flex items-center gap-3">
-            Müşteriler <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded border border-blue-500/30">Notion CRM Sync</span>
+            Müşteriler <span className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded border border-green-500/30">Supabase CRM Canlı</span>
           </h1>
-          <p className="text-zinc-400 mt-2 text-sm">Notion veritabanınızdan çekilen müşteri ve geçmiş seyahat bilgileri.</p>
+          <p className="text-zinc-400 mt-2 text-sm">Supabase veritabanından çekilen müşteri ve seyahat bilgileri.</p>
         </div>
       </header>
 
