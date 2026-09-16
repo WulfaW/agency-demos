@@ -2,70 +2,45 @@
 
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Users, Briefcase, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Wifi, Wine, Tv, Armchair, Lock, Music, BatteryCharging, Coffee, Speaker, Monitor } from 'lucide-react';
-import { CONTACT_INFO } from '@/data/transferData';
-
-const fleetCars = [
-  {
-    id: 'vito',
-    name: 'Mercedes-Benz VIP Vito Extra Long',
-    category: 'VIP Minivan (En Çok Tercih Edilen)',
-    tagline: 'Geniş aileler, arkadaş grupları ve yat transferleri için lüks salon konforu.',
-    capacity: '7 Kişi',
-    luggage: '7 Büyük Valiz',
-    priceEur: '€75',
-    image: '/images/wix_img_0.jpg',
-    features: [
-      { text: 'Yıldız Tavan Ambiyansı', icon: Sparkles },
-      { text: 'Hakiki Deri Yatar Koltuklar', icon: Armchair },
-      { text: 'Apple TV & Sınırsız Wi-Fi', icon: Tv },
-      { text: 'Soğuk İçecek & Minibar', icon: Wine },
-      { text: 'Şoför ile Gizlilik Bölmesi', icon: Lock },
-      { text: 'Geniş Bagaj Kapasitesi', icon: Briefcase },
-    ],
-    badge: 'Popüler Tercih'
-  },
-  {
-    id: 'maybach',
-    name: 'Mercedes-Benz Maybach S-Class VIP',
-    category: 'First Class Exclusive',
-    tagline: 'İş insanları, protokol ve özel kutlamalar için zirve sessizlik ve zarafet.',
-    capacity: '3 Kişi',
-    luggage: '3 Büyük Valiz',
-    priceEur: '€120',
-    image: '/images/wix_img_2.jpg',
-    features: [
-      { text: 'Masajlı First-Class Koltuklar', icon: Armchair },
-      { text: 'Maksimum Ses İzolasyonu', icon: ShieldCheck },
-      { text: 'Şampanya & Meşrubat İkramı', icon: Wine },
-      { text: 'Burmester High-End Ses Sistemi', icon: Speaker },
-      { text: 'Kablosuz Hızlı Şarj (Tüm Cihazlar)', icon: BatteryCharging },
-      { text: 'Özel Eğitimli Protokol Şoförü', icon: Users },
-    ],
-    badge: 'En Prestijli'
-  },
-  {
-    id: 'sprinter',
-    name: 'Mercedes-Benz VIP Sprinter Grand Edition',
-    category: 'Ultra Lüks VIP Minibüs',
-    tagline: 'Büyük heyetler, düğün organizasyonları ve kurumsal etkinlikler için 16 kişilik lüks süit.',
-    capacity: '16 Kişi',
-    luggage: '16 Büyük Valiz',
-    priceEur: '€150',
-    image: '/images/wix_img_1.jpg',
-    features: [
-      { text: 'Ayakta Durulabilir Yüksek Tavan', icon: Sparkles },
-      { text: 'PlayStation 5 & Smart TV', icon: Monitor },
-      { text: 'Karşılıklı Konferans Oturma Düzeni', icon: Users },
-      { text: 'Nespresso Kahve Makinesi', icon: Coffee },
-      { text: 'Gizlilik ve Ses Yalıtımı', icon: Lock },
-      { text: 'Sınırsız Wi-Fi & Medya', icon: Wifi },
-    ],
-    badge: 'Grup & Protokol'
-  }
-];
-
+import { CONTACT_INFO, VEHICLES } from '@/data/transferData';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+
+// Icon map: feature string → Lucide icon (best-effort)
+const featureIconMap: Record<string, React.ElementType> = {
+  default: CheckCircle2,
+  wifi: Wifi, 'wi-fi': Wifi, internet: Wifi,
+  wine: Wine, şampanya: Wine, bar: Wine, içecek: Wine,
+  tv: Tv, netflix: Tv, smart: Tv,
+  koltuk: Armchair, masajlı: Armchair, first: Armchair, yatar: Armchair,
+  bölme: Lock, gizlilik: Lock, mahremiyet: Lock, perdeli: Lock,
+  bagaj: Briefcase, valiz: Briefcase,
+  burmester: Speaker, ses: Speaker, surround: Speaker,
+  şarj: BatteryCharging, usb: BatteryCharging,
+  espresso: Coffee, kahve: Coffee, nespresso: Coffee,
+  playstation: Monitor, ekran: Monitor,
+  yıldız: Sparkles, starlight: Sparkles, ambiyans: Sparkles,
+  müzik: Music,
+};
+
+function guessIcon(text: string): React.ElementType {
+  const lower = text.toLowerCase();
+  return Object.entries(featureIconMap).find(([k]) => lower.includes(k))?.[1] ?? CheckCircle2;
+}
+
+// Adapt VEHICLES (single source of truth) to the shape Fleet.tsx renders
+const fleetCars = VEHICLES.map((v) => ({
+  id: v.id,
+  name: v.name,
+  category: v.model,
+  tagline: v.tagline,
+  capacity: v.capacity.replace('1 - ', '').trim(),
+  luggage: v.luggage,
+  priceEur: `€${v.basePriceEur}`,
+  image: v.image,
+  features: v.features.map((f) => ({ text: f, icon: guessIcon(f) })),
+  badge: v.id === 'maybach-sclass' ? 'En Prestijli' : v.id === 'vito-maybach' ? 'Popüler Tercih' : 'Grup & Protokol',
+}));
 
 export default function Fleet() {
   const [activeIndex, setActiveIndex] = useState(1); // Default to Maybach in center
@@ -162,14 +137,14 @@ export default function Fleet() {
 
                 {/* Top Badge & Price */}
                 <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
-                  {car.id === 'maybach' ? (
+                  {car.id === 'maybach-sclass' ? (
                     <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#E5D3B3]/20 to-[#E5D3B3]/5 backdrop-blur-md border border-[#E5D3B3]/40 shadow-[0_0_15px_rgba(229,211,179,0.2)]">
                       <Sparkles className="w-3.5 h-3.5 text-[#E5D3B3]" />
                       <span className="text-[10px] font-sans tracking-[0.2em] text-[#E5D3B3] uppercase font-bold drop-shadow-md">
                         {car.badge}
                       </span>
                     </div>
-                  ) : car.id === 'vito' ? (
+                  ) : car.id === 'vito-maybach' ? (
                     <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
                       <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                       <span className="text-[10px] font-sans tracking-[0.2em] text-white uppercase font-bold">
