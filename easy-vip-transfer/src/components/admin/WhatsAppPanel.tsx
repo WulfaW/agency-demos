@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageCircle, Send, CheckCheck, User, Car, Clock, MapPin, Phone } from 'lucide-react';
+
+import { createClient } from '@/lib/supabase/client';
 
 type Assignment = {
   id: string;
@@ -14,16 +16,31 @@ type Assignment = {
   lastMessage?: string;
 };
 
-const MOCK_ASSIGNMENTS: Assignment[] = [
-  { id: '1', customer: 'John Doe', phone: '905551234567', route: 'BJV Havalimanı ➔ Mandarin', driver: 'Ahmet Yılmaz', plate: '48 VIP 01', time: '14:30' },
-  { id: '2', customer: 'Elena Smith', phone: '447700900077', route: 'Yalıkavak Marina ➔ Havalimanı', driver: 'Mehmet Demir', plate: '34 XYZ 99', time: '16:00', lastMessage: 'Şoför yola çıktı' },
-];
-
 export default function WhatsAppPanel() {
-  const [selectedTask, setSelectedTask] = useState<Assignment | null>(MOCK_ASSIGNMENTS[0]);
-  const [logs, setLogs] = useState<{task: string, msg: string, time: string}[]>([
-    { task: '2', msg: 'Şoför yola çıktı bildirimi gönderildi.', time: '12:45' }
-  ]);
+  const [assignments, setAssignments] = useState<Assignment[]>([]);
+  const [selectedTask, setSelectedTask] = useState<Assignment | null>(null);
+  const [logs, setLogs] = useState<{task: string, msg: string, time: string}[]>([]);
+  const supabase = createClient();
+
+  useEffect(() => {
+    const fetchReservations = async () => {
+      const { data, error } = await supabase.from('reservations').select('*').order('created_at', { ascending: false });
+      if (!error && data) {
+        const formatted = data.map((d: any) => ({
+          id: d.id,
+          customer: d.name,
+          phone: d.phone,
+          route: `${d.from_location} ➔ ${d.to_location}`,
+          driver: 'Atanmadı',
+          plate: 'Bekleniyor',
+          time: d.transfer_date
+        }));
+        setAssignments(formatted);
+        if (formatted.length > 0) setSelectedTask(formatted[0]);
+      }
+    };
+    fetchReservations();
+  }, []);
 
   const sendWhatsApp = (templateId: string, task: Assignment) => {
     let msg = '';
@@ -56,7 +73,7 @@ export default function WhatsAppPanel() {
           <MessageCircle className="w-5 h-5 text-green-400" /> Aktif Transferler
         </h2>
         <div className="flex-1 overflow-y-auto space-y-3 pr-2">
-          {MOCK_ASSIGNMENTS.map(task => (
+          {assignments.map(task => (
             <button
               key={task.id}
               onClick={() => setSelectedTask(task)}

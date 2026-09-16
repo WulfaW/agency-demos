@@ -22,8 +22,8 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const checkUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
         router.push('/admin/giris');
       } else {
         setIsLoading(false);

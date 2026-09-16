@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Plane, Sparkles, MapPin, CheckCircle2, ArrowRight } from 'lucide-react';
 
 
@@ -11,7 +11,7 @@ import { useLanguage } from '@/context/LanguageContext';
 export default function StickyScrollExperience() {
   const [activeStep, setActiveStep] = useState(0);
   const { t, lang } = useLanguage();
-  const getSteps = () => {
+  const getSteps = useMemo(() => {
     switch(lang) {
       case 'EN': return [
         { number: "01", tag: "AIRPORT & JET TERMINAL", title: "Personalized Greeting", desc: "Your chauffeur will greet you with a personalized name board at the exit of Milas-Bodrum Airport (BJV) or the General Aviation VIP Terminal. You will be directly escorted to your vehicle with baggage assistance.", highlights: ["Live Flight Tracking", "Free Delay Waiting", "VIP Terminal Support"], image: "/images/route.jpg", accent: "BJV → Yalıkavak" },
@@ -39,11 +39,29 @@ export default function StickyScrollExperience() {
         { number: "03", tag: "KUSURSUZ TESLİMAT", title: "Otel, Villa & Marina Kapısına Teslim", desc: "Yalıkavak Marina, Mandarin Oriental, Maçakızı, Scorpios veya özel teknenizin iskelesine kadar sıfır trafik stresi, tam gizlilik ve protokol nezaketiyle ulaştırılırsınız.", highlights: ["Marina İskele Geçişi", "Protokol & Gizlilik", "Nakit / Kart ile Ödeme"], image: "/images/Zuma-Bodrum-14.jpg", accent: "Mandarin Oriental & Marina" }
       ];
     }
-  };
-  const steps = getSteps();
+  }, [lang]);
+  const steps = getSteps;
+
+  const cardTexts = useMemo(() => {
+    switch(lang) {
+      case 'EN': return { res: 'Reservation:', resVal: 'VIP Door-to-Door', driver: 'Chauffeur Status:', driverVal: '24/7 Active & Ready', book: 'Book Now' };
+      case 'RU': return { res: 'Бронирование:', resVal: 'VIP От Двери до Двери', driver: 'Статус Водителя:', driverVal: '24/7 Активен и Готов', book: 'Забронировать' };
+      case 'DE': return { res: 'Reservierung:', resVal: 'VIP Tür-zu-Tür', driver: 'Chauffeur-Status:', driverVal: '24/7 Aktiv & Bereit', book: 'Jetzt Buchen' };
+      case 'AR': return { res: 'الحجز:', resVal: 'VIP من الباب للباب', driver: 'حالة السائق:', driverVal: 'جاهز 24/7', book: 'احجز الآن' };
+      default: return { res: 'Rezervasyon:', resVal: 'VIP Kapıdan Kapıya', driver: 'Şoför Statüsü:', driverVal: '7/24 Aktif & Hazır', book: 'Hemen Rezerve Et' };
+    }
+  }, [lang]);
 
 
   const [isHovered, setIsHovered] = useState(false);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clear resume timer on unmount to avoid setState on unmounted component
+  useEffect(() => {
+    return () => {
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (isHovered) return;
@@ -91,8 +109,9 @@ export default function StickyScrollExperience() {
                 key={idx}
                 onClick={() => {
                   setActiveStep(idx);
-                  setIsHovered(true); // Pause auto-rotate when manually clicked
-                  setTimeout(() => setIsHovered(false), 8000); // Resume after 8s
+                  setIsHovered(true);
+                  if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+                  resumeTimerRef.current = setTimeout(() => setIsHovered(false), 8000);
                 }}
                 className={`relative px-6 py-4 rounded-2xl md:rounded-full text-sm font-sans tracking-widest uppercase transition-all duration-300 border overflow-hidden w-full md:w-auto ${
                   isActive 
@@ -196,12 +215,12 @@ export default function StickyScrollExperience() {
                   {/* Fast WhatsApp Route Booking */}
                   <div className="space-y-4 px-2 pb-2 flex-grow flex flex-col justify-end">
                     <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
-                      <span>Rezervasyon:</span>
-                      <strong className="text-white font-serif">VIP Kapıdan Kapıya</strong>
+                      <span>{cardTexts.res}</span>
+                      <strong className="text-white font-serif">{cardTexts.resVal}</strong>
                     </div>
                     <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
-                      <span>Şoför Statüsü:</span>
-                      <span className="text-emerald-400 font-medium">● 7/24 Aktif & Hazır</span>
+                      <span>{cardTexts.driver}</span>
+                      <span className="text-emerald-400 font-medium">● {cardTexts.driverVal}</span>
                     </div>
                     
                     <a
@@ -210,7 +229,7 @@ export default function StickyScrollExperience() {
                       rel="noopener noreferrer"
                       className="w-full mt-auto flex items-center justify-center gap-2 bg-white text-black hover:bg-[#E5D3B3] py-4 rounded-xl text-sm font-bold tracking-widest uppercase transition-all duration-300"
                     >
-                      <span>Hemen Rezerve Et</span>
+                      <span>{cardTexts.book}</span>
                       <ArrowRight className="w-4 h-4" />
                     </a>
                   </div>

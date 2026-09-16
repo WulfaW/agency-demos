@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Sparkles, Wifi, Wine, ChevronRight, PhoneCall } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 import { useLanguage } from '@/context/LanguageContext';
@@ -37,7 +37,7 @@ const EditorialCard = ({ title, desc, badge, image, buttonText }: { title: strin
 export default function SpotlightServices() {
 
   const { lang } = useLanguage();
-  const getCategories = () => {
+  const categories = useMemo(() => {
     switch(lang) {
       case 'EN': return [
         { id: 'airport', label: 'Airport VIP', icon: Plane },
@@ -58,8 +58,8 @@ export default function SpotlightServices() {
         { id: 'intercity', label: 'Überland', icon: Compass },
       ];
       case 'AR': return [
-        { id: 'airport', label: 'المطار', icon: Plane },
-        { id: 'marina', label: 'المارينا واليخوت', icon: Anchor },
+        { id: 'airport', label: 'مطار كبار الشخصيات', icon: Plane },
+        { id: 'marina', label: 'مرسى ويخوت', icon: Anchor },
         { id: 'hourly', label: 'تأجير بالساعة', icon: Clock },
         { id: 'intercity', label: 'بين المدن', icon: Compass },
       ];
@@ -70,10 +70,9 @@ export default function SpotlightServices() {
         { id: 'intercity', label: 'Şehirlerarası Özel', icon: Compass },
       ];
     }
-  };
-  const categories = getCategories();
+  }, [lang]);
 
-  const getServicesData = () => {
+  const servicesData = useMemo(() => {
     switch (lang) {
       case 'EN': return {
         airport: [
@@ -99,53 +98,53 @@ export default function SpotlightServices() {
       };
       case 'RU': return {
         airport: [
-          { title: 'Встреча в BJV', desc: 'Отслеживание рейса. Встреча с табличкой.', badge: 'Живое Отслеживание', icon: Plane, image: '/images/inside.jpg' },
-          { title: 'Частные рейсы', desc: 'Прямой трансфер с перрона VIP-терминала.', badge: 'VIP Протокол', icon: Crown, image: '/images/route.jpg' },
-          { title: 'Возврат в аэропорт', desc: 'Идеальное планирование вылета.', badge: 'Без Опозданий', icon: ShieldCheck, image: '/images/Zuma-Bodrum-14.jpg' },
+          { title: 'Встреча в Milas-Bodrum (BJV)', desc: 'Отслеживание рейсов. Встреча с табличкой.', badge: 'Отслеживание', icon: Plane, image: '/images/inside.jpg' },
+          { title: 'Авиация и Частные Джеты', desc: 'Прямой трансфер с перрона VIP-терминала Бодрума.', badge: 'VIP Протокол', icon: Crown, image: '/images/route.jpg' },
+          { title: 'Возврат в Аэропорт', desc: 'Безупречное планирование расписания для вашего вылета.', badge: 'Без Задержек', icon: ShieldCheck, image: '/images/Zuma-Bodrum-14.jpg' },
         ],
         marina: [
-          { title: 'Yalıkavak Marina', desc: 'Прямой доступ к яхтам и клубам.', badge: 'Доступ к Пирсу', icon: Anchor, image: '/images/cennetkoyu.jpg' },
-          { title: 'D-Marin', desc: 'Просторные авто для пассажиров яхт.', badge: 'Большой Багаж', icon: Compass, image: '/images/macakizi-hotel-bodrum.jpg' },
-          { title: 'Пляжные Клубы', desc: 'VIP-трансфер в клубы без ожидания.', badge: 'Ночной Протокол', icon: Wine, image: '/images/demirbuku-koyu.jpg' },
+          { title: 'Yalıkavak Marina VIP', desc: 'Частный доступ к пирсам суперяхт и клубам.', badge: 'Доступ к Пирсу', icon: Anchor, image: '/images/cennetkoyu.jpg' },
+          { title: 'D-Marin & Bodrum Marina', desc: 'Просторный Mercedes Vito для пассажиров яхт.', badge: 'Просторный Багаж', icon: Compass, image: '/images/macakizi-hotel-bodrum.jpg' },
+          { title: 'Трансфер в Пляжные Клубы', desc: 'VIP-шоферы без ожидания в лучшие клубы, такие как Scorpios.', badge: 'Ночной Протокол', icon: Wine, image: '/images/demirbuku-koyu.jpg' },
         ],
         hourly: [
-          { title: 'Аренда на день', desc: 'Автомобиль в вашем распоряжении 8-24 часа.', badge: 'Безлимитное Ожидание', icon: Clock, image: '/images/inside.jpg' },
-          { title: 'Шоппинг и Рестораны', desc: 'Сервис с ожиданием для ресторанов и бутиков.', badge: 'Гибкий Маршрут', icon: Map, image: '/images/Zuma-Bodrum-14.jpg' },
-          { title: 'Бизнес поездки', desc: 'Wi-Fi и конфиденциальность для бизнес-гостей.', badge: 'Мобильный Офис', icon: Wifi, image: '/images/route.jpg' },
+          { title: 'Аренда на Весь День', desc: 'Ваш Maybach/Vito в вашем распоряжении на 8-24 часа.', badge: 'Неограниченное Ожидание', icon: Clock, image: '/images/inside.jpg' },
+          { title: 'Шоппинг и Ужины', desc: 'Услуга ожидания для ресторанов и роскошного шоппинга.', badge: 'Гибкий Маршрут', icon: Map, image: '/images/Zuma-Bodrum-14.jpg' },
+          { title: 'Деловые Поездки', desc: 'Высокоскоростной Wi-Fi и экран конфиденциальности.', badge: 'Мобильный Офис', icon: Wifi, image: '/images/route.jpg' },
         ],
         intercity: [
-          { title: 'Бодрум - Измир', desc: 'Быстрый трансфер в аэропорт Измира.', badge: 'Экспресс', icon: Compass, image: '/images/route.jpg' },
-          { title: 'Бодрум - Даламан', desc: 'Прямое сообщение с Маринами Гёчека.', badge: 'Прибрежный Маршрут', icon: Anchor, image: '/images/cennetkoyu.jpg' },
-          { title: 'Бодрум - Анталия', desc: 'VIP трансфер по всей стране.', badge: 'Дальние Поездки', icon: Sparkles, image: '/images/inside.jpg' },
+          { title: 'Бодрум - Измир', desc: 'Гладкий трансфер по шоссе в аэропорт (ADB).', badge: 'Экспресс', icon: Compass, image: '/images/route.jpg' },
+          { title: 'Бодрум - Даламан', desc: 'Прямое сообщение с маринами Мармариса, Гёджека и Фетхие.', badge: 'Прибрежный Маршрут', icon: Anchor, image: '/images/cennetkoyu.jpg' },
+          { title: 'Бодрум - Анталия', desc: 'VIP-трансфер по стране с премиальными остановками.', badge: 'Дальние Расстояния', icon: Sparkles, image: '/images/inside.jpg' },
         ],
       };
       case 'DE': return {
         airport: [
-          { title: 'BJV Begrüßung', desc: 'Flugverfolgung & Begrüßung mit Namensschild.', badge: 'Live-Tracking', icon: Plane, image: '/images/inside.jpg' },
-          { title: 'Privatjets', desc: 'Direkter Vorfeld-Transfer vom VIP Terminal.', badge: 'VIP Protokoll', icon: Crown, image: '/images/route.jpg' },
-          { title: 'Rückfahrt zum Flughafen', desc: 'Perfekte Zeitplanung für Ihren Abflug.', badge: 'Pünktlichkeit', icon: ShieldCheck, image: '/images/Zuma-Bodrum-14.jpg' },
+          { title: 'Milas-Bodrum (BJV) Begrüßung', desc: 'Live-Flugverfolgung. Empfang am VIP-Ausgang mit Namensschild.', badge: 'Live-Verfolgung', icon: Plane, image: '/images/inside.jpg' },
+          { title: 'Luftfahrt & Privatjet', desc: 'Direkter Vorfeldtransfer vom Bodrum VIP Jet Terminal.', badge: 'VIP Protokoll', icon: Crown, image: '/images/route.jpg' },
+          { title: 'Rückkehr zum Flughafen', desc: 'Makellose Zeitplanung für Ihren Abflug.', badge: 'Ohne Verzögerung', icon: ShieldCheck, image: '/images/Zuma-Bodrum-14.jpg' },
         ],
         marina: [
-          { title: 'Yalıkavak Marina', desc: 'Direkter Zugang zu Superyacht-Piers.', badge: 'Pier-Zugang', icon: Anchor, image: '/images/cennetkoyu.jpg' },
-          { title: 'D-Marin', desc: 'Geräumige Fahrzeuge für Yachtgäste.', badge: 'Viel Gepäck', icon: Compass, image: '/images/macakizi-hotel-bodrum.jpg' },
-          { title: 'Beach Clubs', desc: 'Ohne Wartezeit zu Top-Clubs wie Scorpios.', badge: 'Nacht-Protokoll', icon: Wine, image: '/images/demirbuku-koyu.jpg' },
+          { title: 'Yalıkavak Marina VIP', desc: 'Privatfahrzeugzugang zu Superyacht-Piers und Clubs.', badge: 'Pier Zugang', icon: Anchor, image: '/images/cennetkoyu.jpg' },
+          { title: 'D-Marin & Bodrum Marina', desc: 'Geräumiger Mercedes Vito für Yachtpassagiere.', badge: 'Geräumiges Gepäck', icon: Compass, image: '/images/macakizi-hotel-bodrum.jpg' },
+          { title: 'Beach Club Shuttles', desc: 'VIP-Chauffeure ohne Wartezeit zu Top-Clubs wie Scorpios.', badge: 'Nachtprotokoll', icon: Wine, image: '/images/demirbuku-koyu.jpg' },
         ],
         hourly: [
-          { title: 'Tagesmiete', desc: 'Ihr Chauffeur steht Ihnen 8-24 Stunden zur Verfügung.', badge: 'Unbegrenzte Wartezeit', icon: Clock, image: '/images/inside.jpg' },
-          { title: 'Shopping & Dining', desc: 'Warte- und Rückfahrservice für Restaurants.', badge: 'Flexible Route', icon: Map, image: '/images/Zuma-Bodrum-14.jpg' },
-          { title: 'Business', desc: 'High-Speed Wi-Fi und Privatsphäre für Firmen.', badge: 'Mobiles Büro', icon: Wifi, image: '/images/route.jpg' },
+          { title: 'Ganztägige Verfügung', desc: 'Ihr Maybach/Vito steht Ihnen 8-24 Stunden zur Verfügung.', badge: 'Unbegrenzte Wartezeit', icon: Clock, image: '/images/inside.jpg' },
+          { title: 'Shopping & Dining', desc: 'Warte- und Rückfahrservice für Restaurants und Luxus-Shopping.', badge: 'Flexible Route', icon: Map, image: '/images/Zuma-Bodrum-14.jpg' },
+          { title: 'Business Roadshow', desc: 'High-Speed-WLAN und Sichtschutz für Geschäftsreisende.', badge: 'Mobiles Büro', icon: Wifi, image: '/images/route.jpg' },
         ],
         intercity: [
-          { title: 'Bodrum - Izmir', desc: 'Reibungsloser Transfer zum Flughafen ADB.', badge: 'Express Sicher', icon: Compass, image: '/images/route.jpg' },
-          { title: 'Bodrum - Dalaman', desc: 'Direkte Verbindung nach Göcek und Fethiye.', badge: 'Küstenroute', icon: Anchor, image: '/images/cennetkoyu.jpg' },
-          { title: 'Bodrum - Antalya', desc: 'VIP Überland-Transfer mit Pausen.', badge: 'Langstrecke VIP', icon: Sparkles, image: '/images/inside.jpg' },
+          { title: 'Bodrum - Izmir', desc: 'Reibungsloser Autobahntransfer zum Flughafen (ADB).', badge: 'Express Sicher', icon: Compass, image: '/images/route.jpg' },
+          { title: 'Bodrum - Dalaman', desc: 'Direkte Verbindung zu den Marinas von Marmaris, Göcek und Fethiye.', badge: 'Küstenroute', icon: Anchor, image: '/images/cennetkoyu.jpg' },
+          { title: 'Bodrum - Antalya', desc: 'VIP-Überlandtransfer mit Premium-Rastpausen.', badge: 'Langstrecken VIP', icon: Sparkles, image: '/images/inside.jpg' },
         ],
       };
       case 'AR': return {
         airport: [
-          { title: 'استقبال مطار BJV', desc: 'تتبع الرحلة واستقبال بلوحة الاسم.', badge: 'تتبع مباشر', icon: Plane, image: '/images/inside.jpg' },
-          { title: 'الطيران الخاص', desc: 'نقل مباشر من صالة كبار الشخصيات.', badge: 'بروتوكول VIP', icon: Crown, image: '/images/route.jpg' },
-          { title: 'العودة للمطار', desc: 'تخطيط مثالي لرحلة المغادرة.', badge: 'بدون تأخير', icon: ShieldCheck, image: '/images/Zuma-Bodrum-14.jpg' },
+          { title: 'استقبال ميلاس-بودروم (BJV)', desc: 'تتبع الرحلات الجوية الحية. يتم الاستقبال عند مخرج كبار الشخصيات مع لوحة اسم.', badge: 'تتبع حي', icon: Plane, image: '/images/inside.jpg' },
+          { title: 'الطيران والطائرات الخاصة', desc: 'نقل مباشر من ساحة طيران صالة بودروم لكبار الشخصيات.', badge: 'بروتوكول كبار الشخصيات', icon: Crown, image: '/images/route.jpg' },
+          { title: 'العودة إلى المطار', desc: 'تخطيط جدول زمني خالٍ من العيوب لمغادرتك.', badge: 'بدون تأخير', icon: ShieldCheck, image: '/images/Zuma-Bodrum-14.jpg' },
         ],
         marina: [
           { title: 'مارينا ياليكافاك', desc: 'وصول مباشر لليخوت والنوادي.', badge: 'وصول مباشر', icon: Anchor, image: '/images/cennetkoyu.jpg' },
@@ -186,10 +185,9 @@ export default function SpotlightServices() {
         ],
       };
     }
-  };
-  const servicesData = getServicesData() as Record<string, Array<{ title: string; desc: string; badge: string; icon: any; image: string }>>;
+  }, [lang]) as Record<string, Array<{ title: string; desc: string; badge: string; icon: any; image: string }>>;
 
-  const getTexts = () => {
+  const texts = useMemo(() => {
     switch(lang) {
       case 'EN': return { sub: 'PREMIUM SERVICES', title: 'Exclusive Privileges', desc: 'Beyond standards, an Aegean VIP experience.', button: '24/7 Booking' };
       case 'RU': return { sub: 'ПРЕМИУМ УСЛУГИ', title: 'Эксклюзивные Привилегии', desc: 'За гранью стандартов, эгейский VIP-опыт.', button: 'Бронирование 24/7' };
@@ -197,8 +195,7 @@ export default function SpotlightServices() {
       case 'AR': return { sub: 'خدمات ممتازة', title: 'امتيازات حصرية', desc: 'خارج المعايير، تجربة كبار الشخصيات في بحر إيجة.', button: 'حجز على مدار الساعة' };
       default: return { sub: 'VIP OPERASYON HİZMETLERİ', title: 'Ayrıcalıklı Hizmet Yelpazemiz', desc: 'BODRUM VE EGE GENELİNDE KİŞİYE VE KURUMLARA ÖZEL LÜKS MOBİLİTE ÇÖZÜMLERİ.', button: '7/24 Rezervasyon' };
     }
-  };
-  const texts = getTexts();
+  }, [lang]);
 
   const [activeTab, setActiveTab] = useState('airport');
 
@@ -258,7 +255,7 @@ export default function SpotlightServices() {
           transition={{ duration: 0.5 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {servicesData[activeTab].map((service, idx) => (
+          {servicesData[activeTab]?.map((service, idx) => (
             <EditorialCard
               key={idx}
               title={service.title}
