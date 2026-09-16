@@ -51,12 +51,15 @@ const LuxuryDatePicker = ({
       const rect = triggerRef.current.getBoundingClientRect();
       const popupH = 440;
       const showAbove = window.innerHeight - rect.bottom < popupH + 20;
-      const left = Math.min(rect.left, window.innerWidth - 570);
+      const isMobile = window.innerWidth < 640;
+      const margin = 16;
+      const popupW = isMobile ? window.innerWidth - margin * 2 : 560;
+      const left = isMobile ? margin : Math.min(rect.left, window.innerWidth - popupW - margin);
       setPopupStyle({
         position: 'fixed',
         left,
         ...(showAbove ? { bottom: window.innerHeight - rect.top + 8 } : { top: rect.bottom + 8 }),
-        width: 560,
+        width: popupW,
         zIndex: 9999,
       });
     }

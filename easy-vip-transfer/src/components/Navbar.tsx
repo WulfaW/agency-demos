@@ -116,14 +116,14 @@ export default function Navbar() {
             )}
           </AnimatePresence>
 
-          <a href="#calculator" className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#E5D3B3] hover:bg-white text-black text-[13px] sm:text-sm font-bold tracking-widest uppercase transition-colors">
+          <a href="#calculator" className="flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full bg-[#E5D3B3] hover:bg-white text-black text-[13px] sm:text-sm font-bold tracking-widest uppercase transition-colors">
             <span>{t.hero.btnCalc}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
 
           {/* Mobile Hamburger Menu (Always visible on mobile) */}
-          <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden p-2 ml-1 text-white hover:text-[#E5D3B3] transition-colors focus:outline-none rounded-full bg-white/5">
-            <Menu className="w-4 h-4" />
+          <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden p-3 ml-1 text-white hover:text-[#E5D3B3] transition-colors focus:outline-none rounded-full bg-white/5 min-w-[44px] min-h-[44px] flex items-center justify-center">
+            <Menu className="w-5 h-5" />
           </button>
         </motion.div>
 

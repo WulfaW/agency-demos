@@ -284,10 +284,10 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
 
       {/* 3. Main Luxury Footer Bar */}
       <div className="border-t border-white/10 py-16 px-4 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           
           {/* Col 1: Newsletter & Brand */}
-          <div className="md:col-span-1 space-y-6">
+          <div className="sm:col-span-2 lg:col-span-1 space-y-6">
             <div>
               <div className="text-lg font-sans font-bold tracking-[0.15em] text-white mb-2">
                 EASY VIP <span className="text-[#E5D3B3] font-medium">BODRUM</span>
@@ -309,11 +309,11 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
                 <input
                   type="email"
                   placeholder="E-posta adresiniz"
-                  className="w-full bg-[#050505] border border-white/10 rounded-full py-2.5 pl-4 pr-10 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/50 transition-colors"
+                  className="w-full bg-[#050505] border border-white/10 rounded-full py-3 pl-4 pr-12 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/50 transition-colors min-h-[44px]"
                 />
                 <button
                   type="submit"
-                  className="absolute right-1 top-1 bottom-1 aspect-square rounded-full bg-[#E5D3B3] text-black flex items-center justify-center hover:bg-white transition-colors"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-[#E5D3B3] text-black flex items-center justify-center hover:bg-white transition-colors"
                 >
                   <Send className="w-3.5 h-3.5 -ml-0.5" />
                 </button>

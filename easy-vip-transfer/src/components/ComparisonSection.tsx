@@ -139,7 +139,7 @@ export default function ComparisonSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="md:col-span-8 md:row-span-1 relative rounded-3xl overflow-hidden group border border-white/10 shadow-2xl"
+          className="md:col-span-8 md:row-span-1 relative rounded-3xl overflow-hidden group border border-white/10 shadow-2xl h-[300px] sm:h-[360px] md:h-auto"
         >
           {/* Background Image */}
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat group-hover:scale-105 transition-transform duration-1000"></div>
@@ -210,7 +210,7 @@ export default function ComparisonSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="md:col-span-7 md:row-span-1 relative rounded-3xl overflow-hidden group border border-white/10 shadow-2xl"
+          className="md:col-span-7 md:row-span-1 relative rounded-3xl overflow-hidden group border border-white/10 shadow-2xl h-[260px] sm:h-[320px] md:h-auto"
         >
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522037169490-349f7e4f1692?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat group-hover:scale-105 transition-transform duration-1000 grayscale opacity-40 mix-blend-overlay"></div>
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>

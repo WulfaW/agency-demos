@@ -129,7 +129,7 @@ export default function StickyScrollExperience() {
         </div>
 
         {/* Dynamic Card Display */}
-        <div className="relative min-h-[500px] w-full">
+        <div className="relative w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -137,7 +137,7 @@ export default function StickyScrollExperience() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute inset-0 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
             >
               
               {/* Left Text Card */}
@@ -174,8 +174,8 @@ export default function StickyScrollExperience() {
               </div>
 
               {/* Right Visual Card */}
-              <div className="lg:col-span-5 h-full">
-                <div className="backdrop-blur-2xl bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-4 shadow-[0_30px_100px_rgba(0,0,0,0.9)] overflow-hidden relative h-full flex flex-col">
+              <div className="lg:col-span-5">
+                <div className="backdrop-blur-2xl bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-4 shadow-[0_30px_100px_rgba(0,0,0,0.9)] overflow-hidden relative flex flex-col">
                   
                   {/* Visual Image container */}
                   <div className="relative h-64 md:h-72 w-full rounded-2xl overflow-hidden mb-6 bg-zinc-900 border border-white/5 shrink-0">
