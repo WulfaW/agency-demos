@@ -15,7 +15,6 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
     priceAgreed: '', notes: '',
   });
   const [conflicts, setConflicts] = useState<string[]>([]);
-  const [acknowledged, setAcknowledged] = useState(false);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const supabase = createClient();
@@ -37,7 +36,6 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
   const set = (k: keyof typeof form, val: string) => {
     setForm((f) => ({ ...f, [k]: val }));
     setConflicts([]);
-    setAcknowledged(false);
   };
 
   const validate = (): string | null => {
@@ -86,7 +84,7 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
     });
   };
 
-  const save = async () => {
+  const save = async (): Promise<boolean> => {
     const { error } = await supabase.from('assignments').insert({
       driver_id: form.driverId || null,
       vehicle_id: form.vehicleId || null,
@@ -100,29 +98,25 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
     });
 
     setBusy(false);
-    if (error) { setError(error.message); return; }
+    if (error) { setError(error.message); return false; }
 
     setForm({ driverId: '', vehicleId: '', start: '', end: '', customerName: '',
       customerPhone: '', routeFrom: '', routeTo: '', priceAgreed: '', notes: '' });
-    setConflicts([]);
-    setAcknowledged(false);
     onSaved();
+    return true;
   };
 
   const handleSubmit = async () => {
     const v = validate();
     if (v) { setError(v); return; }
 
-    setBusy(true); setError('');
+    setBusy(true); setError(''); setConflicts([]);
+    // Cakisma kaydi durdurmaz; kullanici isterse ust uste is yazabilir. Sadece not duser.
     const found = await findConflicts();
     if (found === null) { setBusy(false); return; }
 
-    if (found.length > 0) {
-      setConflicts(found);
-      setBusy(false);
-      return;
-    }
-    await save();
+    const saved = await save();
+    if (saved && found.length > 0) setConflicts(found);
   };
 
   const input = 'w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white text-sm';
@@ -159,40 +153,19 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
       </div>
 
       {conflicts.length > 0 && (
-        <div className="rounded-2xl border border-amber-500/30 bg-amber-500/[0.06] p-5 space-y-4">
+        <div role="status" className="rounded-2xl border border-amber-500/30 bg-amber-500/[0.06] p-5 space-y-2">
+          <p className="text-amber-200 text-sm font-medium">Kaydedildi — not: bu saatlerde çakışma var</p>
           {conflicts.map((c, i) => (
-            <p key={i} className="text-amber-200 text-sm">⚠ {c}</p>
+            <p key={i} className="text-amber-100/80 text-sm">{c}</p>
           ))}
-
-          <label className="flex items-center gap-3 text-amber-100 text-sm cursor-pointer">
-            <input type="checkbox" checked={acknowledged} onChange={(e) => setAcknowledged(e.target.checked)} className="w-4 h-4 accent-[#E5D3B3]" />
-            Çakışmayı biliyorum
-          </label>
-
-          <div className="flex gap-3">
-            <button
-              onClick={() => { setConflicts([]); setAcknowledged(false); }}
-              className="px-6 py-3 rounded-xl bg-white/5 text-zinc-300 text-sm hover:bg-white/10"
-            >
-              Geri Al
-            </button>
-            <button
-              onClick={() => { setBusy(true); save(); }}
-              disabled={!acknowledged || busy}
-              className="px-6 py-3 rounded-xl bg-[#E5D3B3] text-black font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              Devam Et
-            </button>
-          </div>
+          <p className="text-muted text-xs pt-1">Takvimde bu işler üst üste amber blok olarak görünür.</p>
         </div>
       )}
 
-      {conflicts.length === 0 && (
-        <button onClick={handleSubmit} disabled={busy}
-          className="bg-[#E5D3B3] text-black px-8 py-3 rounded-xl font-bold disabled:opacity-50">
-          {busy ? 'Kaydediliyor...' : 'Kaydet'}
-        </button>
-      )}
+      <button onClick={handleSubmit} disabled={busy}
+        className="bg-accent text-background px-8 py-3 rounded-xl font-bold disabled:opacity-50">
+        {busy ? 'Kaydediliyor...' : 'Kaydet'}
+      </button>
     </div>
   );
 }

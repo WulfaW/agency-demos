@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { INDEXABLE, SITE_URL } from '@/lib/site';
 import { Playfair_Display, Inter } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
@@ -20,7 +21,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://easyviptransfer.com'),
+  metadataBase: new URL(SITE_URL),
+  // Demo varsayilan olarak indekslenmez (bkz. lib/site.ts)
+  robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
   title: 'Easy VIP Transfer | Bodrum Luxury Chauffeur & Airport Transfer',
   description: 'Milas-Bodrum Havalimanı (BJV), Yalıkavak Marina, Mandarin Oriental ve Amanruya için 7/24 Mercedes-Maybach ve VIP Vito transfer hizmeti. Sabit fiyat garantisi.',
   keywords: ['Bodrum VIP Transfer', 'Bodrum Havalimanı Transfer', 'Milas Bodrum BJV VIP Transfer', 'Yalıkavak Marina Transfer', 'Mandarin Oriental Bodrum Transfer', 'Amanruya Transfer', 'Bodrum Maybach Kiralama', 'Şoförlü VIP Araç Bodrum'],
@@ -28,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Easy VIP Transfer | Bodrum First Class Chauffeur',
     description: 'Milas-Bodrum Havalimanı (BJV) & Yalıkavak Marina için 7/24 Mercedes Maybach & VIP Vito transferi.',
-    url: 'https://easyviptransfer.com',
+    url: SITE_URL,
     siteName: 'Easy VIP Transfer Bodrum',
     locale: 'tr_TR',
     type: 'website',

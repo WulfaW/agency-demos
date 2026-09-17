@@ -12,6 +12,11 @@ Sürücü ve araç ataması şu an defterde tutuluyor. Panel bunu devralacak: ki
 
 ## 2. Sektör kuralı: engelleme, uyar
 
+> **Güncel durum (2026-09-17): çakışma ENGELLENMİYOR.**
+> Aynı gün iki kez değişti. Önce engellemeye geçildi (`driver_no_overlap` / `vehicle_no_overlap` EXCLUDE kısıtları eklendi), sonra geri alındı: kullanıcı isterse aynı sürücüye veya araca üst üste iş yazabilmeli. Kısıtlar `20260917130000_allow_overlapping_jobs.sql` ile kaldırıldı.
+> Şu anki davranış: form **her durumda kaydeder**; çakışma varsa kaydettikten sonra amber, kaydı durdurmayan bir not gösterir. Kutucuklu "Devam Et" onayı yok. Takvim tablosunda üst üste binen işler amber renkte alt alta dizilir. Tablo tek görünüm: satırlar sürücü, araç bloğun içinde.
+
+
 Taksi veya otobüs firmalarında dolu saati kapatmak doğrudur; araç fiziksel olarak yoktur. **VIP transferde değildir.**
 
 Kendi Vito'nuz doluyken gelen kârlı işi reddetmek yerine, partner/taşeron firmadan o saate boş araç bulunur ve iş paslanır. Araç hiç bulunamazsa müşteriye WhatsApp'tan dönülür ve saat kaydırılarak satış kurtarılmaya çalışılır.
@@ -83,6 +88,9 @@ Notlar:
 `timestamptz` kullanılıyor, admin yerel saat (Europe/Istanbul) giriyor. Dönüşüm giriş anında yapılmalı; naif `timestamp` kullanılırsa yaz saati geçişlerinde saat hesabı bozulur.
 
 ## 5. Çakışma uyarısı
+
+> **Güncel durum (2026-09-17):** Kutucuklu onay akışı kaldırıldı; form her durumda kaydeder ve çakışmayı kaydı durdurmayan bir notla bildirir — bkz. §2'deki not.
+
 
 Veritabanı kısıtı **kullanılmıyor**. Çakışma yasak olmadığı için kilitlenecek bir şey yok; kayıt sırasında sorgu yeterli.
 

@@ -1,16 +1,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Car, Users, Sparkles, LogOut, CalendarDays, Globe, MessageCircle, Loader2 } from 'lucide-react';
+import { Car, Users, Sparkles, LogOut, CalendarDays, Globe, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import ResourceManager from '@/components/admin/ResourceManager';
 import AssignmentForm from '@/components/admin/AssignmentForm';
-import AssignmentList from '@/components/admin/AssignmentList';
-import CustomersPanel from '@/components/admin/CustomersPanel';
-import WhatsAppPanel from '@/components/admin/WhatsAppPanel';
+import ScheduleGrid from '@/components/admin/ScheduleGrid';
 
-type Tab = 'gorevler' | 'surucular' | 'araclar' | 'musteriler' | 'whatsapp';
+type Tab = 'gorevler' | 'surucular' | 'araclar';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('gorevler');
@@ -54,8 +52,6 @@ export default function AdminDashboard() {
             { id: 'gorevler',  label: 'Görevler',  icon: CalendarDays },
             { id: 'surucular', label: 'Sürücüler', icon: Users },
             { id: 'araclar',   label: 'Araçlar',   icon: Car },
-            { id: 'musteriler',label: 'Müşteriler', icon: Sparkles },
-            { id: 'whatsapp',  label: 'Bildirimler', icon: MessageCircle },
           ].map((item) => (
             <button key={item.id} onClick={() => setActiveTab(item.id as Tab)} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm ${activeTab === item.id ? 'bg-white/10 text-white font-medium border border-white/5' : 'text-zinc-400 hover:bg-white/[0.02]'}`}>
               <item.icon className={`w-4 h-4 ${activeTab === item.id ? 'text-[#E5D3B3]' : 'opacity-60'}`} /> {item.label}
@@ -78,7 +74,7 @@ export default function AdminDashboard() {
           <div className="space-y-8">
             <header className="mb-6"><h1 className="text-3xl font-serif text-white">Görevler</h1></header>
             <AssignmentForm onSaved={() => setRefreshKey((k) => k + 1)} />
-            <AssignmentList refreshKey={refreshKey} />
+            <ScheduleGrid refreshKey={refreshKey} />
           </div>
         )}
 
@@ -89,10 +85,6 @@ export default function AdminDashboard() {
         {activeTab === 'araclar' && (
           <ResourceManager table="vehicles" title="Araçlar" secondLabel="Plaka" secondField="plate" />
         )}
-
-        {activeTab === 'musteriler' && <CustomersPanel />}
-
-        {activeTab === 'whatsapp' && <WhatsAppPanel />}
 
       </main>
     </div>
