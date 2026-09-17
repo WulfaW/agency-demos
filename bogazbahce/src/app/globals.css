@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm Stone / Beige */
+  --color-luxury-bg: #F2EFE9;
+  
+  /* Charcoal */
+  --color-luxury-text: #1C1917;
+  
+  /* Soft Bronze / Muted Gold */
+  --color-gold-400: #B4966B;
+  --color-gold-500: #9C7C54;
+  --color-gold-600: #82633E;
+  
+  /* Dark Olive Green (Replacing Forest Green) */
+  --color-forest-900: #3A4332;
+  
+  --font-display: var(--font-lora), serif;
+  --font-sans: var(--font-lato), sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: #F2EFE9;
+    --foreground: #1C1917;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: #fff;
+}
