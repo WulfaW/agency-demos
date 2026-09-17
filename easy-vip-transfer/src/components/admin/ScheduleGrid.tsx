@@ -22,13 +22,10 @@ const fmtTime = new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-d
 const fmtFull = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: TZ });
 
 type Resource = { id: string; name: string; is_active: boolean };
-type Mode = 'driver' | 'vehicle';
 
 export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
   const [date, setDate] = useState(istanbulToday);
-  const [mode, setMode] = useState<Mode>('driver');
   const [drivers, setDrivers] = useState<Resource[]>([]);
-  const [vehicles, setVehicles] = useState<Resource[]>([]);
   const [jobs, setJobs] = useState<any[]>([]);
   const [selected, setSelected] = useState<any | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -41,9 +38,8 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
   const load = async () => {
     setError('');
     const range = `[${day.start.toISOString()},${day.end.toISOString()})`;
-    const [d, v, a] = await Promise.all([
+    const [d, a] = await Promise.all([
       supabase.from('drivers').select('id,name,is_active').order('name'),
-      supabase.from('vehicles').select('id,name,is_active').order('name'),
       supabase
         .from('assignments')
         .select('*, drivers(name), vehicles(name)')
@@ -51,18 +47,17 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
         .overlaps('during', range),
     ]);
     if (d.error) { setError(d.error.message); return; }
-    if (v.error) { setError(v.error.message); return; }
     if (a.error) { setError(a.error.message); return; }
     setDrivers(d.data ?? []);
-    setVehicles(v.data ?? []);
     setJobs(a.data ?? []);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { load(); setSelected(null); }, [date, refreshKey]);
 
-  const key = mode === 'driver' ? 'driver_id' : 'vehicle_id';
-  const resources = mode === 'driver' ? drivers : vehicles;
+  // Satirlar surucu; arac blogun icinde yazar. Ayni surucu/araca cakisan is veritabani kuraliyla engellenir.
+  const key = 'driver_id';
+  const resources = drivers;
 
   // Aktif kaynaklar + o gun isi olan pasif kaynaklar (isi olan kaynak tablodan kaybolmasin).
   const rows = useMemo(() => {
@@ -133,19 +128,6 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
           </button>
         </div>
 
-        <div className="flex rounded-xl border border-border p-1" role="tablist">
-          {(['driver', 'vehicle'] as Mode[]).map((m) => (
-            <button
-              key={m}
-              role="tab"
-              aria-selected={mode === m}
-              onClick={() => { setMode(m); setSelected(null); }}
-              className={`px-4 py-1.5 rounded-lg text-xs ${mode === m ? 'bg-accent text-background font-semibold' : 'text-muted hover:text-foreground'}`}
-            >
-              {m === 'driver' ? 'Sürücüye göre' : 'Araca göre'}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* Izgara */}
@@ -164,7 +146,7 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
 
             {rows.length === 0 && (
               <p className="px-6 py-10 text-sm text-muted">
-                {mode === 'driver' ? 'Aktif sürücü yok.' : 'Aktif araç yok.'} Önce {mode === 'driver' ? 'Sürücüler' : 'Araçlar'} sekmesinden ekleyin.
+                Aktif sürücü yok. Önce Sürücüler sekmesinden ekleyin.
               </p>
             )}
 
@@ -214,7 +196,7 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
                             {p.continuesBefore && '← '}{job.customer_name}{p.continuesAfter && ' →'}
                           </span>
                           <span className="block truncate text-[10px] opacity-70 leading-tight">
-                            {mode === 'driver' ? (job.vehicles?.name ?? 'Araç yok') : (job.drivers?.name ?? 'Sürücü yok')}
+                            {job.vehicles?.name ?? 'Araç atanmadı'}
                             {job.route_to && ` · ${job.route_to}`}
                           </span>
                         </button>

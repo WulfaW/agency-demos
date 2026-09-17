@@ -12,6 +12,10 @@ Sürücü ve araç ataması şu an defterde tutuluyor. Panel bunu devralacak: ki
 
 ## 2. Sektör kuralı: engelleme, uyar
 
+> **Güncelleme 2026-09-17 — çakışma artık ENGELLENİYOR.**
+> Bu bölüm ilk kararı anlatıyor. Taşeron iş akışı "taşeronun aracı panelden ayrı bir araç olarak eklenir" şeklinde netleşince, aynı sürücüye veya aynı araca çakışan iş yazmanın geçerli bir durumu kalmadı: bir sürücü aynı anda iki araç süremez, bir araç aynı anda iki yerde olamaz. Veritabanına `driver_no_overlap` ve `vehicle_no_overlap` EXCLUDE kısıtları eklendi (`supabase/migrations/20260917120000_block_driver_and_vehicle_overlaps.sql`). Formdaki kutucuklu "Devam Et" akışı kaldırıldı; çakışmada kayıt yapılmaz, hata gösterilir. Takvim tablosu tek görünüm: satırlar sürücü, araç bloğun içinde.
+
+
 Taksi veya otobüs firmalarında dolu saati kapatmak doğrudur; araç fiziksel olarak yoktur. **VIP transferde değildir.**
 
 Kendi Vito'nuz doluyken gelen kârlı işi reddetmek yerine, partner/taşeron firmadan o saate boş araç bulunur ve iş paslanır. Araç hiç bulunamazsa müşteriye WhatsApp'tan dönülür ve saat kaydırılarak satış kurtarılmaya çalışılır.
@@ -83,6 +87,9 @@ Notlar:
 `timestamptz` kullanılıyor, admin yerel saat (Europe/Istanbul) giriyor. Dönüşüm giriş anında yapılmalı; naif `timestamp` kullanılırsa yaz saati geçişlerinde saat hesabı bozulur.
 
 ## 5. Çakışma uyarısı
+
+> **Güncelleme 2026-09-17:** Aşağıdaki uyarı/onay akışı yerini engellemeye bıraktı — bkz. §2'deki not.
+
 
 Veritabanı kısıtı **kullanılmıyor**. Çakışma yasak olmadığı için kilitlenecek bir şey yok; kayıt sırasında sorgu yeterli.
 
