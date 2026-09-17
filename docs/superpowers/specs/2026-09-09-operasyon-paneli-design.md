@@ -12,8 +12,9 @@ Sürücü ve araç ataması şu an defterde tutuluyor. Panel bunu devralacak: ki
 
 ## 2. Sektör kuralı: engelleme, uyar
 
-> **Güncelleme 2026-09-17 — çakışma artık ENGELLENİYOR.**
-> Bu bölüm ilk kararı anlatıyor. Taşeron iş akışı "taşeronun aracı panelden ayrı bir araç olarak eklenir" şeklinde netleşince, aynı sürücüye veya aynı araca çakışan iş yazmanın geçerli bir durumu kalmadı: bir sürücü aynı anda iki araç süremez, bir araç aynı anda iki yerde olamaz. Veritabanına `driver_no_overlap` ve `vehicle_no_overlap` EXCLUDE kısıtları eklendi (`supabase/migrations/20260917120000_block_driver_and_vehicle_overlaps.sql`). Formdaki kutucuklu "Devam Et" akışı kaldırıldı; çakışmada kayıt yapılmaz, hata gösterilir. Takvim tablosu tek görünüm: satırlar sürücü, araç bloğun içinde.
+> **Güncel durum (2026-09-17): çakışma ENGELLENMİYOR.**
+> Aynı gün iki kez değişti. Önce engellemeye geçildi (`driver_no_overlap` / `vehicle_no_overlap` EXCLUDE kısıtları eklendi), sonra geri alındı: kullanıcı isterse aynı sürücüye veya araca üst üste iş yazabilmeli. Kısıtlar `20260917130000_allow_overlapping_jobs.sql` ile kaldırıldı.
+> Şu anki davranış: form **her durumda kaydeder**; çakışma varsa kaydettikten sonra amber, kaydı durdurmayan bir not gösterir. Kutucuklu "Devam Et" onayı yok. Takvim tablosunda üst üste binen işler amber renkte alt alta dizilir. Tablo tek görünüm: satırlar sürücü, araç bloğun içinde.
 
 
 Taksi veya otobüs firmalarında dolu saati kapatmak doğrudur; araç fiziksel olarak yoktur. **VIP transferde değildir.**
@@ -88,7 +89,7 @@ Notlar:
 
 ## 5. Çakışma uyarısı
 
-> **Güncelleme 2026-09-17:** Aşağıdaki uyarı/onay akışı yerini engellemeye bıraktı — bkz. §2'deki not.
+> **Güncel durum (2026-09-17):** Kutucuklu onay akışı kaldırıldı; form her durumda kaydeder ve çakışmayı kaydı durdurmayan bir notla bildirir — bkz. §2'deki not.
 
 
 Veritabanı kısıtı **kullanılmıyor**. Çakışma yasak olmadığı için kilitlenecek bir şey yok; kayıt sırasında sorgu yeterli.
