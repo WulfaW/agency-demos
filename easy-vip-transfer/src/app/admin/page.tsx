@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import ResourceManager from '@/components/admin/ResourceManager';
 import AssignmentForm from '@/components/admin/AssignmentForm';
-import AssignmentList from '@/components/admin/AssignmentList';
+import ScheduleGrid from '@/components/admin/ScheduleGrid';
 
 type Tab = 'gorevler' | 'surucular' | 'araclar';
 
@@ -74,7 +74,7 @@ export default function AdminDashboard() {
           <div className="space-y-8">
             <header className="mb-6"><h1 className="text-3xl font-serif text-white">Görevler</h1></header>
             <AssignmentForm onSaved={() => setRefreshKey((k) => k + 1)} />
-            <AssignmentList refreshKey={refreshKey} />
+            <ScheduleGrid refreshKey={refreshKey} />
           </div>
         )}
 
