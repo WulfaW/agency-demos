@@ -376,12 +376,20 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
           </div>
         </div>
 
-        {/* Bottom copyright */}
-        <div className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-[14px] text-zinc-500 gap-4">
-          <p>
-            © 2026 Easy VIP Transfer. Tüm hakları saklıdır.
-          </p>
-          <nav className="flex gap-4 items-center">
+        {/* Bottom copyright & Legal */}
+        <div className="mt-14 pt-8 border-t border-white/5 flex flex-col items-center justify-between gap-6">
+          <div className="text-[11px] text-zinc-600 text-center max-w-4xl leading-relaxed">
+            Easy VIP Transfer, VIP havaalanı transferleri ve şoförlü araç hizmetleri sunan bağımsız bir ulaşım hizmeti sağlayıcısıdır. 
+            Şirket, tarifeli olmayan (özel) yolcu taşımacılığı sağlayıcısı olarak faaliyet göstermekte olup, seyahat acentesi olarak çalışmamaktadır. 
+            Easy VIP Transfer, tur, seyahat paketleri, konaklama veya seyahatle ilgili herhangi bir ürün sunmaz, satmaz veya organize etmez. 
+            Talep edilmesi halinde, seyahatle ilgili hizmetler yalnızca Türkiye Cumhuriyeti kanun ve yönetmeliklerine tam uyum içinde, 
+            usulüne uygun olarak lisanslı seyahat acenteleri (Halikarnassos Travel Turizm) tarafından sağlanmaktadır.
+          </div>
+          <div className="flex flex-col md:flex-row items-center justify-between w-full text-[14px] text-zinc-500 gap-4">
+            <p>
+              © 2026 Easy VIP Transfer. Tüm hakları saklıdır.
+            </p>
+            <nav className="flex gap-4 items-center">
             <a href="/gizlilik" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">Gizlilik Politikası</a>
             <a href="/kvkk" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">KVKK Metni</a>
             <a href="/sartlar" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">Şartlar & Koşullar</a>

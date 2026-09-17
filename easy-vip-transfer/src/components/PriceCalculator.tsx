@@ -546,10 +546,10 @@ export default function PriceCalculator() {
 
           {/* Row 3: Passengers & Extras */}
           <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-20 h-[72px] sm:h-auto">
+            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-30 h-[72px] sm:h-auto">
               <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={t.calc.passengers} icon={Users} />
             </div>
-            <div className="flex-1 relative z-10 h-[72px] sm:h-auto">
+            <div className="flex-1 relative z-20 h-[72px] sm:h-auto">
               <MultiSelectDropdown
                 label={lang === 'TR' ? 'Özel Talepler' : 'VIP Add-ons'}
                 options={conciergeOptions}
@@ -574,7 +574,7 @@ export default function PriceCalculator() {
                 className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
               />
             </div>
-            <div className="flex-1 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
+            <div className="flex-1 px-4 py-2 relative z-0 flex flex-col justify-center h-[72px] sm:h-auto">
               <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
                 {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
               </label>

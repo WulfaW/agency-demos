@@ -1,28 +1,46 @@
 @import "tailwindcss";
 
 @theme {
-  /* Warm Stone / Beige */
-  --color-luxury-bg: #F2EFE9;
+  /* Dinamik Değişkenler */
+  --color-luxury-bg: var(--bg);
+  --color-luxury-text: var(--text);
   
-  /* Charcoal */
-  --color-luxury-text: #1C1917;
-  
-  /* Soft Bronze / Muted Gold */
+  /* Soft Bronze / Muted Gold (Hem açık hem koyuda şık durur) */
   --color-gold-400: #B4966B;
   --color-gold-500: #9C7C54;
   --color-gold-600: #82633E;
   
-  /* Dark Olive Green (Replacing Forest Green) */
-  --color-forest-900: #3A4332;
+  /* Vurgu Yeşili */
+  --color-forest-900: var(--accent);
   
   --font-display: var(--font-lora), serif;
   --font-sans: var(--font-lato), sans-serif;
 }
 
 @layer base {
+  /* =========================================
+     AÇIK TEMA (YAYINA ALINACAK ORİJİNAL TEMA) 
+     ========================================= */
   :root {
-    --background: #F2EFE9;
-    --foreground: #1C1917;
+    --bg-light: #F2EFE9;
+    --text-light: #1C1917;
+    --accent-light: #3A4332;
+    
+    --bg: var(--bg-light);
+    --text: var(--text-light);
+    --accent: var(--accent-light);
+    
+    --background: var(--bg);
+    --foreground: var(--text);
+  }
+
+  /* =========================================
+     GELİŞTİRİCİ KARANLIK MODU (DEV DARK MODE)
+     ========================================= */
+  .dev-dark-mode {
+    --bg: #121411;       /* Koyu Antrasit/Zeytin */
+    --text: #F2EFE9;     /* Açık Taş Rengi (Yazılar İçin) */
+    --accent: #1F2618;   /* Çok Koyu Orman Yeşili (Kartlar İçin) */
   }
 }
 
