@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { MapPin, Calendar, Car, Users, ArrowRight, ShieldCheck, ChevronDown, Check, ArrowLeftRight, Wine, Baby, Wifi, Flower2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LOCATIONS, CONTACT_INFO } from '@/data/transferData';
-import { createClient } from '@/lib/supabase/client';
 
 /* ─── Luxury Date + Time Picker ──────────────────────────────────────────── */
 const TIME_SLOTS = [
@@ -399,70 +398,48 @@ export default function PriceCalculator() {
     { id: 'maybach', name: 'Mercedes Maybach / S-Class' },
   ];
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const supabase = useMemo(() => createClient(), []);
 
-  const handleWhatsApp = async () => {
+  const handleWhatsApp = () => {
     if (!name || !phone) {
       alert(lang === 'TR' ? 'Lütfen adınızı ve telefonunuzu giriniz.' : 'Please enter your name and phone number.');
       return;
     }
-
-    setIsSubmitting(true);
 
     const fromName = LOCATIONS.find((l) => l.id === from)?.name || from;
     const toName = LOCATIONS.find((l) => l.id === to)?.name || to;
     const vehicleName = vehicleOptions.find(v => v.id === vehicle)?.name || vehicle;
     const extrasText = selectedExtras.length > 0 ? selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ') : 'None';
     
-    try {
-      // Supabase (Arka plan kaydı)
-      await supabase.from('reservations').insert([{
-        name,
-        phone,
-        from_location: fromName,
-        to_location: toName,
-        transfer_date: date || 'Not specified',
-        passengers: passengers || 'Not specified',
-        vehicle: vehicleName,
-        extras: extrasText,
-        status: 'New'
-      }]);
-    } catch (err) {
-      console.error("Supabase Error:", err);
-    }
-
-    setIsSubmitting(false);
     
     let msg = '';
     
     if (lang === 'TR') {
-      msg = `Merhaba, seçtiğim detaylara göre VIP transfer rezervasyonu yapmak istiyorum.%0A%0A`;
-      if (name) msg += `👤 *İsim:* ${name}%0A`;
-      if (fromName) msg += `📍 *Nereden:* ${fromName}%0A`;
-      if (toName) msg += `📍 *Nereye:* ${toName}%0A`;
-      if (date) msg += `📅 *Tarih:* ${date}%0A`;
-      if (passengers) msg += `👥 *Yolcu:* ${passengers} Kişi%0A`;
-      if (vehicleName) msg += `🚘 *Araç:* ${vehicleName}%0A`;
+      msg = `Merhaba, seçtiğim detaylara göre VIP transfer rezervasyonu yapmak istiyorum.\n\n`;
+      if (name) msg += `👤 *İsim:* ${name}\n`;
+      if (fromName) msg += `📍 *Nereden:* ${fromName}\n`;
+      if (toName) msg += `📍 *Nereye:* ${toName}\n`;
+      if (date) msg += `📅 *Tarih:* ${date}\n`;
+      if (passengers) msg += `👥 *Yolcu:* ${passengers} Kişi\n`;
+      if (vehicleName) msg += `🚘 *Araç:* ${vehicleName}\n`;
       if (selectedExtras.length > 0) {
-        msg += `💎 *Ekstralar:* ${extrasText}%0A`;
+        msg += `💎 *Ekstralar:* ${extrasText}\n`;
       }
-      msg += `%0ABu talebime istinaden müsaitlik ve fiyat bilgisi alabilir miyim?`;
+      msg += `\nBu talebime istinaden müsaitlik ve fiyat bilgisi alabilir miyim?`;
     } else {
-      msg = `Hello, I would like to book a VIP transfer based on my selections.%0A%0A`;
-      if (name) msg += `👤 *Name:* ${name}%0A`;
-      if (fromName) msg += `📍 *From:* ${fromName}%0A`;
-      if (toName) msg += `📍 *To:* ${toName}%0A`;
-      if (date) msg += `📅 *Date:* ${date}%0A`;
-      if (passengers) msg += `👥 *Guests:* ${passengers} Persons%0A`;
-      if (vehicleName) msg += `🚘 *Vehicle:* ${vehicleName}%0A`;
+      msg = `Hello, I would like to book a VIP transfer based on my selections.\n\n`;
+      if (name) msg += `👤 *Name:* ${name}\n`;
+      if (fromName) msg += `📍 *From:* ${fromName}\n`;
+      if (toName) msg += `📍 *To:* ${toName}\n`;
+      if (date) msg += `📅 *Date:* ${date}\n`;
+      if (passengers) msg += `👥 *Guests:* ${passengers} Persons\n`;
+      if (vehicleName) msg += `🚘 *Vehicle:* ${vehicleName}\n`;
       if (selectedExtras.length > 0) {
-        msg += `💎 *Extras:* ${extrasText}%0A`;
+        msg += `💎 *Extras:* ${extrasText}\n`;
       }
-      msg += `%0ACan I get price and availability information for this request?`;
+      msg += `\nCan I get price and availability information for this request?`;
     }
 
-    window.open(`https://wa.me/${CONTACT_INFO.phoneClean}?text=${msg}`, '_blank');
+    window.open(`https://wa.me/${CONTACT_INFO.phoneClean}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   const passengerOptions = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12].map((n) => ({
