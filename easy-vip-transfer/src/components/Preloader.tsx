@@ -29,14 +29,14 @@ export default function Preloader() {
           <div className="text-center relative z-10">
             {/* Logo Text Reveal */}
             <div className="overflow-hidden mb-6">
-              <motion.h1
+              <motion.div
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                 className="text-4xl md:text-5xl font-serif text-white tracking-widest uppercase flex items-center justify-center gap-4"
               >
                 EASY <span className="text-[#E5D3B3] italic font-light">VIP</span>
-              </motion.h1>
+              </motion.div>
             </div>
             
             {/* Minimalist Loading Bar */}
