@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Activity, Droplets, Smile, Zap, Heart, Star, Sun, Wind, Feather, Gem, Shield, Scissors } from "lucide-react";
+import { Link } from "@/i18n/routing";
 
 // The 4 main highlight services
 const mainServices = [
@@ -183,38 +184,41 @@ export default function BentoServices() {
 
         {/* Main 4 Services */}
         <div className="grid grid-cols-12 gap-4 md:gap-6 auto-rows-[250px]">
-          {mainServices.map((item, i) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              key={`main-${i}`}
-              className={`relative group overflow-hidden rounded-3xl p-8 flex flex-col justify-between ${item.className}`}
-            >
-              <div className="absolute inset-0 z-0 overflow-hidden">
-                <div className={`absolute inset-0 z-10 opacity-60 transition-opacity duration-500 group-hover:opacity-40 ${item.light ? 'bg-cream/40' : 'bg-charcoal/60'}`} />
-                <img 
-                  src={item.img} 
-                  alt={item.title} 
-                  className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-1000"
-                />
-              </div>
-
-              <div className="relative z-20">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 backdrop-blur-md ${item.light ? 'bg-charcoal/5' : 'bg-white/10'}`}>
-                  <item.icon className="w-6 h-6" />
+          {mainServices.map((item, i) => {
+            const slug = item.title.toLowerCase().replace(/ /g, '-').replace(/ı/g, 'i').replace(/ş/g, 's').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ğ/g, 'g').replace(/ç/g, 'c');
+            return (
+            <Link href={`/hizmetler/${slug}`} key={`main-${i}`} className={`relative group overflow-hidden rounded-3xl p-8 flex flex-col justify-between ${item.className}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="absolute inset-0 z-0 flex flex-col justify-between p-8"
+              >
+                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                  <div className={`absolute inset-0 z-10 opacity-60 transition-opacity duration-500 group-hover:opacity-40 ${item.light ? 'bg-cream/40' : 'bg-charcoal/60'}`} />
+                  <img 
+                    src={item.img} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-1000"
+                  />
                 </div>
-              </div>
-              
-              <div className="relative z-20">
-                <h3 className="text-2xl font-serif mb-2">{item.title}</h3>
-                <p className={`text-sm md:text-base ${item.light ? 'text-charcoal/70' : 'text-cream/70'} max-w-sm`}>
-                  {item.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+
+                <div className="relative z-20 pointer-events-none">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 backdrop-blur-md ${item.light ? 'bg-charcoal/5' : 'bg-white/10'}`}>
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                </div>
+                
+                <div className="relative z-20 pointer-events-none">
+                  <h3 className="text-2xl font-serif mb-2">{item.title}</h3>
+                  <p className={`text-sm md:text-base ${item.light ? 'text-charcoal/70' : 'text-cream/70'} max-w-sm`}>
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
+          )})}
         </div>
 
         {/* Detailed Services Expandable */}
@@ -228,38 +232,41 @@ export default function BentoServices() {
               className="mt-4 md:mt-6 overflow-hidden"
             >
               <div className="grid grid-cols-12 gap-4 md:gap-6 auto-rows-[250px]">
-                {detailedServices.map((item, i) => (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: i * 0.1 }}
-                    key={`detail-${i}`}
-                    className={`relative group overflow-hidden rounded-3xl p-8 flex flex-col justify-between ${item.className}`}
-                  >
-                    <div className="absolute inset-0 z-0 overflow-hidden">
-                      <div className={`absolute inset-0 z-10 opacity-60 transition-opacity duration-500 group-hover:opacity-40 ${item.light ? 'bg-cream/40' : 'bg-charcoal/60'}`} />
-                      <img 
-                        src={item.img} 
-                        alt={item.title} 
-                        className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-1000"
-                      />
-                    </div>
-
-                    <div className="relative z-20">
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 backdrop-blur-md ${item.light ? 'bg-charcoal/5' : 'bg-white/10'}`}>
-                        <item.icon className="w-6 h-6" />
+                {detailedServices.map((item, i) => {
+                  const slug = item.title.toLowerCase().replace(/ /g, '-').replace(/ı/g, 'i').replace(/ş/g, 's').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ğ/g, 'g').replace(/ç/g, 'c');
+                  return (
+                  <Link href={`/hizmetler/${slug}`} key={`detail-${i}`} className={`relative group overflow-hidden rounded-3xl p-8 flex flex-col justify-between ${item.className}`}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: i * 0.1 }}
+                      className="absolute inset-0 z-0 flex flex-col justify-between p-8"
+                    >
+                      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                        <div className={`absolute inset-0 z-10 opacity-60 transition-opacity duration-500 group-hover:opacity-40 ${item.light ? 'bg-cream/40' : 'bg-charcoal/60'}`} />
+                        <img 
+                          src={item.img} 
+                          alt={item.title} 
+                          className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-1000"
+                        />
                       </div>
-                    </div>
-                    
-                    <div className="relative z-20">
-                      <h3 className="text-2xl font-serif mb-2">{item.title}</h3>
-                      <p className={`text-sm md:text-base ${item.light ? 'text-charcoal/70' : 'text-cream/70'} max-w-sm`}>
-                        {item.desc}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+
+                      <div className="relative z-20 pointer-events-none">
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 backdrop-blur-md ${item.light ? 'bg-charcoal/5' : 'bg-white/10'}`}>
+                          <item.icon className="w-6 h-6" />
+                        </div>
+                      </div>
+                      
+                      <div className="relative z-20 pointer-events-none">
+                        <h3 className="text-2xl font-serif mb-2">{item.title}</h3>
+                        <p className={`text-sm md:text-base ${item.light ? 'text-charcoal/70' : 'text-cream/70'} max-w-sm`}>
+                          {item.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </Link>
+                )})}
               </div>
             </motion.div>
           )}

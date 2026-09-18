@@ -1,5 +1,5 @@
 import { Phone, MapPin } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (

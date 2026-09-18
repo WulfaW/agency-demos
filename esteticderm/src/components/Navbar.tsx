@@ -3,14 +3,15 @@
 import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Globe, ChevronDown } from "lucide-react";
-import Link from "next/link";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 import AppointmentModal from "./AppointmentModal";
 
 const languages = [
-  { code: "TR", name: "Türkçe" },
-  { code: "EN", name: "English" },
-  { code: "DE", name: "Deutsch" },
-  { code: "RU", name: "Русский" },
+  { code: "tr", name: "Türkçe" },
+  { code: "en", name: "English" },
+  { code: "de", name: "Deutsch" },
+  { code: "ru", name: "Русский" },
 ];
 
 export default function Navbar() {
@@ -19,8 +20,20 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [activeLang, setActiveLang] = useState("TR");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const pathname = usePathname();
+  const router = useRouter();
+  const activeLang = useLocale();
+
+  const validLang = languages.some(l => l.code === activeLang) ? activeLang : 'tr';
+  const activeLangName = languages.find(l => l.code === validLang)?.name || "Türkçe";
+
+  const changeLanguage = (newLocale: string) => {
+    router.replace(pathname, {locale: newLocale});
+    setLangOpen(false);
+    setMobileMenuOpen(false);
+  };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -63,18 +76,18 @@ export default function Navbar() {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
             <Link href="/" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Ana Sayfa</Link>
-            <Link href="#hakkimizda" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Hakkımızda</Link>
-            <Link href="#hizmetler" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Hizmetler</Link>
-            <Link href="#blog" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Blog</Link>
+            <Link href="/#hakkimizda" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Hakkımızda</Link>
+            <Link href="/#hizmetler" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Hizmetler</Link>
+            <Link href="/#blog" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Blog</Link>
             
             {/* Language Switcher */}
             <div className="relative">
               <button 
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1.5 text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors py-2"
+                className="flex items-center gap-1.5 text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors py-2 uppercase"
               >
                 <Globe className="w-4 h-4" />
-                <span>{activeLang}</span>
+                <span>{validLang}</span>
                 <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${langOpen ? 'rotate-180' : ''}`} />
               </button>
               
@@ -90,11 +103,8 @@ export default function Navbar() {
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        onClick={() => {
-                          setActiveLang(lang.code);
-                          setLangOpen(false);
-                        }}
-                        className={`text-left px-4 py-2.5 text-sm transition-colors hover:bg-gold-50/50 ${activeLang === lang.code ? 'text-gold-600 font-medium bg-gold-50/30' : 'text-charcoal'}`}
+                        onClick={() => changeLanguage(lang.code)}
+                        className={`text-left px-4 py-2.5 text-sm transition-colors hover:bg-gold-50/50 ${validLang === lang.code ? 'text-gold-600 font-medium bg-gold-50/30' : 'text-charcoal'}`}
                       >
                         {lang.name}
                       </button>
@@ -140,10 +150,7 @@ export default function Navbar() {
           {languages.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => {
-                setActiveLang(lang.code);
-                setMobileMenuOpen(false);
-              }}
+              onClick={() => changeLanguage(lang.code)}
               className={`text-sm px-3 py-1 rounded-full border transition-colors ${activeLang === lang.code ? 'border-gold-600 text-gold-600' : 'border-charcoal/20 text-charcoal'}`}
             >
               {lang.code}
