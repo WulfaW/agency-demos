@@ -34,10 +34,6 @@ export default function ServicesPage() {
         <SpotlightServices />
       </div>
 
-      <div className="mt-24">
-        <StickyScrollExperience />
-      </div>
-
       <ComparisonSection />
       
       <FaqAndFooter />

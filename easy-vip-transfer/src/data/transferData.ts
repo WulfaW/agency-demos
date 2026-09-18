@@ -222,12 +222,12 @@ export const FAQS = [
 
 export const CONTACT_INFO = {
   brandName: 'Easy VIP Transfer',
-  companyLegal: 'Halikarnassos Travel & Turizm Tic. Ltd. Şti.',
-  tursabNo: 'TÜRSAB Belge No: 11428',
+  companyLegal: 'Halikarnassos Travel Turizm',
+  tursabNo: 'TÜRSAB Acenta Kodu: 11560',
   phone: '+90 530 567 39 91',
   phoneClean: '905305673991',
   landline: '+90 252 319 25 77',
-  email: 'info@easyviptransfer.com',
+  email: 'info@halikarnassostravel.com',
   address: 'Gümbet Mah. Zengin Hüseyin Sok. No:7/A, 48400 Bodrum / Muğla',
   workingHours: '7 Gün 24 Saat Kesintisiz VIP Hizmet',
 };
