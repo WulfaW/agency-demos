@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   // Demo varsayilan olarak indekslenmez (bkz. lib/site.ts)
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
-  title: 'Easy VIP Transfer | Bodrum Luxury Chauffeur & Airport Transfer',
-  description: 'Milas-Bodrum Havalimanı (BJV), Yalıkavak Marina, Mandarin Oriental ve Amanruya için 7/24 Mercedes-Maybach ve VIP Vito transfer hizmeti. Sabit fiyat garantisi.',
+  title: "Bodrum Transfer - Bodrum Havalimanı VIP Transfer -EasyVipTransfer",
+  description: "EasyVipTransfer, Bodrum Transfer, Bodrum Vip Transfer, Bodrum Havaalanı transfer, Bodrum Havalimanı transfer, Bodrum Havaalanı vip transfer, English Speaking drivers",
   keywords: ['Bodrum VIP Transfer', 'Bodrum Havalimanı Transfer', 'Milas Bodrum BJV VIP Transfer', 'Yalıkavak Marina Transfer', 'Mandarin Oriental Bodrum Transfer', 'Amanruya Transfer', 'Bodrum Maybach Kiralama', 'Şoförlü VIP Araç Bodrum'],
   authors: [{ name: 'Easy VIP Transfer' }],
   openGraph: {

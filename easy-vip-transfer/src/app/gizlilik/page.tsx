@@ -1,6 +1,14 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import FaqAndFooter from '@/components/FaqAndFooter';
+
+export const metadata: Metadata = pageMetadata(
+  "Gizlilik Politikası - EasyVipTransfer",
+  "Easy VIP Transfer gizlilik politikası: kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu.",
+  '/gizlilik',
+);
 
 export default function Gizlilik() {
   return (

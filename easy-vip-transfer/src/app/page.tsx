@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -5,6 +7,12 @@ import PriceCalculator from '@/components/PriceCalculator';
 import StickyScrollExperience from '@/components/StickyScrollExperience';
 import FaqAndFooter from '@/components/FaqAndFooter';
 import StickyMobileBar from '@/components/StickyMobileBar';
+
+export const metadata: Metadata = pageMetadata(
+  "Bodrum Transfer - Bodrum Havalimanı VIP Transfer -EasyVipTransfer",
+  "EasyVipTransfer, Bodrum Transfer, Bodrum Vip Transfer, Bodrum Havaalanı transfer, Bodrum Havalimanı transfer, Bodrum Havaalanı vip transfer, English Speaking drivers",
+  '/',
+);
 
 export default function Home() {
   return (

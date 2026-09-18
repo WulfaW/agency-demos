@@ -1,6 +1,14 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import FaqAndFooter from '@/components/FaqAndFooter';
+
+export const metadata: Metadata = pageMetadata(
+  "KVKK Aydınlatma Metni - EasyVipTransfer",
+  "Easy VIP Transfer KVKK aydınlatma metni: 6698 sayılı Kanun kapsamında kişisel verilerin işlenmesine ilişkin bilgilendirme.",
+  '/kvkk',
+);
 
 export default function KVKK() {
   return (

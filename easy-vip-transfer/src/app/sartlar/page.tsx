@@ -1,6 +1,14 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import FaqAndFooter from '@/components/FaqAndFooter';
+
+export const metadata: Metadata = pageMetadata(
+  "İptal ve İade Şartları - EasyVipTransfer",
+  "Easy VIP Transfer rezervasyon iptal ve iade şartları.",
+  '/sartlar',
+);
 
 export default function Sartlar() {
   return (
