@@ -401,6 +401,7 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
           </nav>
         </div>
       </div>
+      </div>
 
     </footer>
   );

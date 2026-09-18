@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import FaqAndFooter from '@/components/FaqAndFooter';
 import StickyMobileBar from '@/components/StickyMobileBar';
 import { REGIONS, getRegion } from '@/data/regions';
-import { SITE_URL } from '@/lib/site';
+import { SITE_URL, pageMetadata } from '@/lib/site';
 
 // Yalnizca tasinan bolgeler; bilinmeyen slug 404 doner.
 export const dynamicParams = false;
@@ -18,13 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ bolge: st
   const { bolge } = await params;
   const r = getRegion(bolge);
   if (!r) return {};
-  const path = `/bolgelerimiz/${r.slug}`;
-  return {
-    title: r.title,
-    description: r.description,
-    alternates: { canonical: path },
-    openGraph: { title: r.title, description: r.description, url: path, locale: 'tr_TR', type: 'website' },
-  };
+  return pageMetadata(r.title, r.description, `/bolgelerimiz/${r.slug}`);
 }
 
 export default async function RegionPage({ params }: { params: Promise<{ bolge: string }> }) {
