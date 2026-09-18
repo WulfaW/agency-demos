@@ -260,7 +260,7 @@ const MultiSelectDropdown = ({
 
       {isOpen && (
         <div className="absolute top-[calc(100%+8px)] left-0 w-full z-[100]">
-          <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/5 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden py-2 max-h-[260px] overflow-y-auto subtle-scrollbar">
+          <div className="bg-[#141414] border border-white/[0.08] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.9)] overflow-hidden py-1 max-h-[260px] overflow-y-auto subtle-scrollbar">
             {options.map((opt) => {
               const isSelected = selectedIds.includes(opt.id);
               const Icon = opt.icon;
@@ -269,15 +269,15 @@ const MultiSelectDropdown = ({
                   key={opt.id}
                   type="button"
                   onClick={() => onChange(opt.id)}
-                  className="w-full flex items-center justify-between px-5 py-3 hover:bg-white/[0.04] transition-colors group"
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-white/[0.04] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 transition-colors ${isSelected ? 'text-white' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
-                    <span className={`text-[14px] font-sans tracking-wide uppercase transition-colors ${isSelected ? 'text-white font-medium' : 'text-zinc-400'}`}>
+                    <Icon className={`w-4 h-4 transition-colors ${isSelected ? 'text-[#E5D3B3]' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
+                    <span className={`text-[13px] font-sans tracking-wide uppercase transition-colors ${isSelected ? 'text-white font-medium' : 'text-zinc-400'}`}>
                       {opt.label}
                     </span>
                   </div>
-                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${isSelected ? 'bg-white border-white' : 'border-zinc-700'}`}>
+                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${isSelected ? 'bg-[#E5D3B3] border-[#E5D3B3]' : 'border-zinc-700'}`}>
                     {isSelected && <Check className="w-3 h-3 text-black" />}
                   </div>
                 </button>
@@ -333,8 +333,8 @@ const PillSelect = ({
       </button>
 
       {isOpen && (
-        <div className="absolute top-[calc(100%+8px)] left-0 w-[calc(100%+16px)] -ml-2 z-[100]">
-          <div className="bg-[#111] backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden py-2 max-h-[260px] overflow-y-auto subtle-scrollbar">
+        <div className="absolute top-[calc(100%+8px)] left-0 w-full z-[100]">
+          <div className="bg-[#141414] border border-white/[0.08] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.9)] overflow-hidden py-1 max-h-[260px] overflow-y-auto subtle-scrollbar">
             {options.map((opt) => (
               <button
                 key={opt.id}
@@ -343,9 +343,9 @@ const PillSelect = ({
                   onChange(opt.id);
                   setIsOpen(false);
                 }}
-                className="w-full flex items-center px-5 py-3.5 hover:bg-white/[0.04] transition-colors"
+                className="w-full flex items-center px-4 py-3 hover:bg-white/[0.04] transition-colors"
               >
-                <span className={`text-[15px] ${value === opt.id ? 'text-white font-medium' : 'text-zinc-400'}`}>
+                <span className={`text-[14px] ${value === opt.id ? 'text-[#E5D3B3] font-medium' : 'text-zinc-300'}`}>
                   {opt.name}
                 </span>
               </button>
@@ -444,7 +444,7 @@ export default function PriceCalculator() {
 
   const passengerOptions = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12].map((n) => ({
     id: n.toString(),
-    name: `${n} ${t.calc.passengers}`,
+    name: lang === 'TR' ? `${n} Kişi` : lang === 'RU' ? `${n} Человек` : `${n} Passengers`,
   }));
 
   return (
@@ -498,35 +498,35 @@ export default function PriceCalculator() {
           ))}
         </div>
 
-        {/* Airbnb Style Segmented Booking Widget */}
-        <div className="w-full border border-white/20 rounded-2xl flex flex-col mb-8 bg-black/40 relative z-30">
+        {/* Luxury Bento Grid Booking Widget */}
+        <div className="w-full flex flex-col gap-2 mb-8 relative z-30">
           
           {/* Row 1: Route */}
-          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-50 h-[72px] sm:h-auto">
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-50">
               <PillSelect label={t.calc.from} value={from} onChange={setFrom} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
             </div>
-            <div className="flex-1 relative z-40 h-[72px] sm:h-auto">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-40">
               <PillSelect label={t.calc.to} value={to} onChange={setTo} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
             </div>
           </div>
 
           {/* Row 2: Date & Vehicle */}
-          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-40 h-[72px] sm:h-auto">
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-40">
               <LuxuryDatePicker label={t.calc.date} value={date} onChange={setDate} />
             </div>
-            <div className="flex-1 relative z-30 h-[72px] sm:h-auto">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-30">
               <PillSelect label={lang === 'TR' ? 'Araç Seçimi' : 'Vehicle'} value={vehicle} onChange={setVehicle} options={vehicleOptions} placeholder={lang === 'TR' ? 'Araç Seç...' : 'Select Vehicle...'} icon={Car} />
             </div>
           </div>
 
           {/* Row 3: Passengers & Extras */}
-          <div className="flex flex-col sm:flex-row border-b border-white/20 sm:h-[72px]">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 relative z-30 h-[72px] sm:h-auto">
-              <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={t.calc.passengers} icon={Users} />
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-30">
+              <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={lang === 'TR' ? 'Kişi Sayısı' : 'Passengers'} icon={Users} />
             </div>
-            <div className="flex-1 relative z-20 h-[72px] sm:h-auto">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-20">
               <MultiSelectDropdown
                 label={lang === 'TR' ? 'Özel Talepler' : 'VIP Add-ons'}
                 options={conciergeOptions}
@@ -538,9 +538,9 @@ export default function PriceCalculator() {
           </div>
 
           {/* Row 4: Contact */}
-          <div className="flex flex-col sm:flex-row sm:h-[72px] mb-6">
-            <div className="flex-1 border-b sm:border-b-0 sm:border-r border-white/20 px-4 py-2 relative z-10 flex flex-col justify-center h-[72px] sm:h-auto">
-              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 px-4 py-3 relative z-10 flex flex-col justify-center min-h-[72px]">
+              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-500 mb-0.5">
                 {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
               </label>
               <input
@@ -548,11 +548,11 @@ export default function PriceCalculator() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder={lang === 'TR' ? 'Örn: John Doe' : 'e.g. John Doe'}
-                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
+                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-700 focus:outline-none"
               />
             </div>
-            <div className="flex-1 px-4 py-2 relative z-0 flex flex-col justify-center h-[72px] sm:h-auto">
-              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-0.5">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 px-4 py-3 relative z-0 flex flex-col justify-center min-h-[72px]">
+              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-500 mb-0.5">
                 {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
               </label>
               <input
@@ -560,7 +560,7 @@ export default function PriceCalculator() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder={lang === 'TR' ? '+90 5XX XXX XX XX' : '+ (Code) Phone Number'}
-                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-600 focus:outline-none"
+                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-700 focus:outline-none"
               />
             </div>
           </div>
