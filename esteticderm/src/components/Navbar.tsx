@@ -78,7 +78,7 @@ export default function Navbar() {
             <Link href="/" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Ana Sayfa</Link>
             <Link href="/#hakkimizda" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Hakkımızda</Link>
             <Link href="/#hizmetler" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Hizmetler</Link>
-            <Link href="/#blog" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Blog</Link>
+            <Link href="/blog" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Blog</Link>
             
             {/* Language Switcher */}
             <div className="relative">
@@ -142,9 +142,9 @@ export default function Navbar() {
         className={`fixed inset-0 z-40 bg-cream flex flex-col items-center justify-center gap-8 transition-transform duration-500 ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Ana Sayfa</Link>
-        <Link href="#hakkimizda" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Hakkımızda</Link>
-        <Link href="#hizmetler" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Hizmetler</Link>
-        <Link href="#blog" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Blog</Link>
+        <Link href="/#hakkimizda" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Hakkımızda</Link>
+        <Link href="/#hizmetler" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Hizmetler</Link>
+        <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Blog</Link>
         
         <div className="flex gap-4 mt-2">
           {languages.map((lang) => (
