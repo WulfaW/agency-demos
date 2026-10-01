@@ -7,6 +7,8 @@ import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 import AppointmentModal from "./AppointmentModal";
 
+import { useTranslations } from "next-intl";
+
 const languages = [
   { code: "tr", name: "Türkçe" },
   { code: "en", name: "English" },
@@ -15,6 +17,7 @@ const languages = [
 ];
 
 export default function Navbar() {
+  const t = useTranslations("Navbar");
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -75,10 +78,10 @@ export default function Navbar() {
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Ana Sayfa</Link>
-            <Link href="/#hakkimizda" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Hakkımızda</Link>
-            <Link href="/#hizmetler" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Hizmetler</Link>
-            <Link href="/blog" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">Blog</Link>
+            <Link href="/" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">{t("home")}</Link>
+            <Link href="/#hakkimizda" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">{t("about")}</Link>
+            <Link href="/#hizmetler" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">{t("services")}</Link>
+            <Link href="/blog" className="text-sm tracking-wide text-charcoal hover:text-gold-600 transition-colors">{t("blog")}</Link>
             
             {/* Language Switcher */}
             <div className="relative">
@@ -141,10 +144,10 @@ export default function Navbar() {
       <div 
         className={`fixed inset-0 z-40 bg-cream flex flex-col items-center justify-center gap-8 transition-transform duration-500 ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Ana Sayfa</Link>
-        <Link href="/#hakkimizda" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Hakkımızda</Link>
-        <Link href="/#hizmetler" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Hizmetler</Link>
-        <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">Blog</Link>
+        <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">{t("home")}</Link>
+        <Link href="/#hakkimizda" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">{t("about")}</Link>
+        <Link href="/#hizmetler" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">{t("services")}</Link>
+        <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-serif text-charcoal">{t("blog")}</Link>
         
         <div className="flex gap-4 mt-2">
           {languages.map((lang) => (

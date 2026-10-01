@@ -1,10 +1,12 @@
 {
   "Hero": {
-    "title1": "İstanbul'un kalbinde",
-    "title2": "Güzelliğin Yeni Formu",
-    "desc": "Esteticderm; yenilikçi medikal estetik ve profesyonel güzellik uygulamalarıyla sizi en iyi versiyonunuza ulaştırır.",
-    "cta_primary": "Uygulamaları Keşfet",
-    "cta_secondary": "Uzmana Danış"
+    "badge": "Doğallığın En Profesyonel Hali",
+    "title1": "Güzelliğinizi ",
+    "title_highlight": "Sanata",
+    "title2": " Dönüştürüyoruz.",
+    "desc": "İstanbul'un kalbinde, en son teknoloji ve uzman ellerle hayalinizdeki görünüme kavuşmanız için size özel, ayrıcalıklı bir estetik deneyimi sunuyoruz.",
+    "cta_primary": "Randevu Al",
+    "cta_secondary": "Hizmetlerimizi Keşfedin"
   },
   "Navbar": {
     "home": "Ana Sayfa",

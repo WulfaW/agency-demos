@@ -131,7 +131,7 @@ export default function ComparisonSection() {
       </motion.div>
 
       {/* Asymmetric Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[400px_300px] gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[400px_300px] gap-4 md:gap-6 select-none cursor-default">
         
         {/* Bento 1: Large Image Focus (Radar & Delay Policy) */}
         <motion.div 
@@ -147,7 +147,7 @@ export default function ComparisonSection() {
           {/* Dark Overlay & Radial Gradient for depth */}
           <div className="absolute inset-0 bg-black/60 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
           
-          <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+          <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full pointer-events-none select-none">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
               <span className="text-[13px] tracking-[0.2em] text-white/80 uppercase font-mono">{texts.bento1Sub}</span>
@@ -163,24 +163,26 @@ export default function ComparisonSection() {
 
         {/* Bento 2: Pure Typography (TÜRSAB) */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="md:col-span-4 md:row-span-1 backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl flex flex-col justify-between overflow-hidden relative"
+          className="md:col-span-4 md:row-span-1 bg-[#0a0a0a] rounded-3xl p-8 md:p-10 border border-white/5 relative overflow-hidden flex flex-col justify-between group shadow-xl h-[300px] sm:h-[360px] md:h-auto"
         >
-          {/* Ambient Glow */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-[80px] -mr-20 -mt-20 pointer-events-none"></div>
-          
-          <div>
-            <span className="text-[13px] tracking-[0.2em] text-[#E5D3B3] uppercase font-mono mb-4 block">{texts.bento2Sub}</span>
-            <h3 className="text-6xl font-serif text-white tracking-tighter mb-2">{texts.bento2Title}</h3>
-            <h4 className="text-2xl font-serif text-zinc-400">{texts.bento2TitleSub}</h4>
+          {/* subtle noise */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none select-none"></div>
+          <div className="relative z-10 pointer-events-none select-none">
+            <span className="text-[11px] tracking-[0.25em] text-zinc-500 uppercase font-sans font-bold bg-white/5 px-3 py-1.5 rounded-full">{texts.bento2Sub}</span>
+            <div className="mt-8">
+              <h3 className="text-5xl md:text-6xl font-serif text-white tracking-tight mb-2">{texts.bento2Title}</h3>
+              <p className="text-xl font-serif text-zinc-400 italic">{texts.bento2TitleSub}</p>
+            </div>
           </div>
-          
-          <p className="text-sm text-zinc-400 mt-8 font-light">
-            {texts.bento2Desc}
-          </p>
+          <div className="relative z-10 pt-8 border-t border-white/10 mt-auto pointer-events-none select-none">
+            <p className="text-xs text-zinc-500 font-sans leading-relaxed">
+              {texts.bento2Desc}
+            </p>
+          </div>
         </motion.div>
 
         {/* Bento 3: Financial Transparency */}

@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const EditorialCard = ({ title, desc, badge, image, buttonText }: { title: string; desc: string; badge: string; image: string; buttonText: string }) => {
   return (
-    <div className="group relative rounded-2xl border border-white/5 bg-black overflow-hidden h-[420px] transition-all duration-500 hover:border-white/20">
+    <div className="group relative rounded-2xl border border-white/5 bg-black overflow-hidden h-[420px] transition-all duration-500 hover:border-white/20 select-none cursor-default">
       <img
         src={image}
         alt={title}
@@ -17,15 +17,17 @@ const EditorialCard = ({ title, desc, badge, image, buttonText }: { title: strin
       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90" />
       
       <div className="absolute inset-0 p-8 flex flex-col justify-end">
-        <div className="w-8 h-[1px] bg-[#E5D3B3] mb-5 transition-all duration-500 group-hover:w-16"></div>
-        <span className="text-[10px] font-sans tracking-[0.2em] text-[#E5D3B3] uppercase mb-3 block">
-          {badge}
-        </span>
-        <h3 className="text-2xl font-serif text-white mb-4">{title}</h3>
-        <p className="text-sm text-zinc-400 font-sans leading-relaxed mb-6">
-          {desc}
-        </p>
-        <div className="flex items-center gap-3 text-white/50 group-hover:text-white transition-colors cursor-pointer" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.phoneClean}`, '_blank')}>
+        <div className="pointer-events-none select-none">
+          <div className="w-8 h-[1px] bg-[#E5D3B3] mb-5 transition-all duration-500 group-hover:w-16"></div>
+          <span className="text-[10px] font-sans tracking-[0.2em] text-[#E5D3B3] uppercase mb-3 block">
+            {badge}
+          </span>
+          <h3 className="text-2xl font-serif text-white mb-4">{title}</h3>
+          <p className="text-sm text-zinc-400 font-sans leading-relaxed mb-6">
+            {desc}
+          </p>
+        </div>
+        <div className="flex items-center gap-3 text-white/50 group-hover:text-white transition-colors cursor-pointer w-fit" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.phoneClean}`, '_blank')}>
           <span className="text-xs font-sans tracking-widest uppercase">{buttonText}</span>
           <ChevronRight className="w-4 h-4 text-[#E5D3B3] group-hover:translate-x-1 transition-transform" />
         </div>

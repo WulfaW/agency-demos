@@ -94,15 +94,10 @@ export default function Navbar() {
           )}
         </AnimatePresence>
 
-        {/* RIGHT PILL: Actions (Language + CTA) */}
-        <motion.div
-          className={`pointer-events-auto relative z-10 flex items-center gap-1 transition-all duration-700 ease-in-out ${
-            isScrolled 
-              ? 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
-              : 'h-full pl-2 pr-2 sm:pl-3 sm:pr-3 border border-transparent'
-          }`}
-        >
-          {/* Language dropdown fades out when scrolled to save space, like gamemaps IRL's small right pill */}
+        {/* RIGHT SECTION: Actions (Language + CTA) */}
+        <div className="pointer-events-auto relative z-10 flex items-center gap-2 h-full transition-all duration-700 ease-in-out pr-2 sm:pr-4">
+          
+          {/* Language dropdown fades out when scrolled to save space */}
           <AnimatePresence>
             {!isScrolled && (
               <motion.div
@@ -116,16 +111,31 @@ export default function Navbar() {
             )}
           </AnimatePresence>
 
-          <a href="#calculator" className="flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full bg-[#E5D3B3] hover:bg-white text-black text-[13px] sm:text-sm font-bold tracking-widest uppercase transition-colors">
+          {/* CTA Button */}
+          <a 
+            href="/#calculator" 
+            className={`flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full text-[13px] sm:text-sm font-bold tracking-widest uppercase transition-all duration-500 shadow-lg ${
+              isScrolled 
+                ? "bg-white text-black hover:bg-[#E5D3B3]" 
+                : "bg-[#E5D3B3] text-black hover:bg-white"
+            }`}
+          >
             <span>{t.hero.btnCalc}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
 
           {/* Mobile Hamburger Menu (Always visible on mobile) */}
-          <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden p-3 ml-1 text-white hover:text-[#E5D3B3] transition-colors focus:outline-none rounded-full bg-white/5 min-w-[44px] min-h-[44px] flex items-center justify-center">
+          <button 
+            onClick={() => setMobileMenuOpen(true)} 
+            className={`lg:hidden p-3 ml-1 transition-colors focus:outline-none rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center ${
+              isScrolled 
+                ? "backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] text-white hover:text-[#E5D3B3] shadow-lg" 
+                : "bg-white/5 text-white hover:text-[#E5D3B3] border border-transparent"
+            }`}
+          >
             <Menu className="w-5 h-5" />
           </button>
-        </motion.div>
+        </div>
 
       </div>
 
@@ -159,7 +169,7 @@ export default function Navbar() {
 
               <div className="h-px w-full bg-white/10" />
               
-              <a href="#calculator" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between px-6 py-4 rounded-2xl bg-[#E5D3B3] text-black text-sm font-bold tracking-widest uppercase shadow-[0_0_30px_rgba(229,211,179,0.3)]">
+              <a href="/#calculator" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between px-6 py-4 rounded-2xl bg-[#E5D3B3] text-black text-sm font-bold tracking-widest uppercase shadow-[0_0_30px_rgba(229,211,179,0.3)]">
                 <span>{t.hero.btnCalc}</span>
                 <ArrowRight className="w-5 h-5" />
               </a>

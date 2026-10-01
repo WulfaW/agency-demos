@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
+  const t = useTranslations("Hero");
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cream pt-20">
       {/* Background Decorative Elements */}
@@ -31,7 +34,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-white/50 backdrop-blur-md mb-8 shadow-sm"
         >
           <Sparkles className="w-4 h-4 text-gold-500" />
-          <span className="text-xs uppercase tracking-widest text-charcoal/80 font-medium">Doğallığın En Profesyonel Hali</span>
+          <span className="text-xs uppercase tracking-widest text-charcoal/80 font-medium">{t("badge")}</span>
         </motion.div>
 
         <motion.h1 
@@ -40,7 +43,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           className="text-5xl md:text-7xl lg:text-8xl font-serif text-charcoal tracking-tight leading-[1.1] mb-6 max-w-5xl"
         >
-          Güzelliğinizi <span className="text-gold-600 italic">Sanata</span> Dönüştürüyoruz.
+          {t("title1")}<span className="text-gold-600 italic">{t("title_highlight")}</span>{t("title2")}
         </motion.h1>
 
         <motion.p 
@@ -49,7 +52,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-lg md:text-xl text-charcoal/70 max-w-2xl mb-12 font-light leading-relaxed"
         >
-          İstanbul'un kalbinde, en son teknoloji ve uzman ellerle hayalinizdeki görünüme kavuşmanız için size özel, ayrıcalıklı bir estetik deneyimi sunuyoruz.
+          {t("desc")}
         </motion.p>
 
         <motion.div 
@@ -61,12 +64,12 @@ export default function Hero() {
           <button className="group relative px-8 py-4 bg-charcoal text-white rounded-full overflow-hidden shadow-2xl hover:shadow-gold-500/20 transition-all duration-300">
             <div className="absolute inset-0 w-full h-full bg-gold-600 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out" />
             <span className="relative flex items-center gap-2 font-medium">
-              Randevu Al <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              {t("cta_primary")} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>
           
           <button className="group px-8 py-4 text-charcoal font-medium flex items-center gap-2 hover:text-gold-600 transition-colors">
-            Hizmetlerimizi Keşfedin 
+            {t("cta_secondary")} 
             <span className="w-8 h-[1px] bg-charcoal group-hover:bg-gold-600 transition-colors" />
           </button>
         </motion.div>

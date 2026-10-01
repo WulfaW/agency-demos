@@ -1,10 +1,12 @@
 {
   "Hero": {
-    "title1": "In the heart of Istanbul",
-    "title2": "The New Form of Beauty",
-    "desc": "Esteticderm brings you to your best version with innovative medical aesthetics and professional beauty applications.",
-    "cta_primary": "Discover Treatments",
-    "cta_secondary": "Consult an Expert"
+    "badge": "The Most Professional Form of Naturalness",
+    "title1": "Transforming Your Beauty into ",
+    "title_highlight": "Art.",
+    "title2": "",
+    "desc": "In the heart of Istanbul, we offer you an exclusive aesthetic experience with the latest technology and expert hands to achieve your dream look.",
+    "cta_primary": "Book Appointment",
+    "cta_secondary": "Discover Our Services"
   },
   "Navbar": {
     "home": "Home",

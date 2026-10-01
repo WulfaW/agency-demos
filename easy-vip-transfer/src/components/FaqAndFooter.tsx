@@ -325,10 +325,10 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
           <div className="space-y-4">
             <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.quick}</h4>
             <nav className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400">
-              <a href="#fleet" className="block hover:text-[#E5D3B3] transition-colors">Araç Filomuz</a>
-              <a href="#services" className="block hover:text-[#E5D3B3] transition-colors">Ayrıcalıklar</a>
-              <a href="#destinations" className="block hover:text-[#E5D3B3] transition-colors">Popüler Rotalar</a>
-              <a href="#calculator" className="block hover:text-[#E5D3B3] transition-colors">Fiyat Hesapla</a>
+              <a href="/araclarimiz" className="block hover:text-[#E5D3B3] transition-colors">Araç Filomuz</a>
+              <a href="/hizmetlerimiz" className="block hover:text-[#E5D3B3] transition-colors">Ayrıcalıklar</a>
+              <a href="/bolgelerimiz" className="block hover:text-[#E5D3B3] transition-colors">Popüler Rotalar</a>
+              <a href="/#calculator" className="block hover:text-[#E5D3B3] transition-colors">Fiyat Hesapla</a>
             </nav>
           </div>
 
@@ -390,9 +390,9 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
               © 2026 Easy VIP Transfer. Tüm hakları saklıdır.
             </p>
             <nav className="flex gap-4 items-center">
-            <a href="/gizlilik" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">Gizlilik Politikası</a>
-            <a href="/kvkk" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">KVKK Metni</a>
-            <a href="/sartlar" onClick={(e) => { e.preventDefault(); alert('Sayfa yapım aşamasındadır.'); }} className="hover:text-zinc-300 transition-colors">Şartlar & Koşullar</a>
+            <a href="/gizlilik" className="hover:text-zinc-300 transition-colors">Gizlilik Politikası</a>
+            <a href="/kvkk" className="hover:text-zinc-300 transition-colors">KVKK Metni</a>
+            <a href="/sartlar" className="hover:text-zinc-300 transition-colors">Şartlar & Koşullar</a>
             <span className="text-white/10">|</span>
             <a href="/admin" className="flex items-center gap-1.5 text-[#E5D3B3]/70 hover:text-[#E5D3B3] transition-colors">
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
