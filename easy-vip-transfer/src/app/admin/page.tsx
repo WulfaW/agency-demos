@@ -7,7 +7,6 @@ import { createClient } from '@/lib/supabase/client';
 import ResourceManager from '@/components/admin/ResourceManager';
 import AssignmentForm from '@/components/admin/AssignmentForm';
 import ScheduleGrid from '@/components/admin/ScheduleGrid';
-import { DemoToast } from '@/components/admin/DemoToast';
 
 type Tab = 'gorevler' | 'surucular' | 'araclar';
 
@@ -149,7 +148,6 @@ export default function AdminDashboard() {
           )}
         </div>
       </main>
-      <DemoToast />
     </div>
   );
 }
