@@ -49,7 +49,7 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
     const range = `[${day.start.toISOString()},${day.end.toISOString()})`;
     const [d, v, a] = await Promise.all([
       supabase.from('drivers').select('id,name,is_active').order('name'),
-      supabase.from('vehicles').select('id,name').eq('is_active', true).order('name'),
+      supabase.from('vehicles').select('id,name,is_active').eq('is_active', true).order('name'),
       supabase
         .from('assignments')
         .select('*, drivers(name), vehicles(name)')
@@ -100,7 +100,7 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
     el.scrollLeft = Math.max(0, (hour - 1) * HOUR_PX);
   }, [jobs, day, date]);
 
-  const setStatus = async (id: string, status: 'done' | 'cancelled') => {
+  const setStatus = async (id: string, status: 'planned' | 'done' | 'cancelled') => {
     const { error } = await supabase.from('assignments').update({ status }).eq('id', id);
     if (error) { setError(error.message); return; }
     setSelected(null);
