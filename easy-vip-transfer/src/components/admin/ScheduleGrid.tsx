@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, MapPin, Phone, Car, User, X, Trash2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Phone, Car, User, X, Trash2, CheckCircle2, XCircle, RotateCcw, Pencil } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { parseRange, dayBounds, placeInDay, assignLanes, istanbulToday } from '@/lib/schedule';
 import DayPicker from './DayPicker';
+import JobEditModal from './JobEditModal';
 
 const TZ = 'Europe/Istanbul';
 const HOUR_PX = 96;
@@ -26,8 +27,10 @@ type Resource = { id: string; name: string; is_active: boolean };
 export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
   const [date, setDate] = useState(istanbulToday);
   const [drivers, setDrivers] = useState<Resource[]>([]);
+  const [vehicles, setVehicles] = useState<Resource[]>([]);
   const [jobs, setJobs] = useState<any[]>([]);
   const [selected, setSelected] = useState<any | null>(null);
+  const [editingJob, setEditingJob] = useState<any | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [error, setError] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -44,15 +47,16 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
   const load = async () => {
     setError('');
     const range = `[${day.start.toISOString()},${day.end.toISOString()})`;
-    const [d, a] = await Promise.all([
+    const [d, v, a] = await Promise.all([
       supabase.from('drivers').select('id,name,is_active').order('name'),
+      supabase.from('vehicles').select('id,name').eq('is_active', true).order('name'),
       supabase
         .from('assignments')
         .select('*, drivers(name), vehicles(name)')
-        .neq('status', 'cancelled')
         .overlaps('during', range),
     ]);
     setDrivers((d.data && d.data.length > 0) ? d.data : MOCK_DRIVERS);
+    setVehicles(v.data ?? []);
     setJobs(a.data ?? []);
   };
 
@@ -146,7 +150,7 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
 
       {/* Izgara */}
       <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
-        <div ref={scrollRef} className="overflow-x-auto">
+        <div ref={scrollRef} className="overflow-x-auto subtle-scrollbar pb-2">
           <div style={{ width: 160 + 24 * HOUR_PX }}>
             {/* Saat basligi */}
             <div className="flex border-b border-white/[0.06]">
@@ -200,16 +204,24 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
                             top: 4 + (lane.get(job.id) ?? 0) * LANE_PX,
                             height: LANE_PX - 6,
                           }}
-                          className={`absolute px-2.5 text-left overflow-hidden border transition-all duration-150
+                          className={`absolute px-2.5 text-left overflow-hidden border transition-all duration-200
                             ${p.continuesBefore ? 'rounded-l-none border-l-2 border-l-dashed' : 'rounded-l-lg'}
                             ${p.continuesAfter ? 'rounded-r-none' : 'rounded-r-lg'}
-                            ${clash ? 'bg-amber-500/20 border-amber-400/60 text-amber-100' : 'bg-[#E5D3B3]/10 border-[#E5D3B3]/30 text-zinc-200'}
-                            ${isSel ? 'ring-2 ring-[#E5D3B3]/60 bg-[#E5D3B3]/20' : 'hover:brightness-125'}`}
+                            ${clash
+                              ? 'bg-amber-500/20 border-amber-400/60 text-amber-100'
+                              : job.status === 'done'
+                              ? 'bg-emerald-500/25 border-emerald-400/50 text-emerald-100'
+                              : job.status === 'cancelled'
+                              ? 'bg-zinc-800/60 border-zinc-600/30 text-zinc-500 opacity-60'
+                              : 'bg-[#E5D3B3]/10 border-[#E5D3B3]/30 text-zinc-200'}
+                            ${isSel ? 'ring-2 ring-[#E5D3B3]/60 brightness-125' : 'hover:brightness-125'}`}
                         >
-                          <span className="block truncate text-xs font-medium leading-tight mt-1">
+                          <span className={`block truncate text-xs font-semibold leading-tight mt-1 ${job.status === 'cancelled' ? 'line-through opacity-60' : ''}`}>
                             {p.continuesBefore && '← '}{job.customer_name}{p.continuesAfter && ' →'}
+                            {job.status === 'done' && <span className="ml-1 text-emerald-400">✓</span>}
+                            {job.status === 'cancelled' && <span className="ml-1 text-zinc-500">✕</span>}
                           </span>
-                          <span className="block truncate text-[10px] opacity-60 leading-tight">
+                          <span className={`block truncate text-[10px] leading-tight ${job.status === 'cancelled' ? 'opacity-30 line-through' : 'opacity-60'}`}>
                             {job.vehicles?.name ?? 'Araç atanmadı'}
                             {job.route_to && ` · ${job.route_to}`}
                           </span>
@@ -228,9 +240,27 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
       {selected && (() => {
         const { start, end } = parseRange(selected.during);
         return (
-          <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 flex flex-wrap justify-between gap-6">
-            <div className="space-y-2 text-sm">
-              <p className="text-lg text-white font-serif">{selected.customer_name}</p>
+          <>
+            {editingJob && (
+              <JobEditModal
+                job={editingJob}
+                drivers={drivers}
+                vehicles={vehicles}
+                onClose={() => setEditingJob(null)}
+                onSaved={() => { setEditingJob(null); setSelected(null); load(); }}
+              />
+            )}
+            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 flex flex-wrap justify-between gap-6">
+            <div className="space-y-2 text-sm min-w-0">
+              <div className="flex items-center gap-3 mb-1">
+                <p className="text-lg text-white font-serif">{selected.customer_name}</p>
+                <button
+                  onClick={() => setEditingJob(selected)}
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] text-zinc-400 hover:text-[#E5D3B3] hover:border-[#E5D3B3]/30 text-xs transition-all"
+                >
+                  <Pencil className="w-3 h-3" /> Düzenle
+                </button>
+              </div>
               {selected.customer_phone && <p className="flex items-center gap-2 text-[#E5D3B3]"><Phone className="w-3.5 h-3.5" /> {selected.customer_phone}</p>}
               <p className="flex items-center gap-2 text-zinc-400"><MapPin className="w-3.5 h-3.5" /> {selected.route_from ?? '—'} → {selected.route_to ?? '—'}</p>
               <p className="text-zinc-400">{fmtFull.format(new Date(start))} – {fmtFull.format(new Date(end))}</p>
@@ -248,11 +278,33 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
               <div className="flex flex-col items-end gap-3">
                 {selected.status === 'planned' ? (
                   <div className="flex gap-2">
-                    <button onClick={() => setStatus(selected.id, 'done')} className="px-4 py-2 rounded-xl bg-emerald-500/15 border border-emerald-500/20 text-emerald-400 text-xs hover:bg-emerald-500/25 transition-colors">Tamamlandı</button>
-                    <button onClick={() => setStatus(selected.id, 'cancelled')} className="px-4 py-2 rounded-xl bg-red-500/15 border border-red-500/20 text-red-400 text-xs hover:bg-red-500/25 transition-colors">İptal</button>
+                    <button
+                      onClick={() => setStatus(selected.id, 'done')}
+                      className="px-5 py-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-sm font-bold hover:bg-emerald-500 hover:border-emerald-500 hover:text-black active:scale-95 transition-all duration-150 flex items-center gap-2"
+                    >
+                      <CheckCircle2 className="w-4 h-4" /> Tamamla
+                    </button>
+                    <button
+                      onClick={() => setStatus(selected.id, 'cancelled')}
+                      className="px-5 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm font-bold hover:bg-red-500/30 hover:border-red-500/60 active:scale-95 transition-all duration-150 flex items-center gap-2"
+                    >
+                      <XCircle className="w-4 h-4" /> İptal
+                    </button>
                   </div>
                 ) : (
-                  <span className="px-4 py-2 rounded-xl text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">Tamamlandı</span>
+                  <div className="flex items-center gap-3">
+                    <span className={`px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-semibold border ${selected.status === 'done' ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
+                      {selected.status === 'done' ? <CheckCircle2 className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+                      {selected.status === 'done' ? 'Tamamlandı' : 'İptal Edildi'}
+                    </span>
+                    <button
+                      onClick={() => setStatus(selected.id, 'planned')}
+                      className="p-2.5 rounded-xl border border-white/10 text-zinc-400 hover:text-white hover:border-white/30 active:scale-95 transition-all"
+                      title="Geri Al"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                    </button>
+                  </div>
                 )}
 
                 {confirmDelete ? (
@@ -269,6 +321,7 @@ export default function ScheduleGrid({ refreshKey }: { refreshKey: number }) {
               </div>
             </div>
           </div>
+          </>
         );
       })()}
     </div>

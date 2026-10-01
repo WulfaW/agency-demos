@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { describeConflicts, type Busy } from '@/lib/overlap';
 import { User, Car, Clock, MapPin, Phone, Euro, FileText, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { LuxuryDatePicker } from '@/components/ui/LuxuryDatePicker';
+import { LuxurySelect } from '@/components/ui/LuxurySelect';
+import { LOCATIONS } from '@/data/transferData';
 
 type Option = { id: string; name: string };
 
@@ -104,7 +107,7 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
   };
 
   return (
-    <div className="rounded-3xl bg-white/[0.02] border border-white/[0.06] overflow-hidden backdrop-blur-sm">
+    <div className="rounded-3xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-sm">
       {/* Header */}
       <div className="px-8 py-6 border-b border-white/[0.06] flex items-center justify-between">
         <div>
@@ -128,40 +131,30 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
         )}
 
         {/* Row 1: Sürücü & Araç */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-medium">
-              <User className="w-3 h-3" /> Sürücü
-            </label>
-            <select value={form.driverId} onChange={(e) => set('driverId', e.target.value)} className={`${inp} [color-scheme:dark]`}>
-              <option value="">Sürücü seçin (opsiyonel)</option>
-              {drivers.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-medium">
-              <Car className="w-3 h-3" /> Araç
-            </label>
-            <select value={form.vehicleId} onChange={(e) => set('vehicleId', e.target.value)} className={`${inp} [color-scheme:dark]`}>
-              <option value="">Araç seçin (opsiyonel)</option>
-              {vehicles.map((v) => <option key={v.id} value={v.id}>{v.name}</option>)}
-            </select>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[56px] relative z-40">
+          <LuxurySelect
+            label="Sürücü"
+            icon={User}
+            value={form.driverId}
+            onChange={(val) => set('driverId', val)}
+            options={[{value: '', label: 'Sürücü seçin (opsiyonel)'}, ...drivers.map((d) => ({ value: d.id, label: d.name }))]}
+          />
+          <LuxurySelect
+            label="Araç"
+            icon={Car}
+            value={form.vehicleId}
+            onChange={(val) => set('vehicleId', val)}
+            options={[{value: '', label: 'Araç seçin (opsiyonel)'}, ...vehicles.map((v) => ({ value: v.id, label: v.name }))]}
+          />
         </div>
 
         {/* Row 2: Tarih & Saat */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-medium">
-              <Clock className="w-3 h-3" /> Başlangıç
-            </label>
-            <input type="datetime-local" value={form.start} onChange={(e) => set('start', e.target.value)} className={`${inp} [color-scheme:dark]`} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[72px]">
+          <div className="relative z-50">
+            <LuxuryDatePicker label="Başlangıç" value={form.start} onChange={(val) => set('start', val)} />
           </div>
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-medium">
-              <Clock className="w-3 h-3" /> Bitiş
-            </label>
-            <input type="datetime-local" value={form.end} onChange={(e) => set('end', e.target.value)} className={`${inp} [color-scheme:dark]`} />
+          <div className="relative z-40">
+            <LuxuryDatePicker label="Bitiş" value={form.end} onChange={(val) => set('end', val)} />
           </div>
         </div>
 
@@ -172,24 +165,45 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
             <input value={form.customerName} onChange={(e) => set('customerName', e.target.value)} placeholder="Müşteri adı" className={inp} />
             <div className="relative">
               <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-600 pointer-events-none" />
-              <input value={form.customerPhone} onChange={(e) => set('customerPhone', e.target.value)} placeholder="Telefon" className={`${inp} pl-10`} />
+              <input
+                value={form.customerPhone}
+                onChange={(e) => set('customerPhone', e.target.value.replace(/[^\d\s+()]/g, ''))}
+                placeholder="Telefon (Örn: +90 5XX XXX XX XX)"
+                className={`${inp} pl-10`}
+              />
             </div>
           </div>
         </div>
 
         {/* Row 4: Rota & Ücret */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="relative">
-            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-600 pointer-events-none" />
-            <input value={form.routeFrom} onChange={(e) => set('routeFrom', e.target.value)} placeholder="Nereden" className={`${inp} pl-10`} />
-          </div>
-          <div className="relative">
-            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#E5D3B3]/50 pointer-events-none" />
-            <input value={form.routeTo} onChange={(e) => set('routeTo', e.target.value)} placeholder="Nereye" className={`${inp} pl-10`} />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[56px] relative z-20">
+          <LuxurySelect
+            icon={MapPin}
+            value={form.routeFrom}
+            onChange={(val) => set('routeFrom', val)}
+            placeholder="Nereden"
+            options={[{value: '', label: 'Nereden'}, ...LOCATIONS.map(l => ({ value: l.name, label: l.name }))]}
+          />
+          <LuxurySelect
+            icon={MapPin}
+            value={form.routeTo}
+            onChange={(val) => set('routeTo', val)}
+            placeholder="Nereye"
+            options={[{value: '', label: 'Nereye'}, ...LOCATIONS.map(l => ({ value: l.name, label: l.name }))]}
+          />
+        </div>
+        
+        {/* Row 5: Ücret & Not */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
           <div className="relative">
             <Euro className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-600 pointer-events-none" />
-            <input type="number" value={form.priceAgreed} onChange={(e) => set('priceAgreed', e.target.value)} placeholder="Anlaşılan ücret" className={`${inp} pl-10`} />
+            <input
+              type="text"
+              value={form.priceAgreed}
+              onChange={(e) => set('priceAgreed', e.target.value.replace(/\D/g, ''))}
+              placeholder="Anlaşılan Ücret (€)"
+              className={`${inp} pl-10`}
+            />
           </div>
           <div className="relative">
             <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-600 pointer-events-none" />

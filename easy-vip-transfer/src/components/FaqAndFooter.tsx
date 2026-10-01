@@ -387,17 +387,12 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between w-full text-[14px] text-zinc-500 gap-4">
             <p>
-              © 2026 Easy VIP Transfer. Tüm hakları saklıdır.
+              <a href="/admin/giris" className="text-inherit hover:text-inherit outline-none cursor-default">©</a> 2026 Easy VIP Transfer. Tüm hakları saklıdır.
             </p>
             <nav className="flex gap-4 items-center">
             <a href="/gizlilik" className="hover:text-zinc-300 transition-colors">Gizlilik Politikası</a>
             <a href="/kvkk" className="hover:text-zinc-300 transition-colors">KVKK Metni</a>
             <a href="/sartlar" className="hover:text-zinc-300 transition-colors">Şartlar & Koşullar</a>
-            <span className="text-white/10">|</span>
-            <a href="/admin" className="flex items-center gap-1.5 text-[#E5D3B3]/70 hover:text-[#E5D3B3] transition-colors">
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-              <span>Partner Girişi</span>
-            </a>
           </nav>
         </div>
       </div>

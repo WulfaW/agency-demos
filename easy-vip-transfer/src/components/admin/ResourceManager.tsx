@@ -1,10 +1,18 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Plus, Trash2, RotateCcw, Search } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Plus, Trash2, RotateCcw, Search, Camera, Car } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
-type Row = { id: string; name: string; phone?: string | null; plate?: string | null; is_active: boolean };
+type Row = {
+  id: string;
+  name: string;
+  phone?: string | null;
+  plate?: string | null;
+  is_active: boolean;
+  photo_url?: string | null;
+  logo_url?: string | null;
+};
 
 export default function ResourceManager({
   table, title, singularLabel, secondLabel, secondField,
@@ -21,13 +29,18 @@ export default function ResourceManager({
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [pasifleriGoster, setPasifleriGoster] = useState(false);
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const uploadTargetRef = useRef<string | null>(null);
   const supabase = createClient();
 
-  const MOCK_DRIVERS = [
+  const imgField = table === 'drivers' ? 'photo_url' : 'logo_url';
+
+  const MOCK_DRIVERS: Row[] = [
     { id: 'mock-1', name: 'Mehmet Yılmaz', phone: '+90 532 111 22 33', plate: null, is_active: true },
     { id: 'mock-2', name: 'Ahmet Kaya', phone: '+90 533 444 55 66', plate: null, is_active: true },
   ];
-  const MOCK_VEHICLES = [
+  const MOCK_VEHICLES: Row[] = [
     { id: 'mock-a', name: 'Mercedes Maybach S680', plate: '48 ABC 123', phone: null, is_active: true },
     { id: 'mock-b', name: 'Mercedes Vito VIP', plate: '48 DEF 456', phone: null, is_active: true },
   ];
@@ -58,13 +71,92 @@ export default function ResourceManager({
     load();
   };
 
+  // ─── Fotoğraf yükle ───────────────────────────────────────────
+  const triggerUpload = (rowId: string) => {
+    uploadTargetRef.current = rowId;
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    const rowId = uploadTargetRef.current;
+    if (!file || !rowId) return;
+
+    // mock ID'leri için atla
+    if (rowId.startsWith('mock-')) {
+      setError('Bu demo verisine fotoğraf eklenemez. Gerçek kayıt ekleyip deneyin.');
+      e.target.value = '';
+      return;
+    }
+
+    // Dosya boyutu kontrolü (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Dosya en fazla 5 MB olabilir.');
+      e.target.value = '';
+      return;
+    }
+
+    setUploadingId(rowId);
+    setError('');
+
+    const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+    const path = `${table}/${rowId}.${ext}?t=${Date.now()}`;
+
+    // Supabase Storage'a yükle
+    const { error: uploadErr } = await supabase.storage
+      .from('avatars')
+      .upload(path, file, { upsert: true, contentType: file.type });
+
+    if (uploadErr) {
+      setError(`Yükleme başarısız: ${uploadErr.message}`);
+      setUploadingId(null);
+      e.target.value = '';
+      return;
+    }
+
+    const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(path);
+    const publicUrl = urlData.publicUrl;
+
+    // DB'ye kaydet
+    const { error: dbErr } = await supabase
+      .from(table)
+      .update({ [imgField]: publicUrl })
+      .eq('id', rowId);
+
+    if (dbErr) {
+      setError(`Kayıt güncellenemedi: ${dbErr.message}`);
+    } else {
+      load();
+    }
+
+    setUploadingId(null);
+    e.target.value = '';
+  };
+
+  const removePhoto = async (row: Row) => {
+    await supabase.from(table).update({ [imgField]: null }).eq('id', row.id);
+    load();
+  };
+  // ──────────────────────────────────────────────────────────────
+
   const pasifSayisi = rows.filter((r) => !r.is_active).length;
   const gorunen = pasifleriGoster ? rows : rows.filter((r) => r.is_active);
 
   const inp = 'flex-1 bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-[#E5D3B3]/40 focus:bg-white/[0.05] transition-all duration-200';
 
+  const getImg = (r: Row) => (table === 'drivers' ? r.photo_url : r.logo_url);
+
   return (
     <div className="space-y-8">
+      {/* Gizli file input */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleFileChange}
+      />
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -103,27 +195,73 @@ export default function ResourceManager({
 
       {/* List */}
       <div className="space-y-2">
-        {gorunen.map((r, i) => (
-          <div
-            key={r.id}
-            className="group flex justify-between items-center px-6 py-4 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-200"
-            style={{ animationDelay: `${i * 50}ms` }}
-          >
-            <div className="flex items-center gap-4">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${r.is_active ? 'bg-[#E5D3B3]/15 text-[#E5D3B3]' : 'bg-white/5 text-zinc-600'}`}>
-                {r.name.charAt(0).toUpperCase()}
+        {gorunen.map((r, i) => {
+          const img = getImg(r);
+          const isUploading = uploadingId === r.id;
+          return (
+            <div
+              key={r.id}
+              className="group flex justify-between items-center px-5 py-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-200"
+              style={{ animationDelay: `${i * 50}ms` }}
+            >
+              <div className="flex items-center gap-4">
+                {/* Avatar / Logo — tıklanınca fotoğraf yükle */}
+                <button
+                  onClick={() => triggerUpload(r.id)}
+                  title={img ? 'Fotoğrafı değiştir' : 'Fotoğraf ekle'}
+                  disabled={isUploading}
+                  className="relative w-11 h-11 rounded-xl shrink-0 overflow-hidden group/avatar"
+                >
+                  {img ? (
+                    <>
+                      <img src={img} alt={r.name} className="w-full h-full object-cover" />
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/avatar:opacity-100 transition-opacity flex items-center justify-center">
+                        <Camera className="w-4 h-4 text-white" />
+                      </div>
+                    </>
+                  ) : (
+                    <div className={`w-full h-full flex items-center justify-center text-sm font-bold transition-all
+                      ${r.is_active ? 'bg-[#E5D3B3]/15 text-[#E5D3B3]' : 'bg-white/5 text-zinc-600'}`}>
+                      {isUploading ? (
+                        <span className="w-4 h-4 border-2 border-[#E5D3B3]/30 border-t-[#E5D3B3] rounded-full animate-spin" />
+                      ) : (
+                        <>
+                          <span className="group-hover/avatar:hidden">
+                            {table === 'drivers' ? r.name.charAt(0).toUpperCase() : <Car className="w-4 h-4" />}
+                          </span>
+                          <Camera className="w-4 h-4 hidden group-hover/avatar:block text-white/70" />
+                        </>
+                      )}
+                    </div>
+                  )}
+                </button>
+
+                <div>
+                  <p className={`text-sm font-medium ${r.is_active ? 'text-white' : 'text-zinc-600 line-through'}`}>{r.name}</p>
+                  <p className="text-zinc-500 text-xs">{r[secondField] ?? '—'}</p>
+                </div>
               </div>
-              <div>
-                <p className={`text-sm font-medium ${r.is_active ? 'text-white' : 'text-zinc-600 line-through'}`}>{r.name}</p>
-                <p className="text-zinc-500 text-xs">{r[secondField] ?? '—'}</p>
+
+              {/* Actions — hover'da görünür */}
+              <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200">
+                {img && (
+                  <button
+                    onClick={() => removePhoto(r)}
+                    className="px-3 py-1.5 rounded-xl text-xs border border-transparent hover:border-white/10 bg-white/5 text-zinc-500 hover:text-red-400 transition-all"
+                    title="Fotoğrafı kaldır"
+                  >
+                    Fotoğrafı Kaldır
+                  </button>
+                )}
+                <button onClick={() => toggleActive(r)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs transition-all duration-200 border border-transparent hover:border-white/10 bg-white/5 text-zinc-400 hover:text-white">
+                  {r.is_active ? <><Trash2 className="w-3 h-3" /> Pasife Al</> : <><RotateCcw className="w-3 h-3" /> Aktif Et</>}
+                </button>
               </div>
             </div>
-            <button onClick={() => toggleActive(r)}
-              className="opacity-0 group-hover:opacity-100 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs transition-all duration-200 border border-transparent hover:border-white/10 bg-white/5 text-zinc-400 hover:text-white">
-              {r.is_active ? <><Trash2 className="w-3 h-3" /> Pasife Al</> : <><RotateCcw className="w-3 h-3" /> Aktif Et</>}
-            </button>
-          </div>
-        ))}
+          );
+        })}
         {gorunen.length === 0 && (
           <div className="text-center py-16 text-zinc-600">
             <Search className="w-8 h-8 mx-auto mb-3 opacity-30" />
