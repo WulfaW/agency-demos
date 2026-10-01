@@ -117,7 +117,7 @@ export default function AdminDashboard() {
 
       {/* Main Content */}
       <main className="flex-1 ml-64 h-screen overflow-y-auto relative z-10">
-        <div className="p-8 md:p-12 max-w-6xl">
+        <div className="p-8 md:p-12 max-w-7xl mx-auto">
           {activeTab === 'gorevler' && (
             <div className="space-y-8">
               <div className="border-b border-white/[0.06] pb-6 mb-8">
