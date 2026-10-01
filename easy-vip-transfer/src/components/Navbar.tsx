@@ -114,7 +114,7 @@ export default function Navbar() {
           {/* CTA Button */}
           <a 
             href="/#calculator" 
-            className={`flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full text-[13px] sm:text-sm font-bold tracking-widest uppercase transition-all duration-500 shadow-lg ${
+            className={`hidden sm:flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full text-[13px] sm:text-sm font-bold tracking-widest uppercase transition-all duration-500 shadow-lg ${
               isScrolled 
                 ? "bg-white text-black hover:bg-[#E5D3B3]" 
                 : "bg-[#E5D3B3] text-black hover:bg-white"

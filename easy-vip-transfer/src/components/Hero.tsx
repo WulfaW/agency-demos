@@ -76,11 +76,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center gap-4"
+          className="flex flex-col sm:flex-row items-center gap-4 w-full px-4 sm:px-0 sm:w-auto"
         >
           <a
             href="#calculator"
-            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white hover:bg-[#E5D3B3] text-black text-sm font-bold tracking-widest uppercase transition-colors duration-300 active:scale-95"
+            className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white hover:bg-[#E5D3B3] text-black text-sm font-bold tracking-widest uppercase transition-colors duration-300 active:scale-95"
           >
             <span>{t.hero.btnCalc}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -88,7 +88,7 @@ export default function Hero() {
           
           <a
             href="#fleet"
-            className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 backdrop-blur-md text-white text-sm font-medium tracking-widest uppercase transition-all duration-300 active:scale-95"
+            className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 backdrop-blur-md text-white text-sm font-medium tracking-widest uppercase transition-all duration-300 active:scale-95"
           >
             <span className="text-zinc-400 group-hover:text-white transition-colors">{t.hero.btnFleet}</span>
           </a>
