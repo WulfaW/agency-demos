@@ -54,7 +54,7 @@ export default function FloatingChatWidget() {
         className="pointer-events-auto relative bg-white text-black px-4 py-2.5 rounded-2xl rounded-bl-sm shadow-[0_10px_40px_rgba(229,211,179,0.15)] flex items-center gap-2"
       >
         <span className="text-[11px] sm:text-xs font-semibold tracking-wide">
-          {lang === 'TR' ? 'Size özel VIP transfer planlayalım ✨' : 'Let us plan your VIP transfer ✨'}
+          {lang === 'TR' ? 'Size özel VIP transfer planlayalım' : 'Let us plan your VIP transfer'}
         </span>
       </motion.div>
 

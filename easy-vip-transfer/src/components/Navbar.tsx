@@ -169,9 +169,9 @@ export default function Navbar() {
 
               <div className="h-px w-full bg-white/10" />
               
-              <a href="/#calculator" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between px-6 py-4 rounded-2xl bg-[#E5D3B3] text-black text-sm font-bold tracking-widest uppercase shadow-[0_0_30px_rgba(229,211,179,0.3)]">
+              <a href="/#calculator" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-3 px-6 py-3.5 rounded-full border border-[#E5D3B3] text-[#E5D3B3] hover:bg-[#E5D3B3] hover:text-black text-[13px] font-semibold tracking-[0.2em] uppercase transition-all duration-300">
                 <span>{t.hero.btnCalc}</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </motion.div>
