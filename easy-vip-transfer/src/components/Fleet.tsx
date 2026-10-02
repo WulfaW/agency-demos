@@ -228,16 +228,18 @@ export default function Fleet() {
         </div>
 
         {/* Features Grid - Airbnb Style Amenities */}
-        <div className="pt-10">
-          <h5 className="text-xl md:text-2xl font-sans font-medium text-white mb-8">Bu araç size neler sunuyor?</h5>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12">
+        <div className="pt-8 md:pt-10">
+          <h5 className="text-lg md:text-2xl font-sans font-medium text-white mb-6 md:mb-8">Bu araç size neler sunuyor?</h5>
+          <div className="grid grid-cols-2 gap-y-6 gap-x-4 md:gap-x-12">
             {activeCar.features.map((feat, fIdx) => {
               const Icon = typeof feat === 'object' ? feat.icon : CheckCircle2;
               const text = typeof feat === 'object' ? feat.text : feat;
               return (
-                <div key={fIdx} className="flex items-center gap-4 text-[16px] text-zinc-300 font-light pb-4 border-b border-white/[0.03] last:border-0 sm:[&:nth-last-child(2)]:border-0">
-                  <Icon className="w-6 h-6 text-zinc-400 shrink-0 stroke-[1.2px]" />
-                  <span>{text}</span>
+                <div key={fIdx} className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 text-[12px] md:text-[16px] text-zinc-300 font-light pb-4 border-b border-white/[0.03] last:border-0 [&:nth-last-child(2)]:border-0">
+                  <div className="p-2 md:p-0 rounded-lg bg-white/[0.03] md:bg-transparent">
+                    <Icon className="w-5 h-5 md:w-6 md:h-6 text-[#E5D3B3] md:text-zinc-400 shrink-0 stroke-[1.5px]" />
+                  </div>
+                  <span className="leading-snug">{text}</span>
                 </div>
               );
             })}
