@@ -100,25 +100,25 @@ export default function StickyScrollExperience() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Navigation Tabs - Wrapped on mobile so no scrolling is needed */}
-        <div className="flex flex-row flex-wrap items-center justify-center gap-2 md:gap-6 mb-8 md:mb-12 pb-2">
+        {/* Navigation Tabs - Vertical stack on mobile, horizontal on desktop */}
+        <div className="flex flex-col md:flex-row items-center md:justify-center gap-2 md:gap-6 mb-8 md:mb-12 pb-2">
           {steps.map((step, idx) => {
             const isActive = activeStep === idx;
             return (
-              <button
-                key={idx}
-                onClick={() => {
-                  setActiveStep(idx);
-                  setIsHovered(true);
-                  if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-                  resumeTimerRef.current = setTimeout(() => setIsHovered(false), 8000);
-                }}
-                className={`shrink-0 relative px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-full text-[11px] md:text-sm font-sans tracking-widest uppercase transition-all duration-300 border overflow-hidden ${
-                  isActive 
-                    ? "bg-white/[0.08] text-white border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)]" 
-                    : "bg-white/[0.02] text-zinc-500 border-white/[0.05] hover:text-zinc-300 hover:bg-white/[0.04]"
-                }`}
-              >
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setActiveStep(idx);
+                    setIsHovered(true);
+                    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+                    resumeTimerRef.current = setTimeout(() => setIsHovered(false), 8000);
+                  }}
+                  className={`shrink-0 w-full md:w-auto relative px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-full text-[11px] md:text-sm font-sans tracking-widest uppercase transition-all duration-300 border overflow-hidden text-left md:text-center ${
+                    isActive 
+                      ? "bg-white/[0.08] text-white border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)]" 
+                      : "bg-white/[0.02] text-zinc-500 border-white/[0.05] hover:text-zinc-300 hover:bg-white/[0.04]"
+                  }`}
+                >
                 <span className="font-mono mr-2 opacity-50">{step.number}</span>
                 {step.tag}
                 
