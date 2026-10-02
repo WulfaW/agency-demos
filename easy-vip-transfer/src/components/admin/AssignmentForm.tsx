@@ -109,7 +109,7 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
   return (
     <div className="rounded-3xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-sm">
       {/* Header */}
-      <div className="px-8 py-6 border-b border-white/[0.06] flex items-center justify-between">
+      <div className="px-4 md:px-8 py-5 border-b border-white/[0.06] flex items-center justify-between flex-wrap gap-3">
         <div>
           <h2 className="text-xl font-serif text-white tracking-wide">Yeni Görev</h2>
           <p className="text-[11px] text-zinc-500 uppercase tracking-[0.2em] mt-0.5">Transfer Kaydı Oluştur</p>
@@ -122,7 +122,7 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
         )}
       </div>
 
-      <div className="p-8 space-y-6">
+      <div className="p-4 md:p-8 space-y-5">
         {error && (
           <div className="flex items-center gap-3 text-red-300 text-sm bg-red-500/[0.08] border border-red-500/20 rounded-2xl px-5 py-4">
             <AlertTriangle className="w-4 h-4 flex-shrink-0" />
@@ -131,29 +131,33 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
         )}
 
         {/* Row 1: Sürücü & Araç */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[56px] relative z-40">
-          <LuxurySelect
-            label="Sürücü"
-            icon={User}
-            value={form.driverId}
-            onChange={(val) => set('driverId', val)}
-            options={[{value: '', label: 'Sürücü seçin (opsiyonel)'}, ...drivers.map((d) => ({ value: d.id, label: d.name }))]}
-          />
-          <LuxurySelect
-            label="Araç"
-            icon={Car}
-            value={form.vehicleId}
-            onChange={(val) => set('vehicleId', val)}
-            options={[{value: '', label: 'Araç seçin (opsiyonel)'}, ...vehicles.map((v) => ({ value: v.id, label: v.name }))]}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 relative z-40">
+          <div className="h-[56px]">
+            <LuxurySelect
+              label="Sürücü"
+              icon={User}
+              value={form.driverId}
+              onChange={(val) => set('driverId', val)}
+              options={[{value: '', label: 'Sürücü seçin (opsiyonel)'}, ...drivers.map((d) => ({ value: d.id, label: d.name }))]}
+            />
+          </div>
+          <div className="h-[56px]">
+            <LuxurySelect
+              label="Araç"
+              icon={Car}
+              value={form.vehicleId}
+              onChange={(val) => set('vehicleId', val)}
+              options={[{value: '', label: 'Araç seçin (opsiyonel)'}, ...vehicles.map((v) => ({ value: v.id, label: v.name }))]}
+            />
+          </div>
         </div>
 
         {/* Row 2: Tarih & Saat */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[72px]">
-          <div className="relative z-50">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="h-[56px] relative z-50">
             <LuxuryDatePicker label="Başlangıç" value={form.start} onChange={(val) => set('start', val)} />
           </div>
-          <div className="relative z-40">
+          <div className="h-[56px] relative z-40">
             <LuxuryDatePicker label="Bitiş" value={form.end} onChange={(val) => set('end', val)} />
           </div>
         </div>
@@ -176,21 +180,25 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
         </div>
 
         {/* Row 4: Rota & Ücret */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[56px] relative z-20">
-          <LuxurySelect
-            icon={MapPin}
-            value={form.routeFrom}
-            onChange={(val) => set('routeFrom', val)}
-            placeholder="Nereden"
-            options={[{value: '', label: 'Nereden'}, ...LOCATIONS.map(l => ({ value: l.name, label: l.name }))]}
-          />
-          <LuxurySelect
-            icon={MapPin}
-            value={form.routeTo}
-            onChange={(val) => set('routeTo', val)}
-            placeholder="Nereye"
-            options={[{value: '', label: 'Nereye'}, ...LOCATIONS.map(l => ({ value: l.name, label: l.name }))]}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 relative z-20">
+          <div className="h-[56px]">
+            <LuxurySelect
+              icon={MapPin}
+              value={form.routeFrom}
+              onChange={(val) => set('routeFrom', val)}
+              placeholder="Nereden"
+              options={[{value: '', label: 'Nereden'}, ...LOCATIONS.map(l => ({ value: l.name, label: l.name }))]}
+            />
+          </div>
+          <div className="h-[56px]">
+            <LuxurySelect
+              icon={MapPin}
+              value={form.routeTo}
+              onChange={(val) => set('routeTo', val)}
+              placeholder="Nereye"
+              options={[{value: '', label: 'Nereye'}, ...LOCATIONS.map(l => ({ value: l.name, label: l.name }))]}
+            />
+          </div>
         </div>
         
         {/* Row 5: Ücret & Not */}
