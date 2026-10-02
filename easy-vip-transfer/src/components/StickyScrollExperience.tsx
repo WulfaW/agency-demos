@@ -100,8 +100,8 @@ export default function StickyScrollExperience() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Navigation Tabs - Swipeable on mobile */}
-        <div className="flex flex-row items-center justify-start md:justify-center gap-2 md:gap-6 mb-8 md:mb-12 overflow-x-auto subtle-scrollbar pb-2">
+        {/* Navigation Tabs - Wrapped on mobile so no scrolling is needed */}
+        <div className="flex flex-row flex-wrap items-center justify-center gap-2 md:gap-6 mb-8 md:mb-12 pb-2">
           {steps.map((step, idx) => {
             const isActive = activeStep === idx;
             return (

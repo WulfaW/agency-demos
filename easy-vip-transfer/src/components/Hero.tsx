@@ -32,15 +32,15 @@ export default function Hero() {
         {/* Mobile Image */}
         <motion.img
           initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1.05, opacity: 0.45 }}
+          animate={{ scale: 1.05, opacity: 0.85 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
           src="/images/mobile-hero.jpg"
           alt="VIP Transfer Bodrum Mobile"
           className="w-full h-full object-cover block md:hidden"
         />
         
-        {/* Soft, rich luxury gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-[#030303]/40 to-[#030303]" />
+        {/* Soft, rich luxury gradients - lighter on mobile so image shows */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-[#030303]/30 to-[#030303] md:from-[#030303] md:via-[#030303]/40 md:to-[#030303]" />
       </div>
 
       {/* Content Container */}
