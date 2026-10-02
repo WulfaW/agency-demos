@@ -102,11 +102,7 @@ const MapInner = () => {
           box-shadow: 0 4px 20px rgba(0,0,0,0.6);
           cursor: pointer;
           font-size: ${isSelected ? '16px' : '13px'};
-          font-weight: bold;
-          transition: all 0.3s ease;
-        ">
-          ${isAirport ? '✈' : '📍'}
-        </div>
+          transition: all 0.3s ease;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"> ${isAirport ? '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.5l-1.3 1.5 8.3 4.4L7 17l-3-1-1.5 1.5 4.3 2.5 2.5 4.3 1.5-1.5-1-3 4.4-3.7 4.4 8.3 1.5-1.3c.3-.2.6-.6.5-1.1z"/>' : '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>'} </svg> </div>
       `,
       iconSize: [32, 32],
       iconAnchor: [16, 16],
@@ -296,3 +292,4 @@ export default function BodrumRouteMap() {
     </section>
   );
 }
+
