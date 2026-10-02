@@ -148,7 +148,7 @@ export const LuxuryDatePicker = ({
               exit={{ opacity: 0, y: 8, scale: 0.98 }}
               transition={{ duration: 0.18 }}
               style={popupStyle}
-              className="bg-[#111] border border-white/10 rounded-2xl shadow-[0_40px_100px_rgba(0,0,0,0.95)]"
+              className="bg-[#111] border border-white/10 rounded-2xl shadow-[0_40px_100px_rgba(0,0,0,0.95)] max-h-[85vh] overflow-y-auto subtle-scrollbar"
             >
               <div className="flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-white/[0.06]">
                 {/* Calendar */}
