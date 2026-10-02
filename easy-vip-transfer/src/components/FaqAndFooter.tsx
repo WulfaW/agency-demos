@@ -284,24 +284,24 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
 
       {/* 3. Main Luxury Footer Bar */}
       <div className="border-t border-white/10 py-16 pb-32 md:pb-16 px-4 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center sm:text-left">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 text-left">
           
           {/* Col 1: Brand */}
-          <div className="sm:col-span-2 lg:col-span-1 space-y-6 flex flex-col items-center sm:items-start">
+          <div className="col-span-2 lg:col-span-1 space-y-4 md:space-y-6 flex flex-col items-start">
             <div>
               <div className="text-lg font-sans font-bold tracking-[0.15em] text-white mb-2">
                 EASY VIP <span className="text-[#E5D3B3] font-medium">BODRUM</span>
               </div>
-              <p className="text-sm font-sans text-zinc-400 font-light leading-relaxed max-w-[280px] sm:max-w-none">
+              <p className="text-xs md:text-sm font-sans text-zinc-400 font-light leading-relaxed max-w-[280px] sm:max-w-none">
                 Bodrum Yarımadası ve Ege koylarında 7/24 kesintisiz VIP transfer.
               </p>
             </div>
           </div>
 
           {/* Col 2: {texts.quick} */}
-          <div className="space-y-4">
-            <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.quick}</h4>
-            <nav className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400 flex flex-col items-center sm:items-start">
+          <div className="col-span-1 space-y-4">
+            <h4 className="text-[12px] md:text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.quick}</h4>
+            <nav className="space-y-2.5 text-[12px] md:text-[13px] font-sans font-medium text-zinc-400 flex flex-col items-start">
               <a href="/araclarimiz" className="block hover:text-[#E5D3B3] transition-colors">Araç Filomuz</a>
               <a href="/hizmetlerimiz" className="block hover:text-[#E5D3B3] transition-colors">Ayrıcalıklar</a>
               <a href="/bolgelerimiz" className="block hover:text-[#E5D3B3] transition-colors">Popüler Rotalar</a>
@@ -310,44 +310,48 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
           </div>
 
           {/* Col 3: İletişim */}
-          <div className="space-y-4">
-            <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.contact}</h4>
-            <address className="space-y-2.5 text-[13px] font-sans font-medium text-zinc-400 not-italic flex flex-col items-center sm:items-start">
+          <div className="col-span-1 space-y-4">
+            <h4 className="text-[12px] md:text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.contact}</h4>
+            <address className="space-y-2.5 text-[12px] md:text-[13px] font-sans font-medium text-zinc-400 not-italic flex flex-col items-start">
               <a 
                 href="https://maps.app.goo.gl/e79oimngvtga8ZRK7" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-start sm:items-start flex-col sm:flex-row items-center gap-1 sm:gap-2 hover:text-[#E5D3B3] transition-colors group"
+                className="flex items-start flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 hover:text-[#E5D3B3] transition-colors group"
               >
                 <MapPin className="w-3.5 h-3.5 text-zinc-500 shrink-0 mt-0.5 group-hover:text-[#E5D3B3] transition-colors hidden sm:block" />
-                <span className="leading-tight text-center sm:text-left">
-                  <span className="sm:hidden text-zinc-500 mb-1 block"><MapPin className="w-3.5 h-3.5 inline mr-1"/> Yalıkavak Marina, Bodrum</span>
+                <span className="leading-tight text-left">
+                  <span className="sm:hidden text-zinc-500 mb-0.5 block"><MapPin className="w-3 h-3 inline mr-1"/>Yalıkavak Marina</span>
                   <span className="hidden sm:inline">Yalıkavak Marina, Bodrum<br/></span>
-                  <span className="text-[11px] text-zinc-500 group-hover:text-[#E5D3B3]/70">Haritada Gör</span>
+                  <span className="text-[10px] md:text-[11px] text-zinc-500 group-hover:text-[#E5D3B3]/70">Haritada Gör</span>
                 </span>
               </a>
-              <a href={`tel:${CONTACT_INFO.phoneClean}`} className="flex items-center gap-2 hover:text-[#E5D3B3] transition-colors">
+              <a href={`tel:${CONTACT_INFO.phoneClean}`} className="flex items-center gap-1.5 md:gap-2 hover:text-[#E5D3B3] transition-colors">
                 <PhoneCall className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                 <span>{CONTACT_INFO.phone}</span>
               </a>
-              <a href={`https://wa.me/${CONTACT_INFO.phoneClean}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#25D366] transition-colors">
+              <a href={`https://wa.me/${CONTACT_INFO.phoneClean}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 md:gap-2 hover:text-[#25D366] transition-colors">
                 <OfficialWhatsAppIcon className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
-                <span>WhatsApp VIP Operasyon</span>
+                <span>WhatsApp Ops.</span>
               </a>
             </address>
           </div>
 
           {/* Col 4: Sosyal Medya & Belgeler */}
-          <div className="space-y-6">
+          <div className="col-span-2 lg:col-span-1 space-y-4 md:space-y-6 pt-4 md:pt-0 border-t border-white/5 md:border-0">
             <div className="space-y-3">
-              <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Resmi Belgeler</h4>
-              <div className="flex flex-col items-center sm:items-start gap-2">
-                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[13px] font-sans font-semibold text-zinc-300">
+              <h4 className="text-[12px] md:text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">Resmi Belgeler</h4>
+              <div className="flex flex-row flex-wrap md:flex-col items-start gap-2">
+                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[11px] md:text-[13px] font-sans font-semibold text-zinc-300">
                   <span className="text-[#E5D3B3]">TÜRSAB</span>
                   <span className="text-zinc-600">|</span> 
                   <span>No: 11428</span>
                 </div>
-                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[13px] font-sans font-semibold text-zinc-300">
+                <div className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-[#050505] text-[11px] md:text-[13px] font-sans font-semibold text-zinc-300">
+                  <span>D2 Taşıma Belgesi</span>
+                </div>
+              </div>
+            </div>
                   <span>D2 Taşıma Belgeli</span>
                 </div>
               </div>
