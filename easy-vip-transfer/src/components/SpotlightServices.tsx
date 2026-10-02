@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const EditorialCard = ({ title, desc, badge, image, buttonText }: { title: string; desc: string; badge: string; image: string; buttonText: string }) => {
   return (
-    <div className="group relative rounded-2xl border border-white/5 bg-black overflow-hidden h-[420px] transition-all duration-500 hover:border-white/20 select-none cursor-pointer" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.phoneClean}`, '_blank')}>
+    <div className="group relative rounded-2xl border border-white/5 bg-black overflow-hidden h-[420px] transition-all duration-500 hover:border-white/20 select-none cursor-pointer shrink-0 w-[85vw] sm:w-[320px] md:w-auto md:max-w-none snap-center" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.phoneClean}`, '_blank')}>
       <img
         src={image}
         alt={title}
@@ -259,7 +259,7 @@ export default function SpotlightServices() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 md:pb-0 md:grid md:grid-cols-3 md:gap-6 subtle-scrollbar -mx-4 px-4 md:mx-0 md:px-0"
         >
           {servicesData[activeTab]?.map((service, idx) => (
             <EditorialCard
