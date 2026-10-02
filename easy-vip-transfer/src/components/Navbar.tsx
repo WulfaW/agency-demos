@@ -39,29 +39,29 @@ export default function Navbar() {
 
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-[100] pointer-events-none flex justify-center px-4 lg:px-8">
+    <header className="fixed top-2 sm:top-4 left-0 right-0 z-[100] pointer-events-none flex justify-center px-4 lg:px-8">
       
-      {/* FIXED CENTER PILL BACKGROUND (Never stretches, just fades out) */}
+      {/* FIXED CENTER PILL BACKGROUND */}
       <div 
         className={`absolute top-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] lg:w-full max-w-6xl h-14 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-opacity duration-500 pointer-events-none ${
-          !isScrolled ? 'opacity-100' : 'opacity-0'
+          !isScrolled ? 'opacity-100' : 'opacity-100 md:opacity-0'
         }`}
       />
 
-      {/* SLIDING CONTAINER (Items move apart on scroll) */}
+      {/* SLIDING CONTAINER */}
       <div 
         className={`relative w-full flex items-center justify-between h-14 transition-all duration-700 ease-in-out ${
-          !isScrolled ? 'max-w-6xl' : 'max-w-[100vw]'
+          !isScrolled ? 'max-w-6xl' : 'max-w-6xl md:max-w-[100vw]'
         }`}
       >
         
         {/* LEFT PILL: Brand Logo */}
         <motion.div
           onClick={handleLogoClick}
-          className={`pointer-events-auto relative z-10 flex items-center justify-center transition-all duration-700 ease-in-out cursor-pointer ${
+          className={`pointer-events-auto relative z-10 flex items-center justify-center transition-all duration-700 ease-in-out cursor-pointer h-full px-6 ${
             isScrolled 
-              ? 'h-full px-6 rounded-full backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] shadow-lg' 
-              : 'h-full px-6 border border-transparent'
+              ? 'md:rounded-full md:backdrop-blur-xl md:bg-[#0a0a0a]/80 md:border md:border-white/[0.08] md:shadow-lg' 
+              : 'border-transparent'
           }`}
         >
           <Link href="/" className="flex items-center gap-2 group">
@@ -71,7 +71,7 @@ export default function Navbar() {
           </Link>
         </motion.div>
 
-        {/* CENTER PILL: Navigation Links (Disappears on scroll) */}
+        {/* CENTER PILL: Navigation Links */}
         <AnimatePresence>
           {!isScrolled && (
             <motion.nav
@@ -94,10 +94,9 @@ export default function Navbar() {
           )}
         </AnimatePresence>
 
-        {/* RIGHT SECTION: Actions (Language + CTA) */}
+        {/* RIGHT SECTION */}
         <div className="pointer-events-auto relative z-10 flex items-center gap-2 h-full transition-all duration-700 ease-in-out pr-2 sm:pr-4">
           
-          {/* Language dropdown fades out when scrolled to save space */}
           <AnimatePresence>
             {!isScrolled && (
               <motion.div
@@ -111,7 +110,6 @@ export default function Navbar() {
             )}
           </AnimatePresence>
 
-          {/* CTA Button */}
           <a 
             href="/#calculator" 
             className={`hidden sm:flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full text-[13px] sm:text-sm font-bold tracking-widest uppercase transition-all duration-500 shadow-lg ${
@@ -124,12 +122,11 @@ export default function Navbar() {
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
 
-          {/* Mobile Hamburger Menu (Always visible on mobile) */}
           <button 
             onClick={() => setMobileMenuOpen(true)} 
             className={`lg:hidden p-3 ml-1 transition-colors focus:outline-none rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center ${
               isScrolled 
-                ? "backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/[0.08] text-white hover:text-[#E5D3B3] shadow-lg" 
+                ? "md:backdrop-blur-xl md:bg-[#0a0a0a]/80 md:border md:border-white/[0.08] text-white hover:text-[#E5D3B3] md:shadow-lg" 
                 : "bg-white/5 text-white hover:text-[#E5D3B3] border border-transparent"
             }`}
           >
