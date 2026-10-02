@@ -308,10 +308,10 @@ export default function PriceCalculator() {
         {/* Full width CTA button */}
         <button
           onClick={handleWhatsApp}
-          className="w-full bg-[#E5D3B3] text-black hover:bg-white font-sans font-bold text-[14px] sm:text-[15px] tracking-[0.15em] uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 relative z-10"
+          className="w-full bg-[#E5D3B3] text-black hover:bg-white font-sans font-bold text-[12px] md:text-[13px] tracking-[0.2em] uppercase py-3 md:py-3.5 rounded-lg transition-all duration-300 flex items-center justify-center gap-3 relative z-10"
         >
           {lang === 'TR' ? "WHATSAPP'TAN FİYAT AL" : "GET QUOTE VIA WHATSAPP"}
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-3.5 h-3.5" />
         </button>
 
 

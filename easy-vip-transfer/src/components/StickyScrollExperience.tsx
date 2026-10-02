@@ -226,10 +226,10 @@ export default function StickyScrollExperience() {
                       href="https://wa.me/905305673991?text=Merhaba,%20VIP%20transfer%20hizmetiniz%20hakkinda%20bilgi%20ve%20rezervasyon%20almak%20istiyorum."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full mt-auto flex items-center justify-center gap-2 bg-white text-black hover:bg-[#E5D3B3] py-4 rounded-xl text-sm font-bold tracking-widest uppercase transition-all duration-300"
+                      className="w-full mt-auto flex items-center justify-center gap-2 bg-white text-black hover:bg-[#E5D3B3] py-3 rounded-lg text-[11px] md:text-[12px] font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-lg"
                     >
                       <span>{cardTexts.book}</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
 
