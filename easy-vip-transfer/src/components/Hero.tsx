@@ -34,7 +34,7 @@ export default function Hero() {
           initial={{ scale: 1.15, opacity: 0 }}
           animate={{ scale: 1.05, opacity: 0.85 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
-          src="/images/mobile-hero.jpg"
+          src="/images/mobile-hero.jpg?v=2"
           alt="VIP Transfer Bodrum Mobile"
           className="w-full h-full object-cover block md:hidden"
         />
