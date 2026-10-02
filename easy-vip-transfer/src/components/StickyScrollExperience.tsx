@@ -195,8 +195,8 @@ export default function StickyScrollExperience() {
               {/* Right Visual Card */}
               <div className="lg:col-span-5">
                 <div className="backdrop-blur-2xl bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-4 shadow-[0_30px_100px_rgba(0,0,0,0.9)] overflow-hidden relative flex flex-col">
-                  {/* Visual Image container - Hidden on mobile to save space */}
-                  <div className="hidden md:block relative h-72 w-full rounded-2xl overflow-hidden mb-6 bg-zinc-900 border border-white/5 shrink-0">
+                  {/* Visual Image container */}
+                  <div className="relative h-48 sm:h-56 md:h-72 w-full rounded-2xl overflow-hidden mb-6 bg-zinc-900 border border-white/5 shrink-0">
                     <img
                       src={steps[activeStep].image}
                       alt={steps[activeStep].title}
@@ -205,7 +205,7 @@ export default function StickyScrollExperience() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90" />
                     
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                      <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[12px] text-[#E5D3B3] font-mono uppercase tracking-widest">
+                      <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[10px] md:text-[12px] text-[#E5D3B3] font-mono uppercase tracking-widest">
                         {steps[activeStep].accent}
                       </span>
                     </div>
