@@ -147,8 +147,8 @@ export default function StickyScrollExperience() {
           })}
         </div>
 
-        {/* Dynamic Card Display */}
-        <div className="relative w-full">
+        {/* Dynamic Card Display - Min height prevents scroll jumping on mobile during AnimatePresence wait */}
+        <div className="relative w-full min-h-[900px] md:min-h-[700px] lg:min-h-[480px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
