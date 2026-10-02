@@ -284,7 +284,7 @@ export default function PriceCalculator() {
         <div className="w-full flex flex-col gap-2 mb-8 relative z-30">
           
           {/* Row 1: Route */}
-          <div className="flex flex-col sm:flex-row gap-2">
+          <div className="flex flex-col sm:flex-row gap-2 relative z-50">
             <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-50">
               <PillSelect label={t.calc.from} value={from} onChange={setFrom} options={LOCATIONS} placeholder="Havalimanı, Otel..." icon={MapPin} />
             </div>
@@ -294,11 +294,11 @@ export default function PriceCalculator() {
           </div>
 
           {/* Row 2: Date & Vehicle */}
-          <div className="flex flex-col sm:flex-row gap-2">
-            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-40">
+          <div className="flex flex-col sm:flex-row gap-2 relative z-40">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-30">
               <LuxuryDatePicker label={t.calc.date} value={date} onChange={setDate} />
             </div>
-            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-30">
+            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-20">
               <PillSelect label={lang === 'TR' ? 'Araç Seçimi' : 'Vehicle'} value={vehicle} onChange={setVehicle} options={vehicleOptions} placeholder={lang === 'TR' ? 'Araç Seç...' : 'Select Vehicle...'} icon={Car} />
             </div>
           </div>
