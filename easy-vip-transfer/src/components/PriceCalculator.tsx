@@ -203,20 +203,34 @@ export default function PriceCalculator() {
     const toName = LOCATIONS.find((l) => l.id === to)?.name || to;
     const vehicleName = vehicleOptions.find(v => v.id === vehicle)?.name || vehicle;
     
-    let msg = '';
+    let formattedDate = date;
+    if (date) {
+      try {
+        const d = new Date(date);
+        if (!isNaN(d.getTime())) {
+          const dd = String(d.getDate()).padStart(2, '0');
+          const mm = String(d.getMonth() + 1).padStart(2, '0');
+          const yyyy = d.getFullYear();
+          const time = date.includes('T') ? date.split('T')[1] : '';
+          formattedDate = time ? `${dd}.${mm}.${yyyy} ${time}` : `${dd}.${mm}.${yyyy}`;
+        }
+      } catch (e) {
+        // ignore
+      }
+    }
     
     if (lang === 'TR') {
       msg = `Merhaba, seçtiğim detaylara göre VIP transfer rezervasyonu yapmak istiyorum.\n\n`;
       if (fromName) msg += `*Nereden:* ${fromName}\n`;
       if (toName) msg += `*Nereye:* ${toName}\n`;
-      if (date) msg += `*Tarih:* ${date}\n`;
+      if (formattedDate) msg += `*Tarih & Saat:* ${formattedDate}\n`;
       if (vehicleName) msg += `*Araç:* ${vehicleName}\n`;
       msg += `\nBu talebime istinaden müsaitlik ve fiyat bilgisi alabilir miyim?`;
     } else {
       msg = `Hello, I would like to book a VIP transfer based on my selections.\n\n`;
       if (fromName) msg += `*From:* ${fromName}\n`;
       if (toName) msg += `*To:* ${toName}\n`;
-      if (date) msg += `*Date:* ${date}\n`;
+      if (formattedDate) msg += `*Date & Time:* ${formattedDate}\n`;
       if (vehicleName) msg += `*Vehicle:* ${vehicleName}\n`;
       msg += `\nCan I get price and availability information for this request?`;
     }
