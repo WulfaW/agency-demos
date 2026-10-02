@@ -199,42 +199,25 @@ export default function PriceCalculator() {
 
 
   const handleWhatsApp = () => {
-    if (!name || !phone) {
-      alert(lang === 'TR' ? 'Lütfen adınızı ve telefonunuzu giriniz.' : 'Please enter your name and phone number.');
-      return;
-    }
-
     const fromName = LOCATIONS.find((l) => l.id === from)?.name || from;
     const toName = LOCATIONS.find((l) => l.id === to)?.name || to;
     const vehicleName = vehicleOptions.find(v => v.id === vehicle)?.name || vehicle;
-    const extrasText = selectedExtras.length > 0 ? selectedExtras.map(id => conciergeOptions.find(o => o.id === id)?.label).join(', ') : 'None';
-    
     
     let msg = '';
     
     if (lang === 'TR') {
       msg = `Merhaba, seçtiğim detaylara göre VIP transfer rezervasyonu yapmak istiyorum.\n\n`;
-      if (name) msg += `👤 *İsim:* ${name}\n`;
       if (fromName) msg += `📍 *Nereden:* ${fromName}\n`;
       if (toName) msg += `📍 *Nereye:* ${toName}\n`;
       if (date) msg += `📅 *Tarih:* ${date}\n`;
-      if (passengers) msg += `👥 *Yolcu:* ${passengers} Kişi\n`;
       if (vehicleName) msg += `🚘 *Araç:* ${vehicleName}\n`;
-      if (selectedExtras.length > 0) {
-        msg += `💎 *Ekstralar:* ${extrasText}\n`;
-      }
       msg += `\nBu talebime istinaden müsaitlik ve fiyat bilgisi alabilir miyim?`;
     } else {
       msg = `Hello, I would like to book a VIP transfer based on my selections.\n\n`;
-      if (name) msg += `👤 *Name:* ${name}\n`;
       if (fromName) msg += `📍 *From:* ${fromName}\n`;
       if (toName) msg += `📍 *To:* ${toName}\n`;
       if (date) msg += `📅 *Date:* ${date}\n`;
-      if (passengers) msg += `👥 *Guests:* ${passengers} Persons\n`;
       if (vehicleName) msg += `🚘 *Vehicle:* ${vehicleName}\n`;
-      if (selectedExtras.length > 0) {
-        msg += `💎 *Extras:* ${extrasText}\n`;
-      }
       msg += `\nCan I get price and availability information for this request?`;
     }
 
@@ -320,58 +303,14 @@ export default function PriceCalculator() {
             </div>
           </div>
 
-          {/* Row 3: Passengers & Extras */}
-          <div className="flex flex-col sm:flex-row gap-2">
-            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-30">
-              <PillSelect label={t.calc.passengers} value={passengers} onChange={setPassengers} options={passengerOptions} placeholder={lang === 'TR' ? 'Kişi Sayısı' : 'Passengers'} icon={Users} />
-            </div>
-            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 relative z-20">
-              <MultiSelectDropdown
-                label={lang === 'TR' ? 'Özel Talepler' : 'VIP Add-ons'}
-                options={conciergeOptions}
-                selectedIds={selectedExtras}
-                onChange={toggleExtra}
-                placeholder={lang === 'TR' ? 'Ekstra Seç...' : 'Select Extras...'}
-              />
-            </div>
-          </div>
-
-          {/* Row 4: Contact */}
-          <div className="flex flex-col sm:flex-row gap-2">
-            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 px-4 py-3 relative z-10 flex flex-col justify-center min-h-[72px]">
-              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-500 mb-0.5">
-                {lang === 'TR' ? 'Ad Soyad' : lang === 'RU' ? 'Имя Фамилия' : 'Full Name'}
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder={lang === 'TR' ? 'Örn: John Doe' : 'e.g. John Doe'}
-                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-700 focus:outline-none"
-              />
-            </div>
-            <div className="flex-1 bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.05] hover:border-white/[0.1] rounded-2xl transition-all duration-300 px-4 py-3 relative z-0 flex flex-col justify-center min-h-[72px]">
-              <label className="block text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-500 mb-0.5">
-                {lang === 'TR' ? 'Telefon / WhatsApp' : lang === 'RU' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp'}
-              </label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder={lang === 'TR' ? '+90 5XX XXX XX XX' : '+ (Code) Phone Number'}
-                className="w-full bg-transparent text-white outline-none text-[15px] font-medium placeholder-zinc-700 focus:outline-none"
-              />
-            </div>
-          </div>
-
         </div>
 
         {/* Full width CTA button */}
         <button
           onClick={handleWhatsApp}
-          className="w-full bg-[#E5D3B3] text-black hover:bg-white font-sans font-bold text-[15px] tracking-[0.15em] uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
+          className="w-full bg-[#E5D3B3] text-black hover:bg-white font-sans font-bold text-[14px] sm:text-[15px] tracking-[0.15em] uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 relative z-10"
         >
-          {t.calc.btnQuote}
+          {lang === 'TR' ? "WHATSAPP'TAN FİYAT AL" : "GET QUOTE VIA WHATSAPP"}
           <ArrowRight className="w-4 h-4" />
         </button>
 
