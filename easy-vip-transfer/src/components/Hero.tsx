@@ -20,13 +20,23 @@ export default function Hero() {
       
       {/* Background Cinematic Visual */}
       <div className="absolute inset-0 z-0">
+        {/* Desktop Image */}
         <motion.img
           initial={{ scale: 1.15, opacity: 0 }}
           animate={{ scale: 1.05, opacity: 0.45 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
           src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=2000&q=80"
-          alt="VIP Transfer Bodrum"
-          className="w-full h-full object-cover"
+          alt="VIP Transfer Bodrum Desktop"
+          className="w-full h-full object-cover hidden md:block"
+        />
+        {/* Mobile Image */}
+        <motion.img
+          initial={{ scale: 1.15, opacity: 0 }}
+          animate={{ scale: 1.05, opacity: 0.45 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
+          src="/images/mobile-hero.jpg"
+          alt="VIP Transfer Bodrum Mobile"
+          className="w-full h-full object-cover block md:hidden"
         />
         
         {/* Soft, rich luxury gradients */}
