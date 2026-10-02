@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { describeConflicts, type Busy } from '@/lib/overlap';
 import { User, Car, Clock, MapPin, Phone, Euro, FileText, CheckCircle2, AlertTriangle } from 'lucide-react';
-import { LuxuryDatePicker } from '@/components/ui/LuxuryDatePicker';
 import { LuxurySelect } from '@/components/ui/LuxurySelect';
 import { LOCATIONS } from '@/data/transferData';
 
@@ -152,13 +151,27 @@ export default function AssignmentForm({ onSaved }: { onSaved: () => void }) {
           </div>
         </div>
 
-        {/* Row 2: Tarih & Saat */}
+        {/* Row 2: Tarih & Saat — Native input, always works on mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="h-[56px] relative z-50">
-            <LuxuryDatePicker label="Başlangıç" value={form.start} onChange={(val) => set('start', val)} />
+          <div className="flex flex-col gap-1">
+            <label className="text-[10px] font-bold tracking-[0.1em] uppercase text-zinc-400 px-1">Başlangıç</label>
+            <input
+              type="datetime-local"
+              min={new Date().toISOString().slice(0, 16)}
+              value={form.start}
+              onChange={(e) => set('start', e.target.value)}
+              className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5D3B3]/40 transition-all [color-scheme:dark]"
+            />
           </div>
-          <div className="h-[56px] relative z-40">
-            <LuxuryDatePicker label="Bitiş" value={form.end} onChange={(val) => set('end', val)} />
+          <div className="flex flex-col gap-1">
+            <label className="text-[10px] font-bold tracking-[0.1em] uppercase text-zinc-400 px-1">Bitiş</label>
+            <input
+              type="datetime-local"
+              min={form.start || new Date().toISOString().slice(0, 16)}
+              value={form.end}
+              onChange={(e) => set('end', e.target.value)}
+              className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5D3B3]/40 transition-all [color-scheme:dark]"
+            />
           </div>
         </div>
 
