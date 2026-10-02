@@ -100,8 +100,8 @@ export default function StickyScrollExperience() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Navigation Tabs */}
-        <div className="flex flex-row flex-wrap items-center justify-center gap-2 md:gap-6 mb-8 md:mb-12 pb-2">
+        {/* Navigation Tabs - Swipeable on mobile */}
+        <div className="flex flex-row items-center justify-start md:justify-center gap-2 md:gap-6 mb-8 md:mb-12 overflow-x-auto subtle-scrollbar pb-2">
           {steps.map((step, idx) => {
             const isActive = activeStep === idx;
             return (
@@ -147,9 +147,9 @@ export default function StickyScrollExperience() {
           })}
         </div>
 
-        {/* Dynamic Card Display - Min height prevents scroll jumping on mobile during AnimatePresence wait */}
-        <div className="relative w-full min-h-[900px] md:min-h-[700px] lg:min-h-[480px]">
-          <AnimatePresence mode="wait">
+        {/* Dynamic Card Display */}
+        <div className="relative w-full">
+          <AnimatePresence mode="popLayout">
             <motion.div
               key={activeStep}
               initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
