@@ -59,7 +59,7 @@ export const LuxuryDatePicker = ({
     window.addEventListener('scroll', handler, true); // capture phase to catch all scrolls
     return () => {
       document.removeEventListener('mousedown', handler);
-      window.removeEventListener('scroll', handler, true);
+      // NOT: scroll listener kaldırıldı — mobilde saat listesini kaydırınca picker kapanıyordu
     };
   }, []);
 
@@ -126,10 +126,27 @@ export const LuxuryDatePicker = ({
   return (
     <div className="relative w-full h-full" ref={ref}>
       <div ref={triggerRef} className="w-full h-full">
+
+        {/* ── Mobil: Native OS picker (iOS scroll wheel / Android clock) ── */}
+        <label className="md:hidden w-full h-full flex flex-col justify-center px-4 py-3 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#E5D3B3]/30 cursor-pointer transition-colors relative">
+          <span className="text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-1">{label}</span>
+          <span className={`text-[15px] truncate ${displayValue ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
+            {displayValue || 'Tarih & Saat Seçin'}
+          </span>
+          <input
+            type="datetime-local"
+            className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+            min={new Date().toISOString().slice(0, 16)}
+            value={value && value.length >= 16 ? value.slice(0, 16) : ''}
+            onChange={(e) => onChange(e.target.value)}
+          />
+        </label>
+
+        {/* ── Masaüstü: Özel lüks takvim popup ── */}
         <button
           type="button"
           onClick={() => setIsOpen(p => !p)}
-          className="w-full h-full flex flex-col justify-center px-4 py-3 hover:bg-white/[0.03] transition-colors focus:outline-none text-left rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#E5D3B3]/30"
+          className="hidden md:flex w-full h-full flex-col justify-center px-4 py-3 hover:bg-white/[0.03] transition-colors focus:outline-none text-left rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#E5D3B3]/30"
         >
           <span className="text-[10px] font-sans font-bold tracking-[0.1em] uppercase text-zinc-400 mb-1">{label}</span>
           <span className={`text-[15px] truncate ${displayValue ? 'text-white font-medium' : 'text-zinc-500 font-light'}`}>
