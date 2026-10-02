@@ -258,31 +258,31 @@ export default function BodrumRouteMap() {
       <DynamicMap />
 
       {/* Aman-Style 3-Column Metadata Strip */}
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-white/10 items-start">
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-white/10 items-center md:items-start text-center md:text-left">
         
         {/* Col 1: Location & Coordinates */}
-        <div className="flex items-start gap-3">
-          <MapPin className="w-4 h-4 text-[#E5D3B3] shrink-0 mt-1" />
-          <div className="text-sm font-sans text-zinc-300 leading-relaxed font-light whitespace-pre-line">
-            <strong className="text-white font-serif block font-medium mb-0.5">{t.map.hubTitle}</strong>
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3">
+          <MapPin className="w-5 h-5 md:w-4 md:h-4 text-[#E5D3B3] shrink-0 md:mt-1" />
+          <div className="text-[13px] md:text-sm font-sans text-zinc-300 leading-relaxed font-light whitespace-pre-line">
+            <strong className="text-white font-serif block font-medium mb-1 md:mb-0.5">{t.map.hubTitle}</strong>
             {t.map.hubDesc}
           </div>
         </div>
 
         {/* Col 2: Airport Distance Info */}
-        <div className="flex items-start gap-3">
-          <Plane className="w-4 h-4 text-[#E5D3B3] shrink-0 mt-1" />
-          <div className="text-sm font-sans text-zinc-300 leading-relaxed font-light whitespace-pre-line">
-            <strong className="text-white font-serif block font-medium mb-0.5">{t.map.airportTitle}</strong>
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3">
+          <Plane className="w-5 h-5 md:w-4 md:h-4 text-[#E5D3B3] shrink-0 md:mt-1" />
+          <div className="text-[13px] md:text-sm font-sans text-zinc-300 leading-relaxed font-light whitespace-pre-line">
+            <strong className="text-white font-serif block font-medium mb-1 md:mb-0.5">{t.map.airportTitle}</strong>
             {t.map.airportDesc}
           </div>
         </div>
 
         {/* Col 3: Direct Action CTA */}
-        <div className="flex items-center md:justify-end">
+        <div className="flex items-center justify-center md:justify-end mt-4 md:mt-0">
           <a
             href="#calculator"
-            className="inline-flex items-center gap-2 text-sm font-sans font-medium text-[#E5D3B3] hover:text-white uppercase tracking-widest border-b border-[#E5D3B3] pb-1 transition-colors"
+            className="inline-flex items-center gap-2 text-[12px] md:text-sm font-sans font-bold text-[#E5D3B3] hover:text-white uppercase tracking-[0.2em] md:tracking-widest border-b border-[#E5D3B3] pb-1 transition-colors"
           >
             <span>{t.map.calcRoute}</span>
             <ArrowRight className="w-3.5 h-3.5" />
