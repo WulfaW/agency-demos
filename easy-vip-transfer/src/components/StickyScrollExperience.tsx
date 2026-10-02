@@ -71,6 +71,7 @@ export default function StickyScrollExperience() {
     return () => clearInterval(timer);
   }, [isHovered, steps.length]);
 
+  return (
     <section id="experience" className="py-20 md:py-28 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
       {/* Section Title */}
       <motion.div
