@@ -283,8 +283,8 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
       </div>
 
       {/* 3. Main Luxury Footer Bar */}
-      <div className="border-t border-white/10 py-16 px-4 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="border-t border-white/10 py-16 pb-32 md:pb-16 px-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           
           {/* Col 1: Newsletter & Brand */}
           <div className="sm:col-span-2 lg:col-span-1 space-y-6">
