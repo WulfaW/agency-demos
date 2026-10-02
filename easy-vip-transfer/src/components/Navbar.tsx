@@ -151,7 +151,7 @@ export default function Navbar() {
               </Link>
               <div className="flex items-center gap-4">
                 <LanguageDropdown />
-                <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-white/70 hover:text-white transition-colors rounded-full bg-white/5 border border-white/10">
+                <button onClick={() => setMobileMenuOpen(false)} className="min-w-[44px] min-h-[44px] flex items-center justify-center text-white/70 hover:text-white transition-colors rounded-full bg-white/5 border border-white/10">
                   <X className="w-6 h-6" />
                 </button>
               </div>

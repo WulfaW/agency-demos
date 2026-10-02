@@ -32,11 +32,11 @@ export const LanguageDropdown = () => {
 
   return (
     <div className="relative inline-block" ref={dropdownRef}>
-      {/* Minimal Trigger Button */}
+      {/* Minimal Trigger Button (Touch Friendly) */}
       <button
         onClick={() => setOpen((o) => !o)}
         className={cn(
-          "flex items-center gap-1.5 px-3 py-2 text-xs font-sans tracking-[0.15em] font-medium uppercase",
+          "flex items-center justify-center gap-1.5 px-3 min-h-[44px] min-w-[44px] text-xs font-sans tracking-[0.15em] font-medium uppercase rounded-full",
           "text-zinc-400 hover:text-white transition-colors"
         )}
       >
