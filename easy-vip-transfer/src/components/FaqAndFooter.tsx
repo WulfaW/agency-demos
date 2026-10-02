@@ -286,7 +286,7 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
       <div className="border-t border-white/10 py-16 pb-32 md:pb-16 px-4 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center sm:text-left">
           
-          {/* Col 1: Newsletter & Brand */}
+          {/* Col 1: Brand */}
           <div className="sm:col-span-2 lg:col-span-1 space-y-6 flex flex-col items-center sm:items-start">
             <div>
               <div className="text-lg font-sans font-bold tracking-[0.15em] text-white mb-2">
@@ -295,29 +295,6 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
               <p className="text-sm font-sans text-zinc-400 font-light leading-relaxed max-w-[280px] sm:max-w-none">
                 Bodrum Yarımadası ve Ege koylarında 7/24 kesintisiz VIP transfer.
               </p>
-            </div>
-            
-            <div className="relative w-full max-w-[280px] sm:max-w-none">
-              <h4 className="text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase mb-3">E-Bülten Kayıt</h4>
-              <form 
-                className="relative flex items-center"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert('VIP Bültenimize başarıyla kaydoldunuz. Teşekkür ederiz.');
-                }}
-              >
-                <input
-                  type="email"
-                  placeholder="E-posta adresiniz"
-                  className="w-full bg-[#050505] border border-white/10 rounded-full py-3 pl-4 pr-12 text-sm text-white focus:outline-none focus:border-[#E5D3B3]/50 transition-colors min-h-[44px]"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-[#E5D3B3] text-black flex items-center justify-center hover:bg-white transition-colors"
-                >
-                  <Send className="w-3.5 h-3.5 -ml-0.5" />
-                </button>
-              </form>
             </div>
           </div>
 
