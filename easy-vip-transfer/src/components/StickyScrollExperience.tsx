@@ -71,24 +71,23 @@ export default function StickyScrollExperience() {
     return () => clearInterval(timer);
   }, [isHovered, steps.length]);
 
-  return (
-    <section id="experience" className="hidden md:block py-28 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
+    <section id="experience" className="py-20 md:py-28 px-4 w-full max-w-6xl mx-auto relative z-10 border-t border-white/5">
       {/* Section Title */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mb-20 text-center flex flex-col items-center"
+        className="mb-12 md:mb-20 text-center flex flex-col items-center"
       >
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
-          <span className="text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
+          <span className="text-[11px] md:text-[13px] font-sans tracking-[0.3em] text-[#E5D3B3] uppercase font-medium">
             {t.experience.badge}
           </span>
           <div className="h-[1px] w-8 bg-[#E5D3B3]/40"></div>
         </div>
-        <h2 className="text-3xl md:text-5xl font-serif text-white tracking-wide">
+        <h2 className="text-2xl md:text-5xl font-serif text-white tracking-wide">
           {t.experience.title1}<br />
           <span className="italic font-light text-[#E5D3B3]">{t.experience.title2}</span>
         </h2>
@@ -100,8 +99,8 @@ export default function StickyScrollExperience() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Navigation Tabs */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-12">
+        {/* Navigation Tabs - Swipeable on mobile */}
+        <div className="flex flex-row items-center justify-start md:justify-center gap-2 md:gap-6 mb-8 md:mb-12 overflow-x-auto subtle-scrollbar pb-2">
           {steps.map((step, idx) => {
             const isActive = activeStep === idx;
             return (
@@ -113,20 +112,20 @@ export default function StickyScrollExperience() {
                   if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
                   resumeTimerRef.current = setTimeout(() => setIsHovered(false), 8000);
                 }}
-                className={`relative px-6 py-4 rounded-2xl md:rounded-full text-sm font-sans tracking-widest uppercase transition-all duration-300 border overflow-hidden w-full md:w-auto ${
+                className={`shrink-0 relative px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-full text-[11px] md:text-sm font-sans tracking-widest uppercase transition-all duration-300 border overflow-hidden ${
                   isActive 
-                    ? "bg-white/[0.08] text-white border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.05)]" 
+                    ? "bg-white/[0.08] text-white border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)]" 
                     : "bg-white/[0.02] text-zinc-500 border-white/[0.05] hover:text-zinc-300 hover:bg-white/[0.04]"
                 }`}
               >
-                <span className="font-mono mr-3 opacity-50">{step.number}</span>
+                <span className="font-mono mr-2 opacity-50">{step.number}</span>
                 {step.tag}
                 
                 {isActive && (
                   <>
                     <motion.div 
                       layoutId="activeTabIndicator"
-                      className="absolute inset-0 border border-[#E5D3B3]/40 rounded-2xl md:rounded-full pointer-events-none"
+                      className="absolute inset-0 border border-[#E5D3B3]/40 rounded-xl md:rounded-full pointer-events-none"
                       initial={false}
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
@@ -152,15 +151,15 @@ export default function StickyScrollExperience() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
+              exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-stretch"
             >
               
               {/* Left Text Card */}
-              <div className="lg:col-span-7 backdrop-blur-xl bg-[#0a0a0a]/60 border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+              <div className="lg:col-span-7 backdrop-blur-xl bg-[#0a0a0a]/60 border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#E5D3B3]/5 rounded-full blur-[80px] pointer-events-none" />
                 
                 <div className="flex items-center gap-4 mb-6">
@@ -195,9 +194,8 @@ export default function StickyScrollExperience() {
               {/* Right Visual Card */}
               <div className="lg:col-span-5">
                 <div className="backdrop-blur-2xl bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-4 shadow-[0_30px_100px_rgba(0,0,0,0.9)] overflow-hidden relative flex flex-col">
-                  
-                  {/* Visual Image container */}
-                  <div className="relative h-64 md:h-72 w-full rounded-2xl overflow-hidden mb-6 bg-zinc-900 border border-white/5 shrink-0">
+                  {/* Visual Image container - Hidden on mobile to save space */}
+                  <div className="hidden md:block relative h-72 w-full rounded-2xl overflow-hidden mb-6 bg-zinc-900 border border-white/5 shrink-0">
                     <img
                       src={steps[activeStep].image}
                       alt={steps[activeStep].title}
@@ -213,7 +211,7 @@ export default function StickyScrollExperience() {
                   </div>
 
                   {/* Fast WhatsApp Route Booking */}
-                  <div className="space-y-4 px-2 pb-2 flex-grow flex flex-col justify-end">
+                  <div className="space-y-4 px-2 pb-2 md:pt-0 pt-4 flex-grow flex flex-col justify-end">
                     <div className="text-sm text-zinc-400 flex items-center justify-between border-b border-white/5 pb-3">
                       <span>{cardTexts.res}</span>
                       <strong className="text-white font-serif">{cardTexts.resVal}</strong>
