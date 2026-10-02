@@ -55,6 +55,7 @@ export const viewport = {
 
 import StarlightBackground from '@/components/ui/StarlightBackground';
 import FloatingChatWidget from '@/components/FloatingChatWidget';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
 export default function RootLayout({
   children,
@@ -78,6 +79,7 @@ export default function RootLayout({
           <LanguageProvider>
             {children}
             <FloatingChatWidget />
+            <ScrollToTop />
           </LanguageProvider>
         </PostHogProvider>
       </body>
