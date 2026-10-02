@@ -281,7 +281,7 @@ export default function BodrumRouteMap() {
         {/* Col 3: Direct Action CTA */}
         <div className="flex items-center justify-center md:justify-end mt-4 md:mt-0">
           <a
-            href="#calculator"
+            href="/#calculator"
             className="inline-flex items-center gap-2 text-[12px] md:text-sm font-sans font-bold text-[#E5D3B3] hover:text-white uppercase tracking-[0.2em] md:tracking-widest border-b border-[#E5D3B3] pb-1 transition-colors"
           >
             <span>{t.map.calcRoute}</span>
