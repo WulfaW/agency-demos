@@ -207,17 +207,17 @@ export default function PriceCalculator() {
     
     if (lang === 'TR') {
       msg = `Merhaba, seçtiğim detaylara göre VIP transfer rezervasyonu yapmak istiyorum.\n\n`;
-      if (fromName) msg += `📍 *Nereden:* ${fromName}\n`;
-      if (toName) msg += `📍 *Nereye:* ${toName}\n`;
-      if (date) msg += `📅 *Tarih:* ${date}\n`;
-      if (vehicleName) msg += `🚘 *Araç:* ${vehicleName}\n`;
+      if (fromName) msg += `*Nereden:* ${fromName}\n`;
+      if (toName) msg += `*Nereye:* ${toName}\n`;
+      if (date) msg += `*Tarih:* ${date}\n`;
+      if (vehicleName) msg += `*Araç:* ${vehicleName}\n`;
       msg += `\nBu talebime istinaden müsaitlik ve fiyat bilgisi alabilir miyim?`;
     } else {
       msg = `Hello, I would like to book a VIP transfer based on my selections.\n\n`;
-      if (fromName) msg += `📍 *From:* ${fromName}\n`;
-      if (toName) msg += `📍 *To:* ${toName}\n`;
-      if (date) msg += `📅 *Date:* ${date}\n`;
-      if (vehicleName) msg += `🚘 *Vehicle:* ${vehicleName}\n`;
+      if (fromName) msg += `*From:* ${fromName}\n`;
+      if (toName) msg += `*To:* ${toName}\n`;
+      if (date) msg += `*Date:* ${date}\n`;
+      if (vehicleName) msg += `*Vehicle:* ${vehicleName}\n`;
       msg += `\nCan I get price and availability information for this request?`;
     }
 
