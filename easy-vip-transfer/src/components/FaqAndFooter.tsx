@@ -351,7 +351,6 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
                   <span>D2 Taşıma Belgesi</span>
                 </div>
               </div>
-              </div>
             </div>
           </div>
         </div>
