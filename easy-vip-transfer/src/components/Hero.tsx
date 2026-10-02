@@ -97,7 +97,7 @@ export default function Hero() {
           </a>
           
           <a
-            href="#fleet"
+            href="/araclarimiz"
             className="group flex items-center justify-center gap-3 px-8 py-3.5 min-w-[240px] rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 backdrop-blur-md text-white text-[12px] font-medium tracking-widest uppercase transition-all duration-300 active:scale-95"
           >
             <span className="text-zinc-400 group-hover:text-white transition-colors">{t.hero.btnFleet}</span>

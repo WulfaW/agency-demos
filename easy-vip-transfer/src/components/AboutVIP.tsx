@@ -191,7 +191,7 @@ export default function AboutVIP() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <a 
-              href="#fleet"
+              href="/araclarimiz"
               className="inline-flex items-center justify-center h-12 px-8 text-sm tracking-widest uppercase border border-white/10 bg-white/5 hover:bg-white/10 rounded-full text-white transition-colors"
             >
               {texts.btn}
