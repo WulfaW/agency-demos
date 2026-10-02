@@ -184,8 +184,8 @@ const MapInner = () => {
         })}
       </MapContainer>
 
-      {/* Floating Active Cove Card on top of map (Aman Style) */}
-      <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-80 z-[1000] backdrop-blur-2xl bg-[#0a0a0a]/92 border border-white/15 rounded-2xl p-5 shadow-2xl">
+      {/* Floating Active Cove Card on top of map (Aman Style) - Hidden on mobile so users can actually see the map */}
+      <div className="hidden md:block absolute bottom-6 right-6 w-80 z-[1000] backdrop-blur-2xl bg-[#0a0a0a]/92 border border-white/15 rounded-2xl p-5 shadow-2xl">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[14px] font-mono tracking-widest text-[#E5D3B3] uppercase">Seçili Destinasyon</span>
           <span className="text-xl font-serif font-bold text-white">{selectedPin.price}</span>
