@@ -146,9 +146,9 @@ export default function Navbar() {
             className="fixed inset-0 z-[200] bg-[#030303]/95 backdrop-blur-3xl flex flex-col pointer-events-auto"
           >
             <div className="flex items-center justify-between p-6">
-              <div className="font-serif font-semibold text-xl tracking-[0.2em] text-white">
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="font-serif font-semibold text-xl tracking-[0.2em] text-white hover:opacity-80 transition-opacity">
                 EASY VIP <span className="text-[#E5D3B3]">BODRUM</span>
-              </div>
+              </Link>
               <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-white/70 hover:text-white transition-colors rounded-full bg-white/5 border border-white/10">
                 <X className="w-6 h-6" />
               </button>
