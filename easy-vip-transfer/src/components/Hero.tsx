@@ -29,18 +29,15 @@ export default function Hero() {
           alt="VIP Transfer Bodrum Desktop"
           className="w-full h-full object-cover hidden md:block"
         />
-        {/* Mobile Image */}
-        <motion.img
-          initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1.05, opacity: 0.85 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-          src="/images/mobile-hero.jpg?v=2"
+        {/* Mobile Image - Instant load, no animation to prevent opacity bugs */}
+        <img
+          src="/images/mobile-hero.jpg"
           alt="VIP Transfer Bodrum Mobile"
-          className="w-full h-full object-cover block md:hidden"
+          className="w-full h-full object-cover block md:hidden opacity-90"
         />
         
-        {/* Soft, rich luxury gradients - lighter on mobile so image shows */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-[#030303]/30 to-[#030303] md:from-[#030303] md:via-[#030303]/40 md:to-[#030303]" />
+        {/* Soft, rich luxury gradients - lighter/removed on mobile so the dark image shines through */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/30 via-transparent to-[#030303] md:from-[#030303] md:via-[#030303]/40 md:to-[#030303]" />
       </div>
 
       {/* Content Container */}
