@@ -223,16 +223,31 @@ export const LuxuryDatePicker = ({
                     </p>
                     <input
                       type="text"
+                      inputMode="numeric"
                       placeholder="SS:DD (Örn: 14:30)"
                       maxLength={5}
                       className="w-full bg-[#111] border border-white/[0.08] rounded-xl px-4 py-2 text-sm text-white font-mono focus:outline-none focus:border-[#E5D3B3]/50 transition-colors placeholder:text-zinc-700"
                       value={selectedTime || ''}
                       onChange={(e) => {
                         let val = e.target.value.replace(/[^\d:]/g, '');
+                        
+                        // Otomatik iki nokta koyma
                         if (val.length === 2 && !val.includes(':') && (selectedTime || '').length < 2) {
                           val += ':';
                         }
+                        
                         if (val.length > 5) val = val.slice(0, 5);
+                        
+                        // Saat ve dakika validasyonu
+                        if (val.length >= 2) {
+                          const hour = parseInt(val.slice(0, 2));
+                          if (hour > 23) val = '23' + val.slice(2);
+                        }
+                        if (val.length >= 5) {
+                          const minute = parseInt(val.slice(3, 5));
+                          if (minute > 59) val = val.slice(0, 3) + '59';
+                        }
+                        
                         selectTime(val);
                       }}
                     />
@@ -247,7 +262,7 @@ export const LuxuryDatePicker = ({
                 </button>
                 <button
                   onClick={confirm}
-                  disabled={!selectedDate || !selectedTime}
+                  disabled={!selectedDate || !selectedTime || selectedTime.length < 5}
                   className="px-8 py-2.5 rounded-xl text-[13px] font-sans font-bold tracking-wider transition-all disabled:opacity-25 disabled:cursor-not-allowed bg-[#222] text-white hover:bg-[#333] border border-white/10"
                 >
                   Onayla
