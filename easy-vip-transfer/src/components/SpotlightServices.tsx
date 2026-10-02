@@ -1,35 +1,39 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Sparkles, Wifi, Wine, ChevronRight, PhoneCall } from 'lucide-react';
+import { Plane, Anchor, Clock, Compass, ShieldCheck, Crown, Map, Sparkles, Wifi, Wine, ChevronRight, PhoneCall, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO } from '@/data/transferData';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const EditorialCard = ({ title, desc, badge, image, buttonText }: { title: string; desc: string; badge: string; image: string; buttonText: string }) => {
   return (
-    <div className="group relative rounded-2xl border border-white/5 bg-black overflow-hidden h-[420px] transition-all duration-500 hover:border-white/20 select-none cursor-default">
+    <div className="group relative rounded-2xl border border-white/5 bg-black overflow-hidden h-[420px] transition-all duration-500 hover:border-white/20 select-none cursor-pointer" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.phoneClean}`, '_blank')}>
       <img
         src={image}
         alt={title}
-        className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale transition-all duration-1000 group-hover:scale-105 group-hover:opacity-60 group-hover:grayscale-0"
+        className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale transition-all duration-1000 group-hover:scale-105 group-hover:opacity-30 group-hover:grayscale-0"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90" />
       
-      <div className="absolute inset-0 p-8 flex flex-col justify-end">
+      {/* WhatsApp Hover Overlay Button */}
+      <div className="absolute inset-x-6 bottom-8 z-20 flex flex-col justify-end translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+        <div className="w-full py-3.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl flex items-center justify-center gap-2 font-bold tracking-wide shadow-lg">
+          <MessageCircle className="w-5 h-5" />
+          <span>WhatsApp'tan Bilgi Al</span>
+        </div>
+      </div>
+
+      <div className="absolute inset-0 p-8 flex flex-col justify-end group-hover:-translate-y-16 transition-all duration-500">
         <div className="pointer-events-none select-none">
           <div className="w-8 h-[1px] bg-[#E5D3B3] mb-5 transition-all duration-500 group-hover:w-16"></div>
           <span className="text-[10px] font-sans tracking-[0.2em] text-[#E5D3B3] uppercase mb-3 block">
             {badge}
           </span>
           <h3 className="text-2xl font-serif text-white mb-4">{title}</h3>
-          <p className="text-sm text-zinc-400 font-sans leading-relaxed mb-6">
+          <p className="text-sm text-zinc-400 font-sans leading-relaxed mb-6 group-hover:opacity-0 transition-opacity duration-300">
             {desc}
           </p>
-        </div>
-        <div className="flex items-center gap-3 text-white/50 group-hover:text-white transition-colors cursor-pointer w-fit" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.phoneClean}`, '_blank')}>
-          <span className="text-xs font-sans tracking-widest uppercase">{buttonText}</span>
-          <ChevronRight className="w-4 h-4 text-[#E5D3B3] group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
     </div>
