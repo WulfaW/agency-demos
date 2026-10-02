@@ -116,16 +116,17 @@ const MapInner = () => {
   const airportCoords = locations[0].coords;
 
   return (
-    <div className="relative w-full h-[480px] md:h-[540px] rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.9)]">
+    <div className="relative w-full rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.9)] bg-[#0a0a0a] flex flex-col md:block">
       
       {/* Real Interactive Leaflet Map - Zero API Key Needed (OpenStreetMap / Esri Topo) */}
-      <MapContainer
-        center={[37.12, 27.46]}
-        zoom={11}
-        scrollWheelZoom={false}
-        className="w-full h-full"
-        style={{ background: '#dce5db' }}
-      >
+      <div className="w-full h-[350px] md:h-[540px]">
+        <MapContainer
+          center={[37.12, 27.46]}
+          zoom={11}
+          scrollWheelZoom={false}
+          className="w-full h-full z-10"
+          style={{ background: '#dce5db' }}
+        >
         {/* 100% Free Public OSM Tile Layer with Amanruya Muted Olive Filter */}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -182,10 +183,11 @@ const MapInner = () => {
             </Marker>
           );
         })}
-      </MapContainer>
+        </MapContainer>
+      </div>
 
-      {/* Floating Active Cove Card on top of map (Aman Style) - Hidden on mobile so users can actually see the map */}
-      <div className="hidden md:block absolute bottom-6 right-6 w-80 z-[1000] backdrop-blur-2xl bg-[#0a0a0a]/92 border border-white/15 rounded-2xl p-5 shadow-2xl">
+      {/* Detail Card - Stacked on mobile, floating on desktop */}
+      <div className="md:absolute md:bottom-6 md:right-6 w-full md:w-80 z-[1000] backdrop-blur-2xl bg-[#0a0a0a]/92 border-t border-white/5 md:border md:border-white/15 md:rounded-2xl p-5 md:shadow-2xl">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[14px] font-mono tracking-widest text-[#E5D3B3] uppercase">Seçili Destinasyon</span>
           <span className="text-xl font-serif font-bold text-white">{selectedPin.price}</span>
