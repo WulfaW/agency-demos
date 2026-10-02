@@ -202,10 +202,10 @@ const MapInner = () => {
           href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20${encodeURIComponent(selectedPin.name)}%20VIP%20transfer%20icin%20fiyat%20almak%20istiyorum.`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full mt-3 flex items-center justify-center gap-2 bg-[#E5D3B3] hover:bg-white text-black py-2.5 rounded-xl text-sm font-bold tracking-widest uppercase transition-colors"
+          className="w-full mt-4 flex items-center justify-center gap-2 bg-[#E5D3B3] hover:bg-white text-black py-2 rounded-lg text-[11px] font-bold tracking-widest uppercase transition-colors"
         >
           <span>WhatsApp İle Ayırt</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3 h-3" />
         </a>
       </div>
 

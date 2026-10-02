@@ -4,6 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import Navbar from '@/components/Navbar';
 import Fleet from '@/components/Fleet';
 import ParallaxGallery from '@/components/ui/3d-parallax-unfurling-gallery';
+import MobileSwipeGallery from '@/components/ui/MobileSwipeGallery';
 import FaqAndFooter from '@/components/FaqAndFooter';
 import StickyMobileBar from '@/components/StickyMobileBar';
 
@@ -32,7 +33,10 @@ export default function FleetPage() {
         <Fleet />
       </div>
 
-      <ParallaxGallery />
+      <div className="hidden md:block">
+        <ParallaxGallery />
+      </div>
+      <MobileSwipeGallery />
       <FaqAndFooter />
       <StickyMobileBar />
     </main>
