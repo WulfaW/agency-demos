@@ -7,6 +7,7 @@ import { Plane, Sparkles, MapPin, CheckCircle2, ArrowRight } from 'lucide-react'
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { CONTACT_INFO } from '@/data/transferData';
 
 export default function StickyScrollExperience() {
   const [activeStep, setActiveStep] = useState(0);
@@ -223,7 +224,7 @@ export default function StickyScrollExperience() {
                     </div>
                     
                     <a
-                      href="https://wa.me/905305673991?text=Merhaba,%20VIP%20transfer%20hizmetiniz%20hakkinda%20bilgi%20ve%20rezervasyon%20almak%20istiyorum."
+                      href={`https://wa.me/${CONTACT_INFO.phoneClean}?text=Merhaba,%20VIP%20transfer%20hizmetiniz%20hakkinda%20bilgi%20ve%20rezervasyon%20almak%20istiyorum.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full mt-auto flex items-center justify-center gap-2 bg-white text-black hover:bg-[#E5D3B3] py-3 rounded-lg text-[11px] md:text-[12px] font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-lg"

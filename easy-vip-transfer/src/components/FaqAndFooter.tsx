@@ -104,8 +104,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean }) {
 
+  const { lang } = useLanguage();
+
   const getFaqs = () => {
-    const { lang } = useLanguage();
     switch(lang) {
       case 'EN': return [
         { q: "How are the transfer fees calculated?", a: "Prices are calculated based on the distance of your route and the vehicle class (Maybach, S-Class, Vito VIP). There are no hidden fees; all prices include fuel, highway tolls, and taxes." },
@@ -147,7 +148,6 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
   const faqs = getFaqs();
 
   const getTexts = () => {
-    const { lang } = useLanguage();
     switch(lang) {
       case 'EN': return { faqTitle: 'Frequently Asked Questions', faqSub: 'Everything you need to know about our premium transfer operations.', faqHelp: 'Have another question?', footerDesc: 'Bodrum\'s Premier VIP Transfer Experience.', quick: 'Quick Links', contact: 'Contact' };
       case 'RU': return { faqTitle: 'Часто Задаваемые Вопросы', faqSub: 'Все, что вам нужно знать о наших премиальных переводах.', faqHelp: 'У вас есть другой вопрос?', footerDesc: 'Премьерный VIP Трансфер в Бодруме.', quick: 'Ссылки', contact: 'Связаться' };
