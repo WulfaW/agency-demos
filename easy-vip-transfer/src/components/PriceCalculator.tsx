@@ -203,6 +203,7 @@ export default function PriceCalculator() {
     const toName = LOCATIONS.find((l) => l.id === to)?.name || to;
     const vehicleName = vehicleOptions.find(v => v.id === vehicle)?.name || vehicle;
     
+    let msg = '';
     let formattedDate = date;
     if (date) {
       try {
