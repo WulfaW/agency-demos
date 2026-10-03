@@ -126,6 +126,7 @@ export default function ParallaxGallery()  {
               borderRadius: bannerRadius,
               borderWidth: bannerBorderWidth,
               borderColor: "rgba(255,255,255,0.05)",
+            }}
             className="relative bg-[#030303] overflow-hidden flex items-center justify-center max-w-[1920px] mx-auto will-change-transform backface-hidden preserve-3d"
           >
             {/* Noise Background Overlay */}
