@@ -234,7 +234,7 @@ export const LuxuryDatePicker = ({
                       </button>
                     ))}
                   </div>
-                  <div className="mt-auto pt-4 border-t border-white/[0.06]">
+                  <div className="mt-2 pt-4 border-t border-white/[0.06]">
                     <p className="text-[10px] font-bold tracking-[0.1em] text-zinc-500 uppercase mb-2 text-center sm:text-left">
                       Özel Saat Girin
                     </p>
@@ -244,30 +244,30 @@ export const LuxuryDatePicker = ({
                       placeholder="SS:DD (Örn: 14:30)"
                       maxLength={5}
                       className="w-full bg-[#111] border border-white/[0.08] rounded-xl px-4 py-2 text-sm text-white font-mono focus:outline-none focus:border-[#E5D3B3]/50 transition-colors placeholder:text-zinc-700"
-                      value={selectedTime || ''}
+                      defaultValue=""
                       onChange={(e) => {
                         let val = e.target.value.replace(/[^\d:]/g, '');
-                        
-                        // Otomatik iki nokta koyma
-                        if (val.length === 2 && !val.includes(':') && (selectedTime || '').length < 2) {
+                        // Auto-insert colon after 2 digits
+                        if (val.length === 2 && !val.includes(':')) {
                           val += ':';
+                          e.target.value = val;
                         }
-                        
                         if (val.length > 5) val = val.slice(0, 5);
-                        
-                        // Saat ve dakika validasyonu
+                        // Validate hour
                         if (val.length >= 2) {
                           const hour = parseInt(val.slice(0, 2));
                           if (hour > 23) val = '23' + val.slice(2);
                         }
+                        // Validate minute
                         if (val.length >= 5) {
                           const minute = parseInt(val.slice(3, 5));
                           if (minute > 59) val = val.slice(0, 3) + '59';
                         }
-                        
-                        selectTime(val);
+                        e.target.value = val;
+                        if (val.length === 5) selectTime(val);
                       }}
                     />
+                    <p className="text-[10px] text-zinc-600 mt-1.5 text-center sm:text-left">5 karakter girin (SS:DD) ve otomatik seçilir</p>
                   </div>
                 </div>
               </div>
