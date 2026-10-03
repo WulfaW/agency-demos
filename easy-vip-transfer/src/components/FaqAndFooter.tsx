@@ -104,7 +104,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean }) {
 
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
 
   const getFaqs = () => {
     switch(lang) {
@@ -298,14 +298,14 @@ export default function FaqAndFooter({ showFaq = false }: { showFaq?: boolean })
             </div>
           </div>
 
-          {/* Col 2: {texts.quick} */}
+          {/* Col 2: Quick Links */}
           <div className="space-y-4">
             <h4 className="text-[12px] md:text-[14px] font-sans font-bold tracking-widest text-zinc-100 uppercase">{texts.quick}</h4>
             <nav className="space-y-2.5 text-[12px] md:text-[13px] font-sans font-medium text-zinc-400 flex flex-col items-center sm:items-start">
-              <a href="/araclarimiz" className="block hover:text-[#E5D3B3] transition-colors">Araç Filomuz</a>
-              <a href="/hizmetlerimiz" className="block hover:text-[#E5D3B3] transition-colors">Ayrıcalıklar</a>
-              <a href="/bolgelerimiz" className="block hover:text-[#E5D3B3] transition-colors">Popüler Rotalar</a>
-              <a href="/#calculator" className="block hover:text-[#E5D3B3] transition-colors">Fiyat Hesapla</a>
+              <a href="/araclarimiz" className="block hover:text-[#E5D3B3] transition-colors">{t.nav.fleet}</a>
+              <a href="/hizmetlerimiz" className="block hover:text-[#E5D3B3] transition-colors">{t.nav.services}</a>
+              <a href="/bolgelerimiz" className="block hover:text-[#E5D3B3] transition-colors">{t.nav.routes}</a>
+              <a href="/#calculator" className="block hover:text-[#E5D3B3] transition-colors">{t.nav.calc}</a>
             </nav>
           </div>
 
