@@ -126,11 +126,13 @@ export default function ParallaxGallery()  {
               borderRadius: bannerRadius,
               borderWidth: bannerBorderWidth,
               borderColor: "rgba(255,255,255,0.05)",
-            }}
-            className="relative bg-black overflow-hidden flex items-center justify-center max-w-[1920px] mx-auto will-change-transform backface-hidden preserve-3d"
+            className="relative bg-[#030303] overflow-hidden flex items-center justify-center max-w-[1920px] mx-auto will-change-transform backface-hidden preserve-3d"
           >
+            {/* Noise Background Overlay */}
+            <div className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.03]" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }} />
+            
             <div
-              className="absolute inset-0 flex justify-center items-center pointer-events-none"
+              className="absolute inset-0 flex justify-center items-center pointer-events-none z-10"
               style={{ perspective: "1000px" }}
             >
               {/* Ambient Shadow Box Masking */}
