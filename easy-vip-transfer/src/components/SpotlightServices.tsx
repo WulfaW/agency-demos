@@ -195,11 +195,11 @@ export default function SpotlightServices() {
 
   const texts = useMemo(() => {
     switch(lang) {
-      case 'EN': return { sub: 'PREMIUM SERVICES', title: 'Exclusive Privileges', desc: 'Beyond standards, an Aegean VIP experience.', button: '24/7 Booking' };
-      case 'RU': return { sub: 'ПРЕМИУМ УСЛУГИ', title: 'Эксклюзивные Привилегии', desc: 'За гранью стандартов, эгейский VIP-опыт.', button: 'Бронирование 24/7' };
-      case 'DE': return { sub: 'PREMIUM-DIENSTE', title: 'Exklusive Privilegien', desc: 'Jenseits von Standards, ein VIP-Erlebnis in der Ägäis.', button: '24/7 Buchung' };
-      case 'AR': return { sub: 'خدمات ممتازة', title: 'امتيازات حصرية', desc: 'خارج المعايير، تجربة كبار الشخصيات في بحر إيجة.', button: 'حجز على مدار الساعة' };
-      default: return { sub: 'VIP OPERASYON HİZMETLERİ', title: 'Ayrıcalıklı Hizmet Yelpazemiz', desc: 'BODRUM VE EGE GENELİNDE KİŞİYE VE KURUMLARA ÖZEL LÜKS MOBİLİTE ÇÖZÜMLERİ.', button: '7/24 Rezervasyon' };
+      case 'EN': return { sub: 'PREMIUM SERVICES', title: 'Exclusive Privileges', desc: 'Beyond standards, an Aegean VIP experience.', button: '24/7 Booking', conciergeTitle: 'Have a Special Route or Request?', conciergeDesc: 'Our VIP Concierge team prepares a custom offer in minutes, 24/7.', conciergeBtn: 'Request Quick Quote' };
+      case 'RU': return { sub: 'ПРЕМИУМ УСЛУГИ', title: 'Эксклюзивные Привилегии', desc: 'За гранью стандартов, эгейский VIP-опыт.', button: 'Бронирование 24/7', conciergeTitle: 'Есть особый маршрут или запрос?', conciergeDesc: 'Наша команда VIP-консьержей подготовит предложение за несколько минут, 24/7.', conciergeBtn: 'Быстрый запрос цены' };
+      case 'DE': return { sub: 'PREMIUM-DIENSTE', title: 'Exklusive Privilegien', desc: 'Jenseits von Standards, ein VIP-Erlebnis in der Ägäis.', button: '24/7 Buchung', conciergeTitle: 'Haben Sie eine spezielle Route oder Anfrage?', conciergeDesc: 'Unser VIP-Concierge-Team erstellt in wenigen Minuten ein individuelles Angebot, 24/7.', conciergeBtn: 'Schnelles Angebot anfordern' };
+      case 'AR': return { sub: 'خدمات ممتازة', title: 'امتيازات حصرية', desc: 'خارج المعايير، تجربة كبار الشخصيات في بحر إيجة.', button: 'حجز على مدار الساعة', conciergeTitle: 'هل لديك مسار أو طلب خاص؟', conciergeDesc: 'يقوم فريق الكونسيرج لكبار الشخصيات لدينا بإعداد عرض مخصص في دقائق، على مدار 24 ساعة.', conciergeBtn: 'اطلب عرض سعر سريع' };
+      default: return { sub: 'VIP OPERASYON HİZMETLERİ', title: 'Ayrıcalıklı Hizmet Yelpazemiz', desc: 'BODRUM VE EGE GENELİNDE KİŞİYE VE KURUMLARA ÖZEL LÜKS MOBİLİTE ÇÖZÜMLERİ.', button: '7/24 Rezervasyon', conciergeTitle: 'Özel Bir Rota veya Talebiniz mi Var?', conciergeDesc: 'VIP Concierge ekibimiz 7/24 dakikalar içinde size özel teklif hazırlar.', conciergeBtn: 'Hızlı Teklif İste' };
     }
   }, [lang]);
 
@@ -281,8 +281,8 @@ export default function SpotlightServices() {
             <PhoneCall className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-sm font-serif text-white">Özel Bir Rota veya Talebiniz mi Var?</h4>
-            <p className="text-sm text-zinc-400">VIP Concierge ekibimiz 7/24 dakikalar içinde size özel teklif hazırlar.</p>
+            <h4 className="text-sm font-serif text-white">{texts.conciergeTitle}</h4>
+            <p className="text-sm text-zinc-400">{texts.conciergeDesc}</p>
           </div>
         </div>
         <a
@@ -291,7 +291,7 @@ export default function SpotlightServices() {
           rel="noopener noreferrer"
           className="px-6 py-3 rounded-xl bg-white text-black hover:bg-[#E5D3B3] text-sm font-bold tracking-widest uppercase transition-colors"
         >
-          Hızlı Teklif İste
+          {texts.conciergeBtn}
         </a>
       </div>
 
