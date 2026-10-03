@@ -137,8 +137,8 @@ export default function ParallaxGallery()  {
               style={{ perspective: "1000px" }}
             >
               {/* Ambient Shadow Box Masking */}
-              <div className="absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(0,0,0,1),inset_0_-100px_150px_-50px_rgba(0,0,0,1)]" />
-              <div className="absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(0,0,0,1),inset_-150px_0_150px_-50px_rgba(0,0,0,1)]" />
+              <div className="absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(3,3,3,1),inset_0_-100px_150px_-50px_rgba(3,3,3,1)] pointer-events-none" />
+              <div className="absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(3,3,3,1),inset_-150px_0_150px_-50px_rgba(3,3,3,1)] pointer-events-none" />
 
               {/* Parallax Image Grid Matrix */}
               <motion.div
