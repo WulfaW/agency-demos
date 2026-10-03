@@ -29,9 +29,9 @@ export default function Hero() {
           alt="VIP Transfer Bodrum Desktop"
           className="w-full h-full object-cover hidden md:block"
         />
-        {/* Mobile Image - Instant load, no animation to prevent opacity bugs */}
+        {/* Mobile Image - External URL so Vercel always serves it */}
         <img
-          src="/images/mobile-hero.jpg"
+          src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80"
           alt="VIP Transfer Bodrum Mobile"
           className="w-full h-full object-cover block md:hidden opacity-90"
         />
